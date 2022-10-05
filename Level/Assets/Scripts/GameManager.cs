@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused;
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         instance = this;
@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
         //playerScript = player.GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
@@ -39,6 +38,7 @@ public class GameManager : MonoBehaviour
                 CursorUnLockUnPause();
         }
     }
+
 
     void CursorLockPause()
     {
