@@ -39,4 +39,18 @@ public class GameManager : MonoBehaviour
                 CursorUnLockUnPause();
         }
     }
+
+    void CursorLockPause()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    void CursorUnLockUnPause()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }
