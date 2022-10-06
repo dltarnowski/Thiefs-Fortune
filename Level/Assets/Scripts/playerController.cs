@@ -23,7 +23,6 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject gunModel;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 
-    private Vector3 move;
     private Vector3 playerVelocity;
     private int timesJumped;
     bool isShooting;
@@ -51,19 +50,19 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
+        Vector3 move = transform.right * Input.GetAxis("Horizontal") +
+                       transform.forward * Input.GetAxis("Vertical");
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            move = transform.right * Input.GetAxis("Horizontal") * runSpeed +
-                           transform.forward * Input.GetAxis("Vertical") * runSpeed;
+            controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
         }
         else
         {
-            move = transform.right * Input.GetAxis("Horizontal") +
-                           transform.forward * Input.GetAxis("Vertical");
+            controller.Move(move * Time.deltaTime * playerSpeed);
         }
 
 
-        controller.Move(move * Time.deltaTime * playerSpeed);
 
 
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
