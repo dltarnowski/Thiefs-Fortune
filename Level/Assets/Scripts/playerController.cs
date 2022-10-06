@@ -82,4 +82,15 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
+
+    public void GunPickup(GunStats stats)
+    {
+        shootRate = stats.shootSpeed;
+        shootDist = stats.shootDist;
+        shootDamage = stats.shootDamage;
+        gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        gunStat.Add(stats);
+    }
 }
