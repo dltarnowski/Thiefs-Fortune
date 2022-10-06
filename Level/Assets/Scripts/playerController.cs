@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour
     {
        movement();
        StartCoroutine(shoot());
+       GunSelect();
     }
 
     void movement()
@@ -93,6 +94,23 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         gunStat.Add(stats);
+    }
+
+    void GunSelect()
+    {
+        if (gunStat.Count > 1)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectGun < gunStat.Count - 1)
+            {
+                selectGun++;
+                ChangeGuns();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectGun > 0)
+            {
+                selectGun--;
+                ChangeGuns();
+            }
+        }
     }
 
     void ChangeGuns()
