@@ -44,15 +44,23 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
+        //Reset jump
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
             timesJumped = 0;
         }
 
+        //Crouch
+        if (Input.GetKey(KeyCode.LeftControl))
+            transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
+        else
+            transform.localScale = new Vector3(transform.localScale.x, 1.0f, transform.localScale.z);
+
         Vector3 move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
 
+        //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
@@ -64,7 +72,7 @@ public class playerController : MonoBehaviour
 
 
 
-
+        //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
             playerVelocity.y = jumpHeight;
