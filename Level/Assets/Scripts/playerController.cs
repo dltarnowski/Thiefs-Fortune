@@ -15,8 +15,16 @@ public class playerController : MonoBehaviour
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
 
+    [Header("----- Gun Stats -----")]
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDist;
+    [SerializeField] int shootDamage;
+    [SerializeField] GameObject gunModel;
+    [SerializeField] List<GunStats> gunStat = new List<GunStats>();
+
     private Vector3 playerVelocity;
     private int timesJumped;
+    bool isShooting;
 
 
     void Start()
@@ -28,6 +36,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
        movement();
+       StartCoroutine(shoot());
     }
 
     void movement()
@@ -44,7 +53,6 @@ public class playerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
 
-        // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
             playerVelocity.y = jumpHeight;
@@ -53,5 +61,25 @@ public class playerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    IEnumerator shoot()
+    {
+        if (gunStat.Count > 0 && Input.GetButton("Shoot") && !isShooting)
+        {
+            isShooting = true;
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            {
+               //  -------      WAITING ON IDAMAGE      -------
+               // if (hit.collider.GetComponent<IDamage>() != null)
+               //     hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+            }
+
+            Debug.Log("Shoot!");
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
     }
 }
