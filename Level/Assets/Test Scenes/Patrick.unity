@@ -323,9 +323,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 94498305}
   playerSpeed: 5
+  runSpeed: 2
   jumpHeight: 8
   gravityValue: -9.8
   jumpsMax: 3
+  shootRate: 0
+  shootDist: 0
+  shootDamage: 0
+  gunModel: {fileID: 0}
+  gunStat: []
 --- !u!143 &94498305
 CharacterController:
   m_ObjectHideFlags: 0
