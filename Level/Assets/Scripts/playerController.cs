@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     private int timesJumped;
     bool isShooting;
+    int selectGun;
 
 
     void Start()
@@ -92,5 +93,15 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         gunStat.Add(stats);
+    }
+
+    void ChangeGuns()
+    {
+        shootRate = gunStat[selectGun].shootSpeed;
+        shootDist = gunStat[selectGun].shootDist;
+        shootDamage = gunStat[selectGun].shootDamage;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
