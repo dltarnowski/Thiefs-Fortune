@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3963092936783770679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -990.03906, y: 234.639, z: -537.69836}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87,12 +87,11 @@ MonoBehaviour:
   model: {fileID: 7352961528428922608}
   HP: 50
   facePlayerSpeed: 10
-  sightDist: 10
+  sightDist: 30
   damagedDuration: 0.25
   attackRate: 1
   attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 7850589493929369968}
-  player: {fileID: 0}
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
@@ -141,13 +140,13 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 20
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!33 &2821126542075872487
 MeshFilter:
@@ -210,7 +209,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 500
+  m_Radius: 800
   m_Center: {x: 0, y: 98.68832, z: -4.997589}
 --- !u!1 &7850589493929369968
 GameObject:

@@ -76,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3963092936783770679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -990.03906, y: 234.639, z: -537.69836}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96,6 +96,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dc833d44fc39e479f614a4bfe02428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 6801783130547655390}
+  model: {fileID: 7352961528428922608}
+  HP: 0
+  facePlayerSpeed: 0
+  sightDist: 0
+  damagedDuration: 0
+  attackRate: 0
+  attackPos: {fileID: 0}
+  weapon: {fileID: 0}
+  player: {fileID: 0}
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
@@ -138,7 +148,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3963092936783770679}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 50
@@ -150,7 +160,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!33 &2821126542075872487
 MeshFilter:
