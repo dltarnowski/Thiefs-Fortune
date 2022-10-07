@@ -282,24 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e6fe8711281640842185d432fe325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1319520185 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6217373905241696552, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
-  m_PrefabInstance: {fileID: 4047909973350064132}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1319520191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319520185}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.095829636, y: 0.32421595, z: 1.0615926}
-  m_Center: {x: -0.0001731161, y: -0.027256735, z: 0.098685145}
 --- !u!1001 &1620255643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,10 +453,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6640265041445958812, guid: 27c105735705dd7499728f9d31c4d58d, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6683910282277353856, guid: 27c105735705dd7499728f9d31c4d58d, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -589,10 +567,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7517643022627545244, guid: 2273de53716a424469b44f20a576da37, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7544101266606630786, guid: 2273de53716a424469b44f20a576da37, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -650,10 +624,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6217373905239163364, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5e1235b2e417983469723d36f05de88d, type: 2}
     - target: {fileID: 6217373905241503866, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -701,14 +671,6 @@ PrefabInstance:
     - target: {fileID: 6217373905241696552, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
       propertyPath: m_Name
       value: BlunderBuss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245743133922146092, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6245743133922146092, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
@@ -766,10 +728,6 @@ PrefabInstance:
     - target: {fileID: 6509078273142533011, guid: e009e661c2056fd4ca226dc547e30828, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6535061936818369157, guid: e009e661c2056fd4ca226dc547e30828, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e009e661c2056fd4ca226dc547e30828, type: 3}
@@ -837,10 +795,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2336346369958221056, guid: fe19ef3bdb500294f80b0fd588446a70, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2344364002143443464, guid: fe19ef3bdb500294f80b0fd588446a70, type: 3}
       propertyPath: m_Name
       value: RifleDB
@@ -945,10 +899,6 @@ PrefabInstance:
     - target: {fileID: 4981103521317042084, guid: dc25199193f487842837de8cc0860ae2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5027768485805720770, guid: dc25199193f487842837de8cc0860ae2, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc25199193f487842837de8cc0860ae2, type: 3}
