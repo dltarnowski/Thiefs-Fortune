@@ -27,6 +27,7 @@ public class playerController : MonoBehaviour
     private int timesJumped;
     bool isShooting;
     int selectGun;
+    //bool gunGrabbed;
 
 
     void Start()
@@ -110,7 +111,8 @@ public class playerController : MonoBehaviour
         shootDamage = stats.shootDamage;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
+        //gunGrabbed = true;
+        //gameManager.instance.ammoCountNum = 
         gunStat.Add(stats);
     }
 
@@ -141,16 +143,16 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
-   /* public void takeDamage(int _dmg)
-    {
-        HP -= _dmg;
-        StartCoroutine(gameManager.instance.playerDamage());
+    /* public void takeDamage(int _dmg)
+     {
+         HP -= _dmg;
+         StartCoroutine(gameManager.instance.playerDamage());
 
-        if (HP <= 0)
-        {
-            gameManager.instance.playerDeadMenu.SetActive(true);
-            gameManager.instance.cursorLockPause();
-        }
+         if (HP <= 0)
+         {
+             gameManager.instance.playerDeadMenu.SetActive(true);
+             gameManager.instance.cursorLockPause();
+         }
 
-    }*/
+     }*/
 }

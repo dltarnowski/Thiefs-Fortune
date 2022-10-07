@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
+    public int ammoCountNum;
     public static gameManager instance;
 
     [Header("----- Player Stuff -----")]
@@ -15,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+    public TextMeshProUGUI ammoCountText;
 
     public bool isPaused;
 
@@ -54,4 +58,12 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+   /* public void CheckAmmoAmount()
+    {
+        if (gunGrabbed == true)
+        {
+            ammoCountText.text = ammoCountNum.ToString("F0");
+        }
+    }*/
 }
