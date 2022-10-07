@@ -8,7 +8,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
-    // public playerController playerScript;
+    public playerController playerScript;
 
     [Header("----- UI -----")]
     //public GameObject winMenu
@@ -23,7 +23,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        // playerScript = player.GetComponent<playerController>();
+        playerScript = player.GetComponent<playerController>();
     }
 
     // Update is called once per frame
