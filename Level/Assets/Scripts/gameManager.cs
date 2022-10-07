@@ -11,9 +11,9 @@ public class gameManager : MonoBehaviour
     // public playerController playerScript;
 
     [Header("----- UI -----")]
-    //public GameObject winMenu
-    //public GameObject deathMenu
+    public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
 
     public bool isPaused;
@@ -29,7 +29,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if(Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
