@@ -19,7 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float attackRate;
     [SerializeField] GameObject attackPos;
     [SerializeField] GameObject weapon;
-    public GameObject player;
+    //[SerializeField] GameObject bullet;
     bool isShooting;
     bool isMelee;
     bool playerInRange;
@@ -28,7 +28,6 @@ public class enemyAI : MonoBehaviour, IDamage
     void Awake()
     {
         modelColor = model.material.color;
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (agent.enabled && playerInRange)
         {
-            agent.SetDestination(player.transform.position);
+            agent.SetDestination(gameManager.instance.player.transform.position);
 
             if (gameObject.CompareTag("PirateRanged") && !isShooting)
                 StartCoroutine(shoot());
