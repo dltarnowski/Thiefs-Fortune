@@ -61,15 +61,15 @@ public class playerController : MonoBehaviour
                        transform.forward * Input.GetAxis("Vertical");
 
         //Run
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
-        //}
-        //else
-        //{
-        //}
-
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
+        }
+        else
+        {
             controller.Move(move * Time.deltaTime * playerSpeed);
+        }
+
 
 
         //Jump
