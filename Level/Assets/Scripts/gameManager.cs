@@ -11,6 +11,8 @@ public class gameManager : MonoBehaviour
     // public playerController playerScript;
 
     [Header("----- UI -----")]
+    //public GameObject winMenu
+    //public GameObject deathMenu
     public GameObject pauseMenu;
     public GameObject menuCurrentlyOpen;
 
