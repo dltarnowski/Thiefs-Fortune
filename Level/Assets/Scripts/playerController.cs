@@ -140,4 +140,17 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
+
+   /* public void takeDamage(int _dmg)
+    {
+        HP -= _dmg;
+        StartCoroutine(gameManager.instance.playerDamage());
+
+        if (HP <= 0)
+        {
+            gameManager.instance.playerDeadMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
+
+    }*/
 }
