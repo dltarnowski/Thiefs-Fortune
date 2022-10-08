@@ -143,9 +143,9 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
-    /* public void takeDamage(int _dmg)
+    /* public void takeDamage(int dmg)
      {
-         HP -= _dmg;
+         HP -= dmg;
          StartCoroutine(gameManager.instance.playerDamage());
 
          if (HP <= 0)
