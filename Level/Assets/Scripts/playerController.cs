@@ -27,7 +27,7 @@ public class playerController : MonoBehaviour
     private int timesJumped;
     bool isShooting;
     int selectGun;
-    //bool gunGrabbed;
+    public bool gunGrabbed;
 
 
     void Start()
@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour
        movement();
        StartCoroutine(shoot());
        GunSelect();
+       gameManager.instance.CheckAmmoAmount();
     }
 
     void movement()
@@ -111,8 +112,7 @@ public class playerController : MonoBehaviour
         shootDamage = stats.shootDamage;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        //gunGrabbed = true;
-        //gameManager.instance.ammoCountNum = 
+        gunGrabbed = true;
         gunStat.Add(stats);
     }
 

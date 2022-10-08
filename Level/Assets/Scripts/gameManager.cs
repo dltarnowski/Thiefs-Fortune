@@ -59,11 +59,13 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-   /* public void CheckAmmoAmount()
+   public void CheckAmmoAmount()
     {
-        if (gunGrabbed == true)
+        if (playerScript.gunGrabbed == true)
         {
+            //ammoCountNum = playerScript.ammo
             ammoCountText.text = ammoCountNum.ToString("F0");
+            Debug.Log(playerScript.gunGrabbed);
         }
-    }*/
+    }
 }
