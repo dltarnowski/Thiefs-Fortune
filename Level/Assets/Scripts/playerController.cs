@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     [SerializeField] GameObject gunModel;
+    [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 
     private Vector3 playerVelocity;
@@ -41,7 +43,6 @@ public class playerController : MonoBehaviour
        movement();
        StartCoroutine(shoot());
        GunSelect();
-       gameManager.instance.CheckAmmoAmount();
     }
 
     void movement()
@@ -110,10 +111,11 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
+        ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        gunGrabbed = true;
         gunStat.Add(stats);
+        gunGrabbed = true;
     }
 
     void GunSelect()
@@ -138,6 +140,7 @@ public class playerController : MonoBehaviour
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
+        ammoCount = gunStat[selectGun].ammoCount;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;

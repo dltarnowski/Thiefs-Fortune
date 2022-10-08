@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+    public GameObject acObject;
     public TextMeshProUGUI ammoCountText;
 
     public bool isPaused;
@@ -33,7 +34,8 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
+        CheckAmmoAmount();
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
@@ -59,13 +61,20 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-   public void CheckAmmoAmount()
+    public void CheckAmmoAmount()
     {
         if (playerScript.gunGrabbed == true)
         {
-            //ammoCountNum = playerScript.ammo
-            ammoCountText.text = ammoCountNum.ToString("F0");
-            Debug.Log(playerScript.gunGrabbed);
+            ammoCountText.text = playerScript.ammoCount.ToString("F0");
+            acObject.SetActive(true);
+            if(playerScript.ammoCount <= 1)
+            {
+                ammoCountText.color = new Color(255, 0, 0, 100);
+            }
+            else
+            {
+                ammoCountText.color = new Color(0, 0, 0, 100);
+            }
         }
     }
 }
