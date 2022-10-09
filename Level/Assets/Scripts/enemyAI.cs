@@ -19,7 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float attackRate;
     [SerializeField] GameObject attackPos;
     [SerializeField] GameObject weapon;
-    //[SerializeField] GameObject bullet;
+    [SerializeField] GameObject bullet;
     bool isShooting;
     bool isMelee;
     bool playerInRange;
@@ -55,7 +55,7 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        //Instantiate(bullet, attackPos.transform.position, transform.rotation);
+        Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
     }
