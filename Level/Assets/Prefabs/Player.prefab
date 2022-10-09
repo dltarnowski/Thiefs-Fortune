@@ -240,7 +240,9 @@ MonoBehaviour:
   shootDist: 0
   shootDamage: 0
   gunModel: {fileID: 459487449770361826}
+  ammoCount: 0
   gunStat: []
+  gunGrabbed: 0
 --- !u!143 &459487450929473576
 CharacterController:
   m_ObjectHideFlags: 0
@@ -332,6 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 459487450968070258}
+  - component: {fileID: 5207178025141966036}
   - component: {fileID: 459487450968070259}
   - component: {fileID: 459487450968070256}
   m_Layer: 0
@@ -357,6 +360,23 @@ Transform:
   m_Father: {fileID: 459487450929474518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5207178025141966036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459487450968070257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7612b66871b351e448223c4342702e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensHort: 0
+  sensVert: 0
+  lockVertMin: 0
+  lockVertMax: 0
+  invert: 0
 --- !u!20 &459487450968070259
 Camera:
   m_ObjectHideFlags: 0
