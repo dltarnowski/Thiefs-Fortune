@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
-    [SerializeField] GameObject gunModel;
+    public GameObject gunModel;
     [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 

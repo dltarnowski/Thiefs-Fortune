@@ -28,12 +28,15 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool crossHairVisible = true;
 
+    public GameObject mainCamera;
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        mainCamera = GameObject.Find("Main Camera");
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
     }
 
