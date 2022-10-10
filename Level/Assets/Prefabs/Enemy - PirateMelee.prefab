@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2399408255566305906}
+  - component: {fileID: 1988938058}
   m_Layer: 0
   m_Name: AttackPos
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 3963092936783865879}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1988938058
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427581339233483803}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 79.700226
+  m_Center: {x: 0, y: 0, z: -79.200226}
 --- !u!1 &3963092936783770679
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +63,7 @@ GameObject:
   - component: {fileID: 3543366647184134351}
   m_Layer: 7
   m_Name: Enemy - PirateMelee
-  m_TagString: PirateMelee
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
   HP: 50
   facePlayerSpeed: 10
   sightDist: 10
@@ -93,6 +110,8 @@ MonoBehaviour:
   attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 7850589493929369968}
   bullet: {fileID: 0}
+  meleeAttackRange: 2
+  meleeDamage: 20
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
