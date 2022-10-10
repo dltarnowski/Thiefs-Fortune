@@ -40,7 +40,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3427581339233483803}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 3543366647184134351}
   m_Layer: 7
   m_Name: Enemy - Shark
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,14 +98,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
-  HP: 0
-  facePlayerSpeed: 0
-  sightDist: 0
-  damagedDuration: 0
-  attackRate: 0
-  attackPos: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  HP: 50
+  facePlayerSpeed: 10
+  sightDist: 20
+  damagedDuration: 0.25
+  attackRate: 1
+  attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 0}
-  player: {fileID: 0}
+  bullet: {fileID: 0}
+  meleeAttackRange: 5
+  meleeDamage: 50
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4

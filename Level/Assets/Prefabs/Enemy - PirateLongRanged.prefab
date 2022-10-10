@@ -48,8 +48,8 @@ GameObject:
   - component: {fileID: 7352961528428922608}
   - component: {fileID: 3543366647184134351}
   m_Layer: 7
-  m_Name: Enemy - PirateRanged
-  m_TagString: PirateRanged
+  m_Name: Enemy - PirateLongRanged
+  m_TagString: Ranged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,6 +85,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   HP: 50
   facePlayerSpeed: 10
   sightDist: 30
@@ -93,6 +96,8 @@ MonoBehaviour:
   attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 7850589493929369968}
   bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
+  meleeAttackRange: 0
+  meleeDamage: 0
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
@@ -141,7 +146,7 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 2
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -210,7 +215,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 800
+  m_Radius: 2500
   m_Center: {x: 0, y: 98.68832, z: -4.997589}
 --- !u!1 &7850589493929369968
 GameObject:
