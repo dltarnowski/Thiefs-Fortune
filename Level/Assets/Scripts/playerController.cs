@@ -45,9 +45,11 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+       Debug.Log(HP);
        movement();
        StartCoroutine(shoot());
        GunSelect();
+       updatePlayerHUD();
     }
 
     void movement()
@@ -164,6 +166,10 @@ public class playerController : MonoBehaviour
 
         if (HP <= 0)
         {
+            gameManager.instance.Crosshair.SetActive(false);
+
+            gameManager.instance.playerDamageFlash.SetActive(false);
+
             gameManager.instance.deathMenu.SetActive(true);
             gameManager.instance.cursorLockPause();
         }
@@ -173,6 +179,10 @@ public class playerController : MonoBehaviour
     public void updatePlayerHUD()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            takeDamage(5);
+        }
     }
 
     public void respawn()
@@ -181,13 +191,11 @@ public class playerController : MonoBehaviour
         {
             gameManager.instance.pauseMenu.SetActive(false);
         }
-        else if (gameManager.instance.deathMenu)
-        {
-            gameManager.instance.deathMenu.SetActive(false);
-        }
+        gameManager.instance.deathMenu.SetActive(false);
         controller.enabled = false;
         HP = HPOrig;
         updatePlayerHUD();
+        gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;
     }
