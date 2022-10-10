@@ -14,5 +14,11 @@ public class MenuButtons : MonoBehaviour
     {
         Application.Quit();
     }
-   
+    public void resume()
+    {
+        if (gameManager.instance.isPaused == true)
+        {
+            gameManager.instance.isPaused = false;
+        }
+    }
 }

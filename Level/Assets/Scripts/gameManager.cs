@@ -63,6 +63,10 @@ public class gameManager : MonoBehaviour
 
     public void CheckAmmoAmount()
     {
+        if (playerScript.isShooting == true)
+        {
+            playerScript.ammoCount--;
+        }
         if (playerScript.gunGrabbed == true)
         {
             ammoCountText.text = playerScript.ammoCount.ToString("F0");
