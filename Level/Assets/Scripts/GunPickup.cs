@@ -9,8 +9,8 @@ public class GunPickup : MonoBehaviour
     Vector3 originalPos;
 
     float bounceHeight = .5f;
-    float bounceSpeed = .5f;
-    int rotationSpeed = 90;
+    float bounceSpeed = .25f;
+    int rotationSpeed = 45;
 
     private void Start()
     {
