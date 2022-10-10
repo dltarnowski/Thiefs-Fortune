@@ -7,7 +7,7 @@ public class MenuButtons : MonoBehaviour
 {
     public void respawn()
     {
-        //gameManager.instance.playerScript.respawn();
+        gameManager.instance.playerScript.respawn();
         gameManager.instance.cursorUnlockUnpause();
     }
     public void quit()
