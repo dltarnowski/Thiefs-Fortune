@@ -17,6 +17,9 @@ public class playerController : MonoBehaviour
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
+    
+    [SerializeField] int HP;
+    int HPOrig;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
@@ -35,7 +38,8 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
-        
+        HPOrig = HP;
+        respawn();
     }
 
 
@@ -95,7 +99,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Shoot") && !isShooting)
+        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
         {
             isShooting = true;
 
@@ -103,8 +107,8 @@ public class playerController : MonoBehaviour
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
             {
                //  -------      WAITING ON IDAMAGE      -------
-               // if (hit.collider.GetComponent<IDamage>() != null)
-               //     hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+               if (hit.collider.GetComponent<IDamage>() != null)
+                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
 
             Debug.Log("Shoot!");
@@ -153,16 +157,31 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
-    /* public void takeDamage(int dmg)
-     {
-         HP -= dmg;
-         StartCoroutine(gameManager.instance.playerDamage());
+    public void takeDamage(int dmg)
+    {
+        HP -= dmg;
+        StartCoroutine(gameManager.instance.playerDamage());
 
-         if (HP <= 0)
-         {
-             gameManager.instance.playerDeadMenu.SetActive(true);
-             gameManager.instance.cursorLockPause();
-         }
+        if (HP <= 0)
+        {
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
 
-     }*/
+    }
+
+    public void updatePlayerHUD()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+    }
+
+    public void respawn()
+    {
+        controller.enabled = false;
+        gameManager.instance.deathMenu.SetActive(false);
+        HP = HPOrig;
+        updatePlayerHUD();
+        transform.position = gameManager.instance.spawnPosition.transform.position;
+        controller.enabled = true;
+    }
 }
