@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 459487450929473576}
   - component: {fileID: 459487450929474519}
   - component: {fileID: 459487450929474516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -137,6 +137,7 @@ MonoBehaviour:
   jumpHeight: 8
   gravityValue: -20
   jumpsMax: 1
+  crouchHeight: 1
   HP: 100
   shootRate: 0
   shootDist: 0
@@ -144,6 +145,7 @@ MonoBehaviour:
   gunModel: {fileID: 459487449770361826}
   ammoCount: 0
   gunStat: []
+  isShooting: 0
   gunGrabbed: 0
 --- !u!143 &459487450929473576
 CharacterController:

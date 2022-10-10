@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 3593546779225814828}
   - component: {fileID: 3593546779225814829}
   - component: {fileID: 3593546779225814834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy - Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +336,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   bullet: {fileID: 0}
   stationary: 0
+  noRotation: 0
 --- !u!136 &3593546779225814828
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 5
+  m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
 --- !u!135 &3593546779225814834
 SphereCollider:
