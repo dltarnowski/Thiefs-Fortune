@@ -73,7 +73,7 @@ public class enemyAI : MonoBehaviour, IDamage
         for (int i = 0; i < hit.Length; i++)
         {
             // Removes Health from GameObjects that are within Range and in the LayerMask
-            //hit[i].GetComponent<playerController>().takeDamage(meleeDamage);
+            hit[i].GetComponent<playerController>().takeDamage(meleeDamage);
         }
         yield return new WaitForSeconds(attackRate);
         isMelee = false;
