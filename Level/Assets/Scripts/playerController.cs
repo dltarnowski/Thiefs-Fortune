@@ -16,6 +16,8 @@ public class playerController : MonoBehaviour
     [Range(8, 15)] [SerializeField] float jumpHeight;
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
+    [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
+    
     [SerializeField] int HP;
     int HPOrig;
 
@@ -57,11 +59,17 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
+       
+
         //Crouch
-        if (Input.GetKey(KeyCode.LeftControl))
-            transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
-        else
-            transform.localScale = new Vector3(transform.localScale.x, 1.0f, transform.localScale.z);
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    transform.GetChild(0).localPosition.z);
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    transform.GetChild(0).localPosition.z);
 
         Vector3 move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
