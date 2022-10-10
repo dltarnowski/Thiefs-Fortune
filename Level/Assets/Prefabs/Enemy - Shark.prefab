@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2399408255566305906}
   - component: {fileID: 1007921803406333446}
+  - component: {fileID: 992142037}
   m_Layer: 0
   m_Name: AttackPos
-  m_TagString: Untagged
+  m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +46,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &992142037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427581339233483803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dccf2d7c159a144d9eb7e3bee2bcc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeAttackRange: 10
+  meleeDamage: 50
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  eAI: {fileID: 2071496612660698608}
 --- !u!1 &3963092936783770679
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,9 +117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
   HP: 50
   facePlayerSpeed: 10
   sightDist: 20
@@ -109,8 +125,7 @@ MonoBehaviour:
   attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 0}
   bullet: {fileID: 0}
-  meleeAttackRange: 5
-  meleeDamage: 50
+  stationary: 0
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
