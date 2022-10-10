@@ -172,6 +172,7 @@ public class playerController : MonoBehaviour
 
     public void updatePlayerHUD()
     {
+        //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
     }
 
