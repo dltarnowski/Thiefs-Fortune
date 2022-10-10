@@ -13,6 +13,7 @@ public class InteractionSystem : MonoBehaviour
     [SerializeField] UnityEvent interactAction;
 
     [SerializeField] GameObject interactObject;
+    [SerializeField] GameObject cannonCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -46,12 +47,12 @@ public class InteractionSystem : MonoBehaviour
 
     public void InteractWithObject()
     {
-        if (interactObject.CompareTag("Cannon 1"))
+        if (interactObject.CompareTag("Cannon"))
         {
-            GameObject.Find("Main Camera").SetActive(false);
-            GameObject.Find("Cannon Camera 1").SetActive(true);
+            gameManager.instance.mainCamera.SetActive(!gameManager.instance.mainCamera.activeSelf);
+            cannonCamera.SetActive(!cannonCamera.activeSelf);
         }
-        else if (interactObject.CompareTag("Cannon 2"))
+        else if (interactObject.CompareTag("Cannon"))
         {
             GameObject.Find("Main Camera").SetActive(false);
             GameObject.Find("Cannon Camera 2").SetActive(true);
