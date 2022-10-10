@@ -1,22 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    public int EnemyNumber;
 
-    [Header("----- Player Stuff -----")]
+ [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
 
     [Header("----- UI -----")]
-    //public GameObject winMenu
-    //public GameObject deathMenu
+    public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+    public GameObject acObject;
+    public GameObject playerDamageFlash;
+    public GameObject spawnPosition;
+    public Image playerHPBar;
+    public GameObject Crosshair;
+    public TextMeshProUGUI EnemyCountText;
 
     public bool isPaused;
+    public bool crossHairVisible = true;
 
     public GameObject mainCamera;
 
@@ -27,21 +37,34 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
+        spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
+            crossHairVisible = !crossHairVisible;
+            Crosshair.SetActive(crossHairVisible);
+            
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
-            if(isPaused)
+
+            if (isPaused)
                 cursorLockPause();
             else
                 cursorUnlockUnpause();
         }
+        //CheckAmmoAmount();
+    }
+
+    public IEnumerator playerDamage()
+    {
+        playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerDamageFlash.SetActive(false);
     }
 
     public void cursorLockPause()
@@ -57,4 +80,17 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void checkEnemyTotal()
+    {
+        EnemyNumber--;
+        EnemyCountText.text = EnemyNumber.ToString("F0");
+
+        if (EnemyNumber <= 0)
+        {
+            GameObject.Find("Crosshair").SetActive(false);
+            winMenu.SetActive(true);
+            cursorLockPause();
+        }
+    } 
 }
