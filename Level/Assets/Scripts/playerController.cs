@@ -177,8 +177,15 @@ public class playerController : MonoBehaviour
 
     public void respawn()
     {
+        if (gameManager.instance.pauseMenu)
+        {
+            gameManager.instance.pauseMenu.SetActive(false);
+        }
+        else if (gameManager.instance.deathMenu)
+        {
+            gameManager.instance.deathMenu.SetActive(false);
+        }
         controller.enabled = false;
-        gameManager.instance.deathMenu.SetActive(false);
         HP = HPOrig;
         updatePlayerHUD();
         transform.position = gameManager.instance.spawnPosition.transform.position;
