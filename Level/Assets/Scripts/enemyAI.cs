@@ -23,6 +23,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
 
     public bool stationary;
+    public bool noRotation;
     bool isShooting;
     bool playerInRange;
     Color modelColor;
@@ -37,10 +38,13 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (agent.enabled && playerInRange)
         {
-            if (stationary)
-                FaceTarget();
-            else
-                agent.SetDestination(gameManager.instance.player.transform.position);
+            if(!noRotation)
+            {
+                if (stationary)
+                    FaceTarget();
+                else
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+            }
             if (gameObject.CompareTag("Ranged") && !isShooting)
                 StartCoroutine(shoot());
         }
