@@ -38,7 +38,6 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckAmmoAmount();
         if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
             isPaused = !isPaused;
@@ -49,6 +48,7 @@ public class gameManager : MonoBehaviour
             else
                 cursorUnlockUnpause();
         }
+        CheckAmmoAmount();
     }
 
     public IEnumerator playerDamage()
