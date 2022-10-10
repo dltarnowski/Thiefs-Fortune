@@ -19,6 +19,9 @@ public class gameManager : MonoBehaviour
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
     public GameObject acObject;
+    public GameObject playerDamageFlash;
+    public GameObject spawnPosition;
+    public Image playerHPBar;
     public TextMeshProUGUI ammoCountText;
 
     public bool isPaused;
@@ -29,12 +32,12 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckAmmoAmount();
         if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
             isPaused = !isPaused;
@@ -45,6 +48,14 @@ public class gameManager : MonoBehaviour
             else
                 cursorUnlockUnpause();
         }
+        CheckAmmoAmount();
+    }
+
+    public IEnumerator playerDamage()
+    {
+        playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerDamageFlash.SetActive(false);
     }
 
     public void cursorLockPause()
