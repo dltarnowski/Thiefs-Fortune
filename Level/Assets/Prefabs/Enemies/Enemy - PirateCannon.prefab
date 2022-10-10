@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 3963092936783770679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.009999998, y: 0.01, z: 0.009999998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3677878099081043163}
@@ -152,9 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
   HP: 5
   facePlayerSpeed: 10
   sightDist: 30
@@ -163,8 +160,7 @@ MonoBehaviour:
   attackPos: {fileID: 6170866964889587963}
   weapon: {fileID: 3677878099081303107}
   bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
-  meleeAttackRange: 0
-  meleeDamage: 0
+  stationary: 1
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4

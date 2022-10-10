@@ -6,10 +6,10 @@ using TMPro;
 
 public class gameManager : MonoBehaviour
 {
-    public int ammoCountNum;
     public static gameManager instance;
+    public int EnemyNumber;
 
-    [Header("----- Player Stuff -----")]
+ [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
 
@@ -22,9 +22,13 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject spawnPosition;
     public Image playerHPBar;
-    public TextMeshProUGUI ammoCountText;
+    public GameObject Crosshair;
+    public TextMeshProUGUI EnemyCountText;
 
     public bool isPaused;
+    public bool crossHairVisible = true;
+
+    public GameObject mainCamera;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +36,7 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        mainCamera = GameObject.Find("Main Camera");
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
     }
 
@@ -40,15 +45,19 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
         {
+            crossHairVisible = !crossHairVisible;
+            Crosshair.SetActive(crossHairVisible);
+            
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
-            if(isPaused)
+
+            if (isPaused)
                 cursorLockPause();
             else
                 cursorUnlockUnpause();
         }
-        CheckAmmoAmount();
+        //CheckAmmoAmount();
     }
 
     public IEnumerator playerDamage()
@@ -72,20 +81,16 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void CheckAmmoAmount()
+    public void checkEnemyTotal()
     {
-        if (playerScript.gunGrabbed == true)
+        EnemyNumber--;
+        EnemyCountText.text = EnemyNumber.ToString("F0");
+
+        if (EnemyNumber <= 0)
         {
-            ammoCountText.text = playerScript.ammoCount.ToString("F0");
-            acObject.SetActive(true);
-            if(playerScript.ammoCount <= 1)
-            {
-                ammoCountText.color = new Color(255, 0, 0, 100);
-            }
-            else
-            {
-                ammoCountText.color = new Color(0, 0, 0, 100);
-            }
+            GameObject.Find("Crosshair").SetActive(false);
+            winMenu.SetActive(true);
+            cursorLockPause();
         }
-    }
+    } 
 }

@@ -25,13 +25,13 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
-    [SerializeField] GameObject gunModel;
+    public GameObject gunModel;
     [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 
     private Vector3 playerVelocity;
     private int timesJumped;
-    bool isShooting;
+    public bool isShooting;
     int selectGun;
     public bool gunGrabbed;
 

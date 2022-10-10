@@ -8,7 +8,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Componenets -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] LayerMask whatIsPlayer;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -17,14 +16,15 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damagedDuration;
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] float attackRate;
-    [SerializeField] GameObject attackPos;
+    [SerializeField] internal float attackRate;
+    [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
-    [SerializeField] float meleeAttackRange;
-    [SerializeField] int meleeDamage;
+
+
+    public bool stationary;
+    public bool noRotation;
     bool isShooting;
-    bool isMelee;
     bool playerInRange;
     Color modelColor;
 
@@ -33,26 +33,44 @@ public class enemyAI : MonoBehaviour, IDamage
         modelColor = model.material.color;
     }
 
+    void Start()
+    {
+        gameManager.instance.EnemyNumber++;
+        gameManager.instance.EnemyCountText.text = gameManager.instance.EnemyNumber.ToString("F0");
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (agent.enabled && playerInRange)
         {
-            agent.SetDestination(gameManager.instance.player.transform.position);
-
+            if(!noRotation)
+            {
+                if (stationary)
+                    FaceTarget();
+                else
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+            }
             if (gameObject.CompareTag("Ranged") && !isShooting)
                 StartCoroutine(shoot());
-            else if (gameObject.CompareTag("Melee") && !isMelee)
-                StartCoroutine(melee());
         }
     }
 
+    void FaceTarget()
+    {
+        Vector3 turnTowardNavSteeringTarget = agent.steeringTarget;
+
+        Vector3 direction = (turnTowardNavSteeringTarget - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    }
     public void takeDamage(int dmg)
     {
         HP -= dmg;
         StartCoroutine(flashDamage());
         if (HP <= 0)
         {
+            gameManager.instance.checkEnemyTotal();
             Destroy(gameObject);
         }
     }
@@ -65,19 +83,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator melee()
-    {
-        isMelee = true;
-        Collider[] hit = Physics.OverlapSphere(attackPos.transform.position, meleeAttackRange, whatIsPlayer);
-        // Loops through all Game Objects that are withn Range and in the Layer Mask
-        for (int i = 0; i < hit.Length; i++)
-        {
-            // Removes Health from GameObjects that are within Range and in the LayerMask
-            hit[i].GetComponent<playerController>().takeDamage(meleeDamage);
-        }
-        yield return new WaitForSeconds(attackRate);
-        isMelee = false;
-    }
+
 
     IEnumerator flashDamage()
     {
