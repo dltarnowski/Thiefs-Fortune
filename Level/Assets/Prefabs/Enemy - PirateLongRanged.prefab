@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 7352961528428922608}
   - component: {fileID: 3543366647184134351}
   m_Layer: 7
-  m_Name: Enemy - PirateRanged
+  m_Name: Enemy - PirateLongRanged
   m_TagString: PirateRanged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ NavMeshAgent:
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 600
-  m_StoppingDistance: 2
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -210,7 +210,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 800
+  m_Radius: 2500
   m_Center: {x: 0, y: 98.68832, z: -4.997589}
 --- !u!1 &7850589493929369968
 GameObject:
