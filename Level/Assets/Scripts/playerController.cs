@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class playerController : MonoBehaviour
 {
@@ -15,23 +16,30 @@ public class playerController : MonoBehaviour
     [Range(8, 15)] [SerializeField] float jumpHeight;
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
+    [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
+    
+    [SerializeField] int HP;
+    int HPOrig;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     public GameObject gunModel;
+    [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 
     private Vector3 playerVelocity;
     private int timesJumped;
-    bool isShooting;
+    public bool isShooting;
     int selectGun;
+    public bool gunGrabbed;
 
 
     void Start()
     {
-        
+        HPOrig = HP;
+        respawn();
     }
 
 
@@ -51,11 +59,17 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
+       
+
         //Crouch
-        if (Input.GetKey(KeyCode.LeftControl))
-            transform.localScale = new Vector3(transform.localScale.x, 0.5f, transform.localScale.z);
-        else
-            transform.localScale = new Vector3(transform.localScale.x, 1.0f, transform.localScale.z);
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    transform.GetChild(0).localPosition.z);
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    transform.GetChild(0).localPosition.z);
 
         Vector3 move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
@@ -85,7 +99,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Shoot") && !isShooting)
+        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
         {
             isShooting = true;
 
@@ -93,8 +107,8 @@ public class playerController : MonoBehaviour
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
             {
                //  -------      WAITING ON IDAMAGE      -------
-               // if (hit.collider.GetComponent<IDamage>() != null)
-               //     hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+               if (hit.collider.GetComponent<IDamage>() != null)
+                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
 
             Debug.Log("Shoot!");
@@ -108,10 +122,11 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
+        ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
         gunStat.Add(stats);
+        gunGrabbed = true;
     }
 
     void GunSelect()
@@ -136,8 +151,44 @@ public class playerController : MonoBehaviour
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
+        ammoCount = gunStat[selectGun].ammoCount;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    public void takeDamage(int dmg)
+    {
+        HP -= dmg;
+        StartCoroutine(gameManager.instance.playerDamage());
+
+        if (HP <= 0)
+        {
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
+
+    }
+
+    public void updatePlayerHUD()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+    }
+
+    public void respawn()
+    {
+        if (gameManager.instance.pauseMenu)
+        {
+            gameManager.instance.pauseMenu.SetActive(false);
+        }
+        else if (gameManager.instance.deathMenu)
+        {
+            gameManager.instance.deathMenu.SetActive(false);
+        }
+        controller.enabled = false;
+        HP = HPOrig;
+        updatePlayerHUD();
+        transform.position = gameManager.instance.spawnPosition.transform.position;
+        controller.enabled = true;
     }
 }
