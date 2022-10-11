@@ -25,13 +25,13 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
-    [SerializeField] GameObject gunModel;
+    public GameObject gunModel;
     [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
 
     private Vector3 playerVelocity;
     private int timesJumped;
-    bool isShooting;
+    public bool isShooting;
     int selectGun;
     public bool gunGrabbed;
 
@@ -48,6 +48,7 @@ public class playerController : MonoBehaviour
        movement();
        StartCoroutine(shoot());
        GunSelect();
+       updatePlayerHUD();
     }
 
     void movement()
@@ -160,10 +161,12 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage());
-
+        StartCoroutine(gameManager.instance.playerDamage());;
         if (HP <= 0)
         {
+            gameManager.instance.Crosshair.SetActive(false);
+            gameManager.instance.playerDamageFlash.SetActive(false);
+
             gameManager.instance.deathMenu.SetActive(true);
             gameManager.instance.cursorLockPause();
         }
@@ -172,6 +175,7 @@ public class playerController : MonoBehaviour
 
     public void updatePlayerHUD()
     {
+        //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
     }
 
@@ -181,13 +185,11 @@ public class playerController : MonoBehaviour
         {
             gameManager.instance.pauseMenu.SetActive(false);
         }
-        else if (gameManager.instance.deathMenu)
-        {
-            gameManager.instance.deathMenu.SetActive(false);
-        }
+        gameManager.instance.deathMenu.SetActive(false);
         controller.enabled = false;
         HP = HPOrig;
         updatePlayerHUD();
+        gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;
     }

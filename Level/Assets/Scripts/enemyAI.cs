@@ -33,6 +33,12 @@ public class enemyAI : MonoBehaviour, IDamage
         modelColor = model.material.color;
     }
 
+    void Start()
+    {
+        gameManager.instance.EnemyNumber++;
+        gameManager.instance.EnemyCountText.text = gameManager.instance.EnemyNumber.ToString("F0");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -64,6 +70,7 @@ public class enemyAI : MonoBehaviour, IDamage
         StartCoroutine(flashDamage());
         if (HP <= 0)
         {
+            gameManager.instance.checkEnemyTotal();
             Destroy(gameObject);
         }
     }
