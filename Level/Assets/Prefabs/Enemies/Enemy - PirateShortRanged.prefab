@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2821126542075872487}
   - component: {fileID: 7352961528428922608}
   - component: {fileID: 3543366647184134351}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Enemy - PirateShortRanged
   m_TagString: Ranged
   m_Icon: {fileID: 0}
@@ -85,9 +85,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 7352961528428922608}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
   HP: 7
   facePlayerSpeed: 10
   sightDist: 30
@@ -96,8 +93,8 @@ MonoBehaviour:
   attackPos: {fileID: 3427581339233483803}
   weapon: {fileID: 1902349494}
   bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
-  meleeAttackRange: 0
-  meleeDamage: 0
+  stationary: 0
+  noRotation: 0
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
