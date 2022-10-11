@@ -18,8 +18,8 @@ public class playerController : MonoBehaviour
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
     
-    [SerializeField] int HP;
-    int HPOrig;
+    public int HP;
+    public int HPOrig;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
