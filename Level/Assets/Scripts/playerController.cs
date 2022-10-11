@@ -103,6 +103,7 @@ public class playerController : MonoBehaviour
         if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
         {
             isShooting = true;
+            ammoCount--;
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))

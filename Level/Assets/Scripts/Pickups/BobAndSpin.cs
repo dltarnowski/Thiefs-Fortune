@@ -6,9 +6,9 @@ public class BobAndSpin : MonoBehaviour
 {
     Vector3 originalPos;
 
-    float bounceHeight = .5f;
-    float bounceSpeed = .25f;
-    int rotationSpeed = 45;
+    [SerializeField] float bounceHeight = .5f;
+    [SerializeField] float bounceSpeed = .25f;
+    [SerializeField] int rotationSpeed = 45;
 
     private void Start()
     {
