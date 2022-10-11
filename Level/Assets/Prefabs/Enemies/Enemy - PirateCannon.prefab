@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3677878099080331299}
   - component: {fileID: 3677878099078872055}
   - component: {fileID: 3741493287991318811}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 2821126542075872487}
   - component: {fileID: 7352961528428922608}
   - component: {fileID: 3543366647184134351}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Enemy - PirateCannon
   m_TagString: Ranged
   m_Icon: {fileID: 0}
@@ -161,6 +161,7 @@ MonoBehaviour:
   weapon: {fileID: 3677878099081303107}
   bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
   stationary: 1
+  noRotation: 0
 --- !u!95 &7389340982452470942
 Animator:
   serializedVersion: 4
