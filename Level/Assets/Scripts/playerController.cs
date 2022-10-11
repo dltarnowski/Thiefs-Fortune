@@ -18,8 +18,8 @@ public class playerController : MonoBehaviour
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
     
-    [SerializeField] int HP;
-    int HPOrig;
+    public int HP;
+    public int HPOrig;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
@@ -103,6 +103,7 @@ public class playerController : MonoBehaviour
         if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
         {
             isShooting = true;
+            ammoCount--;
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))

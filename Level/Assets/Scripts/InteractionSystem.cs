@@ -18,6 +18,7 @@ public class InteractionSystem : MonoBehaviour
     //[SerializeField] GameObject[] cannons;
     //[SerializeField] GameObject[] cannonCameras;
 
+    //Moved to Cannon script
     //[SerializeField] float x = 0;
     //[SerializeField] float y = 1.13f;
     //[SerializeField] float z = -.22f;
