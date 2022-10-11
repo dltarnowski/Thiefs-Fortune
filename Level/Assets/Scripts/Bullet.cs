@@ -24,8 +24,13 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.takeDamage(damage);
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
+        {
+            other.GetComponent<enemyAI>().takeDamage(damage);
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
 }
