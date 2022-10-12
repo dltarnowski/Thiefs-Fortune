@@ -7,29 +7,32 @@ public class Recoil : MonoBehaviour
     Vector3 currentRotation;
     Vector3 targetRotation;
 
-    [SerializeField] float recoilX;
-    [SerializeField] float recoilY;
-    [SerializeField] float recoilZ;
-
-    [SerializeField] float snappiness;
-    [SerializeField] float returnSpeed;
+    GunStats gunStatScript;
 
     void Start()
     {
-
+        gunStatScript = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnSpeed * Time.deltaTime);
-        currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
-        transform.localRotation = Quaternion.Euler(currentRotation);
+        if (gunStatScript != null)
+        {
+            targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, gunStatScript.returnSpeed * Time.deltaTime);
+            currentRotation = Vector3.Slerp(currentRotation, targetRotation, gunStatScript.snappiness * Time.fixedDeltaTime);
+            transform.localRotation = Quaternion.Euler(currentRotation);
+        }
     }
 
     public void RecoilFire()
     {
-        targetRotation += new Vector3(recoilX, Random.Range(-recoilY, recoilY), Random.Range(-recoilZ, recoilZ));
+        targetRotation += new Vector3(gunStatScript.recoilX, Random.Range(-gunStatScript.recoilY, gunStatScript.recoilY), Random.Range(-gunStatScript.recoilZ, gunStatScript.recoilZ));
         Debug.Log("Recoil");
+    }
+
+    public void SetGunStatScript(GunStats stats)
+    {
+        gunStatScript = stats;
     }
 }

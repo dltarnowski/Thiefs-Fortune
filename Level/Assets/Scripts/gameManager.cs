@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public bool crossHairVisible = true;
 
     public GameObject mainCamera;
+    public Recoil recoilScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +39,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
+        recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         ammoCount = 5;
     }

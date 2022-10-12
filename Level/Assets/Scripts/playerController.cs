@@ -27,13 +27,13 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDamage;
     public GameObject gunModel;
     //[SerializeField] public int ammoCount;
-    [SerializeField] List<GunStats> gunStat = new List<GunStats>();
+    public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
     private Vector3 playerVelocity;
     private int timesJumped;
     public bool isShooting;
-    int selectGun;
+    public int selectGun;
     public bool gunGrabbed;
 
 
@@ -132,6 +132,7 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
         gunStat.Add(stats);
+        gameManager.instance.recoilScript.SetGunStatScript(stats);
         gunGrabbed = true;
     }
 
@@ -158,6 +159,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
         //ammoCount = gunStat[selectGun].ammoCount;
+        gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
