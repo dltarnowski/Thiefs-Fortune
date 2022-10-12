@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
  [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
+    public int ammoCount;
 
     [Header("----- UI -----")]
     public GameObject winMenu;
@@ -38,6 +39,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
+        ammoCount = 5;
     }
 
     // Update is called once per frame

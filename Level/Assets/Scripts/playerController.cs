@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     public GameObject gunModel;
-    [SerializeField] public int ammoCount;
+    //[SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
@@ -102,10 +102,10 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
+        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
         {
             isShooting = true;
-            ammoCount--;
+            gameManager.instance.ammoCount--;
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -128,7 +128,7 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        ammoCount = stats.ammoCount;
+        //ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
         gunStat.Add(stats);
@@ -157,7 +157,7 @@ public class playerController : MonoBehaviour
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
-        ammoCount = gunStat[selectGun].ammoCount;
+        //ammoCount = gunStat[selectGun].ammoCount;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
