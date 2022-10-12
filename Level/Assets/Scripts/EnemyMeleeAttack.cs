@@ -7,24 +7,28 @@ public class EnemyMeleeAttack : MonoBehaviour
     [SerializeField] float meleeAttackRange;
     [SerializeField] int meleeDamage;
     [SerializeField] LayerMask whatIsPlayer;
+    [SerializeField] Animator anim;
+    [SerializeField] float attackDelay;
     bool isMelee;
     [SerializeField] enemyAI eAI;
-   
+
 
     private void Update()
     {
-        if(CompareTag("Melee") && !isMelee)
+        if (CompareTag("Melee") && !isMelee)
             StartCoroutine(melee());
     }
     IEnumerator melee()
     {
         isMelee = true;
-        Collider[] hit = Physics.OverlapSphere(transform.position, meleeAttackRange, whatIsPlayer);
+        Collider[] hits = Physics.OverlapSphere(transform.position, meleeAttackRange, whatIsPlayer);
         // Loops through all Game Objects that are withn Range and in the Layer Mask
-        for (int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
             // Removes Health from GameObjects that are within Range and in the LayerMask
-            hit[i].GetComponent<playerController>().takeDamage(meleeDamage);
+            hits[i].GetComponent<playerController>().takeDamage(meleeDamage);
+            if (hits[i].CompareTag("Player"))
+                anim.SetTrigger("attack");
         }
         yield return new WaitForSeconds(eAI.attackRate);
         isMelee = false;
