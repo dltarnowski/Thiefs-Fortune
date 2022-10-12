@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
-    
+
     public int HP;
     public int HPOrig;
 
@@ -36,21 +36,24 @@ public class playerController : MonoBehaviour
     public int selectGun;
     public bool gunGrabbed;
 
+    ParticleSystem gunSmoke;
+    int barrel = 0;
 
     void Start()
     {
         HPOrig = HP;
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
+        gunSmoke = GetComponentInChildren<ParticleSystem>();
     }
 
 
     void Update()
     {
-       movement();
-       StartCoroutine(shoot());
-       GunSelect();
-       updatePlayerHUD();
+        movement();
+        StartCoroutine(shoot());
+        GunSelect();
+        updatePlayerHUD();
     }
 
     void movement()
@@ -62,7 +65,7 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
-       
+
 
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -110,12 +113,14 @@ public class playerController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
             {
-               //  -------      WAITING ON IDAMAGE      -------
-               if (hit.collider.GetComponent<IDamage>() != null)
-                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                //  -------      WAITING ON IDAMAGE      -------
+                if (hit.collider.GetComponent<IDamage>() != null)
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
 
             recoilScript.RecoilFire();
+            gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
+            gunSmoke.Play();
 
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
@@ -168,7 +173,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage());;
+        StartCoroutine(gameManager.instance.playerDamage()); ;
         if (HP <= 0)
         {
             gameManager.instance.Crosshair.SetActive(false);
