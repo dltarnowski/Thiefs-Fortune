@@ -218,37 +218,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.723547
   m_Center: {x: 0, y: 0.56, z: -0.95}
---- !u!1 &3966525328924544758
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2205064355073688605}
-  m_Layer: 7
-  m_Name: CannonBallPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2205064355073688605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3966525328924544758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.082, z: 1.544}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1298254616172833007}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8583512427527558843
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,3 +249,65 @@ Transform:
   m_Father: {fileID: 1298254616172833007}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6822506801722005136
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1298254616172833007}
+    m_Modifications:
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7612635934855567462, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+      propertyPath: m_Name
+      value: CannonBallPos
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+--- !u!4 &2205064355073688605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+  m_PrefabInstance: {fileID: 6822506801722005136}
+  m_PrefabAsset: {fileID: 0}
