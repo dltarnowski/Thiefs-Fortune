@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour
     public GameObject gunModel;
     [SerializeField] public int ammoCount;
     [SerializeField] List<GunStats> gunStat = new List<GunStats>();
+    [SerializeField] Recoil recoilScript;
 
     private Vector3 playerVelocity;
     private int timesJumped;
@@ -40,6 +41,7 @@ public class playerController : MonoBehaviour
     {
         HPOrig = HP;
         respawn();
+        recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
     }
 
 
@@ -112,6 +114,8 @@ public class playerController : MonoBehaviour
                if (hit.collider.GetComponent<IDamage>() != null)
                 hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
+
+            recoilScript.RecoilFire();
 
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
