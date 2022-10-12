@@ -8,51 +8,105 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Componenets -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] LayerMask whatIsPlayer;
+    [SerializeField] CannonController cannonCtrl;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int sightDist;
+    [SerializeField] int viewAngle;
     [SerializeField] float damagedDuration;
+    [SerializeField] GameObject headPos;
+    [SerializeField] int roamDist;
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] float attackRate;
-    [SerializeField] GameObject attackPos;
+    [SerializeField] internal float attackRate;
+    [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
-    [SerializeField] float meleeAttackRange;
-    [SerializeField] int meleeDamage;
+
+
+    public bool stationary;
+    public bool noRotation;
     bool isShooting;
-    bool isMelee;
     bool playerInRange;
     Color modelColor;
+    Vector3 playerDir;
+    float stoppingDistanceOrig;
+    Vector3 startingPos;
+    float angle;
+    float speedPatrol;
 
-    void Awake()
-    {
-        modelColor = model.material.color;
-    }
 
     void Start()
     {
         gameManager.instance.EnemyNumber++;
         gameManager.instance.EnemyCountText.text = gameManager.instance.EnemyNumber.ToString("F0");
+        modelColor = model.material.color;
+        stoppingDistanceOrig = agent.stoppingDistance;
+        startingPos = transform.position;
+        speedPatrol = agent.speed;
+        roam();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.enabled && playerInRange)
+        if (agent.enabled)
         {
-            agent.SetDestination(gameManager.instance.player.transform.position);
-
-            if (gameObject.CompareTag("Ranged") && !isShooting)
-                StartCoroutine(shoot());
-            else if (gameObject.CompareTag("Melee") && !isMelee)
-                StartCoroutine(melee());
+            if (playerInRange)
+            {
+                playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
+                angle = Vector3.Angle(playerDir, transform.forward);
+                canSeePlayer();
+            }
+            if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                roam();
         }
     }
 
+    void roam()
+    {
+        agent.stoppingDistance = 0;
+        agent.speed = speedPatrol;
+        Vector3 randomDirection = Random.insideUnitSphere * roamDist;
+        randomDirection += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, 1, 1);
+        NavMeshPath path = new NavMeshPath();
+
+        agent.CalculatePath(hit.position, path);
+        agent.SetPath(path);
+    }
+
+    void canSeePlayer()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.transform.position, playerDir, out hit, sightDist))
+        {
+            Debug.DrawRay(headPos.transform.position, playerDir);
+            if (hit.collider.CompareTag("Player") && angle <= viewAngle)
+            {
+                agent.speed = speedChase;
+                agent.stoppingDistance = stoppingDistanceOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                if (agent.remainingDistance < agent.stoppingDistance)
+                    facePlayer();
+
+                if (!isShooting)
+                    StartCoroutine(shoot());
+            }
+        }
+    }
+
+    void facePlayer()
+    {
+        playerDir.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
+    }
     public void takeDamage(int dmg)
     {
         HP -= dmg;
@@ -60,6 +114,11 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
+            if(cannonCtrl != null)
+            {
+                cannonCtrl.enabled = true;
+            }
+            gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
     }
@@ -72,19 +131,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    IEnumerator melee()
-    {
-        isMelee = true;
-        Collider[] hit = Physics.OverlapSphere(attackPos.transform.position, meleeAttackRange, whatIsPlayer);
-        // Loops through all Game Objects that are withn Range and in the Layer Mask
-        for (int i = 0; i < hit.Length; i++)
-        {
-            // Removes Health from GameObjects that are within Range and in the LayerMask
-            hit[i].GetComponent<playerController>().takeDamage(meleeDamage);
-        }
-        yield return new WaitForSeconds(attackRate);
-        isMelee = false;
-    }
+
 
     IEnumerator flashDamage()
     {
@@ -93,6 +140,7 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(damagedDuration);
         model.material.color = modelColor;
         agent.enabled = true;
+        agent.SetDestination(gameManager.instance.player.transform.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -104,6 +152,10 @@ public class enemyAI : MonoBehaviour, IDamage
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = false;
+            agent.stoppingDistance = 0;
+        }
+
     }
 }

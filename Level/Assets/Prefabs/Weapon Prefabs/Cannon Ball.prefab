@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3131551523234759030}
   - component: {fileID: 5641681036372923816}
   - component: {fileID: 5641681036372338260}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Cannon Ball
   m_TagString: Enemy Projectile
   m_Icon: {fileID: 0}
@@ -50,8 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3131551523234759030}
   speed: 25
-  damage: 10
-  destroyTime: 7
+  damage: 50
+  destroyTime: 5
 --- !u!64 &5669620086011129602
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -77,7 +77,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
