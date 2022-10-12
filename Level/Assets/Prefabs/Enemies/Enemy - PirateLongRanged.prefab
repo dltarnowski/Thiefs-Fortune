@@ -1852,7 +1852,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6251035966338507725}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 75, y: -54.982002, z: 180.63068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2001,9 +2001,13 @@ MonoBehaviour:
   model: {fileID: 2439975592647526233}
   cannonCtrl: {fileID: 0}
   HP: 10
+  speedChase: 5
   facePlayerSpeed: 10
   sightDist: 10
+  viewAngle: 90
   damagedDuration: 0.25
+  headPos: {fileID: 2439975592652802567}
+  roamDist: 7
   attackRate: 1
   attackPos: {fileID: 3997422536040635848}
   weapon: {fileID: 7305407885965176885}

@@ -12,9 +12,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
+    [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int sightDist;
+    [SerializeField] int viewAngle;
     [SerializeField] float damagedDuration;
+    [SerializeField] GameObject headPos;
+    [SerializeField] int roamDist;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
@@ -28,42 +32,80 @@ public class enemyAI : MonoBehaviour, IDamage
     bool isShooting;
     bool playerInRange;
     Color modelColor;
+    Vector3 playerDir;
+    float stoppingDistanceOrig;
+    Vector3 startingPos;
+    float angle;
+    float speedPatrol;
 
-    void Awake()
-    {
-        modelColor = model.material.color;
-    }
 
     void Start()
     {
         gameManager.instance.EnemyNumber++;
         gameManager.instance.EnemyCountText.text = gameManager.instance.EnemyNumber.ToString("F0");
+        modelColor = model.material.color;
+        stoppingDistanceOrig = agent.stoppingDistance;
+        startingPos = transform.position;
+        speedPatrol = agent.speed;
+        roam();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.enabled && playerInRange)
+        if (agent.enabled)
         {
-            if(!noRotation)
+            if (playerInRange)
             {
-                if (stationary)
-                    FaceTarget();
-                else
-                    agent.SetDestination(gameManager.instance.player.transform.position);
+                playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
+                angle = Vector3.Angle(playerDir, transform.forward);
+                canSeePlayer();
             }
-            if (gameObject.CompareTag("Ranged") && !isShooting)
-                StartCoroutine(shoot());
+            if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                roam();
         }
     }
 
-    void FaceTarget()
+    void roam()
     {
-        Vector3 turnTowardNavSteeringTarget = agent.steeringTarget;
+        agent.stoppingDistance = 0;
+        agent.speed = speedPatrol;
+        Vector3 randomDirection = Random.insideUnitSphere * roamDist;
+        randomDirection += startingPos;
 
-        Vector3 direction = (turnTowardNavSteeringTarget - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, 1, 1);
+        NavMeshPath path = new NavMeshPath();
+
+        agent.CalculatePath(hit.position, path);
+        agent.SetPath(path);
+    }
+
+    void canSeePlayer()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.transform.position, playerDir, out hit, sightDist))
+        {
+            Debug.DrawRay(headPos.transform.position, playerDir);
+            if (hit.collider.CompareTag("Player") && angle <= viewAngle)
+            {
+                agent.speed = speedChase;
+                agent.stoppingDistance = stoppingDistanceOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                if (agent.remainingDistance < agent.stoppingDistance)
+                    facePlayer();
+
+                if (!isShooting)
+                    StartCoroutine(shoot());
+            }
+        }
+    }
+
+    void facePlayer()
+    {
+        playerDir.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
     public void takeDamage(int dmg)
     {
@@ -98,6 +140,7 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(damagedDuration);
         model.material.color = modelColor;
         agent.enabled = true;
+        agent.SetDestination(gameManager.instance.player.transform.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -109,6 +152,10 @@ public class enemyAI : MonoBehaviour, IDamage
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = false;
+            agent.stoppingDistance = 0;
+        }
+
     }
 }
