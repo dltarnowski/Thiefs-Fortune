@@ -36,8 +36,9 @@ public class playerController : MonoBehaviour
     public int selectGun;
     public bool gunGrabbed;
 
+    Transform[] muzzleLocations;
     ParticleSystem gunSmoke;
-    int barrel = 0;
+    public int barrel = 0;
 
     void Start()
     {
@@ -122,6 +123,12 @@ public class playerController : MonoBehaviour
             gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
             gunSmoke.Play();
 
+            //----------trying to make the muzzle effects come out of different barrels------------//
+            //if (gunStat[selectGun].muzzleLocations[barrel + 1] != null)
+            //    barrel++;
+            //else
+            //    barrel = 0;
+
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
@@ -137,7 +144,10 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
         gunStat.Add(stats);
+
         gameManager.instance.recoilScript.SetGunStatScript(stats);
+        //CopyMuzzleLocations(stats.muzzleLocations);
+
         gunGrabbed = true;
     }
 
@@ -165,6 +175,7 @@ public class playerController : MonoBehaviour
         shootDamage = gunStat[selectGun].shootDamage;
         //ammoCount = gunStat[selectGun].ammoCount;
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
+        //CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -205,4 +216,12 @@ public class playerController : MonoBehaviour
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;
     }
+
+    //void CopyMuzzleLocations(Transform[] array)
+    //{
+    //    for (int i = 0; i < array.Length; i++)
+    //    {
+    //        muzzleLocations[i] = array[i];
+    //    }
+    //}
 }
