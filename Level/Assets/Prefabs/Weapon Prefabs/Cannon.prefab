@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 2192926079792357232}
   - component: {fileID: 5419772721216714498}
   - component: {fileID: 8480984337939007236}
-  - component: {fileID: 8829078950052413500}
+  - component: {fileID: 4677683770652251999}
   m_Layer: 0
   m_Name: Cannon Camera
   m_TagString: Untagged
@@ -503,7 +503,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4462390494084316589}
   m_Enabled: 1
---- !u!114 &8829078950052413500
+--- !u!114 &4677683770652251999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -512,14 +512,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4462390494084316589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7612b66871b351e448223c4342702e6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c0d76588f7ca4947a8df58314684db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensHort: 200
   sensVert: 200
   lockVertMin: -45
   lockVertMax: 45
+  lockHorzMin: -45
+  lockHorzMax: 45
   invert: 0
+  barrel: {fileID: 3714008655746636985}
 --- !u!1 &6203391221407574738
 GameObject:
   m_ObjectHideFlags: 0
