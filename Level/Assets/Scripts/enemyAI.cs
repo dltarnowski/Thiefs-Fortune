@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Componenets -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
+    [SerializeField] CannonController cannonCtrl;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -71,6 +72,11 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
+            if(cannonCtrl != null)
+            {
+                cannonCtrl.enabled = true;
+            }
+            gameObject.transform.DetachChildren();
             Destroy(gameObject);
         }
     }
