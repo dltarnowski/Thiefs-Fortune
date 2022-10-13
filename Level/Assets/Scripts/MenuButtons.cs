@@ -16,10 +16,20 @@ public class MenuButtons : MonoBehaviour
             gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         }
     }
+    public void Play()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void Restart()
     {
         gameManager.instance.cursorUnlockUnpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Return()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
     public void respawn()
     {
