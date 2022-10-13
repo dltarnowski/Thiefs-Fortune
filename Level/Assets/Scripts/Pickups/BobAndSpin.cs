@@ -18,7 +18,7 @@ public class BobAndSpin : MonoBehaviour
     private void FixedUpdate()
     {
         gameObject.transform.position = new Vector3(originalPos.x,
-                                                    Mathf.PingPong(bounceSpeed * Time.realtimeSinceStartup, bounceHeight) + originalPos.y,
+                                                    Mathf.PingPong(bounceSpeed * Time.time, bounceHeight) + originalPos.y,
                                                     originalPos.z);
         gameObject.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }

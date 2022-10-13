@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     [Range(-5, -35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
-    
+
     public int HP;
     public int HPOrig;
 
@@ -26,29 +26,35 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     public GameObject gunModel;
-    [SerializeField] public int ammoCount;
-    [SerializeField] List<GunStats> gunStat = new List<GunStats>();
+    //[SerializeField] public int ammoCount;
+    public List<GunStats> gunStat = new List<GunStats>();
+    [SerializeField] Recoil recoilScript;
 
     private Vector3 playerVelocity;
     private int timesJumped;
     public bool isShooting;
-    int selectGun;
+    public int selectGun;
     public bool gunGrabbed;
 
+    public List<Transform> muzzleLocations = new List<Transform>();
+    ParticleSystem gunSmoke;
+    public int barrel;
 
     void Start()
     {
         HPOrig = HP;
         respawn();
+        recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
+        gunSmoke = GetComponentInChildren<ParticleSystem>();
     }
 
 
     void Update()
     {
-       movement();
-       StartCoroutine(shoot());
-       GunSelect();
-       updatePlayerHUD();
+        movement();
+        StartCoroutine(shoot());
+        GunSelect();
+        updatePlayerHUD();
     }
 
     void movement()
@@ -60,7 +66,7 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
-       
+
 
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -100,18 +106,28 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting)
+        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
         {
             isShooting = true;
-            ammoCount--;
+            gameManager.instance.ammoCount--;
 
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
             {
-               //  -------      WAITING ON IDAMAGE      -------
-               if (hit.collider.GetComponent<IDamage>() != null)
-                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                //  -------      WAITING ON IDAMAGE      -------
+                if (hit.collider.GetComponent<IDamage>() != null)
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
+
+            recoilScript.RecoilFire();
+            gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
+            gunSmoke.Play();
+
+            
+            if (barrel >= muzzleLocations.Count - 1)
+                barrel = 0;
+            else
+                barrel++;
 
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
@@ -124,11 +140,21 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        ammoCount = stats.ammoCount;
+        //ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //muzzleLocations[barrel] = stats.muzzleLocations[barrel];
+        gameManager.instance.recoilScript.SetGunStatScript(stats);
+        CopyMuzzleLocations(stats.muzzleLocations);
+
         gunStat.Add(stats);
         gunGrabbed = true;
+
+        if (gunStat.Count == 1)
+            selectGun = 0;
+        else
+            selectGun++;
     }
 
     void GunSelect()
@@ -153,7 +179,10 @@ public class playerController : MonoBehaviour
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
-        ammoCount = gunStat[selectGun].ammoCount;
+        //ammoCount = gunStat[selectGun].ammoCount;
+        gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
+        CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
+        //muzzleLocations[barrel] = gunStat[selectGun].muzzleLocations[barrel];
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -162,7 +191,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage());;
+        StartCoroutine(gameManager.instance.playerDamage()); ;
         if (HP <= 0)
         {
             gameManager.instance.Crosshair.SetActive(false);
@@ -193,5 +222,15 @@ public class playerController : MonoBehaviour
         gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;
+    }
+
+    void CopyMuzzleLocations(List<Transform> list)
+    {
+        muzzleLocations.Clear();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            muzzleLocations.Add(list[i]);
+        }
     }
 }
