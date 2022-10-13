@@ -36,9 +36,9 @@ public class playerController : MonoBehaviour
     public int selectGun;
     public bool gunGrabbed;
 
-    Transform[] muzzleLocations;
+    public List<Transform> muzzleLocations = new List<Transform>();
     ParticleSystem gunSmoke;
-    public int barrel = 0;
+    public int barrel;
 
     void Start()
     {
@@ -123,11 +123,11 @@ public class playerController : MonoBehaviour
             gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
             gunSmoke.Play();
 
-            //----------trying to make the muzzle effects come out of different barrels------------//
-            //if (gunStat[selectGun].muzzleLocations[barrel + 1] != null)
-            //    barrel++;
-            //else
-            //    barrel = 0;
+            
+            if (barrel >= muzzleLocations.Count - 1)
+                barrel = 0;
+            else
+                barrel++;
 
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
@@ -143,12 +143,18 @@ public class playerController : MonoBehaviour
         //ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-        gunStat.Add(stats);
 
+        //muzzleLocations[barrel] = stats.muzzleLocations[barrel];
         gameManager.instance.recoilScript.SetGunStatScript(stats);
-        //CopyMuzzleLocations(stats.muzzleLocations);
+        CopyMuzzleLocations(stats.muzzleLocations);
 
+        gunStat.Add(stats);
         gunGrabbed = true;
+
+        if (gunStat.Count == 1)
+            selectGun = 0;
+        else
+            selectGun++;
     }
 
     void GunSelect()
@@ -175,7 +181,8 @@ public class playerController : MonoBehaviour
         shootDamage = gunStat[selectGun].shootDamage;
         //ammoCount = gunStat[selectGun].ammoCount;
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
-        //CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
+        CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
+        //muzzleLocations[barrel] = gunStat[selectGun].muzzleLocations[barrel];
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -217,11 +224,13 @@ public class playerController : MonoBehaviour
         controller.enabled = true;
     }
 
-    //void CopyMuzzleLocations(Transform[] array)
-    //{
-    //    for (int i = 0; i < array.Length; i++)
-    //    {
-    //        muzzleLocations[i] = array[i];
-    //    }
-    //}
+    void CopyMuzzleLocations(List<Transform> list)
+    {
+        muzzleLocations.Clear();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            muzzleLocations.Add(list[i]);
+        }
+    }
 }
