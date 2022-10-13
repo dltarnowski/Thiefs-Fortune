@@ -26,6 +26,9 @@ public class gameManager : MonoBehaviour
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
 
+    public GameObject npcDialogue;
+    public GameObject shopscreen;
+
     public bool isPaused;
     public bool crossHairVisible = true;
 
