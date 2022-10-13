@@ -9,15 +9,8 @@ public class MenuButtons : MonoBehaviour
 {
 
     public TextMeshProUGUI dialogue;
-    Vector3 position;
-    int start;
-    int end;
-
-    private void Start()
-    {
-        start = (int)gameManager.instance.shopscreen.transform.position.x;
-        end = -30;
-    }
+    int currentPosition;
+    int start = 0;
 
     public void Resume()
     {
@@ -74,17 +67,23 @@ public class MenuButtons : MonoBehaviour
 
     public void Left()
     {
-        if (gameManager.instance.shopscreen.transform.position.x < start)
+        currentPosition = (int)gameManager.instance.shopscreen.transform.position.x;
+
+        if (currentPosition < 0)
         {
-            gameManager.instance.shopscreen.transform.Translate(15, 0, 0);
+            Debug.Log(currentPosition);
+            gameManager.instance.shopscreen.transform.Translate(1619, 0, 0);
         }
     }
 
     public void Right()
     {
-        if (gameManager.instance.shopscreen.transform.position.x > end)
+        currentPosition = (int)gameManager.instance.shopscreen.transform.position.x;
+
+        if (currentPosition > -690)
         {
-            gameManager.instance.shopscreen.transform.Translate(-15, 0, 0);
+            Debug.Log(currentPosition);
+            gameManager.instance.shopscreen.transform.Translate(-1619, 0, 0);
         }
     }
    
