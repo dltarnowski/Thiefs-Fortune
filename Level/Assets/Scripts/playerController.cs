@@ -220,7 +220,6 @@ public class playerController : MonoBehaviour
         gameManager.instance.deathMenu.SetActive(false);
         controller.enabled = false;
         HP = HPOrig;
-        updatePlayerHUD();
         gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;
