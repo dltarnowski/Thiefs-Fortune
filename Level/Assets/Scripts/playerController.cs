@@ -106,32 +106,35 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf)
         {
-            isShooting = true;
-            gameManager.instance.ammoCount--;
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
             {
-                //  -------      WAITING ON IDAMAGE      -------
-                if (hit.collider.GetComponent<IDamage>() != null)
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                isShooting = true;
+                gameManager.instance.ammoCount--;
+
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                {
+                    //  -------      WAITING ON IDAMAGE      -------
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                }
+
+                recoilScript.RecoilFire();
+                gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
+                gunSmoke.Play();
+
+
+                if (barrel >= muzzleLocations.Count - 1)
+                    barrel = 0;
+                else
+                    barrel++;
+
+                Debug.Log("Shoot!");
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
             }
-
-            recoilScript.RecoilFire();
-            gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
-            gunSmoke.Play();
-
-            
-            if (barrel >= muzzleLocations.Count - 1)
-                barrel = 0;
-            else
-                barrel++;
-
-            Debug.Log("Shoot!");
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
         }
     }
 
@@ -208,7 +211,7 @@ public class playerController : MonoBehaviour
         //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
         //Coin Bag updates
-        gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
+        //gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
     }
 
     public void respawn()
@@ -218,7 +221,7 @@ public class playerController : MonoBehaviour
             gameManager.instance.pauseMenu.SetActive(false);
         }
         gameManager.instance.deathMenu.SetActive(false);
-        controller.enabled = false;
+        //controller.enabled = false;
         HP = HPOrig;
         gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
