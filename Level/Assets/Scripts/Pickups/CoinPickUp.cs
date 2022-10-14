@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinPickUp : MonoBehaviour
 {
-    int coinValue = 1;
+    [SerializeField] int coinValue = 1;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
