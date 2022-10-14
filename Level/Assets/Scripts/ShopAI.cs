@@ -27,11 +27,16 @@ public class ShopAI : MonoBehaviour
             gameManager.instance.hint.enabled = true;
             if(Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("E");
+                gameManager.instance.hint.SetActive(false);
+                gameManager.instance.healthBar.SetActive(false);
                 gameManager.instance.Crosshair.SetActive(false);
                 gameManager.instance.cursorLockPause();
                 gameManager.instance.npcDialogue.SetActive(playerInRange);
             }
+        }
+        else
+        {
+            gameManager.instance.hint.SetActive(false);
         }
     }
 
