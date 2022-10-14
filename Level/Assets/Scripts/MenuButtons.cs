@@ -7,7 +7,7 @@ using System.Globalization;
 
 public class MenuButtons : MonoBehaviour
 {
-
+    [SerializeField] GunStats blunder;
     public TextMeshProUGUI dialogue;
     int currentPosition;
     int start = 0;
@@ -80,7 +80,7 @@ public class MenuButtons : MonoBehaviour
 
     public void Buy()
     {
-        
+            gameManager.instance.playerScript.GunPickup(blunder);
     }
 
     public void NoBuy()
