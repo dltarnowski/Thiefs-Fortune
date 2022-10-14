@@ -32,10 +32,6 @@ public class ShopAI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && !gameManager.instance.shopInventory.activeSelf)
             {
-                // Adjust camera position to shop cam
-                camOrig = gameManager.instance.mainCamera.transform.position;
-                gameManager.instance.mainCamera.transform.position = shopCam.transform.position;
-
                 gameManager.instance.hint.SetActive(false);
                 gameManager.instance.healthBar.SetActive(false);
                 gameManager.instance.Crosshair.SetActive(false);
@@ -46,7 +42,6 @@ public class ShopAI : MonoBehaviour
         else
         {
             gameManager.instance.hint.SetActive(false);
-            gameManager.instance.mainCamera.transform.position = camOrig;
         }
     }
 
