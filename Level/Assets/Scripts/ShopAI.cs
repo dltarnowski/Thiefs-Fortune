@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Services.Analytics.Internal;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ShopAI : MonoBehaviour
 {
     [Header("----- Components -----")]
     //[SerializeField] Animator animator;
 
+    //[Header("----- NPC Stats -----")]
+    //[SerializeField] int sightDist;
+    //[SerializeField] GameObject headPos;
+
     bool playerInRange;
- 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,8 @@ public class ShopAI : MonoBehaviour
     {
         if(playerInRange)
         {
-            gameManager.instance.hint.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E))
+            gameManager.instance.hint.enabled = true;
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 gameManager.instance.hint.SetActive(false);
                 gameManager.instance.healthBar.SetActive(false);

@@ -26,9 +26,7 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
-
-    public GameObject healthBar;
-    public GameObject hint;
+    public TextMeshProUGUI hint;
 
     public GameObject npcDialogue;
     public GameObject shopInventory;
