@@ -4671,7 +4671,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1349518431889922238}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6122008902532610651}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: BuyHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5392242850644943892
 GameObject:
   m_ObjectHideFlags: 0
@@ -7444,7 +7456,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6122008901734313926}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6122008902532610651}
+        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
+        m_MethodName: BuyAmmo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6122008901760044816
 GameObject:
   m_ObjectHideFlags: 0
@@ -8216,7 +8240,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6122008902532610651}
         m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyGun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
