@@ -25,9 +25,11 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+    public TextMeshProUGUI hint;
 
     public GameObject npcDialogue;
-    public GameObject shopscreen;
+    public GameObject shopInventory;
+    public GameObject shopPanels;
 
     public bool isPaused;
     public bool crossHairVisible = true;
@@ -50,7 +52,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
