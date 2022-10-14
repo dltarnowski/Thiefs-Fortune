@@ -12,7 +12,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
-    [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int sightDist;
@@ -120,7 +119,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 cannonCtrl.enabled = true;
             }
             gameObject.transform.DetachChildren();
-            //ItemDrop.instance.DropItem();
             Destroy(gameObject);
         }
     }
