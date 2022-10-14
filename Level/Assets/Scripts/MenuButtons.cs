@@ -57,33 +57,46 @@ public class MenuButtons : MonoBehaviour
     public void Shop()
     {
         gameManager.instance.npcDialogue.SetActive(false);
-        gameManager.instance.shopscreen.SetActive(true);
+        gameManager.instance.shopInventory.SetActive(true);
     }
 
     public void Bye()
     {
         gameManager.instance.npcDialogue.SetActive(false);
+        gameManager.instance.cursorUnlockUnpause();
+        dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
     }
 
     public void Left()
     {
-        currentPosition = (int)gameManager.instance.shopscreen.transform.position.x;
+        currentPosition = (int)gameManager.instance.shopPanels.transform.position.x;
 
         if (currentPosition < 0)
         {
             Debug.Log(currentPosition);
-            gameManager.instance.shopscreen.transform.Translate(1619, 0, 0);
+            gameManager.instance.shopPanels.transform.Translate(1619, 0, 0);
         }
+    }
+
+    public void Buy()
+    {
+        
+    }
+
+    public void NoBuy()
+    {
+        gameManager.instance.npcDialogue.SetActive(true);
+        gameManager.instance.shopInventory.SetActive(false);
     }
 
     public void Right()
     {
-        currentPosition = (int)gameManager.instance.shopscreen.transform.position.x;
+        currentPosition = (int)gameManager.instance.shopPanels.transform.position.x;
 
         if (currentPosition > -690)
         {
             Debug.Log(currentPosition);
-            gameManager.instance.shopscreen.transform.Translate(-1619, 0, 0);
+            gameManager.instance.shopPanels.transform.Translate(-1619, 0, 0);
         }
     }
    
