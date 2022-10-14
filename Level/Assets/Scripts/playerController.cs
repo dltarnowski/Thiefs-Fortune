@@ -207,6 +207,8 @@ public class playerController : MonoBehaviour
     {
         //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+        //Coin Bag updates
+        gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
     }
 
     public void respawn()
