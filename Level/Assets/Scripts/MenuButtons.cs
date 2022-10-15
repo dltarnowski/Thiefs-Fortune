@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Globalization;
-using UnityEditor.Animations;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -82,34 +80,52 @@ public class MenuButtons : MonoBehaviour
 
     public void BuyGun()
     {
-        gameManager.instance.playerScript.GunPickup(blunder);
+        if(gameManager.instance.currencyNumber >= 10)
+        {
+            gameManager.instance.playerScript.GunPickup(blunder);
+            gameManager.instance.currencyNumber -= 10;
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void BuyAmmo()
     {
-        int ammoGone = 5 - gameManager.instance.ammoCount;
-        
-        if(ammoGone <= 0)
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
         {
-            gameManager.instance.ammoCount = 5;
-        }
-        else
-        {
-            gameManager.instance.ammoCount += ammoGone;
+            int ammoGone = 5 - gameManager.instance.ammoCount;
+
+            if (ammoGone <= 0)
+            {
+                gameManager.instance.ammoCount = 5;
+            }
+            else
+            {
+                gameManager.instance.ammoCount += ammoGone;
+            }
+
+            gameManager.instance.currencyNumber -= 2;
         }
     }
 
     public void BuyHealth()
     {
-        float healthGone = 100 - gameManager.instance.playerHPBar.fillAmount;
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerHPBar.fillAmount != 1)
+        {
+            float healthGone = 1 - gameManager.instance.playerHPBar.fillAmount;
 
-        if(healthGone <= 50)
-        {
-            gameManager.instance.playerHPBar.fillAmount += 50;
-        }
-        else
-        {
-            gameManager.instance.playerHPBar.fillAmount += healthGone;
+            if (healthGone <= .5f)
+            {
+                gameManager.instance.playerHPBar.fillAmount += .5f;
+            }
+            else
+            {
+                gameManager.instance.playerHPBar.fillAmount += healthGone;
+            }
+
+            gameManager.instance.currencyNumber -= 2;
         }
     }
 
