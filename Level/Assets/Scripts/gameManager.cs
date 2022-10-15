@@ -60,7 +60,7 @@ public class gameManager : MonoBehaviour
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
-            
+
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
@@ -103,7 +103,7 @@ public class gameManager : MonoBehaviour
         {
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
-            cursorLockPause();
+            cursorUnlockUnpause();
         }
-    } 
+    }
 }
