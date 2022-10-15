@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Globalization;
+using UnityEditor.Animations;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class MenuButtons : MonoBehaviour
 
     public void Shop()
     {
+        gameManager.instance.hint.SetActive(false);
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.shopInventory.SetActive(true);
     }
@@ -78,9 +80,37 @@ public class MenuButtons : MonoBehaviour
         }
     }
 
-    public void Buy()
+    public void BuyGun()
     {
-            gameManager.instance.playerScript.GunPickup(blunder);
+        gameManager.instance.playerScript.GunPickup(blunder);
+    }
+
+    public void BuyAmmo()
+    {
+        int ammoGone = 5 - gameManager.instance.ammoCount;
+        
+        if(ammoGone <= 0)
+        {
+            gameManager.instance.ammoCount = 5;
+        }
+        else
+        {
+            gameManager.instance.ammoCount += ammoGone;
+        }
+    }
+
+    public void BuyHealth()
+    {
+        float healthGone = 100 - gameManager.instance.playerHPBar.fillAmount;
+
+        if(healthGone <= 50)
+        {
+            gameManager.instance.playerHPBar.fillAmount += 50;
+        }
+        else
+        {
+            gameManager.instance.playerHPBar.fillAmount += healthGone;
+        }
     }
 
     public void NoBuy()
