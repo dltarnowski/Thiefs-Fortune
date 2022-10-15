@@ -106,7 +106,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf)
         {
             if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
             {
