@@ -211,7 +211,7 @@ public class playerController : MonoBehaviour
         //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
         //Coin Bag updates
-        //gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
+        gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
     }
 
     public void respawn()
@@ -221,9 +221,8 @@ public class playerController : MonoBehaviour
             gameManager.instance.pauseMenu.SetActive(false);
         }
         gameManager.instance.deathMenu.SetActive(false);
-        //controller.enabled = false;
+        controller.enabled = false;
         HP = HPOrig;
-        updatePlayerHUD();
         gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;

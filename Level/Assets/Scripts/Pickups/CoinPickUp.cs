@@ -11,8 +11,7 @@ public class CoinPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.currencyNumber += coinValue;
-            gameManager.instance.playerScript.updatePlayerHUD();
+            gameManager.instance.currencyNumber += coinValue;
             Destroy(gameObject);
         }
     }

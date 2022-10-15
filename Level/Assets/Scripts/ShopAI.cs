@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Services.Analytics.Internal;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +8,8 @@ public class ShopAI : MonoBehaviour
 {
     [Header("----- Components -----")]
     //[SerializeField] Animator animator;
-    [SerializeField] GameObject shopCam;
 
     bool playerInRange;
-    Vector3 camOrig;
  
     // Start is called before the first frame update
     void Start()
@@ -23,14 +20,12 @@ public class ShopAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerInRange)
-        {
-            if(!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf)
-            {
-                gameManager.instance.hint.SetActive(true);
-            }
 
-            if (Input.GetKeyDown(KeyCode.E) && !gameManager.instance.shopInventory.activeSelf)
+        if(playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf)
+        {
+            gameManager.instance.hint.SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 gameManager.instance.hint.SetActive(false);
                 gameManager.instance.healthBar.SetActive(false);
@@ -50,7 +45,6 @@ public class ShopAI : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Shop");
         }
     }
 
