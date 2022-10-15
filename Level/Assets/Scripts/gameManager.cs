@@ -103,7 +103,7 @@ public class gameManager : MonoBehaviour
         {
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
-            cursorLockPause();
+            cursorUnlockUnpause();
         }
     } 
 }
