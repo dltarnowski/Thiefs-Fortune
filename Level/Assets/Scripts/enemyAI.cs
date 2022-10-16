@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] CannonController cannonCtrl;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
+    [SerializeField] LayerMask whatIsPlayer;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -24,15 +25,19 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject headPos;
     [SerializeField] int roamDist;
 
+
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
     [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
+    [SerializeField] float meleeAttackRange;
+    [SerializeField] int meleeDamage;
 
 
     public bool stationary;
     public bool noRotation;
+    bool isMelee;
     bool isShooting;
     bool playerInRange;
     Color modelColor;
@@ -65,8 +70,11 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
-                    if(CompareTag("Range"))
+                    if(CompareTag("Ranged"))
                         canSeePlayer(shoot(), isShooting);
+                    else if(CompareTag("Melee"))
+                        canSeePlayer(melee(), isMelee);
+
                 }
                 if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
                     roam();
@@ -140,13 +148,30 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot");
+        Debug.Log("Shoot");
+        anim.SetTrigger("attack");
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
     }
 
 
+    IEnumerator melee()
+    {
+        isMelee = true;
+        Debug.Log("Melee");
+        Collider[] hits = Physics.OverlapSphere(transform.position, meleeAttackRange, whatIsPlayer);
+        // Loops through all Game Objects that are withn Range and in the Layer Mask
+        for (int i = 0; i < hits.Length; i++)
+        {
+            // Removes Health from GameObjects that are within Range and in the LayerMask
+            hits[i].GetComponent<playerController>().takeDamage(meleeDamage);
+            if (hits[i].CompareTag("Player"))
+                anim.SetTrigger("attack");
+        }
+        yield return new WaitForSeconds(attackRate);
+        isMelee = false;
+    }
 
     IEnumerator flashDamage()
     {
