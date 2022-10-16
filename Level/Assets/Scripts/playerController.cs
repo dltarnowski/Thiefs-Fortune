@@ -69,11 +69,11 @@ public class playerController : MonoBehaviour
 
 
         //Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y - crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
