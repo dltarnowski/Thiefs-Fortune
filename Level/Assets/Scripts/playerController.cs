@@ -39,6 +39,7 @@ public class playerController : MonoBehaviour
 
     private Vector3 playerVelocity;
     private int timesJumped;
+    [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
     public bool gunGrabbed;
