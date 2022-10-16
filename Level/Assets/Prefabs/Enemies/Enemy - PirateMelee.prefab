@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6801783130547655390}
   - component: {fileID: 3543366647184134351}
   - component: {fileID: 2709120758119666452}
-  - component: {fileID: 4747656915094773157}
   m_Layer: 3
   m_Name: Enemy - PirateMelee
   m_TagString: Melee
@@ -195,7 +194,7 @@ MonoBehaviour:
   attackPos: {fileID: 0}
   weapon: {fileID: 7850589493929369968}
   bullet: {fileID: 0}
-  meleeAttackRange: 0.5
+  meleeAttackRange: 0.2
   meleeDamage: 20
   stationary: 0
   noRotation: 0
@@ -248,22 +247,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &4747656915094773157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3963092936783770679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors: []
 --- !u!1 &4609838964534975529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2026,8 @@ GameObject:
   - component: {fileID: 1226621283306094527}
   - component: {fileID: 9139936318812797226}
   - component: {fileID: 4696941828151444793}
-  - component: {fileID: 9139936318580004873}
+  - component: {fileID: 366287995}
+  - component: {fileID: 7254449522503234667}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Melee
@@ -2129,8 +2113,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &9139936318580004873
-SphereCollider:
+--- !u!114 &366287995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850589493929369968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6197b1d084939e4d814510b26fc7bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EAI: {fileID: 2071496612660698608}
+--- !u!136 &7254449522503234667
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2139,6 +2136,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.42909014
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Radius: 0.09883123
+  m_Height: 1.1597883
+  m_Direction: 1
+  m_Center: {x: 0.0042262813, y: 0.44583994, z: 0.00000014469771}
