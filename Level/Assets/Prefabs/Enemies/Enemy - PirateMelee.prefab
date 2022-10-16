@@ -182,6 +182,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   HP: 10
+  reward: 0
   speedChase: 5
   facePlayerSpeed: 10
   animLerpSpeed: 4
@@ -194,7 +195,7 @@ MonoBehaviour:
   attackPos: {fileID: 0}
   weapon: {fileID: 7850589493929369968}
   bullet: {fileID: 0}
-  meleeAttackRange: 2
+  meleeAttackRange: 0.5
   meleeDamage: 20
   stationary: 0
   noRotation: 0
@@ -2057,7 +2058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7850589493929369968}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.5999999, z: 0.5999999}
   m_ConstrainProportionsScale: 0
@@ -2065,7 +2066,7 @@ Transform:
   - {fileID: 4609838964534975526}
   m_Father: {fileID: 4747656915094405587}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 270}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 270}
 --- !u!33 &1226621283306094527
 MeshFilter:
   m_ObjectHideFlags: 0
