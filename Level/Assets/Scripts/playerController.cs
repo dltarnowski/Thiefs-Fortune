@@ -30,11 +30,22 @@ public class playerController : MonoBehaviour
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] playerHurtAud;
+    [Range(0, 1)] [SerializeField] float playerHurtAudVol;
+    [SerializeField] AudioClip[] playerStepsAud;
+    [Range(0, 1)] [SerializeField] float playerStepsAudVol;
+
     private Vector3 playerVelocity;
     private int timesJumped;
+    [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
     public bool gunGrabbed;
+    bool playingSteps;
+    bool isSprinting;
+    Vector3 move;
 
     public List<Transform> muzzleLocations = new List<Transform>();
     ParticleSystem gunSmoke;
@@ -52,6 +63,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement();
+        StartCoroutine(PlaySteps());
         StartCoroutine(shoot());
         GunSelect();
         updatePlayerHUD();
@@ -69,26 +81,28 @@ public class playerController : MonoBehaviour
 
 
         //Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y - crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
-
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") +
+        //Move
+        move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
+            isSprinting = true;
         }
         else
         {
             controller.Move(move * Time.deltaTime * playerSpeed);
+            isSprinting = false;
         }
 
 
@@ -102,6 +116,22 @@ public class playerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    IEnumerator PlaySteps()
+    {
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        {
+            playingSteps = true;
+            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
     }
 
     IEnumerator shoot()
@@ -194,7 +224,10 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage()); ;
+
+        aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
+
+        StartCoroutine(gameManager.instance.playerDamage());
         if (HP <= 0)
         {
             gameManager.instance.Crosshair.SetActive(false);
