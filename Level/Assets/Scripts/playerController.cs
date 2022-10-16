@@ -30,11 +30,19 @@ public class playerController : MonoBehaviour
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] playerHurtAud;
+    [Range(0, 1)] [SerializeField] float playerHurtAudVol;
+    [SerializeField] AudioClip[] playerStepsAud;
+    [Range(0, 1)] [SerializeField] float playerStepsAudVol;
+
     private Vector3 playerVelocity;
     private int timesJumped;
     public bool isShooting;
     public int selectGun;
     public bool gunGrabbed;
+    bool playingSteps;
 
     public List<Transform> muzzleLocations = new List<Transform>();
     ParticleSystem gunSmoke;
