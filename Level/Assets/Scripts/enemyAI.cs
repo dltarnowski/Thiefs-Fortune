@@ -32,7 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
     [SerializeField] float meleeAttackRange;
-    [SerializeField] int meleeDamage;
+    [SerializeField] public int meleeDamage;
 
 
     public bool stationary;
@@ -148,7 +148,6 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Debug.Log("Shoot");
         anim.SetTrigger("attack");
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
@@ -159,15 +158,9 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator melee()
     {
         isMelee = true;
-        Debug.Log("Melee");
-        Collider[] hits = Physics.OverlapSphere(transform.position, meleeAttackRange, whatIsPlayer);
-        // Loops through all Game Objects that are withn Range and in the Layer Mask
-        for (int i = 0; i < hits.Length; i++)
+        if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
         {
-            // Removes Health from GameObjects that are within Range and in the LayerMask
-            hits[i].GetComponent<playerController>().takeDamage(meleeDamage);
-            if (hits[i].CompareTag("Player"))
-                anim.SetTrigger("attack");
+            anim.SetTrigger("attack");
         }
         yield return new WaitForSeconds(attackRate);
         isMelee = false;
