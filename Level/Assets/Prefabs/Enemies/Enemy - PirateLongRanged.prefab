@@ -1918,7 +1918,7 @@ Animator:
   m_GameObject: {fileID: 6251035966338507725}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5eb080de0f733c041b43469778e74eaf, type: 2}
+  m_Controller: {fileID: 9100000, guid: e98c0e5f2491ea34cbd274736db923c9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1949,6 +1949,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   HP: 10
+  reward: 0
   speedChase: 5
   facePlayerSpeed: 10
   animLerpSpeed: 4
@@ -2118,8 +2119,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7305407885965176885}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.065399185, y: 0.0000000023228492, z: 0.000000017959792}
+  m_LocalRotation: {x: 0.022555428, y: 0.82054275, z: 0.03610654, w: 0.5699975}
+  m_LocalPosition: {x: -0.0016609896, y: -0.00015523471, z: 0.010035269}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2128,7 +2129,7 @@ Transform:
   - {fileID: 7058166399842897061}
   m_Father: {fileID: 2439975592653100585}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 180}
+  m_LocalEulerAnglesHint: {x: -1.922, y: 110.352, z: 4.486}
 --- !u!33 &7305407885968256569
 MeshFilter:
   m_ObjectHideFlags: 0
