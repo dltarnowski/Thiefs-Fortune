@@ -64,7 +64,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
-                    if(CompareTag("Range"))
+                    if(CompareTag("Ranged"))
                         canSeePlayer(shoot(), isShooting);
                 }
                 if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)

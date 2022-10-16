@@ -7024,6 +7024,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
+--- !u!136 &1046209689 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 2709120758119666452, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
+  m_PrefabInstance: {fileID: 4609838963698638142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1046209693 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7389340982452470942, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
+  m_PrefabInstance: {fileID: 4609838963698638142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1118653716 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4614405096286769364, guid: 5f4043afe802ad746b3ff016d42a45fe, type: 3}
@@ -7609,10 +7619,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy - Captain
       objectReference: {fileID: 0}
-    - target: {fileID: 1506434954615441879, guid: 6add6842205e111498493bfffe660254, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6add6842205e111498493bfffe660254, type: 3}
 --- !u!1001 &2637312205619302361
@@ -7764,13 +7770,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2071496612660698608, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1046209689}
+    - target: {fileID: 2071496612660698608, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1046209693}
     - target: {fileID: 3963092936783770679, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
       propertyPath: m_Name
       value: Enemy - PirateMelee
       objectReference: {fileID: 0}
     - target: {fileID: 3963092936783770679, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963092936783865879, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
       propertyPath: m_RootOrder
@@ -7844,10 +7858,6 @@ PrefabInstance:
     - target: {fileID: 9188251275156347215, guid: 79225e2a9c7537e4b9f7c5fd11c726fd, type: 3}
       propertyPath: m_Name
       value: Enemy - PirateCannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 9188251275156347215, guid: 79225e2a9c7537e4b9f7c5fd11c726fd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9188251275156702575, guid: 79225e2a9c7537e4b9f7c5fd11c726fd, type: 3}
       propertyPath: m_RootOrder
