@@ -224,7 +224,10 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage()); ;
+
+        aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
+
+        StartCoroutine(gameManager.instance.playerDamage());
         if (HP <= 0)
         {
             gameManager.instance.Crosshair.SetActive(false);
