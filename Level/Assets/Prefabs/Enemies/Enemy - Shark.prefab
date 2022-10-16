@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4614405095700332699}
   - component: {fileID: 4614405095700332701}
-  - component: {fileID: 4614405095700332700}
   m_Layer: 0
   m_Name: AttackPos
   m_TagString: Melee
@@ -46,24 +45,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4614405095700332700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4614405095700332698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dccf2d7c159a144d9eb7e3bee2bcc42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeAttackRange: 2
-  meleeDamage: 50
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  eAI: {fileID: 4614405096279337666}
 --- !u!1 &4614405096279412994
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,14 +550,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4614405096279337664}
   model: {fileID: 4614405096282524930}
+  cannonCtrl: {fileID: 0}
+  col: {fileID: 4614405096279337665}
+  anim: {fileID: 4614405096286769364}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   HP: 20
+  reward: 0
+  speedChase: 0
   facePlayerSpeed: 10
+  animLerpSpeed: 0
   sightDist: 20
+  viewAngle: 0
   damagedDuration: 0.25
+  headPos: {fileID: 0}
+  roamDist: 0
   attackRate: 1
-  attackPos: {fileID: 0}
+  attackPos: {fileID: 4614405095700332698}
   weapon: {fileID: 0}
   bullet: {fileID: 0}
+  meleeAttackRange: 0
+  meleeDamage: 0
   stationary: 0
   noRotation: 0
 --- !u!136 &4614405096279337665
