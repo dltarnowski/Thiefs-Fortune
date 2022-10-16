@@ -8,10 +8,12 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
     public int EnemyNumber;
+    public int currencyNumber;
 
- [Header("----- Player Stuff -----")]
+    [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
+    public int ammoCount;
 
     [Header("----- UI -----")]
     public GameObject winMenu;
@@ -25,10 +27,19 @@ public class gameManager : MonoBehaviour
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
 
+    public GameObject healthBar;
+    public GameObject hint;
+
+    public GameObject npcDialogue;
+    public GameObject shopInventory;
+    public TextMeshProUGUI coinCountText;
+    public GameObject shopPanels;
+
     public bool isPaused;
     public bool crossHairVisible = true;
 
     public GameObject mainCamera;
+    public Recoil recoilScript;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,17 +48,19 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
+        recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
+        ammoCount = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
-            
+
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
@@ -90,7 +103,7 @@ public class gameManager : MonoBehaviour
         {
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
-            cursorLockPause();
+            cursorUnlockUnpause();
         }
-    } 
+    }
 }

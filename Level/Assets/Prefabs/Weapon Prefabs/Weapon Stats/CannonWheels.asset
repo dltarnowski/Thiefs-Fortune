@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f7299704e0884d91762634147bbd0, type: 3}
+  m_Name: CannonWheels
+  m_EditorClassIdentifier: 
+  shootSpeed: 5
+  shootDist: 50
+  shootDamage: 20
+  gunModel: {fileID: 120394, guid: acf39c14ef903c34f95fc1028f98c2f9, type: 3}
+  gunSound: {fileID: 0}
+  hitEffect: {fileID: 0}
+  muzzleEffect: {fileID: 199582, guid: bc45bb6342bf8eb45b5de1fc0c980f0a, type: 3}
+  muzzleLocations:
+  - {fileID: 4627342586952585869, guid: a9d2d9c7d1f551349b5bb5fd611d4f2d, type: 3}
+  recoilX: 0
+  recoilY: 0
+  recoilZ: 0
+  snappiness: 0
+  returnSpeed: 0
