@@ -15,11 +15,15 @@ public class CannonController : MonoBehaviour
     [SerializeField] GameObject cannonBall;
     [SerializeField] Transform cannonBallPos;
     [SerializeField] float shootRate;
+    [SerializeField] GunStats cannonStats;
+
+    ParticleSystem cannonSmoke;
 
     private void Start()
     {
         active = false;
         playerCam = GameObject.FindGameObjectWithTag("MainCamera");
+        cannonSmoke = GetComponentInChildren<ParticleSystem>();
     }
     private void Update()
     {
@@ -57,6 +61,10 @@ public class CannonController : MonoBehaviour
         {
             isShooting = true;
             Instantiate(cannonBall, cannonBallPos.transform.position, transform.rotation);
+
+            cannonSmoke.transform.localPosition = cannonStats.muzzleLocations[0].localPosition;
+            cannonSmoke.Play();
+
             Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
             isShooting = false;

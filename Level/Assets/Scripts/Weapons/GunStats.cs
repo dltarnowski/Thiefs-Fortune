@@ -15,7 +15,7 @@ public class GunStats : ScriptableObject
     public GameObject gunModel;
     public AudioClip gunSound;
     public GameObject hitEffect;
-    public GameObject muzzleEffect;
+    //public GameObject muzzleEffect;
     public List<Transform> muzzleLocations;
 
     [Header("-----Recoil-----")]
