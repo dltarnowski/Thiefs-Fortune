@@ -138,10 +138,11 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
-            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
+            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && ammoCount > 0)
             {
                 isShooting = true;
-                gameManager.instance.ammoCount--;
+                ammoCount--;
+                gameManager.instance.ammoCount = ammoCount;
 
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
