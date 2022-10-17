@@ -59,6 +59,7 @@ public class playerController : MonoBehaviour
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    bool isSwinging;
     [SerializeField] bool isOnSand;
     Vector3 move;
 
@@ -77,7 +78,10 @@ public class playerController : MonoBehaviour
     {
         movement();
         StartCoroutine(PlaySteps());
-        StartCoroutine(shoot());
+        if (gunModel.activeSelf)
+            StartCoroutine(shoot());
+        else if (meleeModel.activeSelf)
+            StartCoroutine(swing());
         SelectMeleeOrGun();
         if(gunModel.activeSelf)
             GunSelect();
@@ -193,7 +197,6 @@ public class playerController : MonoBehaviour
                 recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
                 gunSmoke.Play();
-                anim.SetTrigger("Attacking");
 
 
                 if (barrel >= muzzleLocations.Count - 1)
@@ -204,6 +207,24 @@ public class playerController : MonoBehaviour
                 Debug.Log("Shoot!");
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
+            }
+        }
+    }
+    IEnumerator swing()
+    {
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        {
+            if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
+            {
+                isSwinging = true;
+
+                hitsUntilBrokenCurrentAmount--;
+
+                anim.SetTrigger("Attacking");
+
+                yield return new WaitForSeconds(swingSpeed);
+
+                isSwinging = false;
             }
         }
     }
