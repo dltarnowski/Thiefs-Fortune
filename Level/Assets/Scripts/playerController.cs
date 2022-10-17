@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator anim;
 
 
     [Header("----- Player Stats -----")]
@@ -80,8 +81,6 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
-
-
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
@@ -94,6 +93,14 @@ public class playerController : MonoBehaviour
         //Move
         move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", move.normalized.magnitude);
+
+        if (anim.GetFloat("Speed") > 0)
+            anim.SetBool("IsWalking", true);
+        else
+            anim.SetBool("IsWalking", false);
+
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
@@ -112,6 +119,7 @@ public class playerController : MonoBehaviour
         //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
+            anim.SetTrigger("IsJumping");
             playerVelocity.y = jumpHeight;
             timesJumped++;
         }
@@ -125,6 +133,7 @@ public class playerController : MonoBehaviour
         if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
         {
             playingSteps = true;
+
             aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
@@ -137,6 +146,7 @@ public class playerController : MonoBehaviour
         else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
         {
             playingSteps = true;
+
             aud.PlayOneShot(playerStepsAudSand[Random.Range(0, playerStepsAudSand.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
@@ -168,6 +178,7 @@ public class playerController : MonoBehaviour
                 recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
                 gunSmoke.Play();
+                anim.SetTrigger("Attacking");
 
 
                 if (barrel >= muzzleLocations.Count - 1)
