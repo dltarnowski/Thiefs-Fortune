@@ -30,11 +30,22 @@ public class playerController : MonoBehaviour
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] playerHurtAud;
+    [Range(0, 1)] [SerializeField] float playerHurtAudVol;
+    [SerializeField] AudioClip[] playerStepsAud;
+    [Range(0, 1)] [SerializeField] float playerStepsAudVol;
+
     private Vector3 playerVelocity;
     private int timesJumped;
+    [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
     public bool gunGrabbed;
+    bool playingSteps;
+    bool isSprinting;
+    Vector3 move;
 
     public List<Transform> muzzleLocations = new List<Transform>();
     ParticleSystem gunSmoke;
@@ -52,6 +63,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement();
+        StartCoroutine(PlaySteps());
         StartCoroutine(shoot());
         GunSelect();
         updatePlayerHUD();
@@ -69,26 +81,28 @@ public class playerController : MonoBehaviour
 
 
         //Crouch
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y - crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
-
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") +
+        //Move
+        move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
             controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
+            isSprinting = true;
         }
         else
         {
             controller.Move(move * Time.deltaTime * playerSpeed);
+            isSprinting = false;
         }
 
 
@@ -104,34 +118,53 @@ public class playerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
+    IEnumerator PlaySteps()
+    {
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        {
+            playingSteps = true;
+            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+    }
+
     IEnumerator shoot()
     {
-        if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
-            isShooting = true;
-            gameManager.instance.ammoCount--;
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
             {
-                //  -------      WAITING ON IDAMAGE      -------
-                if (hit.collider.GetComponent<IDamage>() != null)
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                isShooting = true;
+                gameManager.instance.ammoCount--;
+
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                {
+                    //  -------      WAITING ON IDAMAGE      -------
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                }
+
+                recoilScript.RecoilFire();
+                gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
+                gunSmoke.Play();
+
+
+                if (barrel >= muzzleLocations.Count - 1)
+                    barrel = 0;
+                else
+                    barrel++;
+
+                Debug.Log("Shoot!");
+                yield return new WaitForSeconds(shootRate);
+                isShooting = false;
             }
-
-            recoilScript.RecoilFire();
-            gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
-            gunSmoke.Play();
-
-            
-            if (barrel >= muzzleLocations.Count - 1)
-                barrel = 0;
-            else
-                barrel++;
-
-            Debug.Log("Shoot!");
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
         }
     }
 
@@ -191,7 +224,10 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        StartCoroutine(gameManager.instance.playerDamage()); ;
+
+        aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
+
+        StartCoroutine(gameManager.instance.playerDamage());
         if (HP <= 0)
         {
             gameManager.instance.Crosshair.SetActive(false);
@@ -207,6 +243,8 @@ public class playerController : MonoBehaviour
     {
         //Health bar updates
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+        //Coin Bag updates
+        gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
     }
 
     public void respawn()
@@ -218,7 +256,6 @@ public class playerController : MonoBehaviour
         gameManager.instance.deathMenu.SetActive(false);
         controller.enabled = false;
         HP = HPOrig;
-        updatePlayerHUD();
         gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         transform.position = gameManager.instance.spawnPosition.transform.position;
         controller.enabled = true;

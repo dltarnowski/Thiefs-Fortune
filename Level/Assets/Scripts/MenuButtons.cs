@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Globalization;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -56,6 +55,7 @@ public class MenuButtons : MonoBehaviour
 
     public void Shop()
     {
+        gameManager.instance.hint.SetActive(false);
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.shopInventory.SetActive(true);
     }
@@ -64,6 +64,7 @@ public class MenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.cursorUnlockUnpause();
+        gameManager.instance.healthBar.SetActive(true);
         dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
     }
 
@@ -78,9 +79,55 @@ public class MenuButtons : MonoBehaviour
         }
     }
 
-    public void Buy()
+    public void BuyGun()
     {
+        if(gameManager.instance.currencyNumber >= 10)
+        {
             gameManager.instance.playerScript.GunPickup(blunder);
+            gameManager.instance.currencyNumber -= 10;
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void BuyAmmo()
+    {
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
+        {
+            int ammoGone = 5 - gameManager.instance.ammoCount;
+
+            if (ammoGone <= 0)
+            {
+                gameManager.instance.ammoCount = 5;
+            }
+            else
+            {
+                gameManager.instance.ammoCount += ammoGone;
+            }
+
+            gameManager.instance.currencyNumber -= 2;
+        }
+    }
+
+    public void BuyHealth()
+    {
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerHPBar.fillAmount != 1)
+        {
+            float healthGone = 1 - gameManager.instance.playerHPBar.fillAmount;
+
+            if (healthGone <= .5f)
+            {
+                gameManager.instance.playerHPBar.fillAmount += .5f;
+            }
+            else
+            {
+                gameManager.instance.playerHPBar.fillAmount += healthGone;
+            }
+
+            gameManager.instance.currencyNumber -= 2;
+        }
     }
 
     public void NoBuy()

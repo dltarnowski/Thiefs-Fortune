@@ -20,7 +20,8 @@ public class ShopAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerInRange)
+
+        if(playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf)
         {
             gameManager.instance.hint.SetActive(true);
 
@@ -44,7 +45,6 @@ public class ShopAI : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Collision");
         }
     }
 
