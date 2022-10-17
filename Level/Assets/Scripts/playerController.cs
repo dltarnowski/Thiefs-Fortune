@@ -27,9 +27,20 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     public GameObject gunModel;
-    //[SerializeField] public int ammoCount;
+    [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
+    public List<Transform> muzzleLocations = new List<Transform>();
+    ParticleSystem gunSmoke;
+
+    [Header("----- Melee Stats -----")]
+    [SerializeField] float swingSpeed;
+    [SerializeField] int meleeDamage;
+    [SerializeField] int hitsUntilBrokenCurrentAmount;
+    public GameObject meleeModel;
+    public AudioClip meleeSound;
+    public GameObject meleeHitEffect;
+    public List<MeleeStats> meleeStat = new List<MeleeStats>();
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -44,14 +55,13 @@ public class playerController : MonoBehaviour
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
+    public int selectMelee;
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
     [SerializeField] bool isOnSand;
     Vector3 move;
 
-    public List<Transform> muzzleLocations = new List<Transform>();
-    ParticleSystem gunSmoke;
     public int barrel;
 
     void Start()
@@ -68,7 +78,11 @@ public class playerController : MonoBehaviour
         movement();
         StartCoroutine(PlaySteps());
         StartCoroutine(shoot());
-        GunSelect();
+        SelectMeleeOrGun();
+        if(gunModel.activeSelf)
+            GunSelect();
+        else
+            MeleeSelect();
         updatePlayerHUD();
     }
 
@@ -162,10 +176,11 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
-            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && gameManager.instance.ammoCount > 0)
+            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && ammoCount > 0)
             {
                 isShooting = true;
-                gameManager.instance.ammoCount--;
+                ammoCount--;
+                gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -198,7 +213,9 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        //ammoCount = stats.ammoCount;
+
+        ammoCount = stats.ammoCount = stats.ammoStartCount;
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -213,6 +230,23 @@ public class playerController : MonoBehaviour
             selectGun = 0;
         else
             selectGun++;
+    }
+
+    public void MeleePickup(MeleeStats stats)
+    {
+        swingSpeed = stats.swingSpeed;
+        meleeDamage = stats.meleeDamage;
+        hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = stats.meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        meleeStat.Add(stats);
+
+        if (meleeStat.Count == 1)
+            selectMelee = 0;
+        else
+            selectMelee++;
     }
 
     void GunSelect()
@@ -232,18 +266,66 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void MeleeSelect()
+    {
+        if (meleeStat.Count > 1)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectMelee < meleeStat.Count - 1)
+            {
+                selectMelee++;
+                ChangeMelee();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectMelee > 0)
+            {
+                selectMelee--;
+                ChangeMelee();
+            }
+        }
+    }
+
     void ChangeGuns()
     {
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
-        //ammoCount = gunStat[selectGun].ammoCount;
+        ammoCount = gunStat[selectGun].ammoCount;
+
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
         CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
         //muzzleLocations[barrel] = gunStat[selectGun].muzzleLocations[barrel];
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void ChangeMelee()
+    {
+        swingSpeed = meleeStat[selectMelee].swingSpeed;
+        meleeDamage = meleeStat[selectMelee].meleeDamage;
+        hitsUntilBrokenCurrentAmount = meleeStat[selectMelee].hitsUntilBrokenCurrentAmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void SelectMeleeOrGun()
+    {
+        if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        {
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
+        }
+        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        {
+            gunModel.SetActive(false);
+            meleeModel.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            gunModel.SetActive(!gunModel.activeSelf);
+            meleeModel.SetActive(!meleeModel.activeSelf);
+        }
     }
 
     public void takeDamage(int dmg)

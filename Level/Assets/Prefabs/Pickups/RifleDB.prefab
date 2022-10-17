@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2344364002140279862}
   - component: {fileID: 2344364002141306662}
   - component: {fileID: 2336346369958221056}
+  - component: {fileID: 4927741673036904275}
   m_Layer: 0
   m_Name: RifleDB
   m_TagString: Untagged
@@ -125,11 +126,24 @@ MeshCollider:
   m_GameObject: {fileID: 2344364002143443464}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43975542295495366, guid: 1b7610b2b3670ae4f9497b7892c79310, type: 2}
+--- !u!65 &4927741673036904275
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344364002143443464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 0.32208014, z: 1.4001193}
+  m_Center: {x: -0.0020888858, y: -0.026872516, z: 0.26575473}
 --- !u!1001 &1870998459900654599
 PrefabInstance:
   m_ObjectHideFlags: 0
