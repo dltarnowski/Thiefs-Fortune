@@ -75,7 +75,11 @@ public class playerController : MonoBehaviour
         movement();
         StartCoroutine(PlaySteps());
         StartCoroutine(shoot());
-        GunSelect();
+        SelectMeleeOrGun();
+        if(gunModel.activeSelf)
+            GunSelect();
+        else
+            MeleeSelect();
         updatePlayerHUD();
     }
 
@@ -277,6 +281,26 @@ public class playerController : MonoBehaviour
 
         meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void SelectMeleeOrGun()
+    {
+        if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        {
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
+        }
+        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        {
+            gunModel.SetActive(false);
+            meleeModel.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            gunModel.SetActive(!gunModel.activeSelf);
+            meleeModel.SetActive(!meleeModel.activeSelf);
+        }
     }
 
     public void takeDamage(int dmg)
