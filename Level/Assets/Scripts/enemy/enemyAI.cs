@@ -24,16 +24,21 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject headPos;
     [SerializeField] int roamDist;
 
+
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
     [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
+    [SerializeField] float meleeAttackRange;
+    [SerializeField] public int meleeDamage;
 
 
     public bool stationary;
     public bool noRotation;
+    bool isMelee;
     bool isShooting;
+    [SerializeField] bool canRoam = true;
     bool playerInRange;
     Color modelColor;
     Vector3 playerDir;
@@ -49,7 +54,8 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        roam();
+        if(!stationary && canRoam)
+            roam();
     }
 
     // Update is called once per frame
@@ -65,10 +71,13 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
-                    if(CompareTag("Range"))
+                    if(CompareTag("Ranged"))
                         canSeePlayer(shoot(), isShooting);
+                    else if(CompareTag("Melee"))
+                        canSeePlayer(melee(), isMelee);
+
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
             }
         }
@@ -97,9 +106,12 @@ public class enemyAI : MonoBehaviour, IDamage
             Debug.DrawRay(headPos.transform.position, playerDir);
             if (hit.collider.CompareTag("Player") && angle <= viewAngle)
             {
-                agent.speed = speedChase;
-                agent.stoppingDistance = stoppingDistanceOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                if(!stationary)
+                {
+                    agent.speed = speedChase;
+                    agent.stoppingDistance = stoppingDistanceOrig;
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
                 if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 
@@ -140,13 +152,23 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot");
+        anim.SetTrigger("attack");
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
     }
 
 
+    IEnumerator melee()
+    {
+        isMelee = true;
+        if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
+        {
+            anim.SetTrigger("attack");
+        }
+        yield return new WaitForSeconds(attackRate);
+        isMelee = false;
+    }
 
     IEnumerator flashDamage()
     {
