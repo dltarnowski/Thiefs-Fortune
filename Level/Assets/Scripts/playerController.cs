@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator anim;
 
 
     [Header("----- Player Stats -----")]
@@ -46,6 +47,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
+    [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
 
     private Vector3 playerVelocity;
@@ -57,6 +59,8 @@ public class playerController : MonoBehaviour
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    bool isSwinging;
+    [SerializeField] bool isOnSand;
     Vector3 move;
 
     public int barrel;
@@ -74,7 +78,10 @@ public class playerController : MonoBehaviour
     {
         movement();
         StartCoroutine(PlaySteps());
-        StartCoroutine(shoot());
+        if (gunModel.activeSelf)
+            StartCoroutine(shoot());
+        else if (meleeModel.activeSelf)
+            StartCoroutine(swing());
         SelectMeleeOrGun();
         if(gunModel.activeSelf)
             GunSelect();
@@ -92,8 +99,6 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
-
-
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
@@ -106,6 +111,14 @@ public class playerController : MonoBehaviour
         //Move
         move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", move.normalized.magnitude);
+
+        if (anim.GetFloat("Speed") > 0)
+            anim.SetBool("IsWalking", true);
+        else
+            anim.SetBool("IsWalking", false);
+
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
@@ -124,6 +137,7 @@ public class playerController : MonoBehaviour
         //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
+            anim.SetTrigger("IsJumping");
             playerVelocity.y = jumpHeight;
             timesJumped++;
         }
@@ -134,10 +148,24 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
         {
             playingSteps = true;
+
             aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        {
+            playingSteps = true;
+
+            aud.PlayOneShot(playerStepsAudSand[Random.Range(0, playerStepsAudSand.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -179,6 +207,24 @@ public class playerController : MonoBehaviour
                 Debug.Log("Shoot!");
                 yield return new WaitForSeconds(shootRate);
                 isShooting = false;
+            }
+        }
+    }
+    IEnumerator swing()
+    {
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        {
+            if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
+            {
+                isSwinging = true;
+
+                hitsUntilBrokenCurrentAmount--;
+
+                anim.SetTrigger("Attacking");
+
+                yield return new WaitForSeconds(swingSpeed);
+
+                isSwinging = false;
             }
         }
     }
@@ -351,5 +397,13 @@ public class playerController : MonoBehaviour
         {
             muzzleLocations.Add(list[i]);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sand"))
+            isOnSand = true;
+        else if (!other.CompareTag("Sand"))
+            isOnSand = false;
     }
 }
