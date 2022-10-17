@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6479299118518373770}
   - component: {fileID: 2480371299067960273}
+  - component: {fileID: 8499779572834384451}
   - component: {fileID: 6479299118521907760}
   - component: {fileID: 6479299118520775834}
   - component: {fileID: 6417295972277363260}
@@ -49,6 +50,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeStats: {fileID: 11400000, guid: 30c3e2d217524c8409c8f48d80b0698b, type: 2}
+--- !u!114 &8499779572834384451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479299118518745968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce75564c988c2f3449fbadee07660f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceHeight: 0.5
+  bounceSpeed: 0.25
+  rotationSpeed: 45
 --- !u!33 &6479299118521907760
 MeshFilter:
   m_ObjectHideFlags: 0
