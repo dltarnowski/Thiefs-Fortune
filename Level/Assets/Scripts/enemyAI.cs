@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] CannonController cannonCtrl;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
+    [SerializeField] LayerMask whatIsPlayer;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -24,15 +25,19 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject headPos;
     [SerializeField] int roamDist;
 
+
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
     [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
+    [SerializeField] float meleeAttackRange;
+    [SerializeField] public int meleeDamage;
 
 
     public bool stationary;
     public bool noRotation;
+    bool isMelee;
     bool isShooting;
     bool playerInRange;
     Color modelColor;
@@ -65,8 +70,11 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
-                    if(CompareTag("Range"))
+                    if(CompareTag("Ranged"))
                         canSeePlayer(shoot(), isShooting);
+                    else if(CompareTag("Melee"))
+                        canSeePlayer(melee(), isMelee);
+
                 }
                 if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
                     roam();
@@ -140,13 +148,23 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        anim.SetTrigger("Shoot");
+        anim.SetTrigger("attack");
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
     }
 
 
+    IEnumerator melee()
+    {
+        isMelee = true;
+        if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
+        {
+            anim.SetTrigger("attack");
+        }
+        yield return new WaitForSeconds(attackRate);
+        isMelee = false;
+    }
 
     IEnumerator flashDamage()
     {
