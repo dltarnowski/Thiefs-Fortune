@@ -142,7 +142,7 @@ public class playerController : MonoBehaviour
             {
                 isShooting = true;
                 ammoCount--;
-                gameManager.instance.ammoCount = ammoCount;
+                gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -174,7 +174,10 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        ammoCount = stats.ammoCount;
+
+        stats.ammoCount = stats.ammoStartCount;
+        ammoCount = stats.ammoStartCount;
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
