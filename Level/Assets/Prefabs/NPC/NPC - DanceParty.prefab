@@ -1,0 +1,537 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8814823932616994516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8814823932616994523}
+  - component: {fileID: 8814823932616994522}
+  m_Layer: 0
+  m_Name: NPC - DanceParty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8814823932616994523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814823932616994516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 76.82043, y: -51.82078, z: 151.06116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6668288841235914469}
+  - {fileID: 3613877737215524731}
+  - {fileID: 3613877738052610301}
+  - {fileID: 3613877736616793338}
+  - {fileID: 3613877738124923740}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &8814823932616994522
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814823932616994516}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0ba48f92a18f02d43878485d5ce92628, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1001 &1511270283483830107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8814823932616994523}
+    m_Modifications:
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: rotationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144887, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3d78d34e30e3514897f314524d7d39e, type: 2}
+    - target: {fileID: 4570931271736471818, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300084, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2689018
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253759390, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Name
+      value: NPC - DanceSkeleton
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+--- !u!4 &6668288841235914469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+  m_PrefabInstance: {fileID: 1511270283483830107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8814823930974271173
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8814823932616994523}
+    m_Modifications:
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: danceNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: emoteNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: rotationSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144887, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3d78d34e30e3514897f314524d7d39e, type: 2}
+    - target: {fileID: 4570931271736471818, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300084, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2502785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2689018
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6199951
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253759390, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Name
+      value: NPC - DanceSkeleton (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+--- !u!4 &3613877737215524731 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+  m_PrefabInstance: {fileID: 8814823930974271173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8814823931581406532
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8814823932616994523}
+    m_Modifications:
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: danceNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: emoteNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: rotationSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144887, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3d78d34e30e3514897f314524d7d39e, type: 2}
+    - target: {fileID: 4570931271736471818, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300084, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.4802785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2689018
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.31672335
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253759390, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Name
+      value: NPC - DanceSkeleton (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+--- !u!4 &3613877736616793338 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+  m_PrefabInstance: {fileID: 8814823931581406532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8814823932757138146
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8814823932616994523}
+    m_Modifications:
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: danceNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: emoteNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: rotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144887, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3d78d34e30e3514897f314524d7d39e, type: 2}
+    - target: {fileID: 4570931271736471818, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300084, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08272123
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.249
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7092767
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253759390, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Name
+      value: NPC - DanceSkeleton (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+--- !u!4 &3613877738124923740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+  m_PrefabInstance: {fileID: 8814823932757138146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8814823932821004611
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8814823932616994523}
+    m_Modifications:
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: danceNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: emoteNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144840, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: rotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729403630357144887, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3d78d34e30e3514897f314524d7d39e, type: 2}
+    - target: {fileID: 4570931271736471818, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300084, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2689018
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.26172352
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220684679253759390, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+      propertyPath: m_Name
+      value: NPC - DanceSkeleton (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+--- !u!4 &3613877738052610301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5220684679253395902, guid: 5f230eccc8dc40943b99a4790fa30310, type: 3}
+  m_PrefabInstance: {fileID: 8814823932821004611}
+  m_PrefabAsset: {fileID: 0}

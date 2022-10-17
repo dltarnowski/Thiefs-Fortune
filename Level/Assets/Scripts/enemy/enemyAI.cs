@@ -11,6 +11,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] CannonController cannonCtrl;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -143,6 +144,7 @@ public class enemyAI : MonoBehaviour, IDamage
             col.enabled = false;
             agent.enabled = false;
             Destroy(gameObject, 5);
+            Instantiate(drops[Random.Range(0, drops.Length - 1)], transform.position, transform.rotation);
         }
         else if (HP > 0)
             StartCoroutine(flashDamage());
