@@ -9,7 +9,7 @@ public class AmmoPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.ammoCount += ammoIncrease;
+            gameManager.instance.playerScript.ammoCount += ammoIncrease;
 
             Destroy(gameObject);
         }
