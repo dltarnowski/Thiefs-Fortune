@@ -29,6 +29,17 @@ public class playerController : MonoBehaviour
     [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
+    public List<Transform> muzzleLocations = new List<Transform>();
+    ParticleSystem gunSmoke;
+
+    [Header("----- Melee Stats -----")]
+    [SerializeField] float swingSpeed;
+    [SerializeField] int meleeDamage;
+    [SerializeField] int hitsUntilBrokenCurrentAmount;
+    public GameObject meleeModel;
+    public AudioClip meleeSound;
+    public GameObject meleeHitEffect;
+    public List<MeleeStats> meleeStat = new List<MeleeStats>();
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -42,13 +53,12 @@ public class playerController : MonoBehaviour
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
+    public int selectMelee;
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
     Vector3 move;
 
-    public List<Transform> muzzleLocations = new List<Transform>();
-    ParticleSystem gunSmoke;
     public int barrel;
 
     void Start()
@@ -175,8 +185,7 @@ public class playerController : MonoBehaviour
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
 
-        stats.ammoCount = stats.ammoStartCount;
-        ammoCount = stats.ammoStartCount;
+        ammoCount = stats.ammoCount = stats.ammoStartCount;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -192,6 +201,23 @@ public class playerController : MonoBehaviour
             selectGun = 0;
         else
             selectGun++;
+    }
+
+    public void MeleePickup(MeleeStats stats)
+    {
+        swingSpeed = stats.swingSpeed;
+        meleeDamage = stats.meleeDamage;
+        hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = stats.meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        meleeStat.Add(stats);
+
+        if (meleeStat.Count == 1)
+            selectMelee = 0;
+        else
+            selectMelee++;
     }
 
     void GunSelect()
@@ -211,6 +237,23 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void MeleeSelect()
+    {
+        if (meleeStat.Count > 1)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectMelee < meleeStat.Count - 1)
+            {
+                selectMelee++;
+                ChangeMelee();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectMelee > 0)
+            {
+                selectMelee--;
+                ChangeMelee();
+            }
+        }
+    }
+
     void ChangeGuns()
     {
         shootRate = gunStat[selectGun].shootSpeed;
@@ -224,6 +267,16 @@ public class playerController : MonoBehaviour
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+
+    void ChangeMelee()
+    {
+        swingSpeed = meleeStat[selectMelee].swingSpeed;
+        meleeDamage = meleeStat[selectMelee].meleeDamage;
+        hitsUntilBrokenCurrentAmount = meleeStat[selectMelee].hitsUntilBrokenCurrentAmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     public void takeDamage(int dmg)
