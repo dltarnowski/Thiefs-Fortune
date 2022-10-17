@@ -35,6 +35,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
+    [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
 
     private Vector3 playerVelocity;
@@ -45,6 +46,7 @@ public class playerController : MonoBehaviour
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    [SerializeField] bool isOnSand;
     Vector3 move;
 
     public List<Transform> muzzleLocations = new List<Transform>();
@@ -120,10 +122,22 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
         {
             playingSteps = true;
             aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        {
+            playingSteps = true;
+            aud.PlayOneShot(playerStepsAudSand[Random.Range(0, playerStepsAudSand.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -269,5 +283,13 @@ public class playerController : MonoBehaviour
         {
             muzzleLocations.Add(list[i]);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sand"))
+            isOnSand = true;
+        else if (!other.CompareTag("Sand"))
+            isOnSand = false;
     }
 }
