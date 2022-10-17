@@ -177,9 +177,6 @@ MonoBehaviour:
   cannonCtrl: {fileID: 0}
   col: {fileID: 2709120758119666452}
   anim: {fileID: 7389340982452470942}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
   HP: 10
   reward: 0
   speedChase: 5
@@ -2025,7 +2022,6 @@ GameObject:
   - component: {fileID: 8938912085423719363}
   - component: {fileID: 1226621283306094527}
   - component: {fileID: 9139936318812797226}
-  - component: {fileID: 4696941828151444793}
   - component: {fileID: 366287995}
   - component: {fileID: 7254449522503234667}
   m_Layer: 0
@@ -2101,18 +2097,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4696941828151444793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7850589493929369968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &366287995
 MonoBehaviour:
   m_ObjectHideFlags: 0
