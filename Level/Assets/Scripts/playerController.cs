@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
     public GameObject gunModel;
-    //[SerializeField] public int ammoCount;
+    [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
 
@@ -173,7 +173,7 @@ public class playerController : MonoBehaviour
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        //ammoCount = stats.ammoCount;
+        ammoCount = stats.ammoCount;
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -212,7 +212,8 @@ public class playerController : MonoBehaviour
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
-        //ammoCount = gunStat[selectGun].ammoCount;
+        ammoCount = gunStat[selectGun].ammoCount;
+
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
         CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
         //muzzleLocations[barrel] = gunStat[selectGun].muzzleLocations[barrel];
