@@ -11,7 +11,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] CannonController cannonCtrl;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
-    [SerializeField] LayerMask whatIsPlayer;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -39,6 +38,7 @@ public class enemyAI : MonoBehaviour, IDamage
     public bool noRotation;
     bool isMelee;
     bool isShooting;
+    [SerializeField] bool canRoam = true;
     bool playerInRange;
     Color modelColor;
     Vector3 playerDir;
@@ -54,7 +54,8 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        roam();
+        if(!stationary && canRoam)
+            roam();
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class enemyAI : MonoBehaviour, IDamage
                         canSeePlayer(melee(), isMelee);
 
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
             }
         }
@@ -105,9 +106,12 @@ public class enemyAI : MonoBehaviour, IDamage
             Debug.DrawRay(headPos.transform.position, playerDir);
             if (hit.collider.CompareTag("Player") && angle <= viewAngle)
             {
-                agent.speed = speedChase;
-                agent.stoppingDistance = stoppingDistanceOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                if(!stationary)
+                {
+                    agent.speed = speedChase;
+                    agent.stoppingDistance = stoppingDistanceOrig;
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
                 if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 

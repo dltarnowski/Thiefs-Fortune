@@ -15,9 +15,8 @@ GameObject:
   - component: {fileID: 8970215132580245310}
   - component: {fileID: 1383946122127371567}
   - component: {fileID: 540687465415110388}
-  - component: {fileID: 7204424958198964293}
   m_Layer: 3
-  m_Name: Enemy - Captain
+  m_Name: Enemy - PirateCaptain
   m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,9 +177,6 @@ MonoBehaviour:
   cannonCtrl: {fileID: 0}
   col: {fileID: 540687465415110388}
   anim: {fileID: 4941685614310209918}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
   HP: 10
   reward: 0
   speedChase: 5
@@ -248,22 +244,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &7204424958198964293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506434954615441879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - m_Rig: {fileID: 0}
-    m_Active: 1
-  m_Effectors: []
 --- !u!1 &6040629496798059391
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +255,6 @@ GameObject:
   - component: {fileID: 3107416675938498987}
   - component: {fileID: 3771265409988190974}
   - component: {fileID: 1856256824970190861}
-  - component: {fileID: 6711150263772267859}
   - component: {fileID: 768468363930837448}
   - component: {fileID: 9154770064972487245}
   m_Layer: 0
@@ -351,18 +330,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6711150263772267859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6040629496798059391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &768468363930837448
 CapsuleCollider:
   m_ObjectHideFlags: 0

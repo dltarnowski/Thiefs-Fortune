@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5850397214364529706
+--- !u!1 &5428967348684778012
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7320357273326143749}
-  - component: {fileID: 7935559767515393242}
-  - component: {fileID: 3492679447716224792}
+  - component: {fileID: 9219003026992289587}
+  - component: {fileID: 8378839214091924204}
+  - component: {fileID: 3035185616817209646}
   m_Layer: 2
-  m_Name: Spawner - PirateMelee
+  m_Name: Spawner - Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7320357273326143749
+--- !u!4 &9219003026992289587
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5850397214364529706}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.392143, y: -55.593002, z: 192.61314}
+  m_GameObject: {fileID: 5428967348684778012}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7935559767515393242
+--- !u!114 &8378839214091924204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5850397214364529706}
+  m_GameObject: {fileID: 5428967348684778012}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbb5401939a93604c9adf77e16c04661, type: 3}
@@ -47,14 +47,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 1
   maxEnemies: 3
-  enemy: {fileID: 3963092936783770679, guid: 2f118fcb89b69784ba4955d35a97f8a1, type: 3}
---- !u!135 &3492679447716224792
+  enemy: {fileID: 4614405096279574872, guid: 5f4043afe802ad746b3ff016d42a45fe, type: 3}
+--- !u!135 &3035185616817209646
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5850397214364529706}
+  m_GameObject: {fileID: 5428967348684778012}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

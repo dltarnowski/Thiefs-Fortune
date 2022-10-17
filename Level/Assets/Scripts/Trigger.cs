@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Trigger : MonoBehaviour
+public class Trigger : MonoBehaviour, IDamage
 {
     void Start()
     {
-        StartCoroutine(Explode());
+        
     }
-    private IEnumerator Explode()
+
+    public void takeDamage(int dmg)
     {
-        yield return new WaitForSeconds(5);
         transform.GetComponent<Fracture>().Trigger();
     }
 }
