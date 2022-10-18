@@ -13,40 +13,48 @@ public class gameManager : MonoBehaviour
     [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
+    public GameObject Ammo;
     public int ammoCount;
     public cameraControls cameraScript;
 
-    [Header("----- UI -----")]
+    [Header("----- Menu UI -----")]
     public GameObject winMenu;
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+    [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
     public GameObject spawnPosition;
     public Image playerHPBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
-
-    public GameObject healthBar;
+    [Header("----- Objective UI -----")]
+    public TextMeshProUGUI objText;
+    public GameObject ObjectiveBox;
+    [SerializeField] public Animator anim;
+    [Header("----- UI -----")]
     public GameObject hint;
-
+    [Header("----- NPC UI -----")]
+    public GameObject healthBar;
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
-
-    public bool isPaused;
-    public bool crossHairVisible = true;
-
+    [Header("----- Gun -----")]
     public GameObject mainCamera;
     public Recoil recoilScript;
+    [Header("----- Other -----")]
+    public bool isPaused;
+    public bool crossHairVisible = true;
+    
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        Ammo = GameObject.Find("Ammo");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
         cameraScript = mainCamera.GetComponent<cameraControls>();

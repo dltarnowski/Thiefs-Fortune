@@ -207,19 +207,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4719081874125048508}
     m_Modifications:
+    - target: {fileID: 1953930393981139417, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
+      propertyPath: m_TagString
+      value: Sand
+      objectReference: {fileID: 0}
     - target: {fileID: 2604725964049797751, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2604725964049797751, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2632780899457504411, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
       propertyPath: m_Name
       value: Island_Main
       objectReference: {fileID: 0}
     - target: {fileID: 2632780899457504411, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
+      propertyPath: m_TagString
+      value: Sand
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632780899457504411, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903687062820652135, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
       propertyPath: m_TagString
       value: Sand
       objectReference: {fileID: 0}
@@ -273,6 +285,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
+--- !u!1 &265818048620352908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2632780899457504411, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
+  m_PrefabInstance: {fileID: 2826541325770178839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1876012057
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265818048620352908}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.4090753
+  m_Center: {x: 1.104338, y: 0, z: -0.18879622}
 --- !u!4 &4816398584106495545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7344997855668662062, guid: 6f9eafb67eea9f54f80d58415e3b70d2, type: 3}
@@ -420,6 +450,10 @@ PrefabInstance:
     - target: {fileID: 113194, guid: c14b2a441bcbe1a4f94f3ec4db969ba7, type: 3}
       propertyPath: m_Name
       value: SM_Env_Flat_Sand_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 113194, guid: c14b2a441bcbe1a4f94f3ec4db969ba7, type: 3}
+      propertyPath: m_TagString
+      value: Sand
       objectReference: {fileID: 0}
     - target: {fileID: 113194, guid: c14b2a441bcbe1a4f94f3ec4db969ba7, type: 3}
       propertyPath: m_StaticEditorFlags
