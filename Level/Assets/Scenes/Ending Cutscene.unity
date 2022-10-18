@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281102368}
+  - component: {fileID: 281102373}
   - component: {fileID: 281102372}
   - component: {fileID: 281102371}
   - component: {fileID: 281102370}
@@ -246,6 +247,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!114 &281102373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281102367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e6fe8711281640842185d432fe325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 281102372}
+  playerSpeed: 5
+  runSpeed: 2
+  jumpHeight: 8
+  gravityValue: -20
+  jumpsMax: 1
+  crouchHeight: 1
+  HP: 100
+  HPOrig: 0
+  shootRate: 0
+  shootDist: 0
+  shootDamage: 0
+  gunModel: {fileID: 0}
+  gunStat: []
+  recoilScript: {fileID: 0}
+  isShooting: 0
+  selectGun: 0
+  gunGrabbed: 0
+  muzzleLocations: []
+  barrel: 0
 --- !u!1001 &365920315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -503,7 +536,7 @@ GameObject:
   - component: {fileID: 1792031964}
   - component: {fileID: 1792031963}
   m_Layer: 5
-  m_Name: Fadetoblack
+  m_Name: Fade to black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,7 +572,7 @@ Animator:
   m_GameObject: {fileID: 1792031961}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e89a9aa1ce1ac6a45943b14030f63d23, type: 2}
+  m_Controller: {fileID: 9100000, guid: dee37de43259f694591b25d959938f48, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6204,7 +6237,6 @@ GameObject:
   - component: {fileID: 2378312773573233236}
   - component: {fileID: 8008111968750028530}
   - component: {fileID: 8008111968750028529}
-  - component: {fileID: 8008111968750028531}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6345,6 +6377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2378312773668862450}
+  - component: {fileID: 2378312773668862477}
   - component: {fileID: 2378312773668862476}
   - component: {fileID: 2378312773668862451}
   - component: {fileID: 2378312773668862448}
@@ -6374,6 +6407,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!114 &2378312773668862477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378312773668862454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e6fe8711281640842185d432fe325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 2378312773668862476}
+  playerSpeed: 5
+  runSpeed: 2
+  jumpHeight: 8
+  gravityValue: -20
+  jumpsMax: 1
+  crouchHeight: 1
+  HP: 100
+  HPOrig: 0
+  shootRate: 0
+  shootDist: 0
+  shootDamage: 0
+  gunModel: {fileID: 0}
+  gunStat: []
+  recoilScript: {fileID: 0}
+  isShooting: 0
+  selectGun: 0
+  gunGrabbed: 0
+  muzzleLocations: []
+  barrel: 0
 --- !u!95 &2378312773668862478
 Animator:
   serializedVersion: 4
@@ -7832,16 +7897,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8008111968750028531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2378312773573233237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022f74c949f7c2b4eba02432fac59a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transitionTime: 33

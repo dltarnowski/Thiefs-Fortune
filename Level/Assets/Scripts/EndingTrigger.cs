@@ -20,7 +20,7 @@ public class EndingTrigger : MonoBehaviour
     {
         StartCoroutine(SceneTimer(SceneManager.GetActiveScene().buildIndex + 1));
     }
-    
+
     IEnumerator SceneTimer(int buildIndex)
     {
         yield return new WaitForSeconds(transitionTime);

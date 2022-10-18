@@ -1,0 +1,509 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1023400169877775193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023400169877775194}
+  - component: {fileID: 1046209699}
+  m_Layer: 0
+  m_Name: NPC - TalkingParty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023400169877775194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023400169877775193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 80.10262, y: -54.536438, z: 144.63383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7271561095924862415}
+  - {fileID: 8239739130578429564}
+  - {fileID: 5441438005856125736}
+  - {fileID: 3336771996924950679}
+  - {fileID: 5263433556565210419}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1046209699
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023400169877775193}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f5b47aa6a7dda6f4f8d651766be9830e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1001 &654181951709118853
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1023400169877775194}
+    m_Modifications:
+    - target: {fileID: 887733428377739085, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce19f20337e1d6545bddd9bc3ba7de65, type: 2}
+    - target: {fileID: 3116203351022701391, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: emoteNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.55324554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.809017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.58778524
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176855513, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Name
+      value: NPC - TalkingLady (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+--- !u!4 &8239739130578429564 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+  m_PrefabInstance: {fileID: 654181951709118853}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2280147817194170934
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1023400169877775194}
+    m_Modifications:
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07000637
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.55324554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.9599982
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176855513, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Name
+      value: NPC - TalkingLady
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+--- !u!4 &7271561095924862415 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+  m_PrefabInstance: {fileID: 2280147817194170934}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3516940880869467345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1023400169877775194}
+    m_Modifications:
+    - target: {fileID: 887733428377739085, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78edba5dc4cc2684c8e99f363873ff77, type: 2}
+    - target: {fileID: 3116203351022701391, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: emoteNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.7700064
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.55324554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2800019
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.309017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.95105654
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176855513, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Name
+      value: NPC - TalkingLady (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+--- !u!4 &5441438005856125736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+  m_PrefabInstance: {fileID: 3516940880869467345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3622592843721986762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1023400169877775194}
+    m_Modifications:
+    - target: {fileID: 887733428377739085, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 82b5a382815781648bf1d875e4002dc3, type: 2}
+    - target: {fileID: 3116203351022701391, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: emoteNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1369936
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.55324554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.079998136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.809017
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.58778524
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176855513, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Name
+      value: NPC - TalkingLady (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+--- !u!4 &5263433556565210419 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+  m_PrefabInstance: {fileID: 3622592843721986762}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6125995427758464878
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1023400169877775194}
+    m_Modifications:
+    - target: {fileID: 887733428377739085, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89a8c4d05aebfbd40ad71b8f56d3f20f, type: 2}
+    - target: {fileID: 3116203351022701391, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: emoteNum
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6899936
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.55324554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2500019
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.30901685
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.95105654
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 216
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884880861176855513, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+      propertyPath: m_Name
+      value: NPC - TalkingLady (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+--- !u!4 &3336771996924950679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8884880861176752121, guid: 61aae27dfcc13844c8b37c3f6a9fca69, type: 3}
+  m_PrefabInstance: {fileID: 6125995427758464878}
+  m_PrefabAsset: {fileID: 0}
