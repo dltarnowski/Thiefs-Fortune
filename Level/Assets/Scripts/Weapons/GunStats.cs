@@ -16,6 +16,7 @@ public class GunStats : ScriptableObject
     public GameObject hitEffect;
     //public GameObject muzzleEffect;
     public List<Transform> muzzleLocations;
+    public string tag;
 
     [Header("-----Recoil-----")]
     public float recoilX;

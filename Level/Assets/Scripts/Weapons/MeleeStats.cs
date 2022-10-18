@@ -13,4 +13,5 @@ public class MeleeStats : ScriptableObject
     public GameObject meleeModel;
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
+    public string tag;
 }

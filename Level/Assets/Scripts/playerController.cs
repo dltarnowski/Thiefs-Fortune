@@ -231,6 +231,8 @@ public class playerController : MonoBehaviour
 
     public void GunPickup(GunStats stats)
     {
+
+
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
@@ -246,6 +248,13 @@ public class playerController : MonoBehaviour
 
         gunStat.Add(stats);
         gunGrabbed = true;
+        gunModel.tag = stats.tag;
+
+        //For toggling animations
+        anim.SetBool("IsMelee", false);
+        anim.SetBool("IsRanged", true);
+
+
 
         if (gunStat.Count == 1)
             selectGun = 0;
@@ -255,6 +264,7 @@ public class playerController : MonoBehaviour
 
     public void MeleePickup(MeleeStats stats)
     {
+
         swingSpeed = stats.swingSpeed;
         meleeDamage = stats.meleeDamage;
         hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
@@ -263,6 +273,11 @@ public class playerController : MonoBehaviour
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         meleeStat.Add(stats);
+        meleeModel.tag = stats.tag;
+
+        //For toggling animations
+        anim.SetBool("IsMelee", true);
+        anim.SetBool("IsRanged", false);
 
         if (meleeStat.Count == 1)
             selectMelee = 0;
@@ -317,6 +332,7 @@ public class playerController : MonoBehaviour
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 
     void ChangeMelee()
@@ -327,6 +343,7 @@ public class playerController : MonoBehaviour
 
         meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 
     void SelectMeleeOrGun()
@@ -346,6 +363,18 @@ public class playerController : MonoBehaviour
         {
             gunModel.SetActive(!gunModel.activeSelf);
             meleeModel.SetActive(!meleeModel.activeSelf);
+
+            //For toggling animations
+            if (gunModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", false);
+                anim.SetBool("IsRanged", true);
+            }
+            else if (meleeModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", true);
+                anim.SetBool("IsRanged", false);
+            }
         }
     }
 
