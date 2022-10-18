@@ -231,7 +231,11 @@ public class playerController : MonoBehaviour
 
     public void GunPickup(GunStats stats)
     {
-
+        if (!gunModel.activeSelf)
+        {
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
+        }
 
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
@@ -264,6 +268,11 @@ public class playerController : MonoBehaviour
 
     public void MeleePickup(MeleeStats stats)
     {
+        if (!meleeModel.activeSelf)
+        {
+            meleeModel.SetActive(true);
+            gunModel.SetActive(false);
+        }
 
         swingSpeed = stats.swingSpeed;
         meleeDamage = stats.meleeDamage;
