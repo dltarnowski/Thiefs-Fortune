@@ -232,11 +232,8 @@ public class playerController : MonoBehaviour
 
     public void GunPickup(GunStats stats)
     {
-        if (!gunModel.activeSelf)
-        {
-            gunModel.SetActive(true);
-            meleeModel.SetActive(false);
-        }
+        gunModel.SetActive(true);
+        meleeModel.SetActive(false);
 
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
@@ -253,7 +250,6 @@ public class playerController : MonoBehaviour
 
         gunStat.Add(stats);
         gunGrabbed = true;
-        gunModel.tag = stats.tag;
 
         //For toggling animations
         anim.SetBool("IsMelee", false);
@@ -265,15 +261,14 @@ public class playerController : MonoBehaviour
             selectGun = 0;
         else
             selectGun++;
+
+        barrel = 0;
     }
 
     public void MeleePickup(MeleeStats stats)
     {
-        if (!meleeModel.activeSelf)
-        {
-            meleeModel.SetActive(true);
-            gunModel.SetActive(false);
-        }
+        meleeModel.SetActive(true);
+        gunModel.SetActive(false);
 
         swingSpeed = stats.swingSpeed;
         meleeDamage = stats.meleeDamage;
@@ -283,7 +278,6 @@ public class playerController : MonoBehaviour
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         meleeStat.Add(stats);
-        meleeModel.tag = stats.tag;
 
         //For toggling animations
         anim.SetBool("IsMelee", true);
@@ -343,6 +337,7 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
+        barrel = 0;
     }
 
     void ChangeMelee()
@@ -358,16 +353,16 @@ public class playerController : MonoBehaviour
 
     void SelectMeleeOrGun()
     {
-        if (gunStat.Count > 0 && meleeStat.Count <= 0)
-        {
-            gunModel.SetActive(true);
-            meleeModel.SetActive(false);
-        }
-        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
-        {
-            gunModel.SetActive(false);
-            meleeModel.SetActive(true);
-        }
+        //if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        //{
+        //    gunModel.SetActive(true);
+        //    meleeModel.SetActive(false);
+        //}
+        //else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        //{
+        //    gunModel.SetActive(false);
+        //    meleeModel.SetActive(true);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
