@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Objective1 : MonoBehaviour
 {
+    public bool finished;
     public GameObject theObjective;
     public GameObject Trigger;
     public GameObject Text;
@@ -21,9 +22,10 @@ public class Objective1 : MonoBehaviour
         theObjective.SetActive(true);
         Text.GetComponent<Text>().text = Description.ToString();
         theObjective.GetComponent<Animation>().Play("ObjectivesSlidein");
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(5.6f);
         Text.GetComponent<Text>().text = "";
         Trigger.SetActive(false);
         theObjective.SetActive(false);
+        finished = true;
     }
 }
