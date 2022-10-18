@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Objective1 : MonoBehaviour
 {
     [SerializeField] public string Description;
-
+    public GameObject ObjectiveTrigger;
 
 
     private void OnTriggerEnter(Collider other)
@@ -24,5 +24,6 @@ public class Objective1 : MonoBehaviour
         gameManager.instance.anim.SetBool("isActive", true);
         yield return new WaitForSeconds(4f);
         gameManager.instance.anim.SetBool("isActive", false);
+        ObjectiveTrigger.SetActive(false);
     }
 }

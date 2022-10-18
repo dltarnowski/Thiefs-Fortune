@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Player Stuff -----")]
     public GameObject player;
     public playerController playerScript;
+    public GameObject Ammo;
     public int ammoCount;
     public cameraControls cameraScript;
 
@@ -53,6 +54,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        Ammo = GameObject.Find("Ammo");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
         cameraScript = mainCamera.GetComponent<cameraControls>();
