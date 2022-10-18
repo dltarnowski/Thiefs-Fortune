@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ShopAI : MonoBehaviour
 {
     [Header("----- Components -----")]
-    [SerializeField] Animator anim;
+    //[SerializeField] Animator animator;
 
     bool playerInRange;
  
@@ -23,17 +23,14 @@ public class ShopAI : MonoBehaviour
 
         if(playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf)
         {
-            anim.SetBool("isWaving", true);
             gameManager.instance.hint.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                anim.SetBool("isWaving", false);
-                anim.SetBool("isTalking", true);
                 gameManager.instance.hint.SetActive(false);
-
-                gameManager.instance.NpcPause();
-
+                gameManager.instance.healthBar.SetActive(false);
+                gameManager.instance.Crosshair.SetActive(false);
+                gameManager.instance.cursorLockPause();
                 gameManager.instance.npcDialogue.SetActive(playerInRange);
             }
         }
