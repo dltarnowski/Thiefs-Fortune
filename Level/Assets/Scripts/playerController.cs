@@ -187,6 +187,7 @@ public class playerController : MonoBehaviour
                 gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
+                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red, 20);
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
                 {
                     //  -------      WAITING ON IDAMAGE      -------
