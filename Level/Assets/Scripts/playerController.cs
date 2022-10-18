@@ -83,7 +83,7 @@ public class playerController : MonoBehaviour
         else if (meleeModel.activeSelf)
             StartCoroutine(swing());
         SelectMeleeOrGun();
-        if(gunModel.activeSelf)
+        if (gunModel.activeSelf)
             GunSelect();
         else
             MeleeSelect();
@@ -191,7 +191,10 @@ public class playerController : MonoBehaviour
                 {
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
+                    {
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                        Instantiate(gunStat[selectGun].hitEffect, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                    }
                 }
 
                 aud.PlayOneShot(gunStat[selectGun].gunSound);
@@ -261,6 +264,8 @@ public class playerController : MonoBehaviour
             selectGun = 0;
         else
             selectGun++;
+
+        barrel = 0;
     }
 
     public void MeleePickup(MeleeStats stats)
@@ -335,6 +340,7 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
+        barrel = 0;
     }
 
     void ChangeMelee()
@@ -361,7 +367,7 @@ public class playerController : MonoBehaviour
         //    meleeModel.SetActive(true);
         //}
 
-        if (Input.GetKeyDown(KeyCode.Mouse2))
+        if (Input.GetKeyDown(KeyCode.Mouse2) && gunStat.Count > 0 && meleeStat.Count > 0)
         {
             gunModel.SetActive(!gunModel.activeSelf);
             meleeModel.SetActive(!meleeModel.activeSelf);
