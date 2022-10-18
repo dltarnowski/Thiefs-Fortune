@@ -194,7 +194,7 @@ public class playerController : MonoBehaviour
                     if (hit.collider.GetComponent<IDamage>() != null)
                     {
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                        Instantiate(gunStat[selectGun].hitEffect, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        Instantiate(gunStat[selectGun].hitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
 
