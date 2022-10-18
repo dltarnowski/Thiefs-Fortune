@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6217373905238534788}
   - component: {fileID: 6217373905239163364}
   - component: {fileID: 6245743133922146092}
+  - component: {fileID: 3827215739003502975}
   m_Layer: 0
   m_Name: BlunderBuss
-  m_TagString: Untagged
+  m_TagString: Rifle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,11 +125,24 @@ MeshCollider:
   m_GameObject: {fileID: 6217373905241696552}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43383708221533472, guid: 341df6dcd4b4ba3439ad48ba71779d41, type: 2}
+--- !u!65 &3827215739003502975
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6217373905241696552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.32421595, z: 1.0615926}
+  m_Center: {x: -0.0001731161, y: -0.027256735, z: 0.098685145}
 --- !u!1001 &7311764559104509125
 PrefabInstance:
   m_ObjectHideFlags: 0

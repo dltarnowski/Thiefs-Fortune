@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator anim;
 
 
     [Header("----- Player Stats -----")]
@@ -29,12 +30,24 @@ public class playerController : MonoBehaviour
     [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
+    public List<Transform> muzzleLocations = new List<Transform>();
+    ParticleSystem gunSmoke;
+
+    [Header("----- Melee Stats -----")]
+    [SerializeField] float swingSpeed;
+    [SerializeField] int meleeDamage;
+    [SerializeField] int hitsUntilBrokenCurrentAmount;
+    public GameObject meleeModel;
+    public AudioClip meleeSound;
+    public GameObject meleeHitEffect;
+    public List<MeleeStats> meleeStat = new List<MeleeStats>();
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
+    [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
 
     private Vector3 playerVelocity;
@@ -42,13 +55,14 @@ public class playerController : MonoBehaviour
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectGun;
+    public int selectMelee;
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    bool isSwinging;
+    [SerializeField] bool isOnSand;
     Vector3 move;
 
-    public List<Transform> muzzleLocations = new List<Transform>();
-    ParticleSystem gunSmoke;
     public int barrel;
 
     void Start()
@@ -64,8 +78,15 @@ public class playerController : MonoBehaviour
     {
         movement();
         StartCoroutine(PlaySteps());
-        StartCoroutine(shoot());
-        GunSelect();
+        if (gunModel.activeSelf)
+            StartCoroutine(shoot());
+        else if (meleeModel.activeSelf)
+            StartCoroutine(swing());
+        SelectMeleeOrGun();
+        if(gunModel.activeSelf)
+            GunSelect();
+        else
+            MeleeSelect();
         updatePlayerHUD();
     }
 
@@ -77,8 +98,6 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
             timesJumped = 0;
         }
-
-
 
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
@@ -92,6 +111,14 @@ public class playerController : MonoBehaviour
         //Move
         move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", move.normalized.magnitude);
+
+        if (anim.GetFloat("Speed") > 0)
+            anim.SetBool("IsWalking", true);
+        else
+            anim.SetBool("IsWalking", false);
+
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
@@ -110,6 +137,7 @@ public class playerController : MonoBehaviour
         //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
+            anim.SetTrigger("IsJumping");
             playerVelocity.y = jumpHeight;
             timesJumped++;
         }
@@ -120,10 +148,24 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
         {
             playingSteps = true;
+
             aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        {
+            playingSteps = true;
+
+            aud.PlayOneShot(playerStepsAudSand[Random.Range(0, playerStepsAudSand.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -142,7 +184,7 @@ public class playerController : MonoBehaviour
             {
                 isShooting = true;
                 ammoCount--;
-                gameManager.instance.ammoCount = ammoCount;
+                gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
@@ -152,6 +194,7 @@ public class playerController : MonoBehaviour
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                 }
 
+                aud.PlayOneShot(gunStat[selectGun].gunSound);
                 recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
                 gunSmoke.Play();
@@ -168,13 +211,39 @@ public class playerController : MonoBehaviour
             }
         }
     }
+    IEnumerator swing()
+    {
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        {
+            if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
+            {
+                isSwinging = true;
+
+                hitsUntilBrokenCurrentAmount--;
+
+                anim.SetTrigger("Attacking");
+
+                yield return new WaitForSeconds(swingSpeed);
+
+                isSwinging = false;
+            }
+        }
+    }
 
     public void GunPickup(GunStats stats)
     {
+        if (!gunModel.activeSelf)
+        {
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
+        }
+
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
-        ammoCount = stats.ammoCount;
+
+        ammoCount = stats.ammoCount = stats.ammoStartCount;
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -184,11 +253,46 @@ public class playerController : MonoBehaviour
 
         gunStat.Add(stats);
         gunGrabbed = true;
+        gunModel.tag = stats.tag;
+
+        //For toggling animations
+        anim.SetBool("IsMelee", false);
+        anim.SetBool("IsRanged", true);
+
+
 
         if (gunStat.Count == 1)
             selectGun = 0;
         else
             selectGun++;
+    }
+
+    public void MeleePickup(MeleeStats stats)
+    {
+        if (!meleeModel.activeSelf)
+        {
+            meleeModel.SetActive(true);
+            gunModel.SetActive(false);
+        }
+
+        swingSpeed = stats.swingSpeed;
+        meleeDamage = stats.meleeDamage;
+        hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = stats.meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        meleeStat.Add(stats);
+        meleeModel.tag = stats.tag;
+
+        //For toggling animations
+        anim.SetBool("IsMelee", true);
+        anim.SetBool("IsRanged", false);
+
+        if (meleeStat.Count == 1)
+            selectMelee = 0;
+        else
+            selectMelee++;
     }
 
     void GunSelect()
@@ -208,6 +312,23 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void MeleeSelect()
+    {
+        if (meleeStat.Count > 1)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectMelee < meleeStat.Count - 1)
+            {
+                selectMelee++;
+                ChangeMelee();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectMelee > 0)
+            {
+                selectMelee--;
+                ChangeMelee();
+            }
+        }
+    }
+
     void ChangeGuns()
     {
         shootRate = gunStat[selectGun].shootSpeed;
@@ -221,6 +342,50 @@ public class playerController : MonoBehaviour
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+    }
+
+    void ChangeMelee()
+    {
+        swingSpeed = meleeStat[selectMelee].swingSpeed;
+        meleeDamage = meleeStat[selectMelee].meleeDamage;
+        hitsUntilBrokenCurrentAmount = meleeStat[selectMelee].hitsUntilBrokenCurrentAmount;
+
+        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
+        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+    }
+
+    void SelectMeleeOrGun()
+    {
+        if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        {
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
+        }
+        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        {
+            gunModel.SetActive(false);
+            meleeModel.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            gunModel.SetActive(!gunModel.activeSelf);
+            meleeModel.SetActive(!meleeModel.activeSelf);
+
+            //For toggling animations
+            if (gunModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", false);
+                anim.SetBool("IsRanged", true);
+            }
+            else if (meleeModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", true);
+                anim.SetBool("IsRanged", false);
+            }
+        }
     }
 
     public void takeDamage(int dmg)
@@ -271,5 +436,13 @@ public class playerController : MonoBehaviour
         {
             muzzleLocations.Add(list[i]);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sand"))
+            isOnSand = true;
+        else if (!other.CompareTag("Sand"))
+            isOnSand = false;
     }
 }
