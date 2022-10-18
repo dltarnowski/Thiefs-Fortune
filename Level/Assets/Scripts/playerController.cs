@@ -37,10 +37,12 @@ public class playerController : MonoBehaviour
     [SerializeField] float swingSpeed;
     [SerializeField] int meleeDamage;
     [SerializeField] int hitsUntilBrokenCurrentAmount;
+    [SerializeField] float swingDist;
     public GameObject meleeModel;
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
     public List<MeleeStats> meleeStat = new List<MeleeStats>();
+
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -222,10 +224,18 @@ public class playerController : MonoBehaviour
             if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
             {
                 isSwinging = true;
-
                 hitsUntilBrokenCurrentAmount--;
 
                 anim.SetTrigger("Attacking");
+
+                RaycastHit hit;
+                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swingDist))
+                {
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hit.collider.GetComponent<IDamage>().takeDamage(meleeDamage);
+                    }
+                }
 
                 yield return new WaitForSeconds(swingSpeed);
 
@@ -444,4 +454,5 @@ public class playerController : MonoBehaviour
         else if (!other.CompareTag("Sand"))
             isOnSand = false;
     }
+
 }
