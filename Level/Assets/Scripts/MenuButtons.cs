@@ -63,7 +63,7 @@ public class MenuButtons : MonoBehaviour
     public void Bye()
     {
         gameManager.instance.npcDialogue.SetActive(false);
-        gameManager.instance.cursorUnlockUnpause();
+        gameManager.instance.NpcUnpause();
         gameManager.instance.healthBar.SetActive(true);
         dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
     }
