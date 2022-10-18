@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Animator anim;
 
 
     [Header("----- Player Stats -----")]
@@ -46,6 +47,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
+    [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
 
     private Vector3 playerVelocity;
@@ -57,6 +59,8 @@ public class playerController : MonoBehaviour
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    bool isSwinging;
+    [SerializeField] bool isOnSand;
     Vector3 move;
 
     public int barrel;
@@ -74,7 +78,10 @@ public class playerController : MonoBehaviour
     {
         movement();
         StartCoroutine(PlaySteps());
-        StartCoroutine(shoot());
+        if (gunModel.activeSelf)
+            StartCoroutine(shoot());
+        else if (meleeModel.activeSelf)
+            StartCoroutine(swing());
         SelectMeleeOrGun();
         if(gunModel.activeSelf)
             GunSelect();
@@ -92,8 +99,6 @@ public class playerController : MonoBehaviour
             timesJumped = 0;
         }
 
-
-
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
@@ -106,6 +111,14 @@ public class playerController : MonoBehaviour
         //Move
         move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
+
+        anim.SetFloat("Speed", move.normalized.magnitude);
+
+        if (anim.GetFloat("Speed") > 0)
+            anim.SetBool("IsWalking", true);
+        else
+            anim.SetBool("IsWalking", false);
+
 
         //Run
         if (Input.GetKey(KeyCode.LeftShift))
@@ -124,6 +137,7 @@ public class playerController : MonoBehaviour
         //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
+            anim.SetTrigger("IsJumping");
             playerVelocity.y = jumpHeight;
             timesJumped++;
         }
@@ -134,10 +148,24 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
         {
             playingSteps = true;
+
             aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+
+            if (isSprinting)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        {
+            playingSteps = true;
+
+            aud.PlayOneShot(playerStepsAudSand[Random.Range(0, playerStepsAudSand.Length - 1)], playerStepsAudVol);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -183,9 +211,30 @@ public class playerController : MonoBehaviour
             }
         }
     }
+    IEnumerator swing()
+    {
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        {
+            if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
+            {
+                isSwinging = true;
+
+                hitsUntilBrokenCurrentAmount--;
+
+                anim.SetTrigger("Attacking");
+
+                yield return new WaitForSeconds(swingSpeed);
+
+                isSwinging = false;
+            }
+        }
+    }
 
     public void GunPickup(GunStats stats)
     {
+        gunModel.SetActive(true);
+        meleeModel.SetActive(false);
+
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
         shootDamage = stats.shootDamage;
@@ -202,6 +251,12 @@ public class playerController : MonoBehaviour
         gunStat.Add(stats);
         gunGrabbed = true;
 
+        //For toggling animations
+        anim.SetBool("IsMelee", false);
+        anim.SetBool("IsRanged", true);
+
+
+
         if (gunStat.Count == 1)
             selectGun = 0;
         else
@@ -210,6 +265,9 @@ public class playerController : MonoBehaviour
 
     public void MeleePickup(MeleeStats stats)
     {
+        meleeModel.SetActive(true);
+        gunModel.SetActive(false);
+
         swingSpeed = stats.swingSpeed;
         meleeDamage = stats.meleeDamage;
         hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
@@ -218,6 +276,10 @@ public class playerController : MonoBehaviour
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         meleeStat.Add(stats);
+
+        //For toggling animations
+        anim.SetBool("IsMelee", true);
+        anim.SetBool("IsRanged", false);
 
         if (meleeStat.Count == 1)
             selectMelee = 0;
@@ -272,6 +334,7 @@ public class playerController : MonoBehaviour
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 
     void ChangeMelee()
@@ -282,25 +345,38 @@ public class playerController : MonoBehaviour
 
         meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 
     void SelectMeleeOrGun()
     {
-        if (gunStat.Count > 0 && meleeStat.Count <= 0)
-        {
-            gunModel.SetActive(true);
-            meleeModel.SetActive(false);
-        }
-        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
-        {
-            gunModel.SetActive(false);
-            meleeModel.SetActive(true);
-        }
+        //if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        //{
+        //    gunModel.SetActive(true);
+        //    meleeModel.SetActive(false);
+        //}
+        //else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        //{
+        //    gunModel.SetActive(false);
+        //    meleeModel.SetActive(true);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
             gunModel.SetActive(!gunModel.activeSelf);
             meleeModel.SetActive(!meleeModel.activeSelf);
+
+            //For toggling animations
+            if (gunModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", false);
+                anim.SetBool("IsRanged", true);
+            }
+            else if (meleeModel.activeSelf)
+            {
+                anim.SetBool("IsMelee", true);
+                anim.SetBool("IsRanged", false);
+            }
         }
     }
 
@@ -352,5 +428,13 @@ public class playerController : MonoBehaviour
         {
             muzzleLocations.Add(list[i]);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Sand"))
+            isOnSand = true;
+        else if (!other.CompareTag("Sand"))
+            isOnSand = false;
     }
 }

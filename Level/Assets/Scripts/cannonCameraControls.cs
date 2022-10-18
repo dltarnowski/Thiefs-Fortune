@@ -37,13 +37,12 @@ public class cannonCameraControls : MonoBehaviour
 
         // clamp camera rotation
         xRotation = Mathf.Clamp(xRotation, lockVertMin, lockVertMax);
-        yRotation = Mathf.Clamp(yRotation, lockHorzMin, lockHorzMax);
 
       
 
         // rotate the camera on the x-axis
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        barrel.transform.localRotation = Quaternion.Euler(yRotation, 0, 0);
+        barrel.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
         // rotate the player
         transform.parent.Rotate(Vector3.up * mouseX);
