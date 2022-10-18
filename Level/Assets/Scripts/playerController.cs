@@ -261,6 +261,8 @@ public class playerController : MonoBehaviour
             selectGun = 0;
         else
             selectGun++;
+
+        barrel = 0;
     }
 
     public void MeleePickup(MeleeStats stats)
@@ -335,6 +337,7 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
+        barrel = 0;
     }
 
     void ChangeMelee()
