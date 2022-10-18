@@ -25,8 +25,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int viewAngle;
     [SerializeField] float damagedDuration;
     [SerializeField] GameObject headPos;
-    [SerializeField] int roamDist;
-    [SerializeField] bool linearRoam;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
@@ -36,9 +34,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float meleeAttackRange;
     [SerializeField] public int meleeDamage;
 
+    [Header("----- Roam Settings -----")]
+    [SerializeField] bool linearRoam;
+    [SerializeField] bool stationary;
+    [SerializeField] bool noRotation;
+    [SerializeField] int roamDist;
+
     Vector3 randomDirection;
-    public bool stationary;
-    public bool noRotation;
     bool isMelee;
     bool isShooting;
     [SerializeField] bool canRoam = true;
@@ -70,7 +72,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if(!anim.GetBool("Dead"))
         {
-            anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
+            if(linearRoam && !playerInRange)
+                anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude * 0.5f, Time.deltaTime * animLerpSpeed));
+            else
+                anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
+
             if (agent.enabled)
             {
                 if (playerInRange)
