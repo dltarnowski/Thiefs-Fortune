@@ -442,8 +442,16 @@ public class playerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sand"))
+        {
             isOnSand = true;
-        else if (!other.CompareTag("Sand"))
+            Debug.Log("Sand");
+        }
+        else if (!other.CompareTag("Ship") && !other.CompareTag("Sand"))
+        {
             isOnSand = false;
+            Debug.Log("Not Sand");
+        }
     }
+
+    
 }
