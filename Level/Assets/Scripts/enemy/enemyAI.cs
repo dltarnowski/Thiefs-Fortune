@@ -9,6 +9,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] CannonController cannonCtrl;
+    [SerializeField] SphereCollider cannonCol;
+    [SerializeField] GameObject cannon;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
     [SerializeField] GameObject[] drops;
@@ -24,7 +26,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damagedDuration;
     [SerializeField] GameObject headPos;
     [SerializeField] int roamDist;
-
+    [SerializeField] bool linearRoam;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
@@ -34,7 +36,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float meleeAttackRange;
     [SerializeField] public int meleeDamage;
 
-
+    Vector3 randomDirection;
     public bool stationary;
     public bool noRotation;
     bool isMelee;
@@ -47,6 +49,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     float angle;
     float speedPatrol;
+    Transform tempTrans;
 
 
     void Start()
@@ -55,8 +58,11 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        if(!stationary && canRoam)
+        tempTrans = cannon.transform.parent;
+        if (!stationary && canRoam)
             roam();
+        if (cannon != null)
+            cannon.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -65,7 +71,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if(!anim.GetBool("Dead"))
         {
             anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
-
             if (agent.enabled)
             {
                 if (playerInRange)
@@ -80,6 +85,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 }
                 if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
+                else if (!canRoam && stationary)
+                    facePlayer();
             }
         }
     }
@@ -88,7 +95,10 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         agent.stoppingDistance = 0;
         agent.speed = speedPatrol;
-        Vector3 randomDirection = Random.insideUnitSphere * roamDist;
+        if(linearRoam)
+            randomDirection = new Vector3(0, 0, 1) * Random.Range(-roamDist, roamDist);
+        else
+            randomDirection = Random.insideUnitSphere * roamDist;
         randomDirection += startingPos;
 
         NavMeshHit hit;
@@ -138,9 +148,9 @@ public class enemyAI : MonoBehaviour, IDamage
             if (cannonCtrl != null)
             {
                 cannonCtrl.enabled = true;
-                gameObject.transform.DetachChildren();
+                cannonCol.enabled = true;
+                cannon.transform.parent = tempTrans;
             }
-            //ItemDrop.instance.DropItem();
             col.enabled = false;
             agent.enabled = false;
             Destroy(gameObject, 5);
