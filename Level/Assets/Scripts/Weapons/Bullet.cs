@@ -9,17 +9,31 @@ public class Bullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int damage;
     [SerializeField] int destroyTime;
+    [SerializeField] float arcMultiplier;
+    [SerializeField] GameObject barrel;
+    private Vector3 direction;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if(CompareTag("Bullet"))
+            rb.velocity = transform.forward * speed;
+        else if(CompareTag("CannonBall"))
+        {
+            barrel = GameObject.FindGameObjectWithTag("Barrel");
+            direction = transform.forward + (Vector3.up * (barrel.transform.rotation.x/-1 * arcMultiplier));
+            rb.AddForce(direction * speed, ForceMode.Impulse);
 
-        rb.velocity = transform.forward * speed;
+        }
         Destroy(gameObject, destroyTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
+    {
+    }
+        private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

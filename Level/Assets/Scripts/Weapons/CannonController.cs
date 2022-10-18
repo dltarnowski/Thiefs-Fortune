@@ -10,7 +10,6 @@ public class CannonController : MonoBehaviour
     bool active;
     bool cannonNear;
     bool isShooting;
-    bool followCannon;
     Transform tempTrans;
     [SerializeField] GameObject cannonBall;
     [SerializeField] Transform cannonBallPos;
@@ -47,6 +46,8 @@ public class CannonController : MonoBehaviour
     {
         tempTrans = gameManager.instance.player.transform.parent;
         gameManager.instance.player.transform.parent = transform;
+        gameManager.instance.player.transform.position = playerPos.transform.position;
+        gameManager.instance.player.transform.rotation = playerPos.transform.rotation;
     }
 
     //Revert the parent of object 2.

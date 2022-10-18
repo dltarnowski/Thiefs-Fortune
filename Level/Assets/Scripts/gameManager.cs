@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public int ammoCount;
+    public cameraControls cameraScript;
 
     [Header("----- UI -----")]
     public GameObject winMenu;
@@ -48,6 +49,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         mainCamera = GameObject.Find("Main Camera");
+        cameraScript = mainCamera.GetComponent<cameraControls>();
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         ammoCount = 5;
@@ -92,6 +94,26 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void NpcPause()
+    {
+        playerScript.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        cameraScript.enabled = false;
+        healthBar.SetActive(false);
+        Crosshair.SetActive(false);
+    }
+
+    public void NpcUnpause()
+    {
+        playerScript.enabled = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        cameraScript.enabled = true;
+        healthBar.SetActive(true);
+        Crosshair.SetActive(true);
     }
 
     public void checkEnemyTotal()
