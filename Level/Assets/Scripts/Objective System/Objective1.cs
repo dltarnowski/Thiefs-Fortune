@@ -6,26 +6,23 @@ using UnityEngine.UI;
 
 public class Objective1 : MonoBehaviour
 {
-    public bool finished;
-    public GameObject theObjective;
-    public GameObject Trigger;
-    public GameObject Text;
     [SerializeField] public string Description;
-    
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            StartCoroutine(ObjectiveList());
+        {
+            gameManager.instance.objText.text = Description.ToString();
+            gameManager.instance.ObjectiveBox.SetActive(true);
+            StartCoroutine(Timer());
+        }
     }
-    private IEnumerator ObjectiveList()
+    private IEnumerator Timer()
     {
-        theObjective.SetActive(true);
-        Text.GetComponent<Text>().text = Description.ToString();
-        theObjective.GetComponent<Animation>().Play("ObjectivesSlidein");
-        yield return new WaitForSeconds(5.6f);
-        Text.GetComponent<Text>().text = "";
-        Trigger.SetActive(false);
-        theObjective.SetActive(false);
-        finished = true;
+        gameManager.instance.anim.SetBool("isActive", true);
+        yield return new WaitForSeconds(4f);
+        gameManager.instance.anim.SetBool("isActive", false);
     }
 }
