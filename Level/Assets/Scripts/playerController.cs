@@ -194,6 +194,7 @@ public class playerController : MonoBehaviour
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
                 }
 
+                aud.PlayOneShot(gunStat[selectGun].gunSound);
                 recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
                 gunSmoke.Play();
