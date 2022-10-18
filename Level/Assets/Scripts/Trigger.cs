@@ -24,7 +24,7 @@ public class Trigger : MonoBehaviour, IDamage
         }
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(int damage)
     {
         transform.GetComponent<Fracture>().Trigger();
         fractured = true;
