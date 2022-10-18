@@ -15,12 +15,14 @@ MonoBehaviour:
   shootSpeed: 2
   shootDist: 10
   shootDamage: 10
+  ammoStartCount: 5
+  ammoCount: 4
   gunModel: {fileID: 169462, guid: 38a5a111ef2259e4ea7ab86844830372, type: 3}
-  gunSound: {fileID: 0}
+  gunSound: {fileID: 8300000, guid: ca1e32466b7432c44aec1ecc708ee92e, type: 3}
   hitEffect: {fileID: 0}
-  muzzleEffect: {fileID: 177130, guid: 37a14e1121b33c641b1361344a4a856a, type: 3}
   muzzleLocations:
   - {fileID: 7505296801618762357, guid: a9232905cb1337a4f8bec0efcbb774ae, type: 3}
+  tag: Rifle
   recoilX: -10
   recoilY: 10
   recoilZ: 0.35

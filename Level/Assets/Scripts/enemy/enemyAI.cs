@@ -9,9 +9,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] CannonController cannonCtrl;
+    [SerializeField] SphereCollider cannonCol;
+    [SerializeField] GameObject cannon;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
-    [SerializeField] LayerMask whatIsPlayer;
+    [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int HP;
@@ -24,7 +26,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damagedDuration;
     [SerializeField] GameObject headPos;
     [SerializeField] int roamDist;
-
+    [SerializeField] bool linearRoam;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal float attackRate;
@@ -34,11 +36,12 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float meleeAttackRange;
     [SerializeField] public int meleeDamage;
 
-
+    Vector3 randomDirection;
     public bool stationary;
     public bool noRotation;
     bool isMelee;
     bool isShooting;
+    [SerializeField] bool canRoam = true;
     bool playerInRange;
     Color modelColor;
     Vector3 playerDir;
@@ -46,6 +49,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     float angle;
     float speedPatrol;
+    Transform tempTrans;
 
 
     void Start()
@@ -54,7 +58,11 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        roam();
+        tempTrans = cannon.transform.parent;
+        if (!stationary && canRoam)
+            roam();
+        if (cannon != null)
+            cannon.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -63,7 +71,6 @@ public class enemyAI : MonoBehaviour, IDamage
         if(!anim.GetBool("Dead"))
         {
             anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
-
             if (agent.enabled)
             {
                 if (playerInRange)
@@ -76,8 +83,10 @@ public class enemyAI : MonoBehaviour, IDamage
                         canSeePlayer(melee(), isMelee);
 
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
+                else if (!canRoam && stationary)
+                    facePlayer();
             }
         }
     }
@@ -86,7 +95,10 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         agent.stoppingDistance = 0;
         agent.speed = speedPatrol;
-        Vector3 randomDirection = Random.insideUnitSphere * roamDist;
+        if(linearRoam)
+            randomDirection = new Vector3(0, 0, 1) * Random.Range(-roamDist, roamDist);
+        else
+            randomDirection = Random.insideUnitSphere * roamDist;
         randomDirection += startingPos;
 
         NavMeshHit hit;
@@ -105,9 +117,12 @@ public class enemyAI : MonoBehaviour, IDamage
             Debug.DrawRay(headPos.transform.position, playerDir);
             if (hit.collider.CompareTag("Player") && angle <= viewAngle)
             {
-                agent.speed = speedChase;
-                agent.stoppingDistance = stoppingDistanceOrig;
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                if(!stationary)
+                {
+                    agent.speed = speedChase;
+                    agent.stoppingDistance = stoppingDistanceOrig;
+                    agent.SetDestination(gameManager.instance.player.transform.position);
+                }
                 if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 
@@ -133,12 +148,13 @@ public class enemyAI : MonoBehaviour, IDamage
             if (cannonCtrl != null)
             {
                 cannonCtrl.enabled = true;
-                gameObject.transform.DetachChildren();
+                cannonCol.enabled = true;
+                cannon.transform.parent = tempTrans;
             }
-            //ItemDrop.instance.DropItem();
             col.enabled = false;
             agent.enabled = false;
             Destroy(gameObject, 5);
+            Instantiate(drops[Random.Range(0, drops.Length - 1)], transform.position, transform.rotation);
         }
         else if (HP > 0)
             StartCoroutine(flashDamage());

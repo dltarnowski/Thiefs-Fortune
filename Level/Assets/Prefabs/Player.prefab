@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &902807534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902807535}
+  - component: {fileID: 902807537}
+  - component: {fileID: 902807536}
+  m_Layer: 0
+  m_Name: Melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902807535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902807534}
+  m_LocalRotation: {x: -0.67383784, y: -0.3158491, z: 0.35087478, w: 0.5683915}
+  m_LocalPosition: {x: 7.6, y: -1.1, z: -1.1}
+  m_LocalScale: {x: 99.99998, y: 99.99998, z: 99.99997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 549276323931340903}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &902807537
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902807534}
+  m_Mesh: {fileID: 0}
+--- !u!23 &902807536
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902807534}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &549276323930964781
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +738,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 549276323931339493}
+  - {fileID: 4394722230702239407}
+  - {fileID: 902807535}
   m_Father: {fileID: 549276323931330601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3792,7 +3877,7 @@ Animator:
   m_GameObject: {fileID: 549276323931181179}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 409520c9226982345a49c9803624f208, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9b5f3dc79387670409bc8aac8597ddd2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45bba57a4fddda2418a25aa1cd05f5a4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3815,6 +3900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 549276323938453512}
+  anim: {fileID: 549276323938453515}
   playerSpeed: 5
   runSpeed: 2
   jumpHeight: 8
@@ -3827,8 +3913,17 @@ MonoBehaviour:
   shootDist: 0
   shootDamage: 0
   gunModel: {fileID: 4394722230702239400}
+  ammoCount: 0
   gunStat: []
   recoilScript: {fileID: 0}
+  muzzleLocations: []
+  swingSpeed: 0
+  meleeDamage: 0
+  hitsUntilBrokenCurrentAmount: 0
+  meleeModel: {fileID: 902807534}
+  meleeSound: {fileID: 0}
+  meleeHitEffect: {fileID: 0}
+  meleeStat: []
   aud: {fileID: 7862043830989376632}
   playerHurtAud:
   - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
@@ -3848,11 +3943,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f5d824ed178aa264aaa3ec3e4166c7bf, type: 3}
   - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
   - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
-  playerStepsAudVol: 0.25
+  playerStepsAudSand:
+  - {fileID: 8300000, guid: b3803750148fc0d47b0c33c0ed5d32e0, type: 3}
+  - {fileID: 8300000, guid: c2a53ffcb5f9eab44824b4d732ee6863, type: 3}
+  - {fileID: 8300000, guid: de1fff1c9e411eb44ae03ef8e7b72ff1, type: 3}
+  - {fileID: 8300000, guid: eb65b26b8b8121147b3305c3afc3d742, type: 3}
+  - {fileID: 8300000, guid: eca1eba0cf44a484d8291895cdc4eff7, type: 3}
+  - {fileID: 8300000, guid: 628f38cb7e76b824dbf7174ec9e503e0, type: 3}
+  - {fileID: 8300000, guid: 3d4dac66794f62c4baafb2e5e44256b7, type: 3}
+  - {fileID: 8300000, guid: d866b3b06d315f441be52313ead564f4, type: 3}
+  - {fileID: 8300000, guid: 9ad268ad668a1f84a8e251a3194de025, type: 3}
+  - {fileID: 8300000, guid: 9ec028b14becfb344a7f31a468d30713, type: 3}
+  playerStepsAudVol: 0.15
   isShooting: 0
   selectGun: 0
+  selectMelee: 0
   gunGrabbed: 0
-  muzzleLocations: []
+  isOnSand: 0
   barrel: 0
 --- !u!143 &549276323938453512
 CharacterController:
@@ -3871,7 +3978,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.08, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!82 &7862043830989376632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4065,7 +4172,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 549276323931259551}
   m_AABB:
-    m_Center: {x: 0.0000076293945, y: 93.59691, z: -5.065159}
+    m_Center: {x: 0.0000076293945, y: 110.46, z: -5.065159}
     m_Extent: {x: 102.45597, y: 103.96217, z: 37.3432}
   m_DirtyAABB: 0
 --- !u!136 &3599918056372862808
@@ -13958,7 +14065,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4394722232126371128}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4223635324719786409
 MonoBehaviour:
@@ -14048,14 +14155,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4394722230702239400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.441, y: -0.21, z: 0.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.9932188, y: 0.10242203, z: -0.05472094, w: -0.0056429794}
+  m_LocalPosition: {x: -46.994106, y: -11.156428, z: -62.389427}
+  m_LocalScale: {x: 99.99997, y: 99.99998, z: 99.999954}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2667262506602702774}
-  m_Father: {fileID: 4394722232126371128}
-  m_RootOrder: 0
+  m_Father: {fileID: 549276323931340903}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4394722230702239405
 MeshFilter:
@@ -14138,7 +14245,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4394722230702239407}
   - {fileID: 4223635324719786408}
   m_Father: {fileID: 549276323931233813}
   m_RootOrder: 0
