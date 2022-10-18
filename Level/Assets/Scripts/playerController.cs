@@ -253,7 +253,6 @@ public class playerController : MonoBehaviour
 
         gunStat.Add(stats);
         gunGrabbed = true;
-        gunModel.tag = stats.tag;
 
         //For toggling animations
         anim.SetBool("IsMelee", false);
@@ -283,7 +282,6 @@ public class playerController : MonoBehaviour
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         meleeStat.Add(stats);
-        meleeModel.tag = stats.tag;
 
         //For toggling animations
         anim.SetBool("IsMelee", true);
