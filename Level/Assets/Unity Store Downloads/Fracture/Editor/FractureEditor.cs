@@ -53,7 +53,6 @@ public class FractureEditor : Editor
 			script.Renderer,
 			typeof(Renderer)
 		);
-
-    }
+	}
 }
 #endif
