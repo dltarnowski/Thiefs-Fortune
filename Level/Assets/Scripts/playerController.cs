@@ -232,11 +232,8 @@ public class playerController : MonoBehaviour
 
     public void GunPickup(GunStats stats)
     {
-        if (!gunModel.activeSelf)
-        {
-            gunModel.SetActive(true);
-            meleeModel.SetActive(false);
-        }
+        gunModel.SetActive(true);
+        meleeModel.SetActive(false);
 
         shootRate = stats.shootSpeed;
         shootDist = stats.shootDist;
@@ -268,11 +265,8 @@ public class playerController : MonoBehaviour
 
     public void MeleePickup(MeleeStats stats)
     {
-        if (!meleeModel.activeSelf)
-        {
-            meleeModel.SetActive(true);
-            gunModel.SetActive(false);
-        }
+        meleeModel.SetActive(true);
+        gunModel.SetActive(false);
 
         swingSpeed = stats.swingSpeed;
         meleeDamage = stats.meleeDamage;
@@ -356,16 +350,16 @@ public class playerController : MonoBehaviour
 
     void SelectMeleeOrGun()
     {
-        if (gunStat.Count > 0 && meleeStat.Count <= 0)
-        {
-            gunModel.SetActive(true);
-            meleeModel.SetActive(false);
-        }
-        else if (gunStat.Count <= 0 && meleeStat.Count > 0)
-        {
-            gunModel.SetActive(false);
-            meleeModel.SetActive(true);
-        }
+        //if (gunStat.Count > 0 && meleeStat.Count <= 0)
+        //{
+        //    gunModel.SetActive(true);
+        //    meleeModel.SetActive(false);
+        //}
+        //else if (gunStat.Count <= 0 && meleeStat.Count > 0)
+        //{
+        //    gunModel.SetActive(false);
+        //    meleeModel.SetActive(true);
+        //}
 
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
