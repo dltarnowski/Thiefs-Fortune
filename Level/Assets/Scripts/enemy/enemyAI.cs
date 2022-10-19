@@ -232,7 +232,12 @@ public class enemyAI : MonoBehaviour, IDamage
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+            if (!gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = true;
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -241,6 +246,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.stoppingDistance = 0;
+            if (gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = false;
         }
 
     }

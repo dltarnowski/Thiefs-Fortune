@@ -48,6 +48,9 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool crossHairVisible = true;
 
+    [Header("----- Audio -----")]
+    public musicSwap music;
+
     int towersLeft;
     
 
@@ -62,6 +65,7 @@ public class gameManager : MonoBehaviour
         cameraScript = mainCamera.GetComponent<cameraControls>();
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
+        music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
         ammoCount = 5;
         towersLeft = 2;
     }
