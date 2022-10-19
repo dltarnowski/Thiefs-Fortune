@@ -41,12 +41,16 @@ public class gameManager : MonoBehaviour
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
+    public Collider collide;
     [Header("----- Gun -----")]
     public GameObject mainCamera;
     public Recoil recoilScript;
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+
+    [Header("----- Audio -----")]
+    public musicSwap music;
 
     int towersLeft;
     
@@ -62,6 +66,7 @@ public class gameManager : MonoBehaviour
         cameraScript = mainCamera.GetComponent<cameraControls>();
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
+        music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
         ammoCount = 5;
         towersLeft = 2;
     }
@@ -115,6 +120,7 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = false;
         healthBar.SetActive(false);
         Crosshair.SetActive(false);
+        collide.isTrigger = false;
     }
 
     public void NpcUnpause()
@@ -125,6 +131,7 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = true;
         healthBar.SetActive(true);
         Crosshair.SetActive(true);
+        collide.isTrigger = true;
     }
 
     public void checkEnemyTotal()
