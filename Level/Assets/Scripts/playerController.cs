@@ -37,10 +37,12 @@ public class playerController : MonoBehaviour
     [SerializeField] float swingSpeed;
     [SerializeField] int meleeDamage;
     [SerializeField] int hitsUntilBrokenCurrentAmount;
+    [SerializeField] float swingDist;
     public GameObject meleeModel;
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
     public List<MeleeStats> meleeStat = new List<MeleeStats>();
+
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -83,7 +85,7 @@ public class playerController : MonoBehaviour
         else if (meleeModel.activeSelf)
             StartCoroutine(swing());
         SelectMeleeOrGun();
-        if(gunModel.activeSelf)
+        if (gunModel.activeSelf)
             GunSelect();
         else
             MeleeSelect();
@@ -101,13 +103,19 @@ public class playerController : MonoBehaviour
 
         //Crouch
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
+        {
+            anim.SetBool("IsCrouched", true);
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y - crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
+        }
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
+        {
+            anim.SetBool("IsCrouched", false);
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
+        }
         //Move
         move = transform.right * Input.GetAxis("Horizontal") +
                        transform.forward * Input.GetAxis("Vertical");
@@ -187,11 +195,15 @@ public class playerController : MonoBehaviour
                 gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
+                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red, 20);
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
                 {
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
+                    {
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                        Instantiate(gunStat[selectGun].hitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                    }
                 }
 
                 aud.PlayOneShot(gunStat[selectGun].gunSound);
@@ -218,10 +230,18 @@ public class playerController : MonoBehaviour
             if (meleeStat.Count > 0 && Input.GetButton("Fire1") && !isSwinging)
             {
                 isSwinging = true;
-
                 hitsUntilBrokenCurrentAmount--;
 
                 anim.SetTrigger("Attacking");
+
+                RaycastHit hit;
+                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swingDist))
+                {
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hit.collider.GetComponent<IDamage>().takeDamage(meleeDamage);
+                    }
+                }
 
                 yield return new WaitForSeconds(swingSpeed);
 
@@ -364,7 +384,7 @@ public class playerController : MonoBehaviour
         //    meleeModel.SetActive(true);
         //}
 
-        if (Input.GetKeyDown(KeyCode.Mouse2))
+        if (Input.GetKeyDown(KeyCode.Mouse2) && gunStat.Count > 0 && meleeStat.Count > 0)
         {
             gunModel.SetActive(!gunModel.activeSelf);
             meleeModel.SetActive(!meleeModel.activeSelf);
@@ -436,8 +456,14 @@ public class playerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sand"))
+        {
             isOnSand = true;
-        else if (!other.CompareTag("Sand"))
+            Debug.Log("Sand");
+        }
+        else if (!other.CompareTag("Ship") && !other.CompareTag("Sand"))
+        {
             isOnSand = false;
+            Debug.Log("Not Sand");
+        }
     }
 }

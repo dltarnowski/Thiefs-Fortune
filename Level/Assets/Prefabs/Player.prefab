@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 902807535}
   - component: {fileID: 902807537}
   - component: {fileID: 902807536}
+  - component: {fileID: 73628120}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902807534}
   m_LocalRotation: {x: -0.67383784, y: -0.3158491, z: 0.35087478, w: 0.5683915}
-  m_LocalPosition: {x: 7.6, y: -1.1, z: -1.1}
+  m_LocalPosition: {x: 8.1, y: -1.2, z: -5.5}
   m_LocalScale: {x: 99.99998, y: 99.99998, z: 99.99997}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &73628120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902807534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &549276323930964781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,7 +3920,7 @@ MonoBehaviour:
   jumpHeight: 8
   gravityValue: -20
   jumpsMax: 1
-  crouchHeight: 1
+  crouchHeight: 0.6
   HP: 100
   HPOrig: 0
   shootRate: 0
@@ -3920,6 +3934,7 @@ MonoBehaviour:
   swingSpeed: 0
   meleeDamage: 0
   hitsUntilBrokenCurrentAmount: 0
+  swingDist: 1
   meleeModel: {fileID: 902807534}
   meleeSound: {fileID: 0}
   meleeHitEffect: {fileID: 0}
@@ -3932,7 +3947,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 10e9dcb25540ed14084171265a65015c, type: 3}
   - {fileID: 8300000, guid: ef479bcec7f51a84ebfadd4927d66bcd, type: 3}
   - {fileID: 8300000, guid: e9a08e3a510925744b5b13bb9e0029c2, type: 3}
-  playerHurtAudVol: 0.25
+  playerHurtAudVol: 0.075
   playerStepsAud:
   - {fileID: 8300000, guid: 52f3c8bd052f8aa43bc3218c8569c264, type: 3}
   - {fileID: 8300000, guid: 9302f66bc98ed1b48bebefceb9c71990, type: 3}
@@ -3954,7 +3969,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d866b3b06d315f441be52313ead564f4, type: 3}
   - {fileID: 8300000, guid: 9ad268ad668a1f84a8e251a3194de025, type: 3}
   - {fileID: 8300000, guid: 9ec028b14becfb344a7f31a468d30713, type: 3}
-  playerStepsAudVol: 0.15
+  playerStepsAudVol: 0.031
   isShooting: 0
   selectGun: 0
   selectMelee: 0
@@ -14155,15 +14170,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4394722230702239400}
-  m_LocalRotation: {x: -0.67383784, y: -0.3158491, z: 0.35087478, w: 0.5683915}
-  m_LocalPosition: {x: 7.6, y: -1.1, z: -1.1}
+  m_LocalRotation: {x: -0.63097113, y: -0.40440765, z: 0.43623915, w: 0.4980214}
+  m_LocalPosition: {x: 8.1, y: -1.2, z: -5.5}
   m_LocalScale: {x: 99.99997, y: 99.99998, z: 99.999954}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2667262506602702774}
   m_Father: {fileID: 549276323931340903}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -16, y: -97.372, z: 100.602}
 --- !u!33 &4394722230702239405
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14241,7 +14256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4394722232126371131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.779699, z: 0.18000007}
+  m_LocalPosition: {x: 0, y: 1.779699, z: 0.391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
