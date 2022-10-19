@@ -13,4 +13,12 @@ public class MeleeStats : ScriptableObject
     public GameObject meleeModel;
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
+
+    [Header("-----Recoil-----")]
+    public float moveX;
+    public float moveY;
+    public float moveZ;
+
+    public float snappiness;
+    public float returnSpeed;
 }
