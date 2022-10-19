@@ -113,17 +113,17 @@ public class MenuButtons : MonoBehaviour
 
     public void BuyHealth()
     {
-        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerHPBar.fillAmount != 1)
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
         {
-            float healthGone = 1 - gameManager.instance.playerHPBar.fillAmount;
+            int healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
 
-            if (healthGone <= .5f)
+            if (healthGone >= (gameManager.instance.playerScript.HPOrig / 2))
             {
-                gameManager.instance.playerHPBar.fillAmount += .5f;
+                gameManager.instance.playerScript.HP += (gameManager.instance.playerScript.HPOrig / 2);
             }
             else
             {
-                gameManager.instance.playerHPBar.fillAmount += healthGone;
+                gameManager.instance.playerScript.HP += healthGone;
             }
 
             gameManager.instance.currencyNumber -= 2;
