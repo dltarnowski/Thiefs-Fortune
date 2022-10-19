@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 902807535}
   - component: {fileID: 902807537}
   - component: {fileID: 902807536}
+  - component: {fileID: 73628120}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &73628120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902807534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &549276323930964781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3920,10 +3934,16 @@ MonoBehaviour:
   swingSpeed: 0
   meleeDamage: 0
   hitsUntilBrokenCurrentAmount: 0
+  swingDist: 1
   meleeModel: {fileID: 902807534}
   meleeSound: {fileID: 0}
   meleeHitEffect: {fileID: 0}
   meleeStat: []
+  gruntAudio:
+  - {fileID: 8300000, guid: e23613aead8316f4f9c014e8c3c2b73a, type: 3}
+  - {fileID: 8300000, guid: b75d14901c419514194f3d370d1cc5b4, type: 3}
+  - {fileID: 8300000, guid: 4a16b9b4c229b2a4ebab6e567dddf9b1, type: 3}
+  - {fileID: 8300000, guid: 54c730c2fe0b4914487204d5768c1538, type: 3}
   aud: {fileID: 7862043830989376632}
   playerHurtAud:
   - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
@@ -3932,7 +3952,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 10e9dcb25540ed14084171265a65015c, type: 3}
   - {fileID: 8300000, guid: ef479bcec7f51a84ebfadd4927d66bcd, type: 3}
   - {fileID: 8300000, guid: e9a08e3a510925744b5b13bb9e0029c2, type: 3}
-  playerHurtAudVol: 0.25
+  playerHurtAudVol: 0.075
   playerStepsAud:
   - {fileID: 8300000, guid: 52f3c8bd052f8aa43bc3218c8569c264, type: 3}
   - {fileID: 8300000, guid: 9302f66bc98ed1b48bebefceb9c71990, type: 3}
@@ -3954,7 +3974,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d866b3b06d315f441be52313ead564f4, type: 3}
   - {fileID: 8300000, guid: 9ad268ad668a1f84a8e251a3194de025, type: 3}
   - {fileID: 8300000, guid: 9ec028b14becfb344a7f31a468d30713, type: 3}
-  playerStepsAudVol: 0.15
+  playerStepsAudVol: 0.031
   isShooting: 0
   selectGun: 0
   selectMelee: 0
@@ -14079,6 +14099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc71fd610cf24ce42860049e666c92d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementVector: {x: 1, y: 1, z: 1}
 --- !u!20 &4223635324719786415
 Camera:
   m_ObjectHideFlags: 0
