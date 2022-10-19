@@ -7,11 +7,18 @@ public class Recoil : MonoBehaviour
     Vector3 currentRotation;
     Vector3 targetRotation;
 
+    Vector3 headPos;
+    Vector3 targetPos;
+
+    [SerializeField] Vector3 movementVector;
+
     GunStats gunStatScript;
+    MeleeStats meleeStatScript;
 
     void Start()
     {
         gunStatScript = null;
+        meleeStatScript = null;
     }
 
     // Update is called once per frame
@@ -23,6 +30,12 @@ public class Recoil : MonoBehaviour
             currentRotation = Vector3.Slerp(currentRotation, targetRotation, gunStatScript.snappiness * Time.fixedDeltaTime);
             transform.localRotation = Quaternion.Euler(currentRotation);
         }
+        if (meleeStatScript != null)
+        {
+            targetPos = Vector3.Lerp(targetPos, Vector3.zero, meleeStatScript.returnSpeed * Time.deltaTime);
+            headPos = Vector3.Slerp(headPos, targetPos, meleeStatScript.snappiness * Time.fixedDeltaTime);
+            transform.localPosition = headPos;
+        }
     }
 
     public void RecoilFire()
@@ -31,8 +44,19 @@ public class Recoil : MonoBehaviour
         Debug.Log("Recoil");
     }
 
+    public void MeleeSwing()
+    {
+        targetPos += new Vector3(meleeStatScript.moveX, meleeStatScript.moveY, meleeStatScript.moveZ);
+        Debug.Log("Swing");
+    }
+
     public void SetGunStatScript(GunStats stats)
     {
         gunStatScript = stats;
+    }
+
+    public void SetMeleeStatScript(MeleeStats stats)
+    {
+        meleeStatScript = stats;
     }
 }

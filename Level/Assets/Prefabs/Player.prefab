@@ -3939,6 +3939,11 @@ MonoBehaviour:
   meleeSound: {fileID: 0}
   meleeHitEffect: {fileID: 0}
   meleeStat: []
+  gruntAudio:
+  - {fileID: 8300000, guid: e23613aead8316f4f9c014e8c3c2b73a, type: 3}
+  - {fileID: 8300000, guid: b75d14901c419514194f3d370d1cc5b4, type: 3}
+  - {fileID: 8300000, guid: 4a16b9b4c229b2a4ebab6e567dddf9b1, type: 3}
+  - {fileID: 8300000, guid: 54c730c2fe0b4914487204d5768c1538, type: 3}
   aud: {fileID: 7862043830989376632}
   playerHurtAud:
   - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
@@ -14094,6 +14099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc71fd610cf24ce42860049e666c92d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementVector: {x: 1, y: 1, z: 1}
 --- !u!20 &4223635324719786415
 Camera:
   m_ObjectHideFlags: 0
