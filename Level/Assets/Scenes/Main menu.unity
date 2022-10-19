@@ -173,12 +173,12 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0ba48f92a18f02d43878485d5ce92628, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f1ee7baef9c2aea419b8a862de1fbea6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -989,6 +989,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 540687465415110388, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383946122127371567, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1506434954615215607, guid: 6add6842205e111498493bfffe660254, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1037,10 +1045,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy - Captain
       objectReference: {fileID: 0}
+    - target: {fileID: 4514644955722817552, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4941685614310209918, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4941685614310209918, guid: 6add6842205e111498493bfffe660254, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 34264541acc5abe4288c85f50d4b4365, type: 2}
+    - target: {fileID: 7204424958204243267, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8970215132580245310, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6add6842205e111498493bfffe660254, type: 3}
 --- !u!1001 &1226456304
