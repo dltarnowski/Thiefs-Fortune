@@ -28,5 +28,6 @@ public class Trigger : MonoBehaviour, IDamage
     {
         transform.GetComponent<Fracture>().Trigger();
         fractured = true;
+        gameManager.instance.CheckTowerTotal();
     }
 }

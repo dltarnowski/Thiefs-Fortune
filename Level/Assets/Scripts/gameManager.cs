@@ -47,6 +47,8 @@ public class gameManager : MonoBehaviour
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+
+    int towersLeft;
     
 
     // Start is called before the first frame update
@@ -61,6 +63,7 @@ public class gameManager : MonoBehaviour
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         ammoCount = 5;
+        towersLeft = 2;
     }
 
     // Update is called once per frame
@@ -128,8 +131,12 @@ public class gameManager : MonoBehaviour
     {
         EnemyNumber--;
         EnemyCountText.text = EnemyNumber.ToString("F0");
+    }
 
-        if (EnemyNumber <= 0)
+    public void CheckTowerTotal()
+    {
+        towersLeft--;
+        if (towersLeft <= 0)
         {
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
