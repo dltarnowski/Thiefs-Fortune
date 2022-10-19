@@ -11853,6 +11853,7 @@ MonoBehaviour:
   model: {fileID: 621379179301338587}
   cannonCtrl: {fileID: 4693045152688470167}
   cannonCol: {fileID: 4693045152688470164}
+  cannon: {fileID: 0}
   col: {fileID: 7846465878919904876}
   anim: {fileID: 3454458432108800486}
   drops:
@@ -11877,15 +11878,16 @@ MonoBehaviour:
   viewAngle: 45
   damagedDuration: 0.25
   headPos: {fileID: 621379179312902277}
-  roamDist: 0
   attackRate: 1
   attackPos: {fileID: 4693045152603489077}
   weapon: {fileID: 0}
   bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
   meleeAttackRange: 0
   meleeDamage: 0
-  stationary: 0
+  linearRoam: 0
+  stationary: 1
   noRotation: 0
+  roamDist: 0
   canRoam: 0
 --- !u!195 &1664164060631662502
 NavMeshAgent:

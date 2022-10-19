@@ -1917,7 +1917,7 @@ Animator:
   m_GameObject: {fileID: 6251035966338507725}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 47d445364fdde5e4ea2c0a20ecaae6cb, type: 3}
-  m_Controller: {fileID: 9100000, guid: e98c0e5f2491ea34cbd274736db923c9, type: 2}
+  m_Controller: {fileID: 9100000, guid: c5925805617cc6747ac8f81a0eb230f5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1942,6 +1942,8 @@ MonoBehaviour:
   agent: {fileID: 4493274837789082916}
   model: {fileID: 2439975592647526233}
   cannonCtrl: {fileID: 0}
+  cannonCol: {fileID: 0}
+  cannon: {fileID: 0}
   col: {fileID: 5019018693956011246}
   anim: {fileID: 482921354279506788}
   drops:
@@ -1966,15 +1968,16 @@ MonoBehaviour:
   viewAngle: 90
   damagedDuration: 0.25
   headPos: {fileID: 2439975592652802567}
-  roamDist: 7
   attackRate: 1
   attackPos: {fileID: 3997422536040635848}
   weapon: {fileID: 7305407885965176885}
   bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
   meleeAttackRange: 0
   meleeDamage: 0
+  linearRoam: 0
   stationary: 0
   noRotation: 0
+  roamDist: 7
   canRoam: 1
 --- !u!195 &4493274837789082916
 NavMeshAgent:
