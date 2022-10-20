@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
             if (CannonCamera != null && CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject.CompareTag("Barrel"))
             {
                 barrel = CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject;
-                direction = transform.forward + (Vector3.up * (barrel.transform.rotation.x * arcMultiplier));
+                direction = transform.forward + (Vector3.up * (barrel.transform.rotation.x/-1 * arcMultiplier));
                 rb.AddForce(direction * speed, ForceMode.Impulse);
             }
         }

@@ -152,6 +152,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   cannonCamera: {fileID: 4462390494084316589}
   playerPos: {fileID: 8788221340460182614}
+  cannonNear: 0
   cannonBall: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
   cannonBallPos: {fileID: 4797687075924573529}
   shootRate: 2
@@ -167,7 +168,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.723547
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0.4501934, z: -0.64}
 --- !u!1 &3714008655746629951
 GameObject:

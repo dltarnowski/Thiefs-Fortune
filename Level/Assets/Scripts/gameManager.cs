@@ -35,6 +35,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public Animator anim;
     [Header("----- UI -----")]
     public GameObject hint;
+    public Image[] ammoArray;
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
     public GameObject npcDialogue;
@@ -68,6 +69,10 @@ public class gameManager : MonoBehaviour
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
         towersLeft = 2;
+        foreach(var ammo in ammoArray)
+        {
+            ammo.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -147,6 +152,20 @@ public class gameManager : MonoBehaviour
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
             cursorUnlockUnpause();
+        }
+    }
+
+    public void ReduceAmmo()
+    {
+        ammoCount = playerScript.ammoCount+1;
+        ammoArray[ammoCount-1].enabled = false;
+    }
+
+    public void IncreaseAmmo()
+    {
+        for(int i = 0; i < ammoArray.Length; i++)
+        {
+            ammoArray[i].enabled = true;
         }
     }
 }

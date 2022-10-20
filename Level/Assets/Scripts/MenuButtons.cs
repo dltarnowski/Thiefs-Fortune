@@ -108,6 +108,7 @@ public class MenuButtons : MonoBehaviour
             }
 
             gameManager.instance.currencyNumber -= 2;
+            gameManager.instance.IncreaseAmmo();
         }
     }
 

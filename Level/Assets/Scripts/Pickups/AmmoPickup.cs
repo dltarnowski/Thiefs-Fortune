@@ -17,6 +17,7 @@ public class AmmoPickup : MonoBehaviour
             gameManager.instance.ammoCount = 
             gameManager.instance.playerScript.gunStat[gameManager.instance.playerScript.selectGun].ammoCount = 
             gameManager.instance.playerScript.ammoCount;
+            gameManager.instance.IncreaseAmmo();
 
             Destroy(gameObject);
         }
