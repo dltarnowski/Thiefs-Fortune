@@ -96,15 +96,15 @@ public class MenuButtons : MonoBehaviour
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
         {
-            int ammoGone = 5 - gameManager.instance.ammoCount;
+            int ammoGone = 5 - gameManager.instance.playerScript.ammoCount;
 
-            if (ammoGone <= 0)
+            if (ammoGone >= 1)
             {
-                gameManager.instance.ammoCount = 5;
+                gameManager.instance.playerScript.ammoCount = 5;
             }
             else
             {
-                gameManager.instance.ammoCount += ammoGone;
+                gameManager.instance.playerScript.ammoCount += ammoGone;
             }
 
             gameManager.instance.currencyNumber -= 2;
