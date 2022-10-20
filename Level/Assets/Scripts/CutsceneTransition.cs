@@ -13,6 +13,7 @@ public class CutsceneTransition : MonoBehaviour
     void Awake()
     {
         instance = this;
+        Cursor.visible = true;
         NextScene();
     }
     void Update()
