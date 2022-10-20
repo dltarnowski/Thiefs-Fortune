@@ -67,7 +67,6 @@ public class gameManager : MonoBehaviour
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
-        ammoCount = 5;
         towersLeft = 2;
     }
 
