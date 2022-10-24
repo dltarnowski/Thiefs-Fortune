@@ -8,7 +8,7 @@ public class CannonController : MonoBehaviour
     [SerializeField] GameObject cannonCamera;
     [SerializeField] GameObject playerPos;
     bool active;
-    bool cannonNear;
+    public bool cannonNear;
     bool isShooting;
     Transform tempTrans;
     [SerializeField] GameObject cannonBall;

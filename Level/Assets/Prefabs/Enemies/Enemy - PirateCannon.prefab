@@ -1884,6 +1884,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   cannonCamera: {fileID: 4693045152763265457}
   playerPos: {fileID: 4693045154256465644}
+  cannonNear: 0
   cannonBall: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
   cannonBallPos: {fileID: 4693045152603489076}
   shootRate: 2
@@ -11691,6 +11692,7 @@ GameObject:
   - component: {fileID: 1664164060631662502}
   - component: {fileID: 8669452286734564791}
   - component: {fileID: 7846465878919904876}
+  - component: {fileID: 1471685825166128762}
   m_Layer: 3
   m_Name: Enemy - PirateCannon
   m_TagString: Ranged
@@ -11851,23 +11853,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1664164060631662502}
   model: {fileID: 621379179301338587}
-  cannonCtrl: {fileID: 4693045152688470167}
-  cannonCol: {fileID: 4693045152688470164}
   col: {fileID: 7846465878919904876}
   anim: {fileID: 3454458432108800486}
   drops:
   - {fileID: 5647004934308242227, guid: 5cfb8e402df4a884d8fc33a8d062f75d, type: 3}
-  - {fileID: 6217373905241696552, guid: e653dc41a4ce0864a82f66369b5270ce, type: 3}
   - {fileID: 6482535713155909065, guid: 85cf71357af4b6241bd6544e0c35c08c, type: 3}
   - {fileID: 3576859548827341246, guid: 5603d3fdbcd98ac46af540cba52937ae, type: 3}
   - {fileID: 2512782620296928835, guid: 98ace9e725741cb46a2176b96ee572d9, type: 3}
   - {fileID: 2612704222007822689, guid: 3f20510f4288e5e47a7dc400e3441951, type: 3}
-  - {fileID: 6683910282277353856, guid: 27c105735705dd7499728f9d31c4d58d, type: 3}
-  - {fileID: 6509078273142196653, guid: e009e661c2056fd4ca226dc547e30828, type: 3}
-  - {fileID: 4981103521316939640, guid: dc25199193f487842837de8cc0860ae2, type: 3}
-  - {fileID: 7544101266607000774, guid: 2273de53716a424469b44f20a576da37, type: 3}
-  - {fileID: 2344364002143443464, guid: fe19ef3bdb500294f80b0fd588446a70, type: 3}
   - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
+  - {fileID: 1514543273661178981, guid: da450475e2561ac47a0cad6cfa218f9a, type: 3}
+  - {fileID: 4593151056208644599, guid: 6d781525a7d54db4e9392c6c1b799de9, type: 3}
+  - {fileID: 7248056490432878773, guid: e64db79ff716d2d468d7af8e7e194111, type: 3}
   HP: 10
   reward: 0
   speedChase: 0
@@ -11877,16 +11874,39 @@ MonoBehaviour:
   viewAngle: 45
   damagedDuration: 0.25
   headPos: {fileID: 621379179312902277}
-  roamDist: 0
   attackRate: 1
   attackPos: {fileID: 4693045152603489077}
   weapon: {fileID: 0}
   bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
   meleeAttackRange: 0
   meleeDamage: 0
-  stationary: 0
+  linearRoam: 0
+  stationary: 1
   noRotation: 0
+  roamDist: 0
   canRoam: 0
+  aud: {fileID: 1471685825166128762}
+  enemyHurtAud:
+  - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
+  - {fileID: 8300000, guid: a1f5b9264c493494dbee9e3cdc4d82b1, type: 3}
+  - {fileID: 8300000, guid: b3b43f422ff7ce847b6576455d52bbde, type: 3}
+  - {fileID: 8300000, guid: 10e9dcb25540ed14084171265a65015c, type: 3}
+  - {fileID: 8300000, guid: ef479bcec7f51a84ebfadd4927d66bcd, type: 3}
+  - {fileID: 8300000, guid: e9a08e3a510925744b5b13bb9e0029c2, type: 3}
+  enemyHurtAudVol: 0.2
+  enemyStepsAud:
+  - {fileID: 8300000, guid: 52f3c8bd052f8aa43bc3218c8569c264, type: 3}
+  - {fileID: 8300000, guid: 9302f66bc98ed1b48bebefceb9c71990, type: 3}
+  - {fileID: 8300000, guid: 7ff3ba41d5b6c71488dfa6bbc616eee4, type: 3}
+  - {fileID: 8300000, guid: 5c27eed878f99ac488aaeaf1856a65af, type: 3}
+  - {fileID: 8300000, guid: 4230ce3efcbe99b4c9ade69b8deba896, type: 3}
+  - {fileID: 8300000, guid: aaca02fcf4997584a8cb200fadbec197, type: 3}
+  - {fileID: 8300000, guid: f5d824ed178aa264aaa3ec3e4166c7bf, type: 3}
+  - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
+  - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
+  enemyStepsAudVol: 0.2
+  enemyWeaponAud: {fileID: 8300000, guid: ca1e32466b7432c44aec1ecc708ee92e, type: 3}
+  enemyWeaponAudVol: 0.2
 --- !u!195 &1664164060631662502
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -11936,3 +11956,99 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!82 &1471685825166128762
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188251275156347215}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

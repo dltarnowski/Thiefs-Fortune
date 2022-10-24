@@ -6,8 +6,8 @@ public class spawner : MonoBehaviour
 {
     [SerializeField] int timer;
     [SerializeField] int maxEnemies;
-    [SerializeField] GameObject enemy;
-
+    [SerializeField] GameObject[] enemy;
+    [SerializeField] Transform[] spawnPos;
     int enemiesSpawned;
     bool isSpawning;
     bool startSpawning;
@@ -28,8 +28,8 @@ public class spawner : MonoBehaviour
     IEnumerator spawn()
     {
         isSpawning = true;
-
-        Instantiate(enemy, transform.position, enemy.transform.rotation);
+        if(enemiesSpawned < enemy.Length)
+            Instantiate(enemy[enemiesSpawned], spawnPos[enemiesSpawned].position, spawnPos[enemiesSpawned].rotation);
         enemiesSpawned++;
 
         yield return new WaitForSeconds(timer);

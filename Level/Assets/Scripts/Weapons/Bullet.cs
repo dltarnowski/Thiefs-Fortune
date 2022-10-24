@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int destroyTime;
     [SerializeField] float arcMultiplier;
     [SerializeField] GameObject barrel;
+    [SerializeField] GameObject CannonCamera;
     private Vector3 direction;
 
 
@@ -22,10 +23,13 @@ public class Bullet : MonoBehaviour
             rb.velocity = transform.forward * speed;
         else if(CompareTag("CannonBall"))
         {
-            barrel = GameObject.FindGameObjectWithTag("Barrel");
-            direction = transform.forward + (Vector3.up * (barrel.transform.rotation.x/-1 * arcMultiplier));
-            rb.AddForce(direction * speed, ForceMode.Impulse);
-
+            CannonCamera = GameObject.FindGameObjectWithTag("CannonCamera");
+            if (CannonCamera != null && CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject.CompareTag("Barrel"))
+            {
+                barrel = CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject;
+                direction = transform.forward + (Vector3.up * (barrel.transform.rotation.normalized.x/-1 * arcMultiplier));
+                rb.AddForce(direction * speed, ForceMode.Impulse);
+            }
         }
         Destroy(gameObject, destroyTime);
     }
@@ -34,17 +38,21 @@ public class Bullet : MonoBehaviour
     {
     }
         private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.takeDamage(damage);
-            Destroy(gameObject);
-        }
-        if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
-        {
-            other.GetComponent<enemyAI>().takeDamage(damage);
-            Destroy(gameObject);
-        }
+            if (other.CompareTag("Player"))
+            {
+                gameManager.instance.playerScript.takeDamage(damage);
+                Destroy(gameObject);
+            }
+            if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
+            {
+                other.GetComponent<enemyAI>().takeDamage(damage);
+                Destroy(gameObject);
+            }
+            if(other.CompareTag("Tower"))
+            {
+                other.GetComponent<Trigger>().takeDamage(damage);
+            }
 
-    }
+        }
 }

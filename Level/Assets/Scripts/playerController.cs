@@ -37,10 +37,13 @@ public class playerController : MonoBehaviour
     [SerializeField] float swingSpeed;
     [SerializeField] int meleeDamage;
     [SerializeField] int hitsUntilBrokenCurrentAmount;
+    [SerializeField] float swingDist;
     public GameObject meleeModel;
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
     public List<MeleeStats> meleeStat = new List<MeleeStats>();
+    [SerializeField] AudioClip[] gruntAudio;
+
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -83,7 +86,7 @@ public class playerController : MonoBehaviour
         else if (meleeModel.activeSelf)
             StartCoroutine(swing());
         SelectMeleeOrGun();
-        if(gunModel.activeSelf)
+        if (gunModel.activeSelf)
             GunSelect();
         else
             MeleeSelect();
@@ -190,14 +193,19 @@ public class playerController : MonoBehaviour
             {
                 isShooting = true;
                 ammoCount--;
+                gameManager.instance.ReduceAmmo();
                 gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
+                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red, 20);
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
                 {
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
+                    {
                         hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                        Instantiate(gunStat[selectGun].hitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                    }
                 }
 
                 aud.PlayOneShot(gunStat[selectGun].gunSound);
@@ -225,9 +233,27 @@ public class playerController : MonoBehaviour
             {
                 isSwinging = true;
 
-                hitsUntilBrokenCurrentAmount--;
-
                 anim.SetTrigger("Attacking");
+                aud.PlayOneShot(gruntAudio[Random.Range(0, gruntAudio.Length)]);
+
+                RaycastHit hit;
+                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swingDist))
+                {
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hitsUntilBrokenCurrentAmount--;
+                        hit.collider.GetComponent<IDamage>().takeDamage(meleeDamage);
+                        Instantiate(meleeStat[selectMelee].meleeHitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                    }
+                }
+
+                recoilScript.MeleeSwing();
+
+                if (hitsUntilBrokenCurrentAmount <= 0)
+                {
+                    aud.PlayOneShot(meleeStat[selectMelee].meleeSound);
+                    Destroy(meleeStat[selectMelee]);
+                }
 
                 yield return new WaitForSeconds(swingSpeed);
 
@@ -246,6 +272,7 @@ public class playerController : MonoBehaviour
         shootDamage = stats.shootDamage;
 
         ammoCount = stats.ammoCount = stats.ammoStartCount;
+        gameManager.instance.IncreaseAmmo();
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -282,6 +309,8 @@ public class playerController : MonoBehaviour
 
         meleeModel.GetComponent<MeshFilter>().sharedMesh = stats.meleeModel.GetComponent<MeshFilter>().sharedMesh;
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        gameManager.instance.recoilScript.SetMeleeStatScript(stats);
 
         meleeStat.Add(stats);
 
@@ -335,6 +364,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
         ammoCount = gunStat[selectGun].ammoCount;
+        gameManager.instance.IncreaseAmmo();
 
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
         CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
@@ -351,6 +381,8 @@ public class playerController : MonoBehaviour
         swingSpeed = meleeStat[selectMelee].swingSpeed;
         meleeDamage = meleeStat[selectMelee].meleeDamage;
         hitsUntilBrokenCurrentAmount = meleeStat[selectMelee].hitsUntilBrokenCurrentAmount;
+
+        gameManager.instance.recoilScript.SetMeleeStatScript(meleeStat[selectMelee]);
 
         meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
         meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -370,7 +402,7 @@ public class playerController : MonoBehaviour
         //    meleeModel.SetActive(true);
         //}
 
-        if (Input.GetKeyDown(KeyCode.Mouse2))
+        if (Input.GetKeyDown(KeyCode.Mouse2) && gunStat.Count > 0 && meleeStat.Count > 0)
         {
             gunModel.SetActive(!gunModel.activeSelf);
             meleeModel.SetActive(!meleeModel.activeSelf);
@@ -452,6 +484,4 @@ public class playerController : MonoBehaviour
             Debug.Log("Not Sand");
         }
     }
-
-    
 }
