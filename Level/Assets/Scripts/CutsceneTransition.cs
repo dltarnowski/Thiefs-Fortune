@@ -14,6 +14,7 @@ public class CutsceneTransition : MonoBehaviour
     {
         instance = this;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         NextScene();
     }
     void Update()

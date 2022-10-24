@@ -17,6 +17,7 @@ public class ReturnTrigger : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 }

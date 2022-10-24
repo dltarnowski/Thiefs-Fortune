@@ -37,6 +37,7 @@ public class MenuButtons : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void respawn()
     {
