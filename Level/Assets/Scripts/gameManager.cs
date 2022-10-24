@@ -35,12 +35,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] public Animator anim;
     [Header("----- UI -----")]
     public GameObject hint;
+    public Image[] ammoArray;
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
+    public Collider collide;
     [Header("----- Gun -----")]
     public GameObject mainCamera;
     public Recoil recoilScript;
@@ -66,8 +68,11 @@ public class gameManager : MonoBehaviour
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
-        ammoCount = 5;
         towersLeft = 2;
+        foreach(var ammo in ammoArray)
+        {
+            ammo.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -119,6 +124,7 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = false;
         healthBar.SetActive(false);
         Crosshair.SetActive(false);
+        collide.isTrigger = false;
     }
 
     public void NpcUnpause()
@@ -129,6 +135,7 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = true;
         healthBar.SetActive(true);
         Crosshair.SetActive(true);
+        collide.isTrigger = true;
     }
 
     public void checkEnemyTotal()
@@ -145,6 +152,20 @@ public class gameManager : MonoBehaviour
             GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
             cursorUnlockUnpause();
+        }
+    }
+
+    public void ReduceAmmo()
+    {
+        ammoCount = playerScript.ammoCount+1;
+        ammoArray[ammoCount-1].enabled = false;
+    }
+
+    public void IncreaseAmmo()
+    {
+        for(int i = 0; i < ammoArray.Length; i++)
+        {
+            ammoArray[i].enabled = true;
         }
     }
 }
