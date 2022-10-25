@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Animator anim;
+    public Animator anim;
 
 
     [Header("----- Player Stats -----")]
@@ -23,6 +23,7 @@ public class playerController : MonoBehaviour
 
     public int HP;
     public int HPOrig;
+    public bool isUnderwater;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
@@ -121,9 +122,18 @@ public class playerController : MonoBehaviour
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
         }
+
         //Move
-        move = transform.right * Input.GetAxis("Horizontal") +
-                       transform.forward * Input.GetAxis("Vertical");
+        if (isUnderwater)
+        {
+            move = (transform.right * Input.GetAxis("Horizontal")) / 3 +
+                       (transform.forward * Input.GetAxis("Vertical")) / 3;
+        }
+        else
+        {
+            move = transform.right * Input.GetAxis("Horizontal") +
+                           transform.forward * Input.GetAxis("Vertical");
+        }
 
         anim.SetFloat("Speed", move.normalized.magnitude);
 
