@@ -14,8 +14,10 @@ public class playerController : MonoBehaviour
     [Header("----- Player Stats -----")]
     [Range(1, 5)] [SerializeField] float playerSpeed;
     [Range(2, 5)] [SerializeField] float runSpeed;
-    [Range(8, 15)] [SerializeField] float jumpHeight;
-    [Range(-5, -35)] [SerializeField] float gravityValue;
+    [Range(1, 15)] public float jumpHeight;
+    public float jumpHeightOrig;
+    [Range(-1, -35)] public float gravityValue;
+    public float gravityValueOrig;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
 
@@ -74,6 +76,8 @@ public class playerController : MonoBehaviour
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
+        jumpHeightOrig = jumpHeight;
+        gravityValueOrig = gravityValue;
     }
 
 
