@@ -7,6 +7,8 @@ public class blackSpot : MonoBehaviour
     [Range(0f , 1f)] public float blackSpotMultiplier;
     [SerializeField] float raidTimer;
     [SerializeField] GameObject spawner;
+    float spawnChance;
+    int timesSpawned;
     bool isSpawning;
     void Start()
     {
@@ -23,7 +25,11 @@ public class blackSpot : MonoBehaviour
     IEnumerator raid()
     {
         isSpawning = true;
-        Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+        spawnChance = Random.Range(0, 1f);
+        if(spawnChance < blackSpotMultiplier)
+            Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+        else
+            timesSpawned++;
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
         isSpawning = false;
     }
