@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject spawnPosition;
     public Image playerHPBar;
+    public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
     [Header("----- Objective UI -----")]
