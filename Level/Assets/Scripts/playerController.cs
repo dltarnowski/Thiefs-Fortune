@@ -193,6 +193,7 @@ public class playerController : MonoBehaviour
             {
                 isShooting = true;
                 ammoCount--;
+                gameManager.instance.ReduceAmmo();
                 gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
 
                 RaycastHit hit;
@@ -271,6 +272,7 @@ public class playerController : MonoBehaviour
         shootDamage = stats.shootDamage;
 
         ammoCount = stats.ammoCount = stats.ammoStartCount;
+        gameManager.instance.IncreaseAmmo();
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -362,6 +364,7 @@ public class playerController : MonoBehaviour
         shootDist = gunStat[selectGun].shootDist;
         shootDamage = gunStat[selectGun].shootDamage;
         ammoCount = gunStat[selectGun].ammoCount;
+        gameManager.instance.IncreaseAmmo();
 
         gameManager.instance.recoilScript.SetGunStatScript(gunStat[selectGun]);
         CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);

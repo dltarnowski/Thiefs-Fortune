@@ -8,9 +8,8 @@ public class CannonController : MonoBehaviour
     [SerializeField] GameObject cannonCamera;
     [SerializeField] GameObject playerPos;
     bool active;
-    bool cannonNear;
+    public bool cannonNear;
     bool isShooting;
-    Transform tempTrans;
     [SerializeField] GameObject cannonBall;
     [SerializeField] Transform cannonBallPos;
     [SerializeField] float shootRate;
@@ -33,27 +32,29 @@ public class CannonController : MonoBehaviour
             gameManager.instance.playerScript.enabled = active;
             cannonCamera.SetActive(!active);
             active = !active;
+            cannonNear = active;
         }
         if (cannonCamera.activeSelf)
             ChangeParent();
         else
+        {
             RevertParent();
+        }
 
         StartCoroutine(shoot());
     }
 
     void ChangeParent()
     {
-        tempTrans = gameManager.instance.player.transform.parent;
-        gameManager.instance.player.transform.parent = transform;
         gameManager.instance.player.transform.position = playerPos.transform.position;
         gameManager.instance.player.transform.rotation = playerPos.transform.rotation;
+        gameManager.instance.player.transform.parent = transform;
     }
 
     //Revert the parent of object 2.
     void RevertParent()
     {
-        gameManager.instance.player.transform.parent = tempTrans;
+        gameManager.instance.player.transform.parent = null;
 
     }
     IEnumerator shoot()

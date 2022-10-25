@@ -8,6 +8,7 @@ public class ShopAI : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] Animator anim;
+    [SerializeField] Collider collide;
 
     bool playerInRange;
 
@@ -21,7 +22,7 @@ public class ShopAI : MonoBehaviour
     void Update()
     {
 
-        if (playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf)
+        if (playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
             gameManager.instance.hint.SetActive(true);
@@ -33,6 +34,7 @@ public class ShopAI : MonoBehaviour
                 gameManager.instance.hint.SetActive(false);
 
                 gameManager.instance.NpcPause();
+                
 
                 gameManager.instance.npcDialogue.SetActive(playerInRange);
             }

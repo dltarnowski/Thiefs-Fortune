@@ -8,9 +8,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Componenets -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] CannonController cannonCtrl;
-    [SerializeField] SphereCollider cannonCol;
-    [SerializeField] GameObject cannon;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
     [SerializeField] GameObject[] drops;
@@ -39,11 +36,21 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool stationary;
     [SerializeField] bool noRotation;
     [SerializeField] int roamDist;
+    [SerializeField] bool canRoam = true;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] enemyHurtAud;
+    [Range(0, 1)] [SerializeField] float enemyHurtAudVol;
+    [SerializeField] AudioClip[] enemyStepsAud;
+    [Range(0, 1)] [SerializeField] float enemyStepsAudVol;
+    [SerializeField] AudioClip enemyWeaponAud;
+    [Range(0, 1)] [SerializeField] float enemyWeaponAudVol;
+
+    bool playingSteps;
     Vector3 randomDirection;
     bool isMelee;
     bool isShooting;
-    [SerializeField] bool canRoam = true;
     bool playerInRange;
     Color modelColor;
     Vector3 playerDir;
@@ -60,11 +67,8 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        tempTrans = cannon.transform.parent;
         if (!stationary && canRoam)
             roam();
-        if (cannon != null)
-            cannon.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -79,7 +83,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             if (agent.enabled)
             {
-                if (playerInRange)
+                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
@@ -97,6 +101,23 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator PlaySteps()
+    {
+        if (agent.velocity.normalized.magnitude > 0.3f && !playingSteps)
+        {
+            playingSteps = true;
+
+            aud.PlayOneShot(enemyStepsAud[Random.Range(0, enemyStepsAud.Length - 1)], enemyStepsAudVol);
+
+            if (agent.speed == speedChase)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+    }
+
     void roam()
     {
         agent.stoppingDistance = 0;
@@ -108,7 +129,12 @@ public class enemyAI : MonoBehaviour, IDamage
         randomDirection += startingPos;
 
         NavMeshHit hit;
+
         NavMesh.SamplePosition(randomDirection, out hit, 1, 1);
+
+        if (!hit.hit)
+            return;
+
         NavMeshPath path = new NavMeshPath();
 
         agent.CalculatePath(hit.position, path);
@@ -147,16 +173,12 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
+
         if (HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
             anim.SetBool("Dead", true);
-            if (cannonCtrl != null)
-            {
-                cannonCtrl.enabled = true;
-                cannonCol.enabled = true;
-                cannon.transform.parent = tempTrans;
-            }
             col.enabled = false;
             agent.enabled = false;
             Destroy(gameObject, 5);
@@ -171,6 +193,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         anim.SetTrigger("attack");
+        aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
@@ -182,6 +205,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isMelee = true;
         if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
         {
+            aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
             anim.SetTrigger("attack");
         }
         yield return new WaitForSeconds(attackRate);
@@ -201,7 +225,12 @@ public class enemyAI : MonoBehaviour, IDamage
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+            if (!gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = true;
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -210,6 +239,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.stoppingDistance = 0;
+            if (gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = false;
         }
 
     }
