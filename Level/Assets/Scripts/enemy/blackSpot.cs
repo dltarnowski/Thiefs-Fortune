@@ -8,7 +8,6 @@ public class blackSpot : MonoBehaviour
     [SerializeField] float raidTimer;
     [SerializeField] GameObject spawner;
     float spawnChance;
-    int timesSpawned;
     bool isSpawning;
     void Start()
     {
@@ -28,8 +27,6 @@ public class blackSpot : MonoBehaviour
         spawnChance = Random.Range(0, 1f);
         if(spawnChance < blackSpotMultiplier)
             Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
-        else
-            timesSpawned++;
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
         isSpawning = false;
     }
