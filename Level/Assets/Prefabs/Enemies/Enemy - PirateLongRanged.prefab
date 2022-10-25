@@ -107,9 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2439975592653100583}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1783,6 +1783,7 @@ GameObject:
   - component: {fileID: 5842023183086487349}
   - component: {fileID: 5019018693956011246}
   - component: {fileID: 1681667997982337786}
+  - component: {fileID: 109088846}
   m_Layer: 3
   m_Name: Enemy - PirateLongRanged
   m_TagString: Ranged
@@ -1942,9 +1943,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4493274837789082916}
   model: {fileID: 2439975592647526233}
-  cannonCtrl: {fileID: 0}
-  cannonCol: {fileID: 0}
-  cannon: {fileID: 0}
   col: {fileID: 5019018693956011246}
   anim: {fileID: 482921354279506788}
   drops:
@@ -2002,7 +2000,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6251035966338507725}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 50
   avoidancePriority: 50
@@ -2138,6 +2136,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &109088846
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6251035966338507725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 1.63, z: 0}
 --- !u!1 &7058166399727895016
 GameObject:
   m_ObjectHideFlags: 0
