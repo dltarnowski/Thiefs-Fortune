@@ -23,20 +23,16 @@ public class EndingTrigger : MonoBehaviour
 
     IEnumerator SceneTimer(int buildIndex)
     {
-        yield return new WaitForSeconds(transitionTime);
+        yield return new WaitForSeconds(0f);
         SceneManager.LoadScene(buildIndex);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameManager.instance.winMenu.activeSelf)
+        if (other.CompareTag("Player"))
         {
             isEnding = true;
             gameManager.instance.hint.SetActive(true);
-        }
-        else
-        {
-            gameManager.instance.hint.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider other)

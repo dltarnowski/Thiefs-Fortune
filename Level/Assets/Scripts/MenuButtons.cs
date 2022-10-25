@@ -36,6 +36,8 @@ public class MenuButtons : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void respawn()
     {
@@ -96,34 +98,35 @@ public class MenuButtons : MonoBehaviour
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
         {
-            int ammoGone = 5 - gameManager.instance.ammoCount;
+            int ammoGone = 5 - gameManager.instance.playerScript.ammoCount;
 
-            if (ammoGone <= 0)
+            if (ammoGone >= 1)
             {
-                gameManager.instance.ammoCount = 5;
+                gameManager.instance.playerScript.ammoCount = 5;
             }
             else
             {
-                gameManager.instance.ammoCount += ammoGone;
+                gameManager.instance.playerScript.ammoCount += ammoGone;
             }
 
             gameManager.instance.currencyNumber -= 2;
+            gameManager.instance.IncreaseAmmo();
         }
     }
 
     public void BuyHealth()
     {
-        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerHPBar.fillAmount != 1)
+        if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
         {
-            float healthGone = 1 - gameManager.instance.playerHPBar.fillAmount;
+            int healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
 
-            if (healthGone <= .5f)
+            if (healthGone >= (gameManager.instance.playerScript.HPOrig / 2))
             {
-                gameManager.instance.playerHPBar.fillAmount += .5f;
+                gameManager.instance.playerScript.HP += (gameManager.instance.playerScript.HPOrig / 2);
             }
             else
             {
-                gameManager.instance.playerHPBar.fillAmount += healthGone;
+                gameManager.instance.playerScript.HP += healthGone;
             }
 
             gameManager.instance.currencyNumber -= 2;

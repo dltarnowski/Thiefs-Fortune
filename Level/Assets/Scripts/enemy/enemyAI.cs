@@ -39,11 +39,21 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool stationary;
     [SerializeField] bool noRotation;
     [SerializeField] int roamDist;
+    [SerializeField] bool canRoam = true;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] enemyHurtAud;
+    [Range(0, 1)] [SerializeField] float enemyHurtAudVol;
+    [SerializeField] AudioClip[] enemyStepsAud;
+    [Range(0, 1)] [SerializeField] float enemyStepsAudVol;
+    [SerializeField] AudioClip enemyWeaponAud;
+    [Range(0, 1)] [SerializeField] float enemyWeaponAudVol;
+
+    bool playingSteps;
     Vector3 randomDirection;
     bool isMelee;
     bool isShooting;
-    [SerializeField] bool canRoam = true;
     bool playerInRange;
     Color modelColor;
     Vector3 playerDir;
@@ -97,6 +107,23 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    IEnumerator PlaySteps()
+    {
+        if (agent.velocity.normalized.magnitude > 0.3f && !playingSteps)
+        {
+            playingSteps = true;
+
+            aud.PlayOneShot(enemyStepsAud[Random.Range(0, enemyStepsAud.Length - 1)], enemyStepsAudVol);
+
+            if (agent.speed == speedChase)
+                yield return new WaitForSeconds(0.3f);
+            else
+                yield return new WaitForSeconds(0.4f);
+
+            playingSteps = false;
+        }
+    }
+
     void roam()
     {
         agent.stoppingDistance = 0;
@@ -147,6 +174,8 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
+
         if (HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
@@ -171,6 +200,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
         anim.SetTrigger("attack");
+        aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;
@@ -182,6 +212,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isMelee = true;
         if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
         {
+            aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
             anim.SetTrigger("attack");
         }
         yield return new WaitForSeconds(attackRate);
@@ -201,7 +232,12 @@ public class enemyAI : MonoBehaviour, IDamage
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+            if (!gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = true;
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -210,6 +246,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
             agent.stoppingDistance = 0;
+            if (gameManager.instance.music.inCombat)
+                gameManager.instance.music.inCombat = false;
         }
 
     }
