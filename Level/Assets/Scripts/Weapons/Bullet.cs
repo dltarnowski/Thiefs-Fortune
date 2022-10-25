@@ -24,11 +24,18 @@ public class Bullet : MonoBehaviour
         else if(CompareTag("CannonBall"))
         {
             CannonCamera = GameObject.FindGameObjectWithTag("CannonCamera");
-            if (CannonCamera != null && CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject.CompareTag("Barrel"))
+            if(CannonCamera == null)
             {
-                barrel = CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject;
-                direction = transform.forward + (Vector3.up * (barrel.transform.rotation.normalized.x/-1 * arcMultiplier));
-                rb.AddForce(direction * speed, ForceMode.Impulse);
+                rb.velocity = transform.forward * speed;
+            }
+            else
+            {
+                if (CannonCamera != null && CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject.CompareTag("Barrel"))
+                {
+                    barrel = CannonCamera.transform.parent.GetChild(0).GetChild(0).gameObject;
+                    direction = transform.forward + (Vector3.up * (barrel.transform.rotation.normalized.x/-1 * arcMultiplier));
+                    rb.AddForce(direction * speed, ForceMode.Impulse);
+                }
             }
         }
         Destroy(gameObject, destroyTime);
