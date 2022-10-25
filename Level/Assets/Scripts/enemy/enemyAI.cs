@@ -89,7 +89,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             if (agent.enabled)
             {
-                if (playerInRange)
+                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
