@@ -8,19 +8,22 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] Animator anim;
+    public Animator anim;
 
 
     [Header("----- Player Stats -----")]
     [Range(1, 5)] [SerializeField] float playerSpeed;
     [Range(2, 5)] [SerializeField] float runSpeed;
-    [Range(8, 15)] [SerializeField] float jumpHeight;
-    [Range(-5, -35)] [SerializeField] float gravityValue;
+    [Range(1, 15)] public float jumpHeight;
+    public float jumpHeightOrig;
+    [Range(-1, -35)] public float gravityValue;
+    public float gravityValueOrig;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
 
     public int HP;
     public int HPOrig;
+    public bool isUnderwater;
 
     public float Stam;
     public float maxStamina;
@@ -81,6 +84,8 @@ public class playerController : MonoBehaviour
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
+        jumpHeightOrig = jumpHeight;
+        gravityValueOrig = gravityValue;
     }
 
 
@@ -124,9 +129,18 @@ public class playerController : MonoBehaviour
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
         }
+
         //Move
-        move = transform.right * Input.GetAxis("Horizontal") +
-                       transform.forward * Input.GetAxis("Vertical");
+        if (isUnderwater)
+        {
+            move = (transform.right * Input.GetAxis("Horizontal")) / 3 +
+                       (transform.forward * Input.GetAxis("Vertical")) / 3;
+        }
+        else
+        {
+            move = transform.right * Input.GetAxis("Horizontal") +
+                           transform.forward * Input.GetAxis("Vertical");
+        }
 
         anim.SetFloat("Speed", move.normalized.magnitude);
 
