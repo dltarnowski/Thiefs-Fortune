@@ -91,7 +91,6 @@ public class gameManager : MonoBehaviour
             else
                 cursorUnlockUnpause();
         }
-        //CheckAmmoAmount();
     }
 
     public IEnumerator playerDamage()
