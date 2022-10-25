@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
+    [SerializeField] int headShotMultiplier;
     public GameObject gunModel;
     [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
@@ -203,7 +204,11 @@ public class playerController : MonoBehaviour
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
                     {
-                        hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                        if(hit.GetType() == typeof(SphereCollider) && !hit.collider.isTrigger)
+                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage * headShotMultiplier);
+                        else
+                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                        Debug.Log("Bodyshot");
                         Instantiate(gunStat[selectGun].hitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
