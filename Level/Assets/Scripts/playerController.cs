@@ -22,6 +22,10 @@ public class playerController : MonoBehaviour
     public int HP;
     public int HPOrig;
 
+    public float Stam;
+    public float maxStamina;
+    public float drainValue;
+
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
@@ -62,6 +66,7 @@ public class playerController : MonoBehaviour
     public bool gunGrabbed;
     bool playingSteps;
     bool isSprinting;
+    bool canSprint = true;
     bool isSwinging;
     [SerializeField] bool isOnSand;
     Vector3 move;
@@ -71,6 +76,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        maxStamina = Stam;
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
@@ -130,18 +136,37 @@ public class playerController : MonoBehaviour
 
 
         //Run
-        if (Input.GetKey(KeyCode.LeftShift))
+        if(canSprint == true)
         {
-            controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
-            isSprinting = true;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                controller.Move(move * Time.deltaTime * playerSpeed * runSpeed);
+                isSprinting = true;
+                if (Stam > 0)
+                {
+                    canSprint = true;
+                    DecreaseStamina();
+                }
+                if (Stam <= 0)
+                    canSprint = false;
+            }
+            else
+            {
+                controller.Move(move * Time.deltaTime * playerSpeed);
+                isSprinting = false;
+                if (Stam < maxStamina)
+                    IncreaseStamina();
+            }
         }
         else
         {
             controller.Move(move * Time.deltaTime * playerSpeed);
             isSprinting = false;
+            if (Stam < maxStamina)
+                IncreaseStamina();
+            if (Stam >= maxStamina)
+                canSprint = true;
         }
-
-
 
         //Jump
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
@@ -445,8 +470,17 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
         //Coin Bag updates
         gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
+        //Stamina bar updates
+        gameManager.instance.staminaBar.fillAmount = (float)Stam / (float)maxStamina;
     }
-
+    private void DecreaseStamina()
+    {
+        Stam -= drainValue * Time.deltaTime;
+    }
+    private void IncreaseStamina()
+    {
+        Stam += drainValue * Time.deltaTime;
+    }
     public void respawn()
     {
         if (gameManager.instance.pauseMenu)
