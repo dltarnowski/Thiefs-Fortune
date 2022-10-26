@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
+    public GameObject playerDamageIndicator;
     public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
