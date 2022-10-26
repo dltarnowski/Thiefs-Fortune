@@ -22,30 +22,38 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
+    public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
+    public Image playerHPLost;
+    public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
     public GameObject ObjectiveBox;
     [SerializeField] public Animator anim;
+
     [Header("----- UI -----")]
     public GameObject hint;
     public Image[] ammoArray;
+
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
-    public Collider collide;
+
     [Header("----- Gun -----")]
     public GameObject mainCamera;
     public Recoil recoilScript;
+
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
@@ -92,7 +100,6 @@ public class gameManager : MonoBehaviour
             else
                 cursorUnlockUnpause();
         }
-        //CheckAmmoAmount();
     }
 
     public IEnumerator playerDamage()
@@ -124,7 +131,6 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = false;
         healthBar.SetActive(false);
         Crosshair.SetActive(false);
-        collide.isTrigger = false;
     }
 
     public void NpcUnpause()
@@ -135,7 +141,6 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = true;
         healthBar.SetActive(true);
         Crosshair.SetActive(true);
-        collide.isTrigger = true;
     }
 
     public void checkEnemyTotal()

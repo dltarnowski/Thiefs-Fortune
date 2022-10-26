@@ -118,7 +118,7 @@ public class MenuButtons : MonoBehaviour
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
         {
-            int healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
+            float healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
 
             if (healthGone >= (gameManager.instance.playerScript.HPOrig / 2))
             {
@@ -127,6 +127,7 @@ public class MenuButtons : MonoBehaviour
             else
             {
                 gameManager.instance.playerScript.HP += healthGone;
+                gameManager.instance.playerScript.lerpTime = 0f;
             }
 
             gameManager.instance.currencyNumber -= 2;

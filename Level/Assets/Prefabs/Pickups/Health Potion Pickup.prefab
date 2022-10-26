@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthIncrease: 20
+  destroyTime: 30
 --- !u!114 &3576859548827628597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce75564c988c2f3449fbadee07660f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounceHeight: 0.5
+  bounceSpeed: 0.25
+  rotationSpeed: 45
 --- !u!33 &3576859548828324790
 MeshFilter:
   m_ObjectHideFlags: 0

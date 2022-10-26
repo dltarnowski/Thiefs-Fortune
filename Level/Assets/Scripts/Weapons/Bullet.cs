@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
             }
             if(other.CompareTag("Tower"))
             {
-                other.GetComponent<Trigger>().takeDamage(damage);
+                other.GetComponent<FractureObject>().takeDamage(damage);
             }
 
         }
