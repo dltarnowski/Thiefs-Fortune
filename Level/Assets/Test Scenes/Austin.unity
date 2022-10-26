@@ -721,6 +721,86 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567220722249864059, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722249864059, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722249864059, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722249864059, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722637119195, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722637119195, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722637119195, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220722637119195, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723014161361, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723014161361, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723014161361, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723014161361, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723592364721, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723592364721, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723592364721, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220723592364721, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220724210935349, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220724210935349, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220724210935349, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567220724210935349, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3135923197844007727, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1369,9 +1449,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8970215134164480752}
   model: {fileID: 7204424958566166669}
-  cannonCtrl: {fileID: 0}
-  cannonCol: {fileID: 0}
-  cannon: {fileID: 0}
   col: {fileID: 540687467056034618}
   anim: {fileID: 4941685614005036208}
   drops:
@@ -1407,6 +1484,13 @@ MonoBehaviour:
   noRotation: 0
   roamDist: 5
   canRoam: 1
+  aud: {fileID: 0}
+  enemyHurtAud: []
+  enemyHurtAudVol: 0
+  enemyStepsAud: []
+  enemyStepsAudVol: 0
+  enemyWeaponAud: {fileID: 0}
+  enemyWeaponAudVol: 0
 --- !u!95 &4941685614005036208
 Animator:
   serializedVersion: 4

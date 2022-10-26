@@ -7,6 +7,13 @@ using TMPro;
 public class CoinPickUp : MonoBehaviour
 {
     [SerializeField] int coinValue;
+    [SerializeField] int destroyTime;
+    
+    private void Start()
+    {
+        if (destroyTime > 0)
+            Destroy(gameObject, destroyTime);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
