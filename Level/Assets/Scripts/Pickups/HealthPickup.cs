@@ -16,12 +16,12 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
-            {
-                gameManager.instance.playerScript.HP += healthIncrease;
-                if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOrig)
-                    gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
-
+            gameManager.instance.playerScript.HP += healthIncrease;
+            gameManager.instance.playerScript.lerpTime = 0f;
+            gameManager.instance.playerScript.updatePlayerHUD();
+            if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOrig)
+            { 
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
                 Destroy(gameObject);
             }
         }

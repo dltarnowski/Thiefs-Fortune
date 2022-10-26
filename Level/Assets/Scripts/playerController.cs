@@ -20,11 +20,12 @@ public class playerController : MonoBehaviour
     public float gravityValueOrig;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [Range(0.1f, 1.0f)] [SerializeField] float crouchHeight;
-
-    public int HP;
-    public int HPOrig;
-    public bool isUnderwater;
-
+    //Health
+    public float HP;
+    public float lerpTime;
+    public float HPOrig;
+    public float HPLoss = 2f;
+    //Stamina
     public float Stam;
     public float maxStamina;
     public float drainValue;
@@ -76,11 +77,13 @@ public class playerController : MonoBehaviour
     Vector3 move;
 
     public int barrel;
-
+    private Color staminColor;
+    public bool isUnderwater;
     void Start()
     {
         HPOrig = HP;
         maxStamina = Stam;
+        staminColor = new Color(0f, 250f, 253f, 255f);
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
@@ -102,6 +105,7 @@ public class playerController : MonoBehaviour
             GunSelect();
         else
             MeleeSelect();
+        HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
     }
 
@@ -159,11 +163,16 @@ public class playerController : MonoBehaviour
                 isSprinting = true;
                 if (Stam > 0)
                 {
+                    gameManager.instance.staminaBar.color = staminColor;
                     canSprint = true;
                     DecreaseStamina();
                 }
                 if (Stam <= 0)
+                {
                     canSprint = false;
+                    gameManager.instance.staminaBar.color = Color.red;
+                }
+
             }
             else
             {
@@ -180,7 +189,10 @@ public class playerController : MonoBehaviour
             if (Stam < maxStamina)
                 IncreaseStamina();
             if (Stam >= maxStamina)
+            {
+                gameManager.instance.staminaBar.color = staminColor;
                 canSprint = true;
+            }    
         }
 
         //Jump
@@ -468,7 +480,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-
+        lerpTime = 0f;
         aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
 
         StartCoroutine(gameManager.instance.playerDamage());
@@ -486,7 +498,27 @@ public class playerController : MonoBehaviour
     public void updatePlayerHUD()
     {
         //Health bar updates
-        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOrig;
+        float fillA = gameManager.instance.playerHPBar.fillAmount;
+        float fillB = gameManager.instance.playerHPLost.fillAmount;
+        float healthDiff = HP / HPOrig;
+        if(fillB > healthDiff)
+        {
+            gameManager.instance.playerHPBar.fillAmount = healthDiff;
+            gameManager.instance.playerHPLost.color = Color.red;
+            lerpTime += Time.deltaTime;
+            float percentComplete = lerpTime / HPLoss;
+            percentComplete = percentComplete * percentComplete;
+            gameManager.instance.playerHPLost.fillAmount = Mathf.Lerp(fillB, healthDiff, percentComplete);
+        }
+        if (fillA < healthDiff)
+        {
+            gameManager.instance.playerHPLost.color = Color.blue;
+            gameManager.instance.playerHPLost.fillAmount = healthDiff;
+            lerpTime += Time.deltaTime;
+            float percentComplete = lerpTime / HPLoss;
+            percentComplete = percentComplete * percentComplete;
+            gameManager.instance.playerHPBar.fillAmount = Mathf.Lerp(fillA, gameManager.instance.playerHPLost.fillAmount, percentComplete);
+        }
         //Coin Bag updates
         gameManager.instance.coinCountText.text = gameManager.instance.currencyNumber.ToString("F0");
         //Stamina bar updates
