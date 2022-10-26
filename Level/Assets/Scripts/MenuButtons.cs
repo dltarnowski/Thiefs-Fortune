@@ -50,6 +50,30 @@ public class MenuButtons : MonoBehaviour
         Debug.Log("Game has ended");
     }
 
+    public void Settings()
+    {
+        gameManager.instance.cursorLockPause();
+        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.isPaused = false;
+        if (gameManager.instance.crossHairVisible)
+        {
+            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
+            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
+        }
+        gameManager.instance.settingsMenu.SetActive(true);
+    }
+    
+    public void Back()
+    {
+        if (gameManager.instance.crossHairVisible)
+        {
+            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
+            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
+        }
+        gameManager.instance.settingsMenu.SetActive(false);
+        gameManager.instance.pauseMenu.SetActive(true);
+    }
+
     public void WhereAmI()
     {
         dialogue.text = "Look around you! Paradise!";

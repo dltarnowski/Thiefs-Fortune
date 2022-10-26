@@ -20,6 +20,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
 
