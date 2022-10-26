@@ -29,7 +29,6 @@ public class gameManager : MonoBehaviour
     public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
-    public Image playerHPLost;
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
