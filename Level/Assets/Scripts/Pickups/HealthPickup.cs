@@ -24,6 +24,7 @@ public class HealthPickup : MonoBehaviour
                 gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOrig;
                 Destroy(gameObject);
             }
+            gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", gameManager.instance.playerScript.HP);
         }
     }
 }
