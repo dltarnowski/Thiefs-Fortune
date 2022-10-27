@@ -61,6 +61,8 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool crossHairVisible = true;
     public Slider MSSlider;
+    public Slider MusicSlider;
+    public Slider PlayerAudioSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
