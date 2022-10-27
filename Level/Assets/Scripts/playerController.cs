@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour
 
 
     [Header("----- Audio -----")]
-    [SerializeField] AudioSource aud;
+    public AudioSource aud;
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
