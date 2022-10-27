@@ -60,6 +60,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+    public Slider MSSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -104,6 +105,7 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
+   
 
     public IEnumerator playerDamage()
     {
