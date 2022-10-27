@@ -82,6 +82,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
         respawn();
@@ -482,6 +483,8 @@ public class playerController : MonoBehaviour
         HP -= dmg;
         lerpTime = 0f;
         aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
+
+        gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
 
         StartCoroutine(gameManager.instance.playerDamage());
         if (HP <= 0)

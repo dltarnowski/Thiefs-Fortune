@@ -20,12 +20,14 @@ public class gameManager : MonoBehaviour
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
 
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
+    public GameObject playerDamageIndicator;
     public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
@@ -33,6 +35,7 @@ public class gameManager : MonoBehaviour
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+    [SerializeField] blackSpot blackspot;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -57,6 +60,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+    public Slider MSSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -101,6 +105,7 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
+   
 
     public IEnumerator playerDamage()
     {

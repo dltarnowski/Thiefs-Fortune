@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class blackSpot : MonoBehaviour
@@ -7,11 +8,13 @@ public class blackSpot : MonoBehaviour
     [Range(0f , 1f)] public float blackSpotMultiplier;
     [SerializeField] float raidTimer;
     [SerializeField] GameObject spawner;
+    [SerializeField] Image blackspotUI;
     float spawnChance;
+    float currblackspot;
     bool isSpawning;
     void Start()
     {
-        
+        FillBlackSpot();
     }
 
     // Update is called once per frame
@@ -19,6 +22,17 @@ public class blackSpot : MonoBehaviour
     {
         if(!isSpawning && blackSpotMultiplier > 0)
             StartCoroutine(raid());
+
+        if(currblackspot != blackSpotMultiplier)
+        {
+            FillBlackSpot();
+        }
+    }
+
+    public void FillBlackSpot()
+    {
+        currblackspot = blackSpotMultiplier;
+        blackspotUI.fillAmount = blackSpotMultiplier;
     }
 
     IEnumerator raid()
