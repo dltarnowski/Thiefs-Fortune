@@ -35,6 +35,7 @@ public class gameManager : MonoBehaviour
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+    [SerializeField] blackSpot blackspot;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -59,6 +60,7 @@ public class gameManager : MonoBehaviour
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+    public Slider MSSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -103,6 +105,7 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
+   
 
     public IEnumerator playerDamage()
     {
