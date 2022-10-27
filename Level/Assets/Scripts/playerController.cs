@@ -61,6 +61,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepsAud;
     [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
+    float currVolume;
 
     private Vector3 playerVelocity;
     private int timesJumped;
@@ -95,6 +96,10 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        if (currVolume != gameManager.instance.PlayerAudioSlider.value)
+        {
+            ChangePlayerVolume();
+        }
         movement();
         StartCoroutine(PlaySteps());
         if (gunModel.activeSelf)
@@ -214,7 +219,7 @@ public class playerController : MonoBehaviour
         {
             playingSteps = true;
 
-            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], currVolume);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -571,5 +576,10 @@ public class playerController : MonoBehaviour
             isOnSand = false;
             Debug.Log("Not Sand");
         }
+    }
+    public void ChangePlayerVolume()
+    {
+        aud.volume = gameManager.instance.PlayerAudioSlider.value;
+        currVolume = aud.volume;
     }
 }

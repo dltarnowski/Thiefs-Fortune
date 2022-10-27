@@ -7,7 +7,6 @@ public class musicSwap : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip levelMusic;
     [SerializeField] AudioClip fightingMusic;
-    //[Range(0, 1)] [SerializeField] float musicAudVol;
     public bool inCombat;
     public bool levelMusicPlaying;
     public bool fightingMusicPlaying;
