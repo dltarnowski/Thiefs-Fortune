@@ -105,7 +105,7 @@ public class MenuButtons : MonoBehaviour
         }
     }
 
-    public void BuyGun()
+    /*public void BuyGun()
     {
         if(gameManager.instance.currencyNumber >= 10)
         {
@@ -116,7 +116,7 @@ public class MenuButtons : MonoBehaviour
         {
             return;
         }
-    }
+    }*/
 
     public void BuyAmmo()
     {

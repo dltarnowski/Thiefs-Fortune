@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class playerController : MonoBehaviour
 {
@@ -33,14 +34,15 @@ public class playerController : MonoBehaviour
     [Header("----- Gun Stats -----")]
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
-    [SerializeField] int shootDamage;
-    [SerializeField] int headShotMultiplier;
+    [SerializeField] float shootDamage;
+    [SerializeField] float headShotMultiplier;
     public GameObject gunModel;
     [SerializeField] public int ammoCount;
     public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
     public List<Transform> muzzleLocations = new List<Transform>();
-    ParticleSystem gunSmoke;
+    public ParticleSystem gunSmoke;
+    public Gun stats;
 
     [Header("----- Melee Stats -----")]
     [SerializeField] float swingSpeed;
@@ -55,7 +57,7 @@ public class playerController : MonoBehaviour
 
 
     [Header("----- Audio -----")]
-    [SerializeField] AudioSource aud;
+    [SerializeField] public AudioSource aud;
     [SerializeField] AudioClip[] playerHurtAud;
     [Range(0, 1)] [SerializeField] float playerHurtAudVol;
     [SerializeField] AudioClip[] playerStepsAud;
@@ -67,7 +69,7 @@ public class playerController : MonoBehaviour
     private int timesJumped;
     [Header("----- Misc. -----")]
     public bool isShooting;
-    public int selectGun;
+    public int selectGun = 0;
     public int selectMelee;
     public bool gunGrabbed;
     bool playingSteps;
@@ -103,16 +105,20 @@ public class playerController : MonoBehaviour
         movement();
         StartCoroutine(PlaySteps());
         if (gunModel.activeSelf)
-            StartCoroutine(shoot());
+            StartCoroutine(gameManager.instance.inventory.);
         else if (meleeModel.activeSelf)
             StartCoroutine(swing());
         SelectMeleeOrGun();
-        if (gunModel.activeSelf)
+        /*if (gunModel.activeSelf)
             GunSelect();
         else
-            MeleeSelect();
+            MeleeSelect();*/
         HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
+        if(gameManager.instance.inventory.items.Count == 1)
+        {
+            GunPickup();
+        }
     }
 
     void movement()
@@ -243,50 +249,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator shoot()
-    {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
-        {
-            if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && ammoCount > 0)
-            {
-                isShooting = true;
-                ammoCount--;
-                gameManager.instance.ReduceAmmo();
-                gameManager.instance.ammoCount = gunStat[selectGun].ammoCount = ammoCount;
-
-                RaycastHit hit;
-                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red, 20);
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-                {
-                    //  -------      WAITING ON IDAMAGE      -------
-                    if (hit.collider.GetComponent<IDamage>() != null)
-                    {
-                        if(hit.GetType() == typeof(SphereCollider) && !hit.collider.isTrigger)
-                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage * headShotMultiplier);
-                        else
-                            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                        Debug.Log("Bodyshot");
-                        Instantiate(gunStat[selectGun].hitEffect, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
-                    }
-                }
-
-                aud.PlayOneShot(gunStat[selectGun].gunSound);
-                recoilScript.RecoilFire();
-                gunSmoke.transform.localPosition = gunStat[selectGun].muzzleLocations[barrel].position;
-                gunSmoke.Play();
-
-
-                if (barrel >= muzzleLocations.Count - 1)
-                    barrel = 0;
-                else
-                    barrel++;
-
-                Debug.Log("Shoot!");
-                yield return new WaitForSeconds(shootRate);
-                isShooting = false;
-            }
-        }
-    }
+    
     IEnumerator swing()
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
@@ -324,40 +287,42 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void GunPickup(GunStats stats)
+    public void GunPickup()
     {
-        gunModel.SetActive(true);
-        meleeModel.SetActive(false);
+        if (gameManager.instance.inventory.items[0].GetType() == typeof(Gun))
+        {
+            stats = (Gun)gameManager.instance.inventory.items[0];
 
-        shootRate = stats.shootSpeed;
-        shootDist = stats.shootDist;
-        shootDamage = stats.shootDamage;
+            gunModel.SetActive(true);
+            meleeModel.SetActive(false);
 
-        ammoCount = stats.ammoCount = stats.ammoStartCount;
-        gameManager.instance.IncreaseAmmo();
+            shootRate = stats.speed;
+            shootDist = stats.distance;
+            shootDamage = stats.strength;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = stats.gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+            ammoCount = stats.ammoCount = stats.ammoStart;
+            gameManager.instance.IncreaseAmmo();
 
-        //muzzleLocations[barrel] = stats.muzzleLocations[barrel];
-        gameManager.instance.recoilScript.SetGunStatScript(stats);
-        CopyMuzzleLocations(stats.muzzleLocations);
+            gunModel.GetComponent<MeshFilter>().sharedMesh = stats.model.GetComponent<MeshFilter>().sharedMesh;
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        gunStat.Add(stats);
-        gunGrabbed = true;
+            //muzzleLocations[barrel] = stats.muzzleLocations[barrel];
+            gameManager.instance.recoilScript.SetGunStatScript(stats);
+            CopyMuzzleLocations(stats.muzzleLocations);
 
-        //For toggling animations
-        anim.SetBool("IsMelee", false);
-        anim.SetBool("IsRanged", true);
+            //For toggling animations
+            anim.SetBool("IsMelee", false);
+            anim.SetBool("IsRanged", true);
 
 
 
-        if (gunStat.Count == 1)
-            selectGun = 0;
-        else
-            selectGun++;
+            if (gunStat.Count == 1)
+                selectGun = 0;
+            else
+                selectGun++;
 
-        barrel = 0;
+            barrel = 0;
+        }
     }
 
     public void MeleePickup(MeleeStats stats)
@@ -386,7 +351,7 @@ public class playerController : MonoBehaviour
             selectMelee++;
     }
 
-    void GunSelect()
+    /*void GunSelect()
     {
         if (gunStat.Count > 1)
         {
@@ -401,7 +366,7 @@ public class playerController : MonoBehaviour
                 ChangeGuns();
             }
         }
-    }
+    }*/
 
     void MeleeSelect()
     {
@@ -420,7 +385,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void ChangeGuns()
+   /* void ChangeGuns()
     {
         shootRate = gunStat[selectGun].shootSpeed;
         shootDist = gunStat[selectGun].shootDist;
@@ -436,7 +401,7 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         barrel = 0;
-    }
+    }*/
 
     void ChangeMelee()
     {

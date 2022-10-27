@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GunPickup : MonoBehaviour
 {
-    [SerializeField] GunStats gunStat;
+    [SerializeField] Gun gun;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.GunPickup(gunStat);
+            gameManager.instance.inventory.Add(gun);
 
             Destroy(gameObject);
         }

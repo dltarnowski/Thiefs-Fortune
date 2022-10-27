@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3765fdd559c15b4c88c80f96f8163cc, type: 3}
+  m_Name: Gun-Blunderbuss
+  m_EditorClassIdentifier: 
+  name: Blunder Buss
+  strength: 10
+  speed: 2
+  model: {fileID: 169462, guid: 38a5a111ef2259e4ea7ab86844830372, type: 3}
+  sound: {fileID: 8300000, guid: ca1e32466b7432c44aec1ecc708ee92e, type: 3}
+  hitFX: {fileID: 1017173258155303825, guid: 78e20494946b4fb4188309f13fc0e5c1, type: 3}
+  recoilX: -10
+  recoilY: 10
+  recoilZ: 0.35
+  snappiness: 6
+  returnSpeed: 4
+  distance: 10
+  ammoStart: 5
+  ammoCount: 5
+  muzzleLocations:
+  - {fileID: 7505296801618762357, guid: a9232905cb1337a4f8bec0efcbb774ae, type: 3}

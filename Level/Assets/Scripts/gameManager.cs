@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public int EnemyNumber;
     public int currencyNumber;
+    public Inventory inventory;
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
@@ -169,8 +170,8 @@ public class gameManager : MonoBehaviour
 
     public void ReduceAmmo()
     {
-        ammoCount = playerScript.ammoCount+1;
-        ammoArray[ammoCount-1].enabled = false;
+        if(ammoArray.Length > 0)
+            ammoArray[ammoCount-1].enabled = false;
     }
 
     public void IncreaseAmmo()

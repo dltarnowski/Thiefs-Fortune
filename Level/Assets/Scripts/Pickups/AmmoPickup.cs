@@ -16,7 +16,6 @@ public class AmmoPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
             if (gameManager.instance.playerScript.ammoCount < 5)
             {
                 gameManager.instance.playerScript.ammoCount += ammoIncrease;

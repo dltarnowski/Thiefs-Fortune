@@ -12,7 +12,7 @@ public class Recoil : MonoBehaviour
 
     [SerializeField] Vector3 movementVector;
 
-    GunStats gunStatScript;
+    Gun gunStatScript;
     MeleeStats meleeStatScript;
 
     void Start()
@@ -50,7 +50,7 @@ public class Recoil : MonoBehaviour
         Debug.Log("Swing");
     }
 
-    public void SetGunStatScript(GunStats stats)
+    public void SetGunStatScript(Gun stats)
     {
         gunStatScript = stats;
     }
