@@ -10,6 +10,7 @@ public abstract class Weapon : Item
     public float speed;
     public AudioClip sound;
     public GameObject hitFX;
+    public int distance;
     public float recoilX, recoilY, recoilZ;
     public float snappiness;
     public float returnSpeed;

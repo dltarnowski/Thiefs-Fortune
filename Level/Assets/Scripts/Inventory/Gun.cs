@@ -8,7 +8,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Gun", menuName = "Inventory/Gun")]
 public class Gun : Weapon
 {
-    public int distance;
     public int ammoStart;
     public int ammoCount;
     public List<Transform> muzzleLocations;
