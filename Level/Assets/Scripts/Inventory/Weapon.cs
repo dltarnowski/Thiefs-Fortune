@@ -6,11 +6,10 @@ using UnityEngine;
 public abstract class Weapon : Item
 {
     //Stats
-    public WeaponSlot weaponSlot;
     public float speed;
     public AudioClip sound;
-    public GameObject hitFX;
     public int distance;
+    public GameObject hitFX;
     public float recoilX, recoilY, recoilZ;
     public float snappiness;
     public float returnSpeed;
@@ -19,8 +18,8 @@ public abstract class Weapon : Item
     {
         base.Use();
         EquipmentManager.instance.Equip(this);
+
         RemoveFromInventory();
     }
 }
 
-public enum WeaponSlot { Gun1, Gun2, Sword1, Sword2 }

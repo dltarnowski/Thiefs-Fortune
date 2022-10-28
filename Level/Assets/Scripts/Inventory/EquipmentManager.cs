@@ -21,20 +21,20 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        int numSlots = System.Enum.GetNames(typeof(WeaponSlot)).Length;
+        int numSlots = System.Enum.GetNames(typeof(ItemSlot)).Length;
         currentWeapon = new Weapon[numSlots];
     }
 
     public void Equip (Weapon newWeapon)
     {
-        int slotIndex = (int)newWeapon.weaponSlot;
+        int slotIndex = (int)newWeapon.itemSlot;
 
         Weapon oldWeapon= null;
 
         if(currentWeapon[slotIndex] != null)
         {
             oldWeapon = currentWeapon[slotIndex];
-            Inventory.instance.Add(oldWeapon);
+            Inventory.instance.Add(oldWeapon, slotIndex);
         }
 
         if(onWeaponChanged != null)
@@ -72,7 +72,7 @@ public class EquipmentManager : MonoBehaviour
                 gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = null;
             }
             Weapon oldWeapon = currentWeapon[slotIndex];
-            Inventory.instance.Add(oldWeapon);
+            Inventory.instance.Add(oldWeapon, (int)oldWeapon.itemSlot);
 
             currentWeapon[slotIndex] = null;
 

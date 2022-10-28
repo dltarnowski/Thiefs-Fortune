@@ -10,7 +10,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.Add(item);
+            Inventory.instance.Add(item, (int)item.itemSlot);
 
             Destroy(gameObject);
         }

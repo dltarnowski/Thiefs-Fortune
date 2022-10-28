@@ -23,17 +23,23 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
-    public bool Add(Item item)
+    private void Start()
+    {
+        items.Capacity = space;
+    }
+
+    public bool Add(Item item, int slot)
     {
         if(!item.isDefaultItem)
         {
-            if(items.Count >= space)
+            if(items[slot] == null)
+                items[slot] = item;
+            else if (items.Count >= space)
             {
                 Debug.Log("Not enough room");
                 return false;
             }
 
-            items.Add(item);
 
             if(onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
@@ -43,7 +49,7 @@ public class Inventory : MonoBehaviour
 
     public void Remove(Item item)
     {
-        items.Remove(item);
+        items[(int)item.itemSlot] = null;
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
