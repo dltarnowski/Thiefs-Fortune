@@ -27,6 +27,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void Equip (Weapon newWeapon)
     {
+        
         int slotIndex = (int)newWeapon.itemSlot;
 
         Weapon oldWeapon= null;
