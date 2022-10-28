@@ -10,9 +10,10 @@ public class GunPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.inventory.Add(gun);
+            bool wasPickedUp = Inventory.instance.Add(gun);
 
-            Destroy(gameObject);
+            if(wasPickedUp)
+                Destroy(gameObject);
         }
     }
 }
