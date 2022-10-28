@@ -2,9 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : ScriptableObject
+[CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item")]
+public abstract class Item : ScriptableObject
 {
-    public string name;
+    new public string name = "New Item";
+    public Sprite icon = null;
+    public bool isDefaultItem = false;
     public float strength;
+
+    public virtual void Use()
+    {
+
+    }    
+
+    public void RemoveFromInventory()
+    {
+        Inventory.instance.Remove(this);
+    }
 }
 
