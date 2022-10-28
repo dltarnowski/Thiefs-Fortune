@@ -498,7 +498,7 @@ public class playerController : MonoBehaviour
         {
             gameManager.instance.Crosshair.SetActive(false);
             gameManager.instance.playerDamageFlash.SetActive(false);
-
+            gameManager.instance.shopInventory.SetActive(false);
             gameManager.instance.deathMenu.SetActive(true);
             gameManager.instance.cursorLockPause();
         }
