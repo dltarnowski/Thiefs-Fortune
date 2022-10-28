@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3765fdd559c15b4c88c80f96f8163cc, type: 3}
+  m_Name: Gun - Pistol
+  m_EditorClassIdentifier: 
+  name: Pistol
+  icon: {fileID: 0}
+  isDefaultItem: 0
+  strength: 2
+  model: {fileID: 6683910282277353856, guid: 27c105735705dd7499728f9d31c4d58d, type: 3}
+  weaponSlot: 0
+  speed: 1
+  sound: {fileID: 8300000, guid: ef4d7f80cfec37b4ab25454b178f20a8, type: 3}
+  hitFX: {fileID: 1017173258155303825, guid: 78e20494946b4fb4188309f13fc0e5c1, type: 3}
+  recoilX: -3
+  recoilY: 3
+  recoilZ: 0.2
+  snappiness: 6
+  returnSpeed: 4
+  distance: 25
+  ammoStart: 5
+  ammoCount: 5
+  muzzleLocations:
+  - {fileID: 8894435578982635951, guid: 03a4e64f5b82b76499dde835d42e18ee, type: 3}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3765fdd559c15b4c88c80f96f8163cc, type: 3}
+  m_Name: Gun - Rifle
+  m_EditorClassIdentifier: 
+  name: Rifle
+  icon: {fileID: 0}
+  isDefaultItem: 0
+  strength: 7
+  model: {fileID: 7544101266607000774, guid: 2273de53716a424469b44f20a576da37, type: 3}
+  weaponSlot: 1
+  speed: 1
+  sound: {fileID: 8300000, guid: bd7806da797f37849871f6ec0ddd005d, type: 3}
+  hitFX: {fileID: 1017173258155303825, guid: 78e20494946b4fb4188309f13fc0e5c1, type: 3}
+  recoilX: -8
+  recoilY: 8
+  recoilZ: 0.3
+  snappiness: 6
+  returnSpeed: 4
+  distance: 100
+  ammoStart: 5
+  ammoCount: 5
+  muzzleLocations:
+  - {fileID: 7598378938971797205, guid: 42eba11235cb71f4da6097758ecb032b, type: 3}

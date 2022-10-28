@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleePickup : MonoBehaviour
 {
-    [SerializeField] MeleeStats meleeStats;
+    //[SerializeField] MeleeStats meleeStats;
 
     private void OnTriggerEnter(Collider other)
     {

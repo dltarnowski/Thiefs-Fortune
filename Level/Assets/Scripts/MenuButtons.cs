@@ -6,7 +6,7 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    [SerializeField] GunStats blunder;
+    [SerializeField] Gun blunder;
     public TextMeshProUGUI dialogue;
     int currentPosition;
     int start = 0;

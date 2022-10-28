@@ -90,9 +90,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-            Equip((Weapon)Inventory.instance.items[1]);
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.P))
             unEquipAll();
     }
 }

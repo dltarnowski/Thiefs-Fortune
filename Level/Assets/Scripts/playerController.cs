@@ -51,7 +51,6 @@ public class playerController : MonoBehaviour
     public AudioClip meleeSound;
     public GameObject meleeHitEffect;
     public Sword swordStat;
-    public List<MeleeStats> meleeStat = new List<MeleeStats>();
     [SerializeField] AudioClip[] gruntAudio;
 
 
