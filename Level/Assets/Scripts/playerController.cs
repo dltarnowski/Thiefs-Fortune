@@ -88,6 +88,8 @@ public class playerController : MonoBehaviour
 
         ItemSelect();
 
+       
+
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
             ChangePlayerVolume();
@@ -95,12 +97,19 @@ public class playerController : MonoBehaviour
         movement();
         StartCoroutine(PlaySteps());
         if(gunStats != null)
-            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh && (EquipmentManager.instance.currentWeapon[0] == gunStats || EquipmentManager.instance.currentWeapon[1] == gunStats))
+        {
+            anim.SetBool("IsRanged", true);
+            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
+                && (EquipmentManager.instance.currentWeapon[0] == gunStats || EquipmentManager.instance.currentWeapon[1] == gunStats))
                 StartCoroutine(shoot());
+        }
         if(swordStat != null)
+        {
+            anim.SetBool("IsRanged", false);
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
                 && (EquipmentManager.instance.currentWeapon[2] == swordStat || EquipmentManager.instance.currentWeapon[3] == swordStat))
                 StartCoroutine(swing());
+        }
         HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
 
@@ -326,13 +335,13 @@ public class playerController : MonoBehaviour
                 {
                     selectItem--;
                 }*/
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && EquipmentManager.instance.currentWeapon[0] != null)
             EquipmentManager.instance.currentWeapon[0].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && EquipmentManager.instance.currentWeapon[1] != null)
             EquipmentManager.instance.currentWeapon[1].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentWeapon[2] != null)
             EquipmentManager.instance.currentWeapon[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentWeapon[3] != null)
             EquipmentManager.instance.currentWeapon[3].Use();
     }
 

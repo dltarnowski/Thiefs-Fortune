@@ -45,6 +45,10 @@ public class EquipmentManager : MonoBehaviour
         currentWeapon[slotIndex] = newWeapon;
         gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = newWeapon.model.GetComponent<MeshRenderer>().sharedMaterial;
         gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = newWeapon.model.GetComponent<MeshFilter>().sharedMesh;
+
+        gameManager.instance.playerScript.gunStats = null;
+        gameManager.instance.playerScript.swordStat = null;
+
         if (newWeapon.GetType() == typeof(Gun))
             gameManager.instance.playerScript.gunStats = (Gun)newWeapon;
         else if (newWeapon.GetType() == typeof(Sword))
