@@ -13,7 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
-    public int HP;
+    [SerializeField] int HP;
     [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
