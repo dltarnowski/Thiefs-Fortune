@@ -56,9 +56,7 @@ public class playerController : MonoBehaviour
     private int timesJumped;
     [Header("----- Misc. -----")]
     public bool isShooting;
-    public int selectGun = 0;
-    public int selectMelee;
-    public bool gunGrabbed;
+    public int selectItem;
     bool playingSteps;
     bool isSprinting;
     bool canSprint = true;
@@ -87,6 +85,8 @@ public class playerController : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
+
+        ItemSelect();
 
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
@@ -316,22 +316,25 @@ public class playerController : MonoBehaviour
         }
     }
 
-    /*void MeleeSelect()
+    void ItemSelect()
     {
-        if (meleeStat.Count > 1)
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectMelee < meleeStat.Count - 1)
-            {
-                selectMelee++;
-                ChangeMelee();
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectMelee > 0)
-            {
-                selectMelee--;
-                ChangeMelee();
-            }
-        }
-    }*/
+        /*        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectItem < EquipmentManager.instance.currentWeapon.Length - 1)
+                {
+                    selectItem++;
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectItem > 0)
+                {
+                    selectItem--;
+                }*/
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            EquipmentManager.instance.currentWeapon[0].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            EquipmentManager.instance.currentWeapon[1].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            EquipmentManager.instance.currentWeapon[2].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            EquipmentManager.instance.currentWeapon[3].Use();
+    }
 
     public void takeDamage(int dmg)
     {
