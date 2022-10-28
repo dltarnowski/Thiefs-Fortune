@@ -8,7 +8,6 @@ public abstract class Weapon : Item
     //Stats
     public WeaponSlot weaponSlot;
     public float speed;
-    public GameObject model;
     public AudioClip sound;
     public GameObject hitFX;
     public float recoilX, recoilY, recoilZ;

@@ -10,7 +10,7 @@ public class MeleePickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.MeleePickup(meleeStats);
+            //gameManager.instance.playerScript.MeleePickup(meleeStats);
 
             Destroy(gameObject);
         }

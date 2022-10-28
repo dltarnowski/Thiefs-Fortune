@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    [SerializeField] Item item;
+    [SerializeField] public Item item;
 
     private void OnTriggerEnter(Collider other)
     {

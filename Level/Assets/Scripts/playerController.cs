@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class playerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class playerController : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     public Animator anim;
+    public GameObject itemDropPoint;
 
 
     [Header("----- Player Stats -----")]
@@ -95,6 +97,9 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
             ChangePlayerVolume();
@@ -108,17 +113,9 @@ public class playerController : MonoBehaviour
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
                 && (EquipmentManager.instance.currentWeapon[2] == swordStat || EquipmentManager.instance.currentWeapon[3] == swordStat))
                 StartCoroutine(swing());
-        //SelectMeleeOrGun();
-/*        if (gunStats != null)
-            GunSelect();
-        else if (meleeStat != null)
-            MeleeSelect();*/
         HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
-/*        if(Inventory.instance.items.Count == 1)
-        {
-            GunPickup();
-        }*/
+
     }
 
     public IEnumerator shoot()
@@ -294,8 +291,6 @@ public class playerController : MonoBehaviour
             playingSteps = false;
         }
     }
-
-    
     IEnumerator swing()
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
@@ -333,88 +328,7 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void GunPickup()
-    {
-        if (Inventory.instance.items[0].GetType() == typeof(Gun))
-        {
-            //stats = (Gun)Inventory.instance.items[0];
-
-            //weaponMesh.enabled = true;
-            meleeModel.SetActive(false);
-/*
-            shootRate = stats.speed;
-            shootDist = stats.distance;
-            shootDamage = stats.strength;*/
-
-            //ammoCount = stats.ammoCount = stats.ammoStart;
-            gameManager.instance.IncreaseAmmo();
-
-/*            we.GetComponent<MeshFilter>().sharedMesh = stats.model.GetComponent<MeshFilter>().sharedMesh;
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = stats.model.GetComponent<MeshRenderer>().sharedMaterial;*/
-
-            //muzzleLocations[barrel] = stats.muzzleLocations[barrel];
-            //gameManager.instance.recoilScript.SetGunStatScript(stats);
-            //CopyMuzzleLocations(stats.muzzleLocations);
-
-            //For toggling animations
-            anim.SetBool("IsMelee", false);
-            anim.SetBool("IsRanged", true);
-
-
-/*
-            if (EquipmentManager.instance.currentWeapon. == 1)
-                selectGun = 0;
-            else
-                selectGun++;
-
-            barrel = 0;*/
-        }
-    }
-
-    public void MeleePickup(MeleeStats stats)
-    {
-        meleeModel.SetActive(true);
-        //gunModel.SetActive(false);
-
-        swingSpeed = stats.swingSpeed;
-        meleeDamage = stats.meleeDamage;
-        hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenCurrentAmount = stats.hitsUntilBrokenStartAmmount;
-
-        meleeModel.GetComponent<MeshFilter>().sharedMesh = stats.meleeModel.GetComponent<MeshFilter>().sharedMesh;
-        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = stats.meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-        //gameManager.instance.recoilScript.SetMeleeStatScript(stats);
-
-        meleeStat.Add(stats);
-
-        //For toggling animations
-        anim.SetBool("IsMelee", true);
-        anim.SetBool("IsRanged", false);
-
-        if (meleeStat.Count == 1)
-            selectMelee = 0;
-        else
-            selectMelee++;
-    }
-
-    void GunSelect()
-    {
-        if (Inventory.instance.items.Count > 1)
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectGun < 2)
-            {
-                selectGun++;
-                ChangeGuns();
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectGun > 0)
-            {
-                selectGun--;
-                ChangeGuns();
-            }
-        }
-    }
-
-    void MeleeSelect()
+    /*void MeleeSelect()
     {
         if (meleeStat.Count > 1)
         {
@@ -429,70 +343,7 @@ public class playerController : MonoBehaviour
                 ChangeMelee();
             }
         }
-    }
-
-    void ChangeGuns()
-    {
-/*        shootRate = gunStat[selectGun].shootSpeed;
-        shootDist = gunStat[selectGun].shootDist;
-        shootDamage = gunStat[selectGun].shootDamage;
-        ammoCount = gunStat[selectGun].ammoCount;
-        gameManager.instance.IncreaseAmmo();*/
-
-       // gameManager.instance.recoilScript.SetGunStatScript((Gun)Inventory.instance.items[selectGun]);
-        //CopyMuzzleLocations(gunStat[selectGun].muzzleLocations);
-        //muzzleLocations[barrel] = gunStat[selectGun].muzzleLocations[barrel];
-
-/*        gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat[selectGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat[selectGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;*/
-
-        barrel = 0;
-    }
-
-    void ChangeMelee()
-    {
-        swingSpeed = meleeStat[selectMelee].swingSpeed;
-        meleeDamage = meleeStat[selectMelee].meleeDamage;
-        hitsUntilBrokenCurrentAmount = meleeStat[selectMelee].hitsUntilBrokenCurrentAmount;
-
-        //gameManager.instance.recoilScript.SetMeleeStatScript(meleeStat[selectMelee]);
-
-        meleeModel.GetComponent<MeshFilter>().sharedMesh = meleeStat[selectMelee].meleeModel.GetComponent<MeshFilter>().sharedMesh;
-        meleeModel.GetComponent<MeshRenderer>().sharedMaterial = meleeStat[selectMelee].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-    }
-
-    void SelectMeleeOrGun()
-    {
-        //if (gunStat.Count > 0 && meleeStat.Count <= 0)
-        //{
-        //    gunModel.SetActive(true);
-        //    meleeModel.SetActive(false);
-        //}
-        //else if (gunStat.Count <= 0 && meleeStat.Count > 0)
-        //{
-        //    gunModel.SetActive(false);
-        //    meleeModel.SetActive(true);
-        //}
-/*
-        if (Input.GetKeyDown(KeyCode.Mouse2) && gunStat.Count > 0 && meleeStat.Count > 0)
-        {*/
-/*            gunModel.SetActive(!gunModel.activeSelf);
-            meleeModel.SetActive(!meleeModel.activeSelf);
-
-            //For toggling animations
-            if (gunModel.activeSelf)
-            {
-                anim.SetBool("IsMelee", false);
-                anim.SetBool("IsRanged", true);
-            }
-            else if (meleeModel.activeSelf)
-            {
-                anim.SetBool("IsMelee", true);
-                anim.SetBool("IsRanged", false);
-            }*/
-        //}
-    }
+    }*/
 
     public void takeDamage(int dmg)
     {
