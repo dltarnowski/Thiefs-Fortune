@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: c3e90bbfbea3113499f1969cb1ffd560, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ab22e53efb2fca64c8fa346fc570eae9, type: 2}
 --- !u!1001 &93839722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1421,6 +1421,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252579109013366832, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: TimeOfDay
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 252579109013366833, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1468,6 +1472,46 @@ PrefabInstance:
     - target: {fileID: 252579109013366839, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
       propertyPath: m_Name
       value: DayCycleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_Intensity
+      value: 1.0008582
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579110874067859, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000003894713
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579110874067859, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000019844558
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579110874067859, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8910065
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579110874067859, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.45399055
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579111020716641, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579111020716642, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.000000019844551
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579111020716642, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000038947135
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579111020716642, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.4539904
+      objectReference: {fileID: 0}
+    - target: {fileID: 252579111020716642, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.8910066
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}

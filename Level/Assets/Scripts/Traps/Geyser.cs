@@ -33,6 +33,7 @@ public class Geyser : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Collision");
         if (other.CompareTag("Player"))
         {
             foreach (ParticleSystem geyser in geyserBlast)
@@ -43,8 +44,9 @@ public class Geyser : MonoBehaviour
             damage = gameManager.instance.playerScript.HPOrig / 5;
             gameManager.instance.playerScript.takeDamage((int)damage);
         }
-        else if (other.CompareTag("Enemies"))
+        else if (other.gameObject.layer.Equals(3))
         {
+            Debug.Log("enemy");
             foreach (ParticleSystem geyser in geyserBlast)
             {
                 geyser.Play();
