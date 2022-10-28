@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     public Slider MSSlider;
     public Slider MusicSlider;
     public Slider PlayerAudioSlider;
+    public Slider GunVolumeSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -93,7 +94,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -162,7 +163,6 @@ public class gameManager : MonoBehaviour
         towersLeft--;
         if (towersLeft <= 0)
         {
-            GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
             cursorUnlockUnpause();
         }
