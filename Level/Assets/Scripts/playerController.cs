@@ -61,6 +61,8 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepsAud;
     [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
+    float currStepsVolume;
+    float currGunVolume;
 
     private Vector3 playerVelocity;
     private int timesJumped;
@@ -95,6 +97,11 @@ public class playerController : MonoBehaviour
 
     void Update()
     {
+        if (currStepsVolume != gameManager.instance.PlayerAudioSlider.value)
+        {
+            ChangePlayerVolume();
+        }
+        ChangeGunVolume();
         movement();
         StartCoroutine(PlaySteps());
         if (gunModel.activeSelf)
@@ -214,7 +221,7 @@ public class playerController : MonoBehaviour
         {
             playingSteps = true;
 
-            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], playerStepsAudVol);
+            aud.PlayOneShot(playerStepsAud[Random.Range(0, playerStepsAud.Length - 1)], currStepsVolume);
 
             if (isSprinting)
                 yield return new WaitForSeconds(0.3f);
@@ -240,7 +247,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.settingsMenu.activeSelf)
         {
             if (gunStat.Count > 0 && Input.GetButton("Fire1") && !isShooting && ammoCount > 0)
             {
@@ -571,5 +578,15 @@ public class playerController : MonoBehaviour
             isOnSand = false;
             Debug.Log("Not Sand");
         }
+    }
+    public void ChangePlayerVolume()
+    {
+        aud.volume = gameManager.instance.PlayerAudioSlider.value;
+        currStepsVolume = aud.volume;
+    }
+    public void ChangeGunVolume()
+    {
+        aud.volume = gameManager.instance.GunVolumeSlider.value;
+        currGunVolume = aud.volume;
     }
 }
