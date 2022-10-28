@@ -13,7 +13,6 @@ public class EquipmentManager : MonoBehaviour
     }
     #endregion
 
-    public GameObject targetObject;
     public Weapon[] currentWeapon;
     public GameObject[] currentWeapons;
 
