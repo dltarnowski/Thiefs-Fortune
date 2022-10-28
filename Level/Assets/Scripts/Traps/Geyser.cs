@@ -43,5 +43,15 @@ public class Geyser : MonoBehaviour
             damage = gameManager.instance.playerScript.HPOrig / 5;
             gameManager.instance.playerScript.takeDamage((int)damage);
         }
+        else if (other.CompareTag("Enemies"))
+        {
+            foreach (ParticleSystem geyser in geyserBlast)
+            {
+                geyser.Play();
+            }
+            geyserAudioSource.PlayOneShot(geyserAudio);
+            int enemyHP = other.gameObject.GetComponent<enemyAI>().HP;
+            other.gameObject.GetComponent<enemyAI>().takeDamage(enemyHP);
+        }
     }
 }
