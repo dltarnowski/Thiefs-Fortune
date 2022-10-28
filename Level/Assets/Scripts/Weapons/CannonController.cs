@@ -13,7 +13,7 @@ public class CannonController : MonoBehaviour
     [SerializeField] GameObject cannonBall;
     [SerializeField] Transform cannonBallPos;
     [SerializeField] float shootRate;
-    [SerializeField] Gun cannonStats;
+    [SerializeField] GunStats cannonStats;
 
     ParticleSystem cannonSmoke;
 

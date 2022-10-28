@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1514543273661437533}
+  - component: {fileID: 1514543273664389514}
   - component: {fileID: 1514543273664389517}
   - component: {fileID: 1514543273664389519}
   - component: {fileID: 1514543273663677155}
   - component: {fileID: 1578331569235270141}
   - component: {fileID: 1514543273664389516}
-  - component: {fileID: 5660733292170768423}
   m_Layer: 0
   m_Name: Sabre
   m_TagString: Untagged
@@ -37,6 +37,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514543273664389514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514543273661178981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3bf37d86b8f61c43948e747c58a2adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeStats: {fileID: 11400000, guid: 2e75fc8f55e58354bb86f8bd236eff46, type: 2}
 --- !u!114 &1514543273664389517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,16 +142,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 1.1597881, z: 0.35}
   m_Center: {x: 0.0042266846, y: 0.44583988, z: 0}
---- !u!114 &5660733292170768423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514543273661178981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 2e4819e96817bd94db07511cc09dee5c, type: 2}

@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2591112710729991921}
+  - component: {fileID: 2591112710729687062}
   - component: {fileID: 2591112710729687063}
   - component: {fileID: 2591112710732810631}
   - component: {fileID: 2591112710731853173}
   - component: {fileID: 2526939097679060399}
   - component: {fileID: 2591112710729687060}
-  - component: {fileID: 1361686884659717468}
   m_Layer: 0
   m_Name: Cutlass
   m_TagString: Untagged
@@ -37,6 +37,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2591112710729687062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591112710729687061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3bf37d86b8f61c43948e747c58a2adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeStats: {fileID: 11400000, guid: 9b9aeaa50622e5a4d890a1498e7dbf26, type: 2}
 --- !u!114 &2591112710729687063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,16 +142,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.90842724, z: 0.35}
   m_Center: {x: 0.015412804, y: 0.34299707, z: 0.00000023841858}
---- !u!114 &1361686884659717468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2591112710729687061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 97d52f3124b6f2a48a6a350166865657, type: 2}

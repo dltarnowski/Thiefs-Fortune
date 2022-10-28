@@ -6,7 +6,7 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    [SerializeField] Gun blunder;
+    [SerializeField] GunStats blunder;
     public TextMeshProUGUI dialogue;
     int currentPosition;
     int start = 0;
@@ -105,7 +105,7 @@ public class MenuButtons : MonoBehaviour
         }
     }
 
-    /*public void BuyGun()
+    public void BuyGun()
     {
         if(gameManager.instance.currencyNumber >= 10)
         {
@@ -116,21 +116,21 @@ public class MenuButtons : MonoBehaviour
         {
             return;
         }
-    }*/
+    }
 
     public void BuyAmmo()
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
         {
-            int ammoGone = 5 - gameManager.instance.playerScript.gunStats.ammoCount;
+            int ammoGone = 5 - gameManager.instance.playerScript.ammoCount;
 
             if (ammoGone >= 1)
             {
-                gameManager.instance.playerScript.gunStats.ammoCount = 5;
+                gameManager.instance.playerScript.ammoCount = 5;
             }
             else
             {
-                gameManager.instance.playerScript.gunStats.ammoCount += ammoGone;
+                gameManager.instance.playerScript.ammoCount += ammoGone;
             }
 
             gameManager.instance.currencyNumber -= 2;
