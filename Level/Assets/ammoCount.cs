@@ -17,7 +17,7 @@ public class ammoCount : MonoBehaviour
     {
         if(gameManager.instance.playerScript.gunGrabbed == true)
         {
-            for (int i = 0; i <= gameManager.instance.playerScript.ammoCount - 1; i++)
+            for (int i = 0; i <= gameManager.instance.playerScript.gunStats.ammoCount - 1; i++)
             {
                 Bullets[i].enabled = true;
             }
@@ -29,7 +29,7 @@ public class ammoCount : MonoBehaviour
     }
     public void UpdateAmmo()
     {
-        if(gameManager.instance.playerScript.ammoCount != 0)
-            Bullets[gameManager.instance.playerScript.ammoCount - 1].enabled = false;
+        if(gameManager.instance.playerScript.gunStats.ammoCount != 0)
+            Bullets[gameManager.instance.playerScript.gunStats.ammoCount - 1].enabled = false;
     }
 }
