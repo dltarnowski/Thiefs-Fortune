@@ -14,7 +14,6 @@ public class EquipmentManager : MonoBehaviour
     #endregion
 
     public Weapon[] currentWeapon;
-    public GameObject[] currentWeapons;
 
 
     public delegate void OnWeaponChanged(Weapon newWeapon, Weapon oldWeapon);
@@ -24,7 +23,6 @@ public class EquipmentManager : MonoBehaviour
     {
         int numSlots = System.Enum.GetNames(typeof(WeaponSlot)).Length;
         currentWeapon = new Weapon[numSlots];
-        currentWeapons = new GameObject[numSlots];
     }
 
     public void Equip (Weapon newWeapon)
@@ -52,7 +50,6 @@ public class EquipmentManager : MonoBehaviour
         else if (newWeapon.GetType() == typeof(Sword))
             gameManager.instance.playerScript.swordStat = (Sword)newWeapon;
 
-        currentWeapons[slotIndex] = newWeapon.model;
     }
     
     public void Unequip(int slotIndex)
