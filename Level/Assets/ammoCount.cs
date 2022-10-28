@@ -15,7 +15,7 @@ public class ammoCount : MonoBehaviour
     }
     private void Update()
     {
-        if(gameManager.instance.playerScript.gunGrabbed == true)
+        if(gameManager.instance.playerScript.gunStats != null)
         {
             for (int i = 0; i <= gameManager.instance.playerScript.gunStats.ammoCount - 1; i++)
             {
