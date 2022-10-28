@@ -33,23 +33,12 @@ public class playerController : MonoBehaviour
     public float maxStamina;
     public float drainValue;
 
-    [Header("----- Gun Stats -----")]
+    [Header("----- Weapon Stats -----")]
     [SerializeField] float headShotMultiplier;
-   // public List<GunStats> gunStat = new List<GunStats>();
     [SerializeField] Recoil recoilScript;
-    public List<Transform> muzzleLocations = new List<Transform>();
     public ParticleSystem gunSmoke;
     public GameObject weaponModel;
     public Gun gunStats;
-
-    [Header("----- Melee Stats -----")]
-    [SerializeField] float swingSpeed;
-    [SerializeField] int meleeDamage;
-    [SerializeField] int hitsUntilBrokenCurrentAmount;
-    [SerializeField] float swingDist;
-    public GameObject meleeModel;
-    public AudioClip meleeSound;
-    public GameObject meleeHitEffect;
     public Sword swordStat;
     [SerializeField] AudioClip[] gruntAudio;
 
@@ -302,7 +291,7 @@ public class playerController : MonoBehaviour
                 aud.PlayOneShot(gruntAudio[Random.Range(0, gruntAudio.Length)]);
 
                 RaycastHit hit;
-                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swingDist))
+                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swordStat.distance))
                 {
                     if (hit.collider.GetComponent<IDamage>() != null)
                     {
@@ -415,15 +404,6 @@ public class playerController : MonoBehaviour
         controller.enabled = true;
     }
 
-    void CopyMuzzleLocations(List<Transform> list)
-    {
-        muzzleLocations.Clear();
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            muzzleLocations.Add(list[i]);
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
