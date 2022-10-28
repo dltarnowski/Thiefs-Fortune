@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &902807535
 Transform:
   m_ObjectHideFlags: 0
@@ -3878,6 +3878,7 @@ Transform:
   - {fileID: 4394722232126371128}
   - {fileID: 549276323931259551}
   - {fileID: 4223635323993229922}
+  - {fileID: 7070918718760023420}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3915,26 +3916,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 549276323938453512}
   anim: {fileID: 549276323938453515}
+  itemDropPoint: {fileID: 8869047490332942503}
   playerSpeed: 5
   runSpeed: 2
   jumpHeight: 8
+  jumpHeightOrig: 0
   gravityValue: -20
+  gravityValueOrig: 0
   jumpsMax: 1
   crouchHeight: 0.6
   HP: 100
+  lerpTime: 0
   HPOrig: 0
+  HPLoss: 2
   Stam: 20
   maxStamina: 0
   drainValue: 5
-  shootRate: 0
-  shootDist: 0
-  shootDamage: 0
   headShotMultiplier: 4
-  gunModel: {fileID: 4394722230702239400}
-  ammoCount: 0
-  gunStat: []
   recoilScript: {fileID: 0}
   muzzleLocations: []
+  gunSmoke: {fileID: 0}
+  weaponModel: {fileID: 4394722230702239400}
+  gunStats: {fileID: 0}
   swingSpeed: 0
   meleeDamage: 0
   hitsUntilBrokenCurrentAmount: 0
@@ -3942,6 +3945,7 @@ MonoBehaviour:
   meleeModel: {fileID: 902807534}
   meleeSound: {fileID: 0}
   meleeHitEffect: {fileID: 0}
+  swordStat: {fileID: 0}
   meleeStat: []
   gruntAudio:
   - {fileID: 8300000, guid: e23613aead8316f4f9c014e8c3c2b73a, type: 3}
@@ -3985,6 +3989,7 @@ MonoBehaviour:
   gunGrabbed: 0
   isOnSand: 0
   barrel: 0
+  isUnderwater: 0
 --- !u!143 &549276323938453512
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4569,7 +4574,7 @@ GameObject:
   - component: {fileID: 2667262506602702774}
   - component: {fileID: 2667262506621998668}
   - component: {fileID: 2667262506622083320}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Gun Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9308,7 +9313,7 @@ GameObject:
   - component: {fileID: 2667262506602703704}
   - component: {fileID: 2667262506622093444}
   - component: {fileID: 2667262506622069850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FX_Rifle_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14166,8 +14171,9 @@ GameObject:
   - component: {fileID: 4394722230702239407}
   - component: {fileID: 4394722230702239405}
   - component: {fileID: 4394722230702239406}
-  m_Layer: 0
-  m_Name: Gun
+  - component: {fileID: 528592904}
+  m_Layer: 2
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14239,6 +14245,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &528592904
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4394722230702239400}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4394722232126371131
 GameObject:
   m_ObjectHideFlags: 0
@@ -14342,3 +14362,34 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4394722232126371131}
   m_Enabled: 1
+--- !u!1 &8869047490332942503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7070918718760023420}
+  m_Layer: 6
+  m_Name: ItemDropPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7070918718760023420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869047490332942503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.2, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 549276323931233813}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

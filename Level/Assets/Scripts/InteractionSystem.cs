@@ -86,7 +86,7 @@ public class InteractionSystem : MonoBehaviour
 
             //change view bool and activate/deactivate gun model
             cannonView = !cannonView;
-            gameManager.instance.playerScript.gunModel.SetActive(!gameManager.instance.playerScript.gunModel.activeSelf);
+            //gameManager.instance.playerScript.gunModel.SetActive(!gameManager.instance.playerScript.gunModel.activeSelf);
 
             //change the camera to different camera methods
             //for (int i = 0; i < cannonCameras.Length; ++i)
