@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2344364002143656416}
-  - component: {fileID: 8562790208771975686}
   - component: {fileID: 8891555674146159445}
   - component: {fileID: 2344364002140279862}
   - component: {fileID: 2344364002141306662}
   - component: {fileID: 2336346369958221056}
   - component: {fileID: 4927741673036904275}
+  - component: {fileID: 3945996668289101354}
   m_Layer: 0
   m_Name: RifleDB
   m_TagString: Rifle
@@ -39,19 +39,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8562790208771975686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2344364002143443464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13d0c314463157345bb89a4370547f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunStat: {fileID: 11400000, guid: 615449b3c119adc4694866bcf4ae9fc2, type: 2}
 --- !u!114 &8891555674146159445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +131,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.32208014, z: 1.4001193}
   m_Center: {x: -0.0020888858, y: -0.026872516, z: 0.26575473}
+--- !u!114 &3945996668289101354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344364002143443464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 09b477c84a92187479e7a9683272327e, type: 2}
 --- !u!1001 &1870998459900654599
 PrefabInstance:
   m_ObjectHideFlags: 0
