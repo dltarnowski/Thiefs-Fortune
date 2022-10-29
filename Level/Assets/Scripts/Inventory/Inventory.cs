@@ -28,28 +28,26 @@ public class Inventory : MonoBehaviour
         items.Capacity = space;
     }
 
-    public bool Add(Item item, int slot)
+    public bool Add(Item item)
     {
         if(!item.isDefaultItem)
         {
-            if(items[slot] == null)
-                items[slot] = item;
-            else if (items.Count >= space)
-            {
-                Debug.Log("Not enough room");
+            if(items.Count >= space)
                 return false;
-            }
+
+            items.Add(item);
 
 
             if(onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
+
         }
         return true;
     }
 
     public void Remove(Item item)
     {
-        items[(int)item.itemSlot] = null;
+        items.Remove(item);
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();

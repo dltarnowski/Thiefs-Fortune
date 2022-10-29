@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Weapon : Item
 {
     //Stats
+    public WeaponSlot weaponSlot;
     public float speed;
     public AudioClip sound;
     public int distance;
@@ -21,5 +22,14 @@ public abstract class Weapon : Item
 
         RemoveFromInventory();
     }
+
+    public override void unUse()
+    {
+        base.unUse();
+
+        EquipmentManager.instance.Unequip((int)this.weaponSlot);
+
+    }
+
 }
 

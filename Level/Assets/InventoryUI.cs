@@ -3,10 +3,12 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
+    public Transform activeItems;
     public GameObject inventoryUI;
     Inventory inventory;
 
     InventorySlot[] slots;
+    InventorySlot[] activeSlots;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,8 @@ public class InventoryUI : MonoBehaviour
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        activeSlots = activeItems.GetComponentsInChildren<InventorySlot>();
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -36,11 +40,20 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Count)
             {
-                if (inventory.items[i] != null)
-                    slots[i].AddItem(inventory.items[i]);
-                else
-                    slots[i].ClearSlot();
+                slots[i].AddItem(inventory.items[i]);
             }
+            else
+                slots[i].ClearSlot();
+        }
+
+        for(int i = 0; i < activeSlots.Length; i++)
+        {
+            if(i < EquipmentManager.instance.currentWeapon.Length && EquipmentManager.instance.currentWeapon[i] != null)
+            {
+                activeSlots[i].AddItem(EquipmentManager.instance.currentWeapon[i]);
+            }
+            else
+                activeSlots[i].ClearSlot();
         }
     }
 }

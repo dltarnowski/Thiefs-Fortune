@@ -15,7 +15,8 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = item.icon;
         icon.enabled = true;
-        removeButton.interactable = true;
+        if(CompareTag("Inventory Slot"))
+            removeButton.interactable = true;
     }
 
     public void ClearSlot()
@@ -24,7 +25,8 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
-        removeButton.interactable = false;
+        if (CompareTag("Inventory Slot"))
+            removeButton.interactable = false;
     }
 
     public void OnRemoveButton()
@@ -41,7 +43,15 @@ public class InventorySlot : MonoBehaviour
     {
         if(item != null)
         {
-            item.Use();
+            if (CompareTag("Inventory Slot"))
+            {
+                item.Use();
+            }
+            else
+            {
+                item.unUse();
+                ClearSlot();
+            }
         }
     }
 }
