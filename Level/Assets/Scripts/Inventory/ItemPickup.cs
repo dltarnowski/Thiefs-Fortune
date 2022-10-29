@@ -6,13 +6,15 @@ public class ItemPickup : MonoBehaviour
 {
     [SerializeField] public Item item;
 
+    bool isSwapped;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.Add(item, (int)item.itemSlot);
+            isSwapped =Inventory.instance.Add(item);
 
-            Destroy(gameObject);
+            if(isSwapped)
+                Destroy(gameObject);
         }
     }
 }

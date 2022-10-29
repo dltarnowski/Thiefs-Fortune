@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item")]
 public abstract class Item : ScriptableObject
 {
-    public ItemSlot itemSlot;
     new public string name = "New Item";
     public Sprite icon = null;
     public bool isDefaultItem = false;
@@ -22,12 +21,19 @@ public abstract class Item : ScriptableObject
         Debug.Log("Using" + name);
     }    
 
+    public virtual void unUse()
+    {
+
+    }
+
     public void RemoveFromInventory()
     {
         Inventory.instance.Remove(this);
     }
 
+
+
 }
 
-public enum ItemSlot { Gun1, Gun2, Sword1, Sword2, potion, ammo }
+public enum WeaponSlot { ActiveGun, ActiveSword };
 
