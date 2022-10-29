@@ -122,7 +122,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.settingsMenu.activeSelf)
+        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
