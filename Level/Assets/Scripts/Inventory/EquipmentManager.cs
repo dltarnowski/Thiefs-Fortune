@@ -14,6 +14,8 @@ public class EquipmentManager : MonoBehaviour
     #endregion
 
     public Weapon[] currentWeapon;
+    [SerializeField] Gun starterGun;
+    [SerializeField] Sword starterSword;
 
 
     public delegate void OnWeaponChanged(Weapon newWeapon, Weapon oldWeapon);
@@ -23,6 +25,8 @@ public class EquipmentManager : MonoBehaviour
     {
         int numSlots = System.Enum.GetNames(typeof(WeaponSlot)).Length;
         currentWeapon = new Weapon[numSlots];
+        Equip(starterGun);
+        Equip(starterSword);
     }
 
     public void Equip (Weapon newWeapon)

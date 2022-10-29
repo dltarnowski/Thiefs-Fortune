@@ -3639,13 +3639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   space: 6
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  items: []
 --- !u!114 &4719339754858366998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3659,6 +3653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: []
+  starterGun: {fileID: 11400000, guid: 356e342717603dc44be5b7dfdc82206c, type: 2}
+  starterSword: {fileID: 11400000, guid: ee61e7510b8d957478ff6e6b6fce1824, type: 2}
 --- !u!1 &2606073515140247452
 GameObject:
   m_ObjectHideFlags: 0
@@ -16026,7 +16022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1880157069566227340, guid: a8548eb2c503c644cbae840ed1b0b244, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnItem
+      value: UseItem
       objectReference: {fileID: 0}
     - target: {fileID: 1899740276125535558, guid: a8548eb2c503c644cbae840ed1b0b244, type: 3}
       propertyPath: m_TagString
@@ -16086,7 +16082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785747529236214988, guid: a8548eb2c503c644cbae840ed1b0b244, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnItem
+      value: UseItem
       objectReference: {fileID: 0}
     - target: {fileID: 4878887810876812679, guid: a8548eb2c503c644cbae840ed1b0b244, type: 3}
       propertyPath: m_AnchorMax.y
