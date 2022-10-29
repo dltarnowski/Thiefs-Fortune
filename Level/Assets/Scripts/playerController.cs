@@ -100,14 +100,14 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("IsRanged", true);
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
-                && (EquipmentManager.instance.currentWeapon[0] == gunStats || EquipmentManager.instance.currentWeapon[1] == gunStats))
+                && EquipmentManager.instance.currentWeapon[0] == gunStats)
                 StartCoroutine(shoot());
         }
         if(swordStat != null)
         {
             anim.SetBool("IsRanged", false);
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
-                && (EquipmentManager.instance.currentWeapon[2] == swordStat || EquipmentManager.instance.currentWeapon[3] == swordStat))
+                && EquipmentManager.instance.currentWeapon[1] == swordStat)
                 StartCoroutine(swing());
         }
         HP = Mathf.Clamp(HP, 0, HPOrig);
@@ -119,10 +119,8 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
-            Debug.Log(gunStats.ammoCount);
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
-                Debug.Log("Shoot");
                 isShooting = true;
                 gunStats.ammoCount--;
                 //gameManager.instance.ReduceAmmo();

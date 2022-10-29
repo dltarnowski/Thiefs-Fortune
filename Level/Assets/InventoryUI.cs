@@ -39,22 +39,20 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Count)
             {
-                if (inventory.items[i] != null)
-                    slots[i].AddItem(inventory.items[i]);
-                else
-                    slots[i].ClearSlot();
+                slots[i].AddItem(inventory.items[i]);
             }
+            else
+                slots[i].ClearSlot();
         }
 
         for(int i = 0; i < activeSlots.Length; i++)
         {
-            if(i < EquipmentManager.instance.currentWeapon.Length)
+            if(i < EquipmentManager.instance.currentWeapon.Length && EquipmentManager.instance.currentWeapon[i] != null)
             {
-                if (EquipmentManager.instance.currentWeapon[i] != null)
-                    activeSlots[i].AddItem(EquipmentManager.instance.currentWeapon[i]);
-                else
-                    activeSlots[i].ClearSlot();
+                activeSlots[i].AddItem(EquipmentManager.instance.currentWeapon[i]);
             }
+            else
+                activeSlots[i].ClearSlot();
         }
     }
 }
