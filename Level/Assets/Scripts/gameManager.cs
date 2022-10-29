@@ -94,7 +94,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
