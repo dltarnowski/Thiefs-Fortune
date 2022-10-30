@@ -26,7 +26,7 @@ public class SkipEnding : MonoBehaviour
     private void SkipScene()
     {
         Skip = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     IEnumerator SceneTimer(int buildIndex)

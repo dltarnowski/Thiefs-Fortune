@@ -51,6 +51,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
     float currVolume;
+    float currGunVolume;
 
     private Vector3 playerVelocity;
     private int timesJumped;
@@ -93,6 +94,10 @@ public class playerController : MonoBehaviour
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
             ChangePlayerVolume();
+        }
+        if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
+        {
+            ChangeGunVolume();
         }
         movement();
         StartCoroutine(PlaySteps());
@@ -426,5 +431,10 @@ public class playerController : MonoBehaviour
     {
         aud.volume = gameManager.instance.PlayerAudioSlider.value;
         currVolume = aud.volume;
+    }
+    public void ChangeGunVolume()
+    {
+        aud.volume = gameManager.instance.GunVolumeSlider.value;
+        currGunVolume = aud.volume;
     }
 }
