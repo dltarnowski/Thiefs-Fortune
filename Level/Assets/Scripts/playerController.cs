@@ -100,14 +100,14 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("IsRanged", true);
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
-                && EquipmentManager.instance.currentWeapon[0] == gunStats)
+                && EquipmentManager.instance.currentEquipment[0] == gunStats)
                 StartCoroutine(shoot());
         }
         if(swordStat != null)
         {
             anim.SetBool("IsRanged", false);
             if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
-                && EquipmentManager.instance.currentWeapon[1] == swordStat)
+                && EquipmentManager.instance.currentEquipment[1] == swordStat)
                 StartCoroutine(swing());
         }
         HP = Mathf.Clamp(HP, 0, HPOrig);
@@ -325,26 +325,20 @@ public class playerController : MonoBehaviour
 
     void ItemSelect()
     {
-        /*        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectItem < EquipmentManager.instance.currentWeapon.Length - 1)
-                {
-                    selectItem++;
-                }
-                else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectItem > 0)
-                {
-                    selectItem--;
-                }*/
-        if (Input.GetKeyDown(KeyCode.Alpha1) && EquipmentManager.instance.currentWeapon[0] != null)
-            EquipmentManager.instance.currentWeapon[0].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha2) && EquipmentManager.instance.currentWeapon[1] != null)
-            EquipmentManager.instance.currentWeapon[1].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentWeapon[2] != null)
-            EquipmentManager.instance.currentWeapon[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentWeapon[3] != null)
-            EquipmentManager.instance.currentWeapon[3].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha1) && EquipmentManager.instance.currentEquipment[0] != null)
+            EquipmentManager.instance.currentEquipment[0].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha2) && EquipmentManager.instance.currentEquipment[1] != null)
+            EquipmentManager.instance.currentEquipment[1].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
+            EquipmentManager.instance.currentEquipment[2].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
+            EquipmentManager.instance.currentEquipment[3].Use();
     }
 
     public void takeDamage(int dmg)
     {
+        if (HP + dmg > HPOrig)
+            HP = HPOrig;
         HP -= dmg;
         lerpTime = 0f;
         aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
