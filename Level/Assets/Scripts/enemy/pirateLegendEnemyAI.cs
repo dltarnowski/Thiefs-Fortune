@@ -82,7 +82,10 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
         if (!anim.GetBool("Dead"))
         {
             if(currBlackSpot != gameManager.instance.blackspot.blackSpotMultiplier)
+            {
+                currBlackSpot = gameManager.instance.blackspot.blackSpotMultiplier;
                 HP = (int)(HP * (1 + gameManager.instance.blackspot.blackSpotMultiplier));
+            }
 
             
 
