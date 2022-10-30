@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6479299118518373770}
-  - component: {fileID: 2480371299067960273}
   - component: {fileID: 8499779572834384451}
   - component: {fileID: 6479299118521907760}
   - component: {fileID: 6479299118520775834}
   - component: {fileID: 6417295972277363260}
   - component: {fileID: 3424844897621197710}
+  - component: {fileID: 2934383638768953968}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -37,19 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2480371299067960273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6479299118518745968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3bf37d86b8f61c43948e747c58a2adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meleeStats: {fileID: 11400000, guid: 30c3e2d217524c8409c8f48d80b0698b, type: 2}
 --- !u!114 &8499779572834384451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +129,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.75
   m_Center: {x: 0, y: 0.1660595, z: 0}
+--- !u!114 &2934383638768953968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479299118518745968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: ee61e7510b8d957478ff6e6b6fce1824, type: 2}

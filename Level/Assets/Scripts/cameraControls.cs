@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cameraControls : MonoBehaviour
 {
-    [SerializeField] int sensHort;
-    [SerializeField] int sensVert;
+    [SerializeField] public int sensHort;
+    [SerializeField] public int sensVert;
 
     [SerializeField] int lockVertMin;
     [SerializeField] int lockVertMax;
@@ -13,16 +13,19 @@ public class cameraControls : MonoBehaviour
     [SerializeField] bool invert;
 
     float xRotation;
-
+    int currSliderValue;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        ChangeSense();
     }
 
     void LateUpdate()
     {
-        // get input
+        if (currSliderValue != (int)gameManager.instance.MSSlider.value)
+            ChangeSense();
+         // get input
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHort;
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
 
@@ -39,5 +42,13 @@ public class cameraControls : MonoBehaviour
 
         // rotate the player
         transform.parent.Rotate(Vector3.up * mouseX);
+
+    }
+
+    public void ChangeSense()
+    {
+        currSliderValue = (int)gameManager.instance.MSSlider.value;
+        sensHort = (int)gameManager.instance.MSSlider.value;
+        sensVert = (int)gameManager.instance.MSSlider.value;
     }
 }

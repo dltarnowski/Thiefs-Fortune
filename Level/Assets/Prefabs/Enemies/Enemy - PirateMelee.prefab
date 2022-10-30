@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3543366647184134351}
   - component: {fileID: 2709120758119666452}
   - component: {fileID: 40371043666936169}
+  - component: {fileID: 1636263977}
   m_Layer: 3
   m_Name: Enemy - PirateMelee
   m_TagString: Melee
@@ -175,9 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6801783130547655390}
   model: {fileID: 4747656915091591331}
-  cannonCtrl: {fileID: 0}
-  cannonCol: {fileID: 0}
-  cannon: {fileID: 0}
   col: {fileID: 2709120758119666452}
   anim: {fileID: 7389340982452470942}
   drops:
@@ -234,7 +232,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3963092936783770679}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 50
   avoidancePriority: 50
@@ -370,6 +368,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1636263977
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3963092936783770679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 1.63, z: 0}
 --- !u!1 &4609838964534975529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,9 +2090,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4747656915094405597}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

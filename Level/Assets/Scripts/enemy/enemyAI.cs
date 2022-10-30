@@ -8,9 +8,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Componenets -----")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    [SerializeField] CannonController cannonCtrl;
-    [SerializeField] SphereCollider cannonCol;
-    [SerializeField] GameObject cannon;
     [SerializeField] Collider col;
     [SerializeField] Animator anim;
     [SerializeField] GameObject[] drops;
@@ -70,11 +67,8 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
-        tempTrans = cannon.transform.parent;
         if (!stationary && canRoam)
             roam();
-        if (cannon != null)
-            cannon.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -89,7 +83,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
             if (agent.enabled)
             {
-                if (playerInRange)
+                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
@@ -135,7 +129,12 @@ public class enemyAI : MonoBehaviour, IDamage
         randomDirection += startingPos;
 
         NavMeshHit hit;
+
         NavMesh.SamplePosition(randomDirection, out hit, 1, 1);
+
+        if (!hit.hit)
+            return;
+
         NavMeshPath path = new NavMeshPath();
 
         agent.CalculatePath(hit.position, path);
@@ -180,12 +179,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             gameManager.instance.checkEnemyTotal();
             anim.SetBool("Dead", true);
-            if (cannonCtrl != null)
-            {
-                cannonCtrl.enabled = true;
-                cannonCol.enabled = true;
-                cannon.transform.parent = tempTrans;
-            }
             col.enabled = false;
             agent.enabled = false;
             Destroy(gameObject, 5);

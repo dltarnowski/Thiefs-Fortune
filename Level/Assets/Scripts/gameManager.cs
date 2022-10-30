@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public int EnemyNumber;
     public int currencyNumber;
+    public Inventory inventory;
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
@@ -20,35 +21,50 @@ public class gameManager : MonoBehaviour
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
+
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
+    public GameObject playerDamageIndicator;
+    public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
+    public Image playerHPLost;
+    public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+    [SerializeField] blackSpot blackspot;
+
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
     public GameObject ObjectiveBox;
     [SerializeField] public Animator anim;
+
     [Header("----- UI -----")]
     public GameObject hint;
     public Image[] ammoArray;
+
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
-    public Collider collide;
+
     [Header("----- Gun -----")]
     public GameObject mainCamera;
     public Recoil recoilScript;
+
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+    public Slider MSSlider;
+    public Slider MusicSlider;
+    public Slider PlayerAudioSlider;
+    public Slider GunVolumeSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -78,7 +94,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -92,8 +108,8 @@ public class gameManager : MonoBehaviour
             else
                 cursorUnlockUnpause();
         }
-        //CheckAmmoAmount();
     }
+   
 
     public IEnumerator playerDamage()
     {
@@ -124,7 +140,6 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = false;
         healthBar.SetActive(false);
         Crosshair.SetActive(false);
-        collide.isTrigger = false;
     }
 
     public void NpcUnpause()
@@ -135,7 +150,6 @@ public class gameManager : MonoBehaviour
         cameraScript.enabled = true;
         healthBar.SetActive(true);
         Crosshair.SetActive(true);
-        collide.isTrigger = true;
     }
 
     public void checkEnemyTotal()
@@ -149,7 +163,6 @@ public class gameManager : MonoBehaviour
         towersLeft--;
         if (towersLeft <= 0)
         {
-            GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
             cursorUnlockUnpause();
         }
@@ -157,8 +170,8 @@ public class gameManager : MonoBehaviour
 
     public void ReduceAmmo()
     {
-        ammoCount = playerScript.ammoCount+1;
-        ammoArray[ammoCount-1].enabled = false;
+        if(ammoArray.Length > 0)
+            ammoArray[ammoCount-1].enabled = false;
     }
 
     public void IncreaseAmmo()

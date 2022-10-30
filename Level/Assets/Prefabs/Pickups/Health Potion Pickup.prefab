@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3576859548827628600}
-  - component: {fileID: 3576859548827628603}
   - component: {fileID: 3576859548827628597}
   - component: {fileID: 3576859548828324790}
   - component: {fileID: 3576859548829840350}
   - component: {fileID: 3576859548827628602}
+  - component: {fileID: -7571314848952843388}
   m_Layer: 0
   m_Name: Health Potion Pickup
   m_TagString: Untagged
@@ -36,19 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3576859548827628603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3576859548827341246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74602fae787043f4abb16b8ecb706421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthIncrease: 20
 --- !u!114 &3576859548827628597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce75564c988c2f3449fbadee07660f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounceHeight: 0.5
+  bounceSpeed: 0.25
+  rotationSpeed: 45
 --- !u!33 &3576859548828324790
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124,3 +114,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.106481254, z: -0.0000061690807}
+--- !u!114 &-7571314848952843388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3576859548827341246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 8ff0d34be2c95ae4ba75382052c5a7f1, type: 2}

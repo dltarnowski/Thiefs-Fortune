@@ -6,7 +6,7 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    [SerializeField] GunStats blunder;
+    [SerializeField] Gun blunder;
     public TextMeshProUGUI dialogue;
     int currentPosition;
     int start = 0;
@@ -50,6 +50,30 @@ public class MenuButtons : MonoBehaviour
         Debug.Log("Game has ended");
     }
 
+    public void Settings()
+    {
+        gameManager.instance.cursorLockPause();
+        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.isPaused = false;
+        if (gameManager.instance.crossHairVisible)
+        {
+            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
+            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
+        }
+        gameManager.instance.settingsMenu.SetActive(true);
+    }
+    
+    public void Back()
+    {
+        if (gameManager.instance.crossHairVisible)
+        {
+            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
+            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
+        }
+        gameManager.instance.settingsMenu.SetActive(false);
+        gameManager.instance.pauseMenu.SetActive(true);
+    }
+
     public void WhereAmI()
     {
         dialogue.text = "Look around you! Paradise!";
@@ -81,7 +105,7 @@ public class MenuButtons : MonoBehaviour
         }
     }
 
-    public void BuyGun()
+    /*public void BuyGun()
     {
         if(gameManager.instance.currencyNumber >= 10)
         {
@@ -92,21 +116,21 @@ public class MenuButtons : MonoBehaviour
         {
             return;
         }
-    }
+    }*/
 
     public void BuyAmmo()
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.ammoCount != 5)
         {
-            int ammoGone = 5 - gameManager.instance.playerScript.ammoCount;
+            int ammoGone = 5 - gameManager.instance.playerScript.gunStats.ammoCount;
 
             if (ammoGone >= 1)
             {
-                gameManager.instance.playerScript.ammoCount = 5;
+                gameManager.instance.playerScript.gunStats.ammoCount = 5;
             }
             else
             {
-                gameManager.instance.playerScript.ammoCount += ammoGone;
+                gameManager.instance.playerScript.gunStats.ammoCount += ammoGone;
             }
 
             gameManager.instance.currencyNumber -= 2;
@@ -118,7 +142,7 @@ public class MenuButtons : MonoBehaviour
     {
         if (gameManager.instance.currencyNumber >= 2 && gameManager.instance.playerScript.HP < gameManager.instance.playerScript.HPOrig)
         {
-            int healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
+            float healthGone = gameManager.instance.playerScript.HPOrig - gameManager.instance.playerScript.HP;
 
             if (healthGone >= (gameManager.instance.playerScript.HPOrig / 2))
             {
@@ -127,6 +151,7 @@ public class MenuButtons : MonoBehaviour
             else
             {
                 gameManager.instance.playerScript.HP += healthGone;
+                gameManager.instance.playerScript.lerpTime = 0f;
             }
 
             gameManager.instance.currencyNumber -= 2;
