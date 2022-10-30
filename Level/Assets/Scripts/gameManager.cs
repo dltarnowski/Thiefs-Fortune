@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public int EnemyNumber;
     public int currencyNumber;
+    public Inventory inventory;
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
@@ -20,12 +21,14 @@ public class gameManager : MonoBehaviour
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
     public GameObject pauseMenu;
+    public GameObject settingsMenu;
     public GameObject deathMenu;
     public GameObject menuCurrentlyOpen;
 
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
+    public GameObject playerDamageIndicator;
     public GameObject underwaterIndicator;
     public GameObject spawnPosition;
     public Image playerHPBar;
@@ -33,6 +36,7 @@ public class gameManager : MonoBehaviour
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
+    [SerializeField] blackSpot blackspot;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -57,6 +61,10 @@ public class gameManager : MonoBehaviour
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
+    public Slider MSSlider;
+    public Slider MusicSlider;
+    public Slider PlayerAudioSlider;
+    public Slider GunVolumeSlider;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -86,7 +94,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !winMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -101,6 +109,7 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
+   
 
     public IEnumerator playerDamage()
     {
@@ -154,7 +163,6 @@ public class gameManager : MonoBehaviour
         towersLeft--;
         if (towersLeft <= 0)
         {
-            GameObject.Find("Crosshair").SetActive(false);
             winMenu.SetActive(true);
             cursorUnlockUnpause();
         }
@@ -162,8 +170,8 @@ public class gameManager : MonoBehaviour
 
     public void ReduceAmmo()
     {
-        ammoCount = playerScript.ammoCount+1;
-        ammoArray[ammoCount-1].enabled = false;
+        if(ammoArray.Length > 0)
+            ammoArray[ammoCount-1].enabled = false;
     }
 
     public void IncreaseAmmo()

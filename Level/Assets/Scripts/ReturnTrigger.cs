@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ReturnTrigger : MonoBehaviour
 {
     public float transitionTime = 33;
+    public int SceneSelect;
 
     void Update()
     {
@@ -15,7 +16,7 @@ public class ReturnTrigger : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - SceneSelect);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }

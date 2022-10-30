@@ -12,51 +12,41 @@ public class Recoil : MonoBehaviour
 
     [SerializeField] Vector3 movementVector;
 
-    GunStats gunStatScript;
-    MeleeStats meleeStatScript;
 
     void Start()
     {
-        gunStatScript = null;
-        meleeStatScript = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gunStatScript != null)
+        if (gameManager.instance.playerScript.gunStats != null)
         {
-            targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, gunStatScript.returnSpeed * Time.deltaTime);
-            currentRotation = Vector3.Slerp(currentRotation, targetRotation, gunStatScript.snappiness * Time.fixedDeltaTime);
+            targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, gameManager.instance.playerScript.gunStats.returnSpeed * Time.deltaTime);
+            currentRotation = Vector3.Slerp(currentRotation, targetRotation, gameManager.instance.playerScript.gunStats.snappiness * Time.fixedDeltaTime);
             transform.localRotation = Quaternion.Euler(currentRotation);
         }
-        if (meleeStatScript != null)
+        if (gameManager.instance.playerScript.swordStat != null)
         {
-            targetPos = Vector3.Lerp(targetPos, Vector3.zero, meleeStatScript.returnSpeed * Time.deltaTime);
-            headPos = Vector3.Slerp(headPos, targetPos, meleeStatScript.snappiness * Time.fixedDeltaTime);
+            targetPos = Vector3.Lerp(targetPos, Vector3.zero, gameManager.instance.playerScript.swordStat.returnSpeed * Time.deltaTime);
+            headPos = Vector3.Slerp(headPos, targetPos, gameManager.instance.playerScript.swordStat.snappiness * Time.fixedDeltaTime);
             transform.localPosition = headPos;
         }
     }
 
     public void RecoilFire()
     {
-        targetRotation += new Vector3(gunStatScript.recoilX, Random.Range(-gunStatScript.recoilY, gunStatScript.recoilY), Random.Range(-gunStatScript.recoilZ, gunStatScript.recoilZ));
-        Debug.Log("Recoil");
+        targetRotation += new Vector3(gameManager.instance.playerScript.gunStats.recoilX, 
+            Random.Range(-gameManager.instance.playerScript.gunStats.recoilY, 
+            gameManager.instance.playerScript.gunStats.recoilY), 
+            Random.Range(-gameManager.instance.playerScript.gunStats.recoilZ,
+            gameManager.instance.playerScript.gunStats.recoilZ));
     }
 
     public void MeleeSwing()
     {
-        targetPos += new Vector3(meleeStatScript.moveX, meleeStatScript.moveY, meleeStatScript.moveZ);
-        Debug.Log("Swing");
-    }
-
-    public void SetGunStatScript(GunStats stats)
-    {
-        gunStatScript = stats;
-    }
-
-    public void SetMeleeStatScript(MeleeStats stats)
-    {
-        meleeStatScript = stats;
+        targetPos += new Vector3(gameManager.instance.playerScript.swordStat.recoilX, 
+            gameManager.instance.playerScript.swordStat.recoilY,
+            gameManager.instance.playerScript.swordStat.recoilZ);
     }
 }
