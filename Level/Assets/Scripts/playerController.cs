@@ -95,12 +95,18 @@ public class playerController : MonoBehaviour
         {
             ChangePlayerVolume();
         }
-/*        if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
+
+        /*
+        if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
         {
             ChangeGunVolume();
-        }*/
+        }
+        */
+
         movement();
+
         StartCoroutine(PlaySteps());
+
         if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
             && EquipmentManager.instance.currentEquipment[0] == gunStats)
         {
@@ -113,6 +119,7 @@ public class playerController : MonoBehaviour
             anim.SetBool("IsRanged", false);
             StartCoroutine(swing());
         }
+
         HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
 
