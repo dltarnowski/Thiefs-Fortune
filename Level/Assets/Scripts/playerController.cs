@@ -259,8 +259,14 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
             anim.SetTrigger("IsJumping");
+
             playerVelocity.y = jumpHeight;
             timesJumped++;
+        }
+        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
+        {
+
+            playerVelocity.y = jumpHeight * 0.5f;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
