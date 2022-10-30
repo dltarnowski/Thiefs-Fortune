@@ -19,7 +19,8 @@ public abstract class Weapon : Equipment
     public override void Use()
     {
         base.Use();
-        EquipmentManager.instance.Equip(this);
+        gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = this.model.GetComponent<MeshRenderer>().sharedMaterial;
+        gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = this.model.GetComponent<MeshFilter>().sharedMesh;
     }
 
 }
