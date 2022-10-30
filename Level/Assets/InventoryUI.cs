@@ -48,9 +48,9 @@ public class InventoryUI : MonoBehaviour
 
         for(int i = 0; i < activeSlots.Length; i++)
         {
-            if(i < EquipmentManager.instance.currentWeapon.Length && EquipmentManager.instance.currentWeapon[i] != null)
+            if(i < EquipmentManager.instance.currentEquipment.Length && EquipmentManager.instance.currentEquipment[i] != null)
             {
-                activeSlots[i].AddItem(EquipmentManager.instance.currentWeapon[i]);
+                activeSlots[i].AddItem(EquipmentManager.instance.currentEquipment[i]);
             }
             else
                 activeSlots[i].ClearSlot();

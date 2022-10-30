@@ -41,7 +41,6 @@ public class Recoil : MonoBehaviour
             gameManager.instance.playerScript.gunStats.recoilY), 
             Random.Range(-gameManager.instance.playerScript.gunStats.recoilZ,
             gameManager.instance.playerScript.gunStats.recoilZ));
-        Debug.Log("Recoil");
     }
 
     public void MeleeSwing()
@@ -49,16 +48,5 @@ public class Recoil : MonoBehaviour
         targetPos += new Vector3(gameManager.instance.playerScript.swordStat.recoilX, 
             gameManager.instance.playerScript.swordStat.recoilY,
             gameManager.instance.playerScript.swordStat.recoilZ);
-        Debug.Log("Swing");
     }
-
-/*    public void SetGunStatScript(Gun stats)
-    {
-        gunStatScript = stats;
-    }*/
-
-/*    public void SetMeleeStatScript(MeleeStats stats)
-    {
-        meleeStatScript = stats;
-    }*/
 }

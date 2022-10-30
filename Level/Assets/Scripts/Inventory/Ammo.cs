@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ammo", menuName = "Inventory/Ammo")]
-public class Ammo : Item
+public class Ammo : Consumable
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Use()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Use();
+        if(EquipmentManager.instance.currentEquipment[0] != null)
+        {
+            if (EquipmentManager.instance.currentEquipment[0] is Gun)
+            {
+                Gun currGun = EquipmentManager.instance.currentEquipment[0] as Gun;
+                currGun.ammoCount = currGun.ammoStart;
+                EquipmentManager.instance.currentEquipment[0] = currGun;
+                if(this.numOfItems >= 0)
+                {
+                    if (this.numOfItems == 0)
+                    {
+                        EquipmentManager.instance.currentEquipment[(int)this.equipmentSlot] = null;
+                        Inventory.instance.onItemChangedCallback();
+                    }
+                    else
+                        this.numOfItems--;
+                }
+            }
+        }
     }
 }
