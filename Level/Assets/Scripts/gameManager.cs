@@ -36,7 +36,7 @@ public class gameManager : MonoBehaviour
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
-    [SerializeField] blackSpot blackspot;
+    [SerializeField] public blackSpot blackspot;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
