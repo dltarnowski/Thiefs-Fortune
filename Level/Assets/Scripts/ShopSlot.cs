@@ -33,9 +33,10 @@ public class ShopSlot : MonoBehaviour
     public void Buy()
     {
         if (canBuy)
+        {
             inventory.Add(item);
-
-        shopInventory.onItemChangedCallback.Invoke();
+            shopInventory.Remove(item);
+        }
 
         gameManager.instance.currencyNumber -= item.buyPrice;
         gameManager.instance.playerScript.updatePlayerHUD();

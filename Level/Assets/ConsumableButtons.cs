@@ -4,9 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopMenuButtons : MonoBehaviour
+public class ConsumableButtons : MonoBehaviour
 {
-    public static ShopInventory inventory;
     public GameObject shopMenu;
     public GameObject playerInventory;
     public GameObject buyInventory;
@@ -16,12 +15,10 @@ public class ShopMenuButtons : MonoBehaviour
 
     private void Start()
     {
-        inventory = ShopInventory.instance;
     }
     public void Talk()
     {
-        NPCManager.instance.dialogue.gameObject.SetActive(false);
-        NPCManager.instance.followUpDialogue.gameObject.SetActive(true);
+        NPCManager.instance.talking = true;
     }
 
     public void Shop()
@@ -44,8 +41,7 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
-        NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
-            //dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
+        NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
         gameManager.instance.mainCamera.SetActive(true);
         NPCManager.instance.NPCCamera.SetActive(false);
     }
@@ -56,7 +52,7 @@ public class ShopMenuButtons : MonoBehaviour
         sellInventory.SetActive(false);
         buyTab.interactable = false;
         sellTab.interactable = true;
-        Inventory.instance.onItemChangedCallback.Invoke();
+        ShopInventory.instance.onItemChangedCallback.Invoke();
     }
 
     public void SellTab()
@@ -65,6 +61,6 @@ public class ShopMenuButtons : MonoBehaviour
         sellInventory.SetActive(true);
         buyTab.interactable = true;
         sellTab.interactable = false;
-        Inventory.instance.onItemChangedCallback.Invoke();
+        ShopInventory.instance.onItemChangedCallback.Invoke();
     }
 }

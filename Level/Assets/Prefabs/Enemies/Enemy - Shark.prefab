@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+
 --- !u!1 &1272513083
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +11,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1272513084}
   - component: {fileID: 1272513085}
+  - component: {fileID: 7180770548946561649}
   m_Layer: 9
   m_Name: MiniMap Icon
   m_TagString: Untagged
@@ -25,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272513083}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 25, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4614405096279337694}
@@ -84,6 +86,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7180770548946561649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272513083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d056a2a0c4162bc42ab026a7a6a04552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 4614405096279337694}
+
 --- !u!1 &4614405095700332698
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +518,6 @@ Transform:
   m_Children:
   - {fileID: 4614405096279354448}
   - {fileID: 4614405095700332699}
-  - {fileID: 1272513084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -557,6 +572,8 @@ MonoBehaviour:
   attackPos: {fileID: 4614405095700332698}
   meleeAttackRange: 0.1
   meleeDamage: 50
+  stationary: 0
+  noRotation: 0
 --- !u!136 &4614405096279337665
 CapsuleCollider:
   m_ObjectHideFlags: 0
