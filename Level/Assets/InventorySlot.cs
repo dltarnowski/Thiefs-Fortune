@@ -8,9 +8,22 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
     public Button equipButton;
     public Button unEquipButton;
+    public Inventory inventory;
     Item item;
 
-
+    private void Start()
+    {
+        inventory = Inventory.instance;
+        /*if (CompareTag("Shop"))
+            AddItem(item);*/
+    }
+    public void Buy()
+    {
+        if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1])
+        {
+            inventory.Add(item);
+        }
+    }
     public void AddItem(Item newItem)
     {
         item = newItem;
