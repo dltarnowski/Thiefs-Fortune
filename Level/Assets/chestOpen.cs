@@ -9,7 +9,7 @@ public class chestOpen : MonoBehaviour
     [SerializeField] Transform itemSpawnPos;
     bool canOpen;
     bool opened;
-
+    float blackSpotDropChance;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -21,7 +21,11 @@ public class chestOpen : MonoBehaviour
         if(canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
         {
             anim.SetTrigger("open");
-            Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
+            blackSpotDropChance = Random.Range(0f, 1f);
+            if (blackSpotDropChance <= 0.1)
+                gameManager.instance.blackspot.blackSpotMultiplier *= 1.2f;
+            else
+                Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
             opened = true;
         }
     }
