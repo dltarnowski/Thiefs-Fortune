@@ -1,12 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
     public Transform itemsParent;
     public Transform activeItems;
-    public GameObject inventoryUI;
-    Inventory inventory;
 
+    public GameObject inventoryUI;
+
+    Inventory inventory;
     InventorySlot[] slots;
     InventorySlot[] activeSlots;
 
@@ -18,6 +20,7 @@ public class InventoryUI : MonoBehaviour
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
         activeSlots = activeItems.GetComponentsInChildren<InventorySlot>();
+
         UpdateUI();
     }
 
@@ -36,6 +39,7 @@ public class InventoryUI : MonoBehaviour
 
     void UpdateUI()
     {
+
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < inventory.items.Count)

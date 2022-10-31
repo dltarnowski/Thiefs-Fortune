@@ -13,6 +13,8 @@ public abstract class Item : ScriptableObject
     public float strength;
     public GameObject model;
     public int numOfItems;
+    public int buyPrice;
+    public int sellPrice;
 
 
     public virtual void Use()
