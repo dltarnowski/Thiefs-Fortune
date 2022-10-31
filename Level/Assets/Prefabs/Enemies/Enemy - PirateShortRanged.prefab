@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 862205280}
   - component: {fileID: 862205281}
+  - component: {fileID: 2873690186798319308}
   m_Layer: 9
   m_Name: MiniMap Icon
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862205279}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,6 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2873690186798319308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862205279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d056a2a0c4162bc42ab026a7a6a04552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 5209616646559569687}
 --- !u!1 &3023551648958608690
 GameObject:
   m_ObjectHideFlags: 0
