@@ -4108,9 +4108,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.7
+  m_Height: 1.6239648
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 0.8380177, z: 0}
 --- !u!143 &549276323938453512
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4128,7 +4128,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!82 &7862043830989376632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4140,7 +4140,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4149,7 +4149,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.0149383545
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -4322,8 +4322,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 549276323931259551}
   m_AABB:
-    m_Center: {x: 0.0000076293945, y: 110.46, z: -5.065159}
-    m_Extent: {x: 102.45597, y: 103.96217, z: 37.3432}
+    m_Center: {x: 0.0000076293945, y: 118.50398, z: -5.065159}
+    m_Extent: {x: 102.45597, y: 95.9182, z: 37.3432}
   m_DirtyAABB: 0
 --- !u!1 &549276323931183437
 GameObject:
