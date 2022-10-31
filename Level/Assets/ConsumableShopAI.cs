@@ -4,7 +4,7 @@ using Unity.Services.Analytics.Internal;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShopAI : MonoBehaviour
+public class ConsumableShopAI : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] Animator anim;
@@ -22,6 +22,7 @@ public class ShopAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
@@ -29,11 +30,12 @@ public class ShopAI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 NPCManager.instance.NPCCamera = shopCam;
-                NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
-                NPCManager.instance.name.text = "Willy " + '"' + "Full Sails" + '"' + " Wilkerson";
-                NPCManager.instance.talkButtonText.text = "I'm looking for Captain Pirate. Can you help?";
-                NPCManager.instance.shopButtonText.text = "I hear you sell weapons. What do you have?";
-                NPCManager.instance.followUpDialogue.text = "Last I heard, he was seen heading to Lone Peak Isle. The food vendor on the docks might know more...";
+                NPCManager.instance.name.text = "Franky " + '"' + "PHAT" + '"' + " Findley";
+                NPCManager.instance.talkButtonText.text = "Willy said you might know where to find Captain Pirate?";
+                NPCManager.instance.shopButtonText.text = "You sell ammo and health elixirs. Right?";
+                NPCManager.instance.followUpDialogue.text = "Willy sent you? Yah, I heard he's camped out at Serpent Cove. I'd avoid him though if I were you...";
+                NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
+
 
                 NPCManager.instance.NPCCamera.SetActive(true);
                 gameManager.instance.mainCamera.SetActive(false);
@@ -43,7 +45,7 @@ public class ShopAI : MonoBehaviour
                 gameManager.instance.hint.SetActive(false);
 
                 gameManager.instance.NpcPause();
-                
+
                 gameManager.instance.npcDialogue.SetActive(playerInRange);
             }
         }

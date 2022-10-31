@@ -45,7 +45,7 @@ public class MeshDeformer : MonoBehaviour
                 if (distance < r) {
                     Vector3 deformation = direction * s;
                     vertices[i] = transform.InverseTransformPoint (vi + deformation);
-                    //Debug.Log(transform.InverseTransformPoint (vi + deformation));
+Debug.Log(transform.InverseTransformPoint (vi + deformation));
                     break;
                 }
                 s -= stepStrength;

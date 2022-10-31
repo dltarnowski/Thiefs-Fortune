@@ -3987,7 +3987,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4394722232126371128}
+
   - {fileID: 5549271907670059949}
+
   - {fileID: 549276323931259551}
   - {fileID: 4223635323993229922}
   - {fileID: 7070918718760023420}
@@ -4028,6 +4030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 549276323938453512}
+  thirdPersonCam_Obj: {fileID: 4394722232126371131}
+  firstPersonCam_Obj: {fileID: 2710382986473668341}
+  thirdPersonCam_Cam: {fileID: 4394722232126371129}
+  firstPersonCam_Cam: {fileID: 9063464832726011432}
   anim: {fileID: 549276323938453515}
   itemDropPoint: {fileID: 8869047490332942503}
   playerSpeed: 5
@@ -14147,7 +14153,7 @@ GameObject:
   - component: {fileID: 353951358047885885}
   m_Layer: 0
   m_Name: Aim Camera
-  m_TagString: AimCamera
+  m_TagString: SecondaryCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14160,7 +14166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710382986473668341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 1.62, z: 0.08}
+  m_LocalPosition: {x: 0.101, y: 1.6, z: 0.065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14490,15 +14496,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4394722232126371131}
-  m_LocalRotation: {x: 0.15946172, y: 0, z: 0, w: 0.98720413}
-  m_LocalPosition: {x: 0.9000015, y: 2.380001, z: -2.449997}
+  m_LocalRotation: {x: 0.1564345, y: 0, z: 0, w: 0.98768836}
+  m_LocalPosition: {x: 0.9000015, y: 2.4001, z: -2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4223635324719786408}
   m_Father: {fileID: 549276323931233813}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.351305, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 18, y: 0, z: 0}
 --- !u!114 &8277265509395364254
 MonoBehaviour:
   m_ObjectHideFlags: 0
