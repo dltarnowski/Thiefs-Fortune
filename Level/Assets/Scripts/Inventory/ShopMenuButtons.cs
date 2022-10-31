@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,16 +12,14 @@ public class ShopMenuButtons : MonoBehaviour
     public GameObject sellInventory;
     public Button buyTab;
     public Button sellTab;
-    ShopInventory shopInventory;
-    Inventory inventory;
+    public TextMeshProUGUI dialogue;
 
     private void Start()
     {
-        shopInventory = ShopInventory.instance;
     }
-    public void WhereAmI()
+    public void Talk()
     {
-        //dialogue.text = "Look around you! Paradise!";
+        dialogue.text = "Last I heard, he was seen heading to Lone Peak Isle. The food vendor on the docks might know more...";
     }
 
     public void Shop()
