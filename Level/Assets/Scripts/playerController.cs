@@ -286,7 +286,11 @@ public class playerController : MonoBehaviour
 
             playerVelocity.y = jumpHeight;
             timesJumped++;
-            Debug.Log("Jumped");
+        }
+        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
+        {
+
+            playerVelocity.y = jumpHeight * 0.5f;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -369,7 +373,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         if (HP + dmg > HPOrig)
             HP = HPOrig;

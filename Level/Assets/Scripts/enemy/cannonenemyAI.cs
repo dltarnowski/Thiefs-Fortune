@@ -16,7 +16,7 @@ public class cannonenemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
@@ -165,7 +165,7 @@ public class cannonenemyAI : MonoBehaviour, IDamage
         Quaternion rotation = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         HP -= dmg;
         aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
