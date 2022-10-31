@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 700352981}
   m_Layer: 3
   m_Name: Enemy - PirateLegend
-  m_TagString: Melee
+  m_TagString: Legend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,8 @@ MonoBehaviour:
   model: {fileID: 7204424958204243267}
   col: {fileID: 1383946122127371567}
   anim: {fileID: 4941685614310209918}
-  drops: []
+  drops:
+  - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
   HP: 100
   reward: 0
   speedChase: 7
