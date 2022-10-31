@@ -36,7 +36,7 @@ public class gameManager : MonoBehaviour
     public Image staminaBar;
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
-    [SerializeField] blackSpot blackspot;
+    public blackSpot blackspot;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -46,6 +46,14 @@ public class gameManager : MonoBehaviour
     [Header("----- UI -----")]
     public GameObject hint;
     public Image[] ammoArray;
+    public List<Image> objectives;
+    public GameObject basicMoveUI;
+    public GameObject objectiveComplete;
+
+    public GameObject inventoryTab;
+    public GameObject activeTab;
+    public GameObject activePanel;
+    public GameObject inventoryPanel;
 
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
@@ -53,6 +61,7 @@ public class gameManager : MonoBehaviour
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public GameObject shopPanels;
+    public GameObject shopCam;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
@@ -94,7 +103,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -138,7 +147,6 @@ public class gameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         cameraScript.enabled = false;
-        healthBar.SetActive(false);
         Crosshair.SetActive(false);
     }
 
@@ -148,7 +156,6 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         cameraScript.enabled = true;
-        healthBar.SetActive(true);
         Crosshair.SetActive(true);
     }
 

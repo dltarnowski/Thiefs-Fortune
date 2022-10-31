@@ -51,6 +51,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepsAudSand;
     [Range(0, 1)] [SerializeField] float playerStepsAudVol;
     float currVolume;
+    float currGunVolume;
 
     private Vector3 playerVelocity;
     private int timesJumped;
@@ -94,22 +95,31 @@ public class playerController : MonoBehaviour
         {
             ChangePlayerVolume();
         }
+
+        /*
+        if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
+        {
+            ChangeGunVolume();
+        }
+        */
+
         movement();
+
         StartCoroutine(PlaySteps());
-        if(gunStats != null)
+
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
+            && EquipmentManager.instance.currentEquipment[0] == gunStats)
         {
             anim.SetBool("IsRanged", true);
-            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
-                && (EquipmentManager.instance.currentWeapon[0] == gunStats || EquipmentManager.instance.currentWeapon[1] == gunStats))
-                StartCoroutine(shoot());
+            StartCoroutine(shoot());
         }
-        if(swordStat != null)
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
+            && EquipmentManager.instance.currentEquipment[1] == swordStat && swordStat.hitsUntilBrokenCurrentAmount >= 0)
         {
             anim.SetBool("IsRanged", false);
-            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
-                && (EquipmentManager.instance.currentWeapon[2] == swordStat || EquipmentManager.instance.currentWeapon[3] == swordStat))
-                StartCoroutine(swing());
+            StartCoroutine(swing());
         }
+
         HP = Mathf.Clamp(HP, 0, HPOrig);
         updatePlayerHUD();
 
@@ -119,10 +129,8 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
-            Debug.Log(gunStats.ammoCount);
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
-                Debug.Log("Shoot");
                 isShooting = true;
                 gunStats.ammoCount--;
                 //gameManager.instance.ReduceAmmo();
@@ -251,8 +259,14 @@ public class playerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
         {
             anim.SetTrigger("IsJumping");
+
             playerVelocity.y = jumpHeight;
             timesJumped++;
+        }
+        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
+        {
+
+            playerVelocity.y = jumpHeight * 0.5f;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -312,12 +326,6 @@ public class playerController : MonoBehaviour
 
                 recoilScript.MeleeSwing();
 
-                if (swordStat.hitsUntilBrokenCurrentAmount <= 0)
-                {
-                    aud.PlayOneShot(swordStat.sound);
-                    Destroy(swordStat);
-                }
-
                 yield return new WaitForSeconds(swordStat.speed);
 
                 isSwinging = false;
@@ -327,26 +335,24 @@ public class playerController : MonoBehaviour
 
     void ItemSelect()
     {
-        /*        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectItem < EquipmentManager.instance.currentWeapon.Length - 1)
-                {
-                    selectItem++;
-                }
-                else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectItem > 0)
-                {
-                    selectItem--;
-                }*/
-        if (Input.GetKeyDown(KeyCode.Alpha1) && EquipmentManager.instance.currentWeapon[0] != null)
-            EquipmentManager.instance.currentWeapon[0].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha2) && EquipmentManager.instance.currentWeapon[1] != null)
-            EquipmentManager.instance.currentWeapon[1].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentWeapon[2] != null)
-            EquipmentManager.instance.currentWeapon[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentWeapon[3] != null)
-            EquipmentManager.instance.currentWeapon[3].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha1) && EquipmentManager.instance.currentEquipment[0] != null)
+        {
+            EquipmentManager.instance.currentEquipment[0].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && EquipmentManager.instance.currentEquipment[1] != null)
+        {
+            EquipmentManager.instance.currentEquipment[1].Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
+            EquipmentManager.instance.currentEquipment[2].Use();
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
+            EquipmentManager.instance.currentEquipment[3].Use();
     }
 
     public void takeDamage(int dmg)
     {
+        if (HP + dmg > HPOrig)
+            HP = HPOrig;
         HP -= dmg;
         lerpTime = 0f;
         aud.PlayOneShot(playerHurtAud[Random.Range(0, playerHurtAud.Length - 1)], playerHurtAudVol);
@@ -434,5 +440,10 @@ public class playerController : MonoBehaviour
     {
         aud.volume = gameManager.instance.PlayerAudioSlider.value;
         currVolume = aud.volume;
+    }
+    public void ChangeGunVolume()
+    {
+        aud.volume = gameManager.instance.GunVolumeSlider.value;
+        currGunVolume = aud.volume;
     }
 }

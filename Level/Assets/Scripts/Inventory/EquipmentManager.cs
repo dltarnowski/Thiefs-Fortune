@@ -13,79 +13,91 @@ public class EquipmentManager : MonoBehaviour
     }
     #endregion
 
-    public Weapon[] currentWeapon;
+    public Equipment[] currentEquipment;
+    public Consumable[] consumables;
+    [SerializeField] Gun starterGun;
+    [SerializeField] Sword starterSword;
 
 
-    public delegate void OnWeaponChanged(Weapon newWeapon, Weapon oldWeapon);
-    public OnWeaponChanged onWeaponChanged;
+    public delegate void OnEquipmentChanged(Equipment newEquipment, Equipment oldEquipment);
+    public OnEquipmentChanged onEquipmentChanged;
 
     private void Start()
     {
-        int numSlots = System.Enum.GetNames(typeof(ItemSlot)).Length;
-        currentWeapon = new Weapon[numSlots];
+        int equipSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
+        currentEquipment = new Equipment[equipSlots];
+        Equip(starterGun);
+        Equip(starterSword);
     }
 
-    public void Equip (Weapon newWeapon)
+    public void Equip (Equipment newEquipment)
     {
-        int slotIndex = (int)newWeapon.itemSlot;
+        int slotIndex = (int)newEquipment.equipmentSlot;
 
-        Weapon oldWeapon= null;
+        Equipment oldEquipment = null;
 
-        if(currentWeapon[slotIndex] != null)
+        if(currentEquipment[slotIndex] != null)
         {
-            oldWeapon = currentWeapon[slotIndex];
-            Inventory.instance.Add(oldWeapon, slotIndex);
+            oldEquipment = currentEquipment[slotIndex];
+            Inventory.instance.Add(oldEquipment);
         }
 
-        if(onWeaponChanged != null)
+
+        if(onEquipmentChanged != null)
         {
-            onWeaponChanged.Invoke(newWeapon, oldWeapon);
+            onEquipmentChanged.Invoke(newEquipment, oldEquipment);
         }
 
-        currentWeapon[slotIndex] = newWeapon;
-        gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = newWeapon.model.GetComponent<MeshRenderer>().sharedMaterial;
-        gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = newWeapon.model.GetComponent<MeshFilter>().sharedMesh;
+        currentEquipment[slotIndex] = newEquipment;
 
-        gameManager.instance.playerScript.gunStats = null;
-        gameManager.instance.playerScript.swordStat = null;
+        if(newEquipment is Weapon)
+        {
+            gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = newEquipment.model.GetComponent<MeshRenderer>().sharedMaterial;
+            gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = newEquipment.model.GetComponent<MeshFilter>().sharedMesh;
 
-        if (newWeapon.GetType() == typeof(Gun))
-            gameManager.instance.playerScript.gunStats = (Gun)newWeapon;
-        else if (newWeapon.GetType() == typeof(Sword))
-            gameManager.instance.playerScript.swordStat = (Sword)newWeapon;
+            if (newEquipment.GetType() == typeof(Gun))
+                gameManager.instance.playerScript.gunStats = (Gun)newEquipment;
+            else if (newEquipment.GetType() == typeof(Sword))
+                gameManager.instance.playerScript.swordStat = (Sword)newEquipment;
+        }
+
+
 
     }
     
     public void Unequip(int slotIndex)
     {
-        if(currentWeapon[slotIndex] != null)
+        Equipment oldEquipment = null;
+        if (currentEquipment[slotIndex] != null)
         {
-            if(currentWeapon[slotIndex] != null)
+            if(currentEquipment[slotIndex] is Weapon)
             {
-                if (currentWeapon[slotIndex].GetType() == typeof(Gun))
+                if (currentEquipment[slotIndex].GetType() == typeof(Gun))
                 {
                     gameManager.instance.playerScript.gunStats = null;
                 }
-                else if (currentWeapon[slotIndex].GetType() == typeof(Sword))
+                else if (currentEquipment[slotIndex].GetType() == typeof(Sword))
                     gameManager.instance.playerScript.swordStat = null;
                 gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = null;
                 gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = null;
             }
-            Weapon oldWeapon = currentWeapon[slotIndex];
-            Inventory.instance.Add(oldWeapon, (int)oldWeapon.itemSlot);
+            
+            oldEquipment = currentEquipment[slotIndex];
+            Inventory.instance.Add(oldEquipment);
 
-            currentWeapon[slotIndex] = null;
+            currentEquipment[slotIndex] = null;
 
-            if (onWeaponChanged != null)
+
+            if (onEquipmentChanged != null)
             {
-                onWeaponChanged.Invoke(null, oldWeapon);
+                onEquipmentChanged.Invoke(null, oldEquipment);
             }
         }
     }
 
     public void unEquipAll()
     {
-        for (int i = 0; i < currentWeapon.Length; i++)
+        for (int i = 0; i < currentEquipment.Length; i++)
             Unequip(i);
     }
 

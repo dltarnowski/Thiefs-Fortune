@@ -6,12 +6,15 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item")]
 public abstract class Item : ScriptableObject
 {
-    public ItemSlot itemSlot;
     new public string name = "New Item";
+    public EquipmentSlot equipmentSlot;
     public Sprite icon = null;
     public bool isDefaultItem = false;
     public float strength;
     public GameObject model;
+    public int numOfItems;
+    public int buyPrice;
+    public int sellPrice;
 
 
     public virtual void Use()
@@ -22,12 +25,22 @@ public abstract class Item : ScriptableObject
         Debug.Log("Using" + name);
     }    
 
+    public virtual void unUse()
+    {
+
+    }
+
     public void RemoveFromInventory()
     {
         Inventory.instance.Remove(this);
     }
 
+    public virtual void Equip()
+    {
+
+    }
+
 }
 
-public enum ItemSlot { Gun1, Gun2, Sword1, Sword2, potion, ammo }
+public enum EquipmentSlot { Gun, Sword, Ammo, HP, blackSpotPotion };
 

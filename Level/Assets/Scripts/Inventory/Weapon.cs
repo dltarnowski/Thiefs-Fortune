@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public abstract class Weapon : Item
+public abstract class Weapon : Equipment
 {
     //Stats
     public float speed;
@@ -14,12 +14,16 @@ public abstract class Weapon : Item
     public float snappiness;
     public float returnSpeed;
 
+
+
     public override void Use()
     {
         base.Use();
-        EquipmentManager.instance.Equip(this);
-
-        RemoveFromInventory();
+        gameManager.instance.playerScript.weaponModel.GetComponent<MeshRenderer>().sharedMaterial = this.model.GetComponent<MeshRenderer>().sharedMaterial;
+        gameManager.instance.playerScript.weaponModel.GetComponent<MeshFilter>().sharedMesh = this.model.GetComponent<MeshFilter>().sharedMesh;
     }
+
 }
+
+
 
