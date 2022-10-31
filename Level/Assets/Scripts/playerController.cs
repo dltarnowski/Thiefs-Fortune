@@ -89,19 +89,19 @@ public class playerController : MonoBehaviour
 
         ItemSelect();
 
-       
+        updatePlayerHUD();
 
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
             ChangePlayerVolume();
         }
 
-        /*
+        
         if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
         {
             ChangeGunVolume();
         }
-        */
+        
 
         movement();
 
@@ -121,7 +121,6 @@ public class playerController : MonoBehaviour
         }
 
         HP = Mathf.Clamp(HP, 0, HPOrig);
-        updatePlayerHUD();
 
     }
 
@@ -262,11 +261,7 @@ public class playerController : MonoBehaviour
 
             playerVelocity.y = jumpHeight;
             timesJumped++;
-        }
-        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
-        {
-
-            playerVelocity.y = jumpHeight * 0.5f;
+            Debug.Log("Jumped");
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
