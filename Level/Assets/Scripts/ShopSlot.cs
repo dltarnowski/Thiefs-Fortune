@@ -2,6 +2,7 @@ using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopSlot : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class ShopSlot : MonoBehaviour
     ShopInventory shopInventory;
     public Item item;
     bool canBuy;
+    public TextMeshProUGUI price;
 
     private void Start()
     {
         inventory = Inventory.instance;
         shopInventory = ShopInventory.instance;
+
     }
     private void Update()
     {
@@ -42,6 +45,17 @@ public class ShopSlot : MonoBehaviour
         item = newItem;
         icon.sprite = item.icon;
         icon.enabled = true;
+
+        if (CompareTag("ShopBuy"))
+        {
+            price.text = item.buyPrice.ToString();
+            Debug.Log(price.text);
+        }
+        else if (CompareTag("ShopSell"))
+        {
+            price.text = item.sellPrice.ToString();
+            Debug.Log(price.text);
+        }
     }
 
     public void ClearSlot()
