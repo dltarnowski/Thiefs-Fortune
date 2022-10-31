@@ -49,12 +49,10 @@ public class ShopSlot : MonoBehaviour
         if (CompareTag("ShopBuy"))
         {
             price.text = item.buyPrice.ToString();
-            Debug.Log(price.text);
         }
         else if (CompareTag("ShopSell"))
         {
             price.text = item.sellPrice.ToString();
-            Debug.Log(price.text);
         }
     }
 
@@ -64,16 +62,24 @@ public class ShopSlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
+
+        if (CompareTag("ShopSell"))
+        {
+            price.text = " ";
+        }
     }
 
     public void BuyCheck()
     {
-        if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
-           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
+        if (item != null)
         {
-            canBuy = true;
+            if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
+               && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
+            {
+                canBuy = true;
+            }
+            else
+                canBuy = false;
         }
-        else
-            canBuy = false;
     }
 }
