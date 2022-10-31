@@ -96,12 +96,12 @@ public class playerController : MonoBehaviour
             ChangePlayerVolume();
         }
 
-        /*
+
         if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
         {
             ChangeGunVolume();
         }
-        */
+
 
         movement();
 
