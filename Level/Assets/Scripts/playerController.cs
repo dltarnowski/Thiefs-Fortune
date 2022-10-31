@@ -262,11 +262,7 @@ public class playerController : MonoBehaviour
 
             playerVelocity.y = jumpHeight;
             timesJumped++;
-        }
-        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
-        {
-
-            playerVelocity.y = jumpHeight * 0.5f;
+            Debug.Log("Jumped");
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
