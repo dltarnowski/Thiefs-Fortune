@@ -13,7 +13,7 @@ public class enemySharkAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
@@ -29,7 +29,7 @@ public class enemySharkAI : MonoBehaviour, IDamage
     [SerializeField] internal float attackRate;
     [SerializeField] internal GameObject attackPos;
     [SerializeField] float meleeAttackRange;
-    [SerializeField] public int meleeDamage;
+    [SerializeField] public float meleeDamage;
 
 
     bool playerInRange;
@@ -110,7 +110,7 @@ public class enemySharkAI : MonoBehaviour, IDamage
         Quaternion rotation = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         HP -= dmg;
         if (HP <= 0)
