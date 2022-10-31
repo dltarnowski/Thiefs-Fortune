@@ -7,10 +7,14 @@ using UnityEngine.UI;
 public abstract class Item : ScriptableObject
 {
     new public string name = "New Item";
+    public EquipmentSlot equipmentSlot;
     public Sprite icon = null;
     public bool isDefaultItem = false;
     public float strength;
     public GameObject model;
+    public int numOfItems;
+    public int buyPrice;
+    public int sellPrice;
 
 
     public virtual void Use()
@@ -31,9 +35,12 @@ public abstract class Item : ScriptableObject
         Inventory.instance.Remove(this);
     }
 
+    public virtual void Equip()
+    {
 
+    }
 
 }
 
-public enum WeaponSlot { ActiveGun, ActiveSword };
+public enum EquipmentSlot { Gun, Sword, Ammo, HP, blackSpotPotion };
 

@@ -9,6 +9,7 @@ public class ShopAI : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] Animator anim;
     [SerializeField] Collider collide;
+    public GameObject shopCam;
 
     bool playerInRange;
 
@@ -25,23 +26,20 @@ public class ShopAI : MonoBehaviour
         if (playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
-            gameManager.instance.hint.SetActive(true);
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                shopCam.SetActive(true);
+                gameManager.instance.mainCamera.SetActive(false);
+
                 anim.SetBool("isWaving", false);
                 anim.SetBool("isTalking", true);
                 gameManager.instance.hint.SetActive(false);
 
                 gameManager.instance.NpcPause();
                 
-
                 gameManager.instance.npcDialogue.SetActive(playerInRange);
             }
-        }
-        else
-        {
-            gameManager.instance.hint.SetActive(false);
         }
     }
 
@@ -51,6 +49,8 @@ public class ShopAI : MonoBehaviour
         {
             playerInRange = true;
         }
+
+        gameManager.instance.hint.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
@@ -59,5 +59,7 @@ public class ShopAI : MonoBehaviour
         {
             playerInRange = false;
         }
+
+        gameManager.instance.hint.SetActive(false);
     }
 }

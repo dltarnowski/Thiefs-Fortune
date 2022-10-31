@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6482535713153805735}
   - component: {fileID: 6418501703367206877}
   - component: {fileID: 8060616246679983126}
-  - component: {fileID: 2806683622261362845}
+  - component: {fileID: 8654900323006372183}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -114,7 +114,7 @@ MonoBehaviour:
   bounceHeight: 0.5
   bounceSpeed: 0.25
   rotationSpeed: 60
---- !u!114 &2806683622261362845
+--- !u!114 &8654900323006372183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6482535713155909065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3151ca247655a0469fcc89ad633bb69, type: 3}
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 1
-  destroyTime: 30
+  item: {fileID: 11400000, guid: b0c6ef150c55dee43a7c19a528949978, type: 2}
