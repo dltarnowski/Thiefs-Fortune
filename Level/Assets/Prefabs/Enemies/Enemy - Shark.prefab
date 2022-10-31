@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+
 --- !u!1 &1272513083
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 4614405096279337694}
+
 --- !u!1 &4614405095700332698
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +518,6 @@ Transform:
   m_Children:
   - {fileID: 4614405096279354448}
   - {fileID: 4614405095700332699}
-  - {fileID: 1272513084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -571,6 +572,8 @@ MonoBehaviour:
   attackPos: {fileID: 4614405095700332698}
   meleeAttackRange: 0.1
   meleeDamage: 50
+  stationary: 0
+  noRotation: 0
 --- !u!136 &4614405096279337665
 CapsuleCollider:
   m_ObjectHideFlags: 0
