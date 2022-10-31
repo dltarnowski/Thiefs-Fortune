@@ -42,7 +42,7 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
-        //dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
+        dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
         gameManager.instance.mainCamera.SetActive(true);
         gameManager.instance.shopCam.SetActive(false);
     }
