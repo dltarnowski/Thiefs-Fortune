@@ -4,16 +4,16 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Analytics;
 
-public class ShopInventoryUI : MonoBehaviour
+public class SellInventoryUI : MonoBehaviour
 {
-    public Transform shopItems;
+    public Transform sellItems;
 
-    public GameObject shopInventoryUI;
+    public GameObject sellInventoryUI;
 
     ShopInventory shopInventory;
+    Inventory inventory;
 
-    public List<Item> allWeapons = new List<Item>();
-    ShopSlot[] shopSlots;
+    ShopSlot[] sellSlots;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +21,10 @@ public class ShopInventoryUI : MonoBehaviour
         shopInventory = ShopInventory.instance;
         shopInventory.onItemChangedCallback += UpdateUI;
 
-        shopSlots = shopItems.GetComponentsInChildren<ShopSlot>();
+        inventory = Inventory.instance;
+        inventory.onItemChangedCallback += UpdateUI;
 
-        shopInventory.items = allWeapons;
+        sellSlots = sellItems.GetComponentsInChildren<ShopSlot>();
 
         UpdateUI();
     }
@@ -35,16 +36,16 @@ public class ShopInventoryUI : MonoBehaviour
 
     void UpdateUI()
     {
-        if(shopInventoryUI.activeSelf)
+        if (sellInventoryUI.activeSelf)
         {
-            for (int i = 0; i < shopSlots.Length; i++)
+            for (int i = 0; i < sellSlots.Length; i++)
             {
-                if (i < shopInventory.items.Count)
+                if (i < inventory.items.Count)
                 {
-                    shopSlots[i].AddItem(shopInventory.items[i]);
+                    sellSlots[i].AddItem(inventory.items[i]);
                 }
                 else
-                    shopSlots[i].ClearSlot();
+                    sellSlots[i].ClearSlot();
             }
         }
     }

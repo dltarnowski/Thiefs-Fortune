@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopMenuButtons : MonoBehaviour
 {
     public GameObject shopMenu;
     public GameObject playerInventory;
+    public GameObject buyInventory;
+    public GameObject sellInventory;
+    public Button buyTab;
+    public Button sellTab;
     ShopInventory shopInventory;
     Inventory inventory;
 
@@ -24,6 +29,14 @@ public class ShopMenuButtons : MonoBehaviour
         gameManager.instance.npcDialogue.SetActive(false);
         shopMenu.SetActive(true);
         playerInventory.SetActive(true);
+        BuyTab();
+    }
+
+    public void CloseShop()
+    {
+        gameManager.instance.npcDialogue.SetActive(true);
+        shopMenu.SetActive(false);
+        playerInventory.SetActive(false);
     }
 
     public void Bye()
@@ -79,5 +92,23 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(true);
         gameManager.instance.shopInventory.SetActive(false);
+    }
+
+    public void BuyTab()
+    {
+        buyInventory.SetActive(true);
+        sellInventory.SetActive(false);
+        buyTab.interactable = false;
+        sellTab.interactable = true;
+        ShopInventory.instance.onItemChangedCallback.Invoke();
+    }
+
+    public void SellTab()
+    {
+        buyInventory.SetActive(false);
+        sellInventory.SetActive(true);
+        buyTab.interactable = true;
+        sellTab.interactable = false;
+        ShopInventory.instance.onItemChangedCallback.Invoke();
     }
 }

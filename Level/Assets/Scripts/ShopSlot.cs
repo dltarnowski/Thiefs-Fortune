@@ -2,6 +2,7 @@ using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopSlot : MonoBehaviour
 {
@@ -11,19 +12,23 @@ public class ShopSlot : MonoBehaviour
     ShopInventory shopInventory;
     public Item item;
     bool canBuy;
+    public TextMeshProUGUI price;
 
     private void Start()
     {
         inventory = Inventory.instance;
         shopInventory = ShopInventory.instance;
+
     }
     private void Update()
     {
         BuyCheck();
-        if(!canBuy)
+        if(!canBuy && CompareTag("ShopBuy"))
         {
             buy.interactable = false;
         }
+        else
+            buy.interactable = true;
     }
     public void Buy()
     {
@@ -33,15 +38,36 @@ public class ShopSlot : MonoBehaviour
         shopInventory.onItemChangedCallback.Invoke();
 
         gameManager.instance.currencyNumber -= item.buyPrice;
-        Debug.Log(item.buyPrice);
-        Debug.Log(gameManager.instance.currencyNumber);
         gameManager.instance.playerScript.updatePlayerHUD();
+    }
+
+    public void Sell()
+    {
+        if(item != null)
+        {
+            gameManager.instance.currencyNumber += item.sellPrice;
+            gameManager.instance.playerScript.updatePlayerHUD();
+
+            inventory.Remove(item);
+            //Inventory.instance.onItemChangedCallback.Invoke();
+
+        }
+
     }
     public void AddItem(Item newItem)
     {
         item = newItem;
         icon.sprite = item.icon;
         icon.enabled = true;
+
+        if (CompareTag("ShopBuy"))
+        {
+            price.text = item.buyPrice.ToString();
+        }
+        else if (CompareTag("ShopSell"))
+        {
+            price.text = item.sellPrice.ToString();
+        }
     }
 
     public void ClearSlot()
@@ -50,16 +76,24 @@ public class ShopSlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
+
+        if (CompareTag("ShopSell"))
+        {
+            price.text = " ";
+        }
     }
 
     public void BuyCheck()
     {
-        if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
-           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
+        if (item != null)
         {
-            canBuy = true;
+            if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
+               && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
+            {
+                canBuy = true;
+            }
+            else
+                canBuy = false;
         }
-        else
-            canBuy = false;
     }
 }
