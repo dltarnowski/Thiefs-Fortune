@@ -11,6 +11,7 @@ public class ShopInventoryUI : MonoBehaviour
     public GameObject shopInventoryUI;
 
     ShopInventory shopInventory;
+
     public List<Item> allWeapons = new List<Item>();
     ShopSlot[] shopSlots;
 
@@ -34,14 +35,17 @@ public class ShopInventoryUI : MonoBehaviour
 
     void UpdateUI()
     {
-        for (int i = 0; i < shopSlots.Length; i++)
+        if(shopInventoryUI.activeSelf)
         {
-            if (i < shopInventory.items.Count)
+            for (int i = 0; i < shopSlots.Length; i++)
             {
-                shopSlots[i].AddItem(shopInventory.items[i]);
+                if (i < shopInventory.items.Count)
+                {
+                    shopSlots[i].AddItem(shopInventory.items[i]);
+                }
+                else
+                    shopSlots[i].ClearSlot();
             }
-            else
-                shopSlots[i].ClearSlot();
         }
-    }    
+    }
 }
