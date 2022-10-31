@@ -69,6 +69,10 @@ public class playerController : MonoBehaviour
     [SerializeField] bool isOnSand;
     Vector3 move;
 
+    float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+    float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
     public bool isUnderwater;
@@ -179,12 +183,6 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        //Reset jump
-        if (controller.isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-            timesJumped = 0;
-        }
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -238,8 +236,45 @@ public class playerController : MonoBehaviour
             anim.SetBool("IsWalking", false);
 
 
+        //Coyote Time
+        if (controller.isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //Jump Buffer
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+
+        //Jump
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        {
+            anim.SetTrigger("IsJumping");
+
+            playerVelocity.y = jumpHeight;
+
+            jumpBufferCounter = 0;
+        }
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        {
+            playerVelocity.y = jumpHeight * 0.5f;
+
+            coyoteTimeCounter = 0;
+        }
+
         //Run
-        if(canSprint == true)
+        if (canSprint == true)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -276,21 +311,7 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.staminaBar.color = staminColor;
                 canSprint = true;
-            }    
-        }
-
-        //Jump
-        if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
-        {
-            anim.SetTrigger("IsJumping");
-
-            playerVelocity.y = jumpHeight;
-            timesJumped++;
-        }
-        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
-        {
-
-            playerVelocity.y = jumpHeight * 0.5f;
+            }
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
