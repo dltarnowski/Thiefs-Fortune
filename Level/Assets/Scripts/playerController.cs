@@ -71,6 +71,8 @@ public class playerController : MonoBehaviour
 
     float coyoteTime = 0.2f;
     float coyoteTimeCounter;
+    float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
     public bool isUnderwater;
@@ -181,12 +183,6 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        //Reset jump
-        if (controller.isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-            timesJumped = 0;
-        }
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -244,19 +240,31 @@ public class playerController : MonoBehaviour
         if (controller.isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
-            Debug.Log("Is Coyote time");
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
 
+        //Jump Buffer
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+
         //Jump
-        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0)
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
         {
             anim.SetTrigger("IsJumping");
 
             playerVelocity.y = jumpHeight;
+
+            jumpBufferCounter = 0;
         }
         if (Input.GetButtonUp("Jump") && playerVelocity.y > 0)
         {
