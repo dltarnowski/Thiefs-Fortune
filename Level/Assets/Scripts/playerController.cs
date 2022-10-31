@@ -75,10 +75,10 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
-        //thirdPersonCam_Cam.enabled = true;
-        //firstPersonCam_Cam.enabled = false;
         thirdPersonCam_Obj.SetActive(true);
+        thirdPersonCam_Obj.tag = "MainCamera";
         firstPersonCam_Obj.SetActive(false);
+        firstPersonCam_Obj.tag = "SecondaryCamera";
         gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
@@ -190,14 +190,16 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             thirdPersonCam_Obj.SetActive(false);
+            thirdPersonCam_Obj.tag = "SecondaryCamera";
             firstPersonCam_Obj.SetActive(true);
-            Debug.Log("First Person");
+            firstPersonCam_Obj.tag = "MainCamera";
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             thirdPersonCam_Obj.SetActive(true);
+            thirdPersonCam_Obj.tag = "MainCamera";
             firstPersonCam_Obj.SetActive(false);
-            Debug.Log("Third Person");
+            firstPersonCam_Obj.tag = "SecondaryCamera";
         }
 
         //Crouch
@@ -450,12 +452,10 @@ public class playerController : MonoBehaviour
         if (other.CompareTag("Sand"))
         {
             isOnSand = true;
-            Debug.Log("Sand");
         }
         else if (!other.CompareTag("Ship") && !other.CompareTag("Sand"))
         {
             isOnSand = false;
-            Debug.Log("Not Sand");
         }
     }
     public void ChangePlayerVolume()
