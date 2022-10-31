@@ -13,7 +13,7 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
@@ -31,7 +31,7 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
     [SerializeField] float meleeAttackRange;
-    [SerializeField] public int damage;
+    [SerializeField] public float damage;
     [SerializeField] float attackSwitchRange;
 
     [Header("----- Roam Settings -----")]
@@ -195,7 +195,7 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
         Quaternion rotation = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         HP -= dmg;
         aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
@@ -220,7 +220,7 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
         isShooting = true;
         anim.SetTrigger("range");
         aud.PlayOneShot(enemyWeaponAud[0], enemyWeaponAudVol);
-        bullet.GetComponent<Bullet>().damage = (int)(damage * (1 + gameManager.instance.blackspot.blackSpotMultiplier));
+        bullet.GetComponent<Bullet>().damage = damage * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
         Instantiate(bullet, attackPos.transform.position, transform.rotation);
         yield return new WaitForSeconds(attackRate);
         isShooting = false;

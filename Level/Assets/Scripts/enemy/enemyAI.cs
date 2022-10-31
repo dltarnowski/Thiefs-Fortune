@@ -13,7 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int reward;
     [SerializeField] int speedChase;
     [SerializeField] int facePlayerSpeed;
@@ -29,7 +29,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject weapon;
     [SerializeField] GameObject bullet;
     [SerializeField] float meleeAttackRange;
-    [SerializeField] public int meleeDamage;
+    [SerializeField] public float meleeDamage;
 
     [Header("----- Roam Settings -----")]
     [SerializeField] bool linearRoam;
@@ -170,7 +170,7 @@ public class enemyAI : MonoBehaviour, IDamage
         Quaternion rotation = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         HP -= dmg;
         aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);

@@ -8,7 +8,7 @@ public class FractureObject : MonoBehaviour, IDamage
     public ParticleSystem flame;
     public Light light;
 
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
         Instantiate(destroyedVersion, transform.position, transform.rotation);
 

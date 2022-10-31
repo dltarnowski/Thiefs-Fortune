@@ -366,7 +366,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         if (HP + dmg > HPOrig)
             HP = HPOrig;
