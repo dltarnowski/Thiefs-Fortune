@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Gun - Pistol
   m_EditorClassIdentifier: 
   name: Pistol
+  equipmentSlot: 0
   icon: {fileID: 21300000, guid: f200ebffebc4f77409ec522855dddd34, type: 3}
   isDefaultItem: 0
   strength: 2
   model: {fileID: 6683910282277353856, guid: 27c105735705dd7499728f9d31c4d58d, type: 3}
-  weaponSlot: 0
+  numOfItems: 0
+  buyPrice: 5
+  sellPrice: 3
   speed: 1
   sound: {fileID: 8300000, guid: ef4d7f80cfec37b4ab25454b178f20a8, type: 3}
-  hitFX: {fileID: 1017173258155303825, guid: 78e20494946b4fb4188309f13fc0e5c1, type: 3}
   distance: 25
+  hitFX: {fileID: 1017173258155303825, guid: 78e20494946b4fb4188309f13fc0e5c1, type: 3}
   recoilX: -3
   recoilY: 3
   recoilZ: 0.2
