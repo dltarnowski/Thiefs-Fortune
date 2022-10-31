@@ -29,6 +29,14 @@ public class ShopMenuButtons : MonoBehaviour
         gameManager.instance.npcDialogue.SetActive(false);
         shopMenu.SetActive(true);
         playerInventory.SetActive(true);
+        BuyTab();
+    }
+
+    public void CloseShop()
+    {
+        gameManager.instance.npcDialogue.SetActive(true);
+        shopMenu.SetActive(false);
+        playerInventory.SetActive(false);
     }
 
     public void Bye()

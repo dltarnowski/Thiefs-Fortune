@@ -23,10 +23,12 @@ public class ShopSlot : MonoBehaviour
     private void Update()
     {
         BuyCheck();
-        if(!canBuy)
+        if(!canBuy && CompareTag("ShopBuy"))
         {
             buy.interactable = false;
         }
+        else
+            buy.interactable = true;
     }
     public void Buy()
     {
@@ -36,9 +38,21 @@ public class ShopSlot : MonoBehaviour
         shopInventory.onItemChangedCallback.Invoke();
 
         gameManager.instance.currencyNumber -= item.buyPrice;
-        Debug.Log(item.buyPrice);
-        Debug.Log(gameManager.instance.currencyNumber);
         gameManager.instance.playerScript.updatePlayerHUD();
+    }
+
+    public void Sell()
+    {
+        if(item != null)
+        {
+            gameManager.instance.currencyNumber += item.sellPrice;
+            gameManager.instance.playerScript.updatePlayerHUD();
+
+            inventory.Remove(item);
+            //Inventory.instance.onItemChangedCallback.Invoke();
+
+        }
+
     }
     public void AddItem(Item newItem)
     {
