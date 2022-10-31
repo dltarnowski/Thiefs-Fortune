@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8205407135510213382}
   - component: {fileID: 8205407135511448884}
   - component: {fileID: 8205407135510213385}
-  - component: {fileID: 8205407135510213384}
   - component: {fileID: 8205407135510213383}
+  - component: {fileID: 3402084406666548140}
   m_Layer: 0
   m_Name: Ruby
   m_TagString: Untagged
@@ -99,19 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.21382141
   m_Center: {x: 0.0037002563, y: 0.053280354, z: -0.000000059604645}
---- !u!114 &8205407135510213384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8205407135513404088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3151ca247655a0469fcc89ad633bb69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinValue: 15
 --- !u!114 &8205407135510213383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +114,16 @@ MonoBehaviour:
   bounceHeight: 0.5
   bounceSpeed: 0.25
   rotationSpeed: 70
+--- !u!114 &3402084406666548140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205407135513404088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 5be1ac0979568934894924eb98b09fb8, type: 2}
