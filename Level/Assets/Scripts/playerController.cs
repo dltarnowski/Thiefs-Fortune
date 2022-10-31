@@ -10,6 +10,10 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] GameObject thirdPersonCam_Obj;
+    [SerializeField] GameObject firstPersonCam_Obj;
+    [SerializeField] Camera thirdPersonCam_Cam;
+    [SerializeField] Camera firstPersonCam_Cam;
     public Animator anim;
     public GameObject itemDropPoint;
 
@@ -71,6 +75,10 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOrig = HP;
+        //thirdPersonCam_Cam.enabled = true;
+        //firstPersonCam_Cam.enabled = false;
+        thirdPersonCam_Obj.SetActive(true);
+        firstPersonCam_Obj.SetActive(false);
         gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
@@ -175,6 +183,20 @@ public class playerController : MonoBehaviour
         {
             playerVelocity.y = 0f;
             timesJumped = 0;
+        }
+
+        //3rd vs. 1st person camera toggle
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            thirdPersonCam_Obj.SetActive(false);
+            firstPersonCam_Obj.SetActive(true);
+            Debug.Log("First Person");
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            thirdPersonCam_Obj.SetActive(true);
+            firstPersonCam_Obj.SetActive(false);
+            Debug.Log("Third Person");
         }
 
         //Crouch
