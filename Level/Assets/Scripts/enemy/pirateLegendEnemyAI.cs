@@ -84,6 +84,7 @@ public class pirateLegendEnemyAI : MonoBehaviour, IDamage
             if(currBlackSpot != gameManager.instance.blackspot.blackSpotMultiplier)
             {
                 currBlackSpot = gameManager.instance.blackspot.blackSpotMultiplier;
+                damage = (int)(damage * (1 + gameManager.instance.blackspot.blackSpotMultiplier));
                 HP = (int)(HP * (1 + gameManager.instance.blackspot.blackSpotMultiplier));
             }
 

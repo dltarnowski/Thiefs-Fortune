@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2612704222004650353}
   - component: {fileID: 2612704222006115017}
   - component: {fileID: 2612704222007822686}
-  - component: {fileID: 2612704222007822687}
   - component: {fileID: 2612704222007822688}
+  - component: {fileID: 1507394695359167322}
   m_Layer: 0
   m_Name: Medium Coin Pile
   m_TagString: Untagged
@@ -101,20 +101,6 @@ MonoBehaviour:
   bounceHeight: 0.5
   bounceSpeed: 0.25
   rotationSpeed: 45
---- !u!114 &2612704222007822687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2612704222007822689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3151ca247655a0469fcc89ad633bb69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinValue: 5
-  destroyTime: 30
 --- !u!135 &2612704222007822688
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -128,3 +114,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.20575333
   m_Center: {x: 0.012722015, y: 0.013602614, z: 0.00000023841858}
+--- !u!114 &1507394695359167322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612704222007822689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d5078b0a07e294d8559a4ad9666b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 521c93d44eb8bd94998763b7716680c2, type: 2}
