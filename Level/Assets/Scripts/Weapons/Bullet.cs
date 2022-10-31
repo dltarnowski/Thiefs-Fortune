@@ -46,23 +46,25 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other != null)
         {
-            gameManager.instance.playerScript.takeDamage(damage);
+            if (other.CompareTag("Player"))
+            {
+                gameManager.instance.playerScript.takeDamage(damage);
+            }
+            if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
+            {
+                other.GetComponent<enemyAI>().takeDamage(damage);
+            }
+            if (other.CompareTag("Tower"))
+            {
+                other.GetComponent<FractureObject>().takeDamage(damage);
+            }
+            if (other.CompareTag("Legend"))
+            {
+                other.GetComponent<pirateLegendEnemyAI>().takeDamage(damage);
+            }
             Destroy(gameObject);
-        }
-        if (other.CompareTag("Ranged") || other.CompareTag("Melee"))
-        {
-            other.GetComponent<enemyAI>().takeDamage(damage);
-            Destroy(gameObject);
-        }
-        if (other.CompareTag("Tower"))
-        {
-            other.GetComponent<FractureObject>().takeDamage(damage);
-        }
-        if (other.CompareTag("Legend"))
-        {
-            other.GetComponent<pirateLegendEnemyAI>().takeDamage(damage);
         }
 
     }
