@@ -69,6 +69,8 @@ public class playerController : MonoBehaviour
     [SerializeField] bool isOnSand;
     Vector3 move;
 
+    float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
     public int barrel;
     private Color staminColor;
     public bool isUnderwater;
@@ -238,8 +240,33 @@ public class playerController : MonoBehaviour
             anim.SetBool("IsWalking", false);
 
 
+        //Coyote Time
+        if (controller.isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+            Debug.Log("Is Coyote time");
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //Jump
+        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0)
+        {
+            anim.SetTrigger("IsJumping");
+
+            playerVelocity.y = jumpHeight;
+        }
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        {
+            playerVelocity.y = jumpHeight * 0.5f;
+
+            coyoteTimeCounter = 0;
+        }
+
         //Run
-        if(canSprint == true)
+        if (canSprint == true)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -276,21 +303,7 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.staminaBar.color = staminColor;
                 canSprint = true;
-            }    
-        }
-
-        //Jump
-        if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
-        {
-            anim.SetTrigger("IsJumping");
-
-            playerVelocity.y = jumpHeight;
-            timesJumped++;
-        }
-        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
-        {
-
-            playerVelocity.y = jumpHeight * 0.5f;
+            }
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
