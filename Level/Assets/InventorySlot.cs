@@ -1,6 +1,8 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -9,13 +11,24 @@ public class InventorySlot : MonoBehaviour
     public Button equipButton;
     public Button unEquipButton;
     public Inventory inventory;
+    public TextMeshProUGUI itemCount;
+    public GameObject countUI;
     Item item;
+
+    int ammoAmount;
+    int hpAmount;
 
     private void Start()
     {
         inventory = Inventory.instance;
         /*if (CompareTag("Shop"))
             AddItem(item);*/
+    }
+
+    // NEEDS TO BE REPLACED FOR FINAL!!! THIS IS JUST FOR TESTING PURPOSES
+    private void Update()
+    {
+        Inventory.instance.onItemChangedCallback.Invoke();
     }
     public void Buy()
     {
@@ -37,10 +50,22 @@ public class InventorySlot : MonoBehaviour
         }
         if (CompareTag("Equipment Slot"))
             unEquipButton.interactable = true;
+
+        if(item is Consumable)
+        {
+            countUI.SetActive(true);
+            itemCount.text = item.numOfItems.ToString();
+        }
+
     }
 
     public void ClearSlot()
     {
+        if (item is Consumable)
+        {
+            countUI.SetActive(false);
+            itemCount.text = " ";
+        }
         item = null;
 
         icon.sprite = null;
@@ -52,6 +77,7 @@ public class InventorySlot : MonoBehaviour
         }
         if (CompareTag("Equipment Slot"))
             unEquipButton.interactable = false;
+
     }
 
     public void OnRemoveButton()

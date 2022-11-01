@@ -11,19 +11,11 @@ public class ConsumableShopAI : MonoBehaviour
     [SerializeField] Collider collide;
     public GameObject shopCam;
 
-    bool playerInRange;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
 
-        if (playerInRange && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (gameManager.instance.consumeCollide && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
 
@@ -46,7 +38,7 @@ public class ConsumableShopAI : MonoBehaviour
 
                 gameManager.instance.NpcPause();
 
-                gameManager.instance.npcDialogue.SetActive(playerInRange);
+                gameManager.instance.npcDialogue.SetActive(gameManager.instance.consumeCollide);
             }
         }
     }
@@ -55,7 +47,8 @@ public class ConsumableShopAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true;
+            gameManager.instance.consumeCollide = true;
+            NPCManager.instance.shopUI = NPCManager.instance.consumeUI;
         }
 
         gameManager.instance.hint.SetActive(true);
@@ -65,7 +58,7 @@ public class ConsumableShopAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false;
+            gameManager.instance.consumeCollide = false;
         }
 
         gameManager.instance.hint.SetActive(false);
