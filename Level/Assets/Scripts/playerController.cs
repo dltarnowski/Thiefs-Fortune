@@ -17,12 +17,15 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject miniMapIcon;
     [SerializeField] LayerMask whatIsEnemy;
     public Animator anim;
+    public GameObject waterDetectionPoint;
     public GameObject itemDropPoint;
 
 
     [Header("----- Player Stats -----")]
     [Range(1, 5)] [SerializeField] float playerSpeed;
     [Range(2, 5)] [SerializeField] float runSpeed;
+    [Range(0, 1)] [SerializeField] float swimSpeed;
+    [Range(0, 5)] [SerializeField] float maxSwimSpeed;
     [Range(1, 15)] public float jumpHeight;
     public float jumpHeightOrig;
     [Range(-1, -35)] public float gravityValue;
@@ -261,7 +264,7 @@ public class playerController : MonoBehaviour
 
 
         //Jump
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && !isUnderwater)
         {
             anim.SetTrigger("IsJumping");
 
@@ -269,11 +272,16 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0 && !isUnderwater)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
             coyoteTimeCounter = 0;
+        }
+        else if (Input.GetButton("Jump") && isUnderwater)
+        {
+            if(playerVelocity.y <= maxSwimSpeed)
+                playerVelocity.y += swimSpeed;
         }
 
         //Run
