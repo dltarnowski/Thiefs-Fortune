@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShopInventory : MonoBehaviour
+public class ConsumableInventory : MonoBehaviour
 {
-    public static ShopInventory instance;
+    public static ConsumableInventory instance;
 
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public int space = 12;
+    public int space = 2;
 
-    public List<Item> items = new List<Item>();
+    public List<Consumable> items = new List<Consumable>();
 
     void Awake()
     {
@@ -29,13 +29,13 @@ public class ShopInventory : MonoBehaviour
         items.Capacity = space;
     }
 
-    public bool Add(Item item)
+    public bool Add(Consumable item)
     {
         if (!item.isDefaultItem)
         {
             if (items.Count >= space)
                 return false;
-                items.Add(item);
+            items.Add(item);
 
             if (onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
@@ -44,9 +44,9 @@ public class ShopInventory : MonoBehaviour
         return true;
     }
 
-    public void Remove(Item item)
+    public void Remove(Consumable item)
     {
-            items.Remove(item);
+        items.Remove(item);
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
