@@ -60,6 +60,8 @@ public class gameManager : MonoBehaviour
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
+    public bool weaponCollide;
+    public bool consumeCollide;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
