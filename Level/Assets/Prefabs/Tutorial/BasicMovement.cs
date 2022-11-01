@@ -22,7 +22,7 @@ public class BasicMovement : MonoBehaviour
         if(inputCheck == 4)
         {
             gameManager.instance.basicMoveUI.SetActive(false);
-            //gameManager.instance.objectiveComplete.SetActive(true);
+            gameManager.instance.objectiveComplete.SetActive(true);
         }
     }
 

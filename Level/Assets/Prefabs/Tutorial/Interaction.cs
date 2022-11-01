@@ -45,6 +45,7 @@ public class Interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerInRange = true;
+            TutorialManager.instance.StartTutorial();
         }
     }
     private void OnTriggerExit(Collider other)
