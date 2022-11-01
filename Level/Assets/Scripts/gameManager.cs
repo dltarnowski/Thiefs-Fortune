@@ -63,6 +63,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI coinCountText;
     public bool weaponCollide;
     public bool consumeCollide;
+    public bool TutorialCollide;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
