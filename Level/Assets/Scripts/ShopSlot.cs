@@ -1,18 +1,18 @@
-using TMPro.EditorUtilities;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class ShopSlot : MonoBehaviour
 {
-    public Image icon;
-    public Button buy;
     Inventory inventory;
     ShopInventory shopInventory;
+
+    public Image icon;
+    public Button buy;
     public Item item;
-    bool canBuy;
     public TextMeshProUGUI price;
+
+    bool canBuy;
 
     private void Start()
     {
@@ -23,6 +23,7 @@ public class ShopSlot : MonoBehaviour
     private void Update()
     {
         BuyCheck();
+
         if(!canBuy && CompareTag("ShopBuy"))
         {
             buy.interactable = false;
@@ -37,7 +38,6 @@ public class ShopSlot : MonoBehaviour
             inventory.Add(item);
             shopInventory.Remove(item);
         }
-
         gameManager.instance.currencyNumber -= item.buyPrice;
         gameManager.instance.playerScript.updatePlayerHUD();
     }
@@ -86,15 +86,12 @@ public class ShopSlot : MonoBehaviour
 
     public void BuyCheck()
     {
-        if (item != null)
+        if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
+           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
         {
-            if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
-               && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
-            {
-                canBuy = true;
-            }
-            else
-                canBuy = false;
+            canBuy = true;
         }
+        else
+            canBuy = false;
     }
 }

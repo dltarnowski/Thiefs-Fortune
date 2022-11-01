@@ -20,10 +20,10 @@ public class Ammo : Consumable
                     if (this.numOfItems == 0)
                     {
                         EquipmentManager.instance.currentEquipment[(int)this.equipmentSlot] = null;
-                        Inventory.instance.onItemChangedCallback();
                     }
                     else
                         this.numOfItems--;
+                Inventory.instance.onItemChangedCallback();
                 }
             }
         }
