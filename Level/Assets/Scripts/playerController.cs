@@ -15,6 +15,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Camera thirdPersonCam_Cam;
     [SerializeField] Camera firstPersonCam_Cam;
     [SerializeField] GameObject miniMapIcon;
+    [SerializeField] LayerMask whatIsEnemy;
     public Animator anim;
     public GameObject waterDetectionPoint;
     public GameObject itemDropPoint;
@@ -364,25 +365,25 @@ public class playerController : MonoBehaviour
             if (Input.GetButton("Fire1") && !isSwinging)
             {
                 isSwinging = true;
-
                 anim.SetTrigger("Attacking");
                 aud.PlayOneShot(gruntAudio[Random.Range(0, gruntAudio.Length)]);
-
-                RaycastHit hit;
-                if (Physics.BoxCast(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, out hit, Camera.main.transform.rotation, swordStat.distance))
+                RaycastHit[] hit = Physics.BoxCastAll(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, Camera.main.transform.rotation, swordStat.distance, whatIsEnemy);
+                for(int i = 0; i < hit.Length; i++)
                 {
-                    if (hit.collider.GetComponent<IDamage>() != null)
+                    if (hit[i].collider.GetComponent<IDamage>() != null)
                     {
                         swordStat.hitsUntilBrokenCurrentAmount--;
-                        hit.collider.GetComponent<IDamage>().takeDamage((int)swordStat.strength);
-                        Instantiate(swordStat.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        hit[i].collider.GetComponent<IDamage>().takeDamage(swordStat.strength);
+                        Instantiate(swordStat.hitFX, hit[i].point, hit[i].collider.gameObject.transform.rotation, hit[i].collider.gameObject.transform);
                     }
                 }
-
                 recoilScript.MeleeSwing();
-
+                if (swordStat.hitsUntilBrokenCurrentAmount <= 0)
+                {
+                    aud.PlayOneShot(swordStat.sound);
+                    Destroy(swordStat);
+                }
                 yield return new WaitForSeconds(swordStat.speed);
-
                 isSwinging = false;
             }
         }

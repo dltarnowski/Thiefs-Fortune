@@ -4013,6 +4013,9 @@ MonoBehaviour:
   thirdPersonCam_Cam: {fileID: 4394722232126371129}
   firstPersonCam_Cam: {fileID: 9063464832726011432}
   miniMapIcon: {fileID: 5766391565314013385}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 8
   anim: {fileID: 549276323938453515}
   waterDetectionPoint: {fileID: 5668883011660425397}
   itemDropPoint: {fileID: 8869047490332942503}
@@ -14478,10 +14481,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.11343833
+  m_Height: 1.3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.6, z: -0.0000002864921}
 --- !u!1 &4394722232126371131
 GameObject:
   m_ObjectHideFlags: 0
