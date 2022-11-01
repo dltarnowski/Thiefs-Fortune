@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 3170316923362290625}
   - component: {fileID: 3146384174797223839}
   - component: {fileID: 3160606531285509543}
-  - component: {fileID: 3160606531285509542}
   - component: {fileID: 1481562140}
-  - component: {fileID: 1481562141}
+  - component: {fileID: 3146384174475647987}
   m_Layer: 0
   m_Name: TutorialTeacher
   m_TagString: Untagged
@@ -30,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3146980890730116495}
-  m_LocalRotation: {x: -0, y: -0.83016837, z: -0, w: 0.5575129}
+  m_LocalRotation: {x: 0, y: -0.83016795, z: 0, w: 0.55751336}
   m_LocalPosition: {x: -136.22, y: -59.13, z: 133.64}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -125,21 +124,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3160606531285509542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3146980890730116495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a92528f91322744974fe9003a687d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  Icon: {fileID: 7588481253745284720}
-  Icon2: {fileID: 5488394248461248879}
 --- !u!135 &1481562140
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -151,9 +135,9 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 24.099657
-  m_Center: {x: -2.3712316, y: 0.07857163, z: -3.7850823}
---- !u!114 &1481562141
+  m_Radius: 16.598587
+  m_Center: {x: -1.3122939, y: 0.07857163, z: -3.7850728}
+--- !u!114 &3146384174475647987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,9 +146,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3146980890730116495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4252f71d5cc4b734e88e9546fde5b230, type: 3}
+  m_Script: {fileID: 11500000, guid: d5a92528f91322744974fe9003a687d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerInRange: 0
+  target: {fileID: 0}
+  Icon: {fileID: 7588481253745284720}
+  Icon2: {fileID: 5488394248461248879}
 --- !u!1001 &3146384174795654667
 PrefabInstance:
   m_ObjectHideFlags: 0

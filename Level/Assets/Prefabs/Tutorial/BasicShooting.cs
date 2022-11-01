@@ -1,60 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicShooting : MonoBehaviour
 {
     int inputCheck;
-    bool playerInRange;
 
-    void Update()
+    public Image[] Checks;
+
+    private void Update()
     {
-        ObjectiveCheck();
-        /* if (playerInRange && Input.GetKeyDown(KeyCode.E))
-         {
-             gameManager.instance.basicMoveUI.SetActive(true);
-             gameManager.instance.hint.SetActive(false);
-         }
+        if (gameManager.instance.TutorialCollide == true && Input.GetKeyDown(KeyCode.E))
+        {
+            gameManager.instance.basicMoveUI.SetActive(true);
+        }
 
-         if (gameManager.instance.basicMoveUI.activeSelf)
-             ObjectiveCheck();
+        if (gameManager.instance.basicMoveUI.activeSelf)
+            ObjectiveCheck();
 
-         if (inputCheck == 4)
-         {
-             gameManager.instance.basicMoveUI.SetActive(false);
-             gameManager.instance.objectiveComplete.SetActive(true);
-         }*/
+        if (inputCheck == 4)
+        {
+            gameManager.instance.basicMoveUI.SetActive(false);
+            gameManager.instance.objectiveComplete.SetActive(true);
+            gameManager.instance.objectiveComplete.SetActive(false);
+        }
     }
 
     void ObjectiveCheck()
     {
-        if (Input.GetButtonDown("Fire1") && inputCheck == 0)
+        /*if (Input.GetKeyDown("") && inputCheck == 0)
         {
-            //gameManager.instance.objectives[inputCheck].color = Color.green;
-            inputCheck++;
-        }
-       /* else if (Input.GetKeyDown(KeyCode.A) && inputCheck == 1)
-        {
-            gameManager.instance.objectives[inputCheck].color = Color.green;
-            inputCheck++;
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && inputCheck == 2)
-        {
-            gameManager.instance.objectives[inputCheck].color = Color.green;
-            inputCheck++;
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && inputCheck == 3)
-        {
-            gameManager.instance.objectives[inputCheck].color = Color.green;
+            Checks[inputCheck].color = Color.green;
             inputCheck++;
         }*/
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.hint.SetActive(true);
-            playerInRange = true;
-        }
     }
 }
