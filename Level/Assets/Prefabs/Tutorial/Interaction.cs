@@ -6,11 +6,14 @@ public class Interaction : MonoBehaviour
 {
     private Animator anim;
     public Transform target;
-
+    [SerializeField] GameObject Icon;
+    [SerializeField] GameObject Icon2;
     private bool playerInRange;
+
     void Start()
     {
         anim = GetComponent<Animator>();
+        Icon2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,13 +25,22 @@ public class Interaction : MonoBehaviour
         }
         if (anim != null)
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 anim.SetTrigger("Speak");
+                gameManager.instance.hint.SetActive(false);
+                gameManager.instance.playerScript.enabled = false;
+                Icon.SetActive(false);
+                Icon2.SetActive(true);
+
             }
             if (Input.GetKeyDown(KeyCode.L))
             {
                 anim.SetTrigger("Idle");
+                gameManager.instance.hint.SetActive(true);
+                gameManager.instance.playerScript.enabled = true;
+                Icon.SetActive(true);
+                Icon2.SetActive(false);
             }
         }
     }
