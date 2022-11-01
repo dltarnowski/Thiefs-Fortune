@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
     [SerializeField] Camera firstPersonCam_Cam;
+    [SerializeField] GameObject miniMapIcon;
     public Animator anim;
     public GameObject itemDropPoint;
 
@@ -75,6 +76,7 @@ public class playerController : MonoBehaviour
     float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
+    bool mapActive;
     public bool isUnderwater;
     void Start()
     {
@@ -101,7 +103,7 @@ public class playerController : MonoBehaviour
 
         ItemSelect();
 
-       
+        MapSelect();
 
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
@@ -119,13 +121,13 @@ public class playerController : MonoBehaviour
 
         StartCoroutine(PlaySteps());
 
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh
             && EquipmentManager.instance.currentEquipment[0] == gunStats)
         {
             anim.SetBool("IsRanged", true);
             StartCoroutine(shoot());
         }
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh
             && EquipmentManager.instance.currentEquipment[1] == swordStat && swordStat.hitsUntilBrokenCurrentAmount >= 0)
         {
             anim.SetBool("IsRanged", false);
@@ -394,6 +396,30 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
+    void MapSelect()
+    {
+        if (!mapActive)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                gameManager.instance.map.SetActive(true);
+                mapActive = true;
+                miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                gameManager.instance.map.SetActive(false);
+                mapActive = false;
+                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                Time.timeScale = 1;
+            }
+        }
+    }
+
     public void takeDamage(float dmg)
     {
         if (HP + dmg > HPOrig)
@@ -422,7 +448,7 @@ public class playerController : MonoBehaviour
         float fillA = gameManager.instance.playerHPBar.fillAmount;
         float fillB = gameManager.instance.playerHPLost.fillAmount;
         float healthDiff = HP / HPOrig;
-        if(fillB > healthDiff)
+        if (fillB > healthDiff)
         {
             gameManager.instance.playerHPBar.fillAmount = healthDiff;
             gameManager.instance.playerHPLost.color = Color.red;
