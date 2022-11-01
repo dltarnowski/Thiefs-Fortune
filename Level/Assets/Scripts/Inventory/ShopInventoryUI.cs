@@ -26,11 +26,8 @@ public class ShopInventoryUI : MonoBehaviour
         shopInventory.items = allWeapons;
 
         UpdateUI();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        NPCManager.instance.shopUI = shopInventoryUI;
     }
 
     void UpdateUI()

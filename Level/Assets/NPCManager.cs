@@ -13,6 +13,9 @@ public class NPCManager : MonoBehaviour
     public TextMeshProUGUI talkButtonText;
     public TextMeshProUGUI shopButtonText;
     public GameObject NPCCamera;
+    public GameObject shopUI;
+    public GameObject weaponUI;
+    public GameObject consumeUI;
 
     public bool talking;
 
@@ -21,15 +24,4 @@ public class NPCManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
-    {
-        /*if(talking)
-        {
-            outputDialogue.text = followUpDialogue.text;
-        }
-        else if(!talking)
-        {
-            outputDialogue.text = dialogue.text;
-        }*/
-    }
 }

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ShopMenuButtons : MonoBehaviour
 {
     public static ShopInventory inventory;
-    public GameObject shopMenu;
     public GameObject playerInventory;
     public GameObject buyInventory;
     public GameObject sellInventory;
@@ -28,7 +27,7 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.hint.SetActive(false);
         gameManager.instance.npcDialogue.SetActive(false);
-        shopMenu.SetActive(true);
+        NPCManager.instance.shopUI.SetActive(true);
         playerInventory.SetActive(true);
         BuyTab();
     }
@@ -36,7 +35,7 @@ public class ShopMenuButtons : MonoBehaviour
     public void CloseShop()
     {
         gameManager.instance.npcDialogue.SetActive(true);
-        shopMenu.SetActive(false);
+        NPCManager.instance.shopUI.SetActive(false);
         playerInventory.SetActive(false);
     }
 
