@@ -1,6 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-
 --- !u!1 &704771675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1703,7 @@ Transform:
   m_Children:
   - {fileID: 4432136935476367906}
   - {fileID: 621379179312802945}
+  - {fileID: 704771676}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1823,10 +1823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1664164060631662502}
   model: {fileID: 621379179301338587}
-  cannonCtrl: {fileID: 8416078340175609193}
-  cannonCol: {fileID: 7520282313770967889}
-  cannon: {fileID: 4432136935476107962}
-  col: {fileID: 8669452286734564791}
+  col: {fileID: 7846465878919904876}
   anim: {fileID: 3454458432108800486}
   drops:
   - {fileID: 5647004934308242227, guid: 5cfb8e402df4a884d8fc33a8d062f75d, type: 3}
@@ -1839,7 +1836,6 @@ MonoBehaviour:
   - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
   - {fileID: 7248056490432878773, guid: e64db79ff716d2d468d7af8e7e194111, type: 3}
   HP: 10
-  reward: 0
   speedChase: 0
   facePlayerSpeed: 10
   animLerpSpeed: 4
@@ -1847,10 +1843,9 @@ MonoBehaviour:
   viewAngle: 45
   damagedDuration: 0.25
   headPos: {fileID: 621379179312902277}
-  attackRate: 2
-  attackPos: {fileID: 6569411986297249282}
-  bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
+  weapon: {fileID: 0}
   linearRoam: 0
+  stationary: 0
   noRotation: 0
   roamDist: 0
   canRoam: 0
@@ -1874,8 +1869,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
   - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
   enemyStepsAudVol: 0.293
-  enemyWeaponAud: {fileID: 8300000, guid: ca1e32466b7432c44aec1ecc708ee92e, type: 3}
   enemyWeaponAudVol: 0.241
+  cannonCtrl: {fileID: 8416078340175609193}
+  cannonCol: {fileID: 7520282313770967889}
+  cannon: {fileID: 4432136935476107962}
+  attackPos: {fileID: 6569411986297249282}
+  bullet: {fileID: 5641681036374068488, guid: 298cfeb053304e84bbdbfca45ae07198, type: 3}
+  gunStat: {fileID: 11400000, guid: fa80379b60476c245970fe3146f50bda, type: 2}
 --- !u!95 &3454458432108800486
 Animator:
   serializedVersion: 4
