@@ -27,8 +27,6 @@ public class musicSwap : MonoBehaviour
         {
             aud.Stop();
             aud.PlayOneShot(levelMusic, gameManager.instance.MusicSlider.value);
-            Debug.Log("Level Music");
-
             levelMusicPlaying = true;
             fightingMusicPlaying = false;
         }
@@ -36,7 +34,6 @@ public class musicSwap : MonoBehaviour
         {
             aud.Stop();
             aud.PlayOneShot(fightingMusic, gameManager.instance.MusicSlider.value);
-            Debug.Log("Fighting Music");
             levelMusicPlaying = false;
             fightingMusicPlaying = true;
         }
