@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class cannonEnemyAI : enemyAI
+public class rangedEnemyAI : enemyAI
 {
-    [Header("----- Componenets -----")]
-    [SerializeField] CannonController cannonCtrl;
-    [SerializeField] SphereCollider cannonCol;
-    [SerializeField] GameObject cannon;
-
-
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] internal GameObject attackPos;
@@ -18,53 +12,42 @@ public class cannonEnemyAI : enemyAI
     [SerializeField] Gun gunStat;
 
 
+
     bool isShooting;
+    bool equipped;
 
-
-    void Start()
-    {
-        if (canRoam)
-            roam();
-        if (cannon != null)
-            cannon.transform.parent = transform;
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (!anim.GetBool("Dead"))
         {
+            if (!equipped)
+            {
+                weapon.GetComponent<MeshFilter>().sharedMesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
+                weapon.GetComponent<MeshRenderer>().sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+                equipped = true;
+            }
+
             blackSpotUpdate();
             movementAnimationChange();
 
             if (agent.enabled)
             {
-                if (playerInRange)
+                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(shoot(), isShooting);
+
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
-                else if (!canRoam)
+                else if (!canRoam && stationary)
                     facePlayer();
             }
         }
     }
-
-
-    public override void takeDamage(float dmg)
-    {
-        base.takeDamage(dmg);
-        if (HP <= 0)
-        {
-            cannonCtrl.enabled = true;
-            cannonCol.enabled = true;
-            cannon.transform.parent = null;
-        }
-    }
-
     IEnumerator shoot()
     {
         isShooting = true;

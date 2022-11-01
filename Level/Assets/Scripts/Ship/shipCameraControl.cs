@@ -32,7 +32,7 @@ public class shipCameraControl : MonoBehaviour
             xRotation -= mouseY;
 
         // clamp camera rotation
-        xRotation = Mathf.Clamp(xRotation, 10, 10);
+        xRotation = Mathf.Clamp(xRotation, 25, 25);
 
         // rotate the camera on the x-axis
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);

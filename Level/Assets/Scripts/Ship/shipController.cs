@@ -6,6 +6,8 @@ public class shipController : MonoBehaviour
 {
     [SerializeField] GameObject shipCam;
     [SerializeField] GameObject[] sails;
+    [SerializeField] GameObject sailsUp;
+    [SerializeField] GameObject sailsDown;
     [SerializeField] GameObject playerPos;
     [SerializeField] shipMovement shipMove;
 
@@ -23,8 +25,8 @@ public class shipController : MonoBehaviour
         {
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
-            for (int i = 0; i < sails.Length; i++)
-                sails[i].SetActive(!controllingShip);
+            sailsUp.SetActive(!controllingShip);
+            sailsDown.SetActive(controllingShip);
             shipMove.enabled = !controllingShip;
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;

@@ -6,59 +6,51 @@ using UnityEngine.AI;
 public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("----- Componenets -----")]
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Renderer model;
-    [SerializeField] Collider col;
-    [SerializeField] Animator anim;
-    [SerializeField] GameObject[] drops;
+    [SerializeField] internal NavMeshAgent agent;
+    [SerializeField] internal Renderer model;
+    [SerializeField] internal Collider col;
+    [SerializeField] internal Animator anim;
+    [SerializeField] internal GameObject[] drops;
 
     [Header("----- Enemy Stats -----")]
-    [SerializeField] float HP;
-    [SerializeField] int reward;
-    [SerializeField] int speedChase;
-    [SerializeField] int facePlayerSpeed;
-    [SerializeField] int animLerpSpeed;
-    [SerializeField] int sightDist;
-    [SerializeField] int viewAngle;
-    [SerializeField] float damagedDuration;
-    [SerializeField] GameObject headPos;
+    [SerializeField] internal float HP;
+    [SerializeField] internal int speedChase;
+    [SerializeField] internal int facePlayerSpeed;
+    [SerializeField] internal int animLerpSpeed;
+    [SerializeField] internal int sightDist;
+    [SerializeField] internal int viewAngle;
+    [SerializeField] internal float damagedDuration;
+    [SerializeField] internal GameObject headPos;
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] internal float attackRate;
-    [SerializeField] internal GameObject attackPos;
-    [SerializeField] GameObject weapon;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float meleeAttackRange;
-    [SerializeField] public float meleeDamage;
+    [SerializeField] internal GameObject weapon;
 
     [Header("----- Roam Settings -----")]
-    [SerializeField] bool linearRoam;
-    [SerializeField] bool stationary;
-    [SerializeField] bool noRotation;
-    [SerializeField] int roamDist;
-    [SerializeField] bool canRoam = true;
+    [SerializeField] internal bool linearRoam;
+    [SerializeField] internal bool stationary;
+    [SerializeField] internal bool noRotation;
+    [SerializeField] internal int roamDist;
+    [SerializeField] internal bool canRoam = true;
 
     [Header("----- Audio -----")]
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] enemyHurtAud;
-    [Range(0, 1)] [SerializeField] float enemyHurtAudVol;
-    [SerializeField] AudioClip[] enemyStepsAud;
-    [Range(0, 1)] [SerializeField] float enemyStepsAudVol;
-    [SerializeField] AudioClip enemyWeaponAud;
-    [Range(0, 1)] [SerializeField] float enemyWeaponAudVol;
+    [SerializeField] internal AudioSource aud;
+    [SerializeField] internal AudioClip[] enemyHurtAud;
+    [Range(0, 1)] [SerializeField] internal float enemyHurtAudVol;
+    [SerializeField] internal AudioClip[] enemyStepsAud;
+    [Range(0, 1)] [SerializeField] internal float enemyStepsAudVol;
+    [Range(0, 1)] [SerializeField] internal float enemyWeaponAudVol;
 
-    bool playingSteps;
-    Vector3 randomDirection;
-    bool isMelee;
-    bool isShooting;
-    bool playerInRange;
-    Color modelColor;
-    Vector3 playerDir;
-    float stoppingDistanceOrig;
-    Vector3 startingPos;
-    float angle;
-    float speedPatrol;
-    Transform tempTrans;
+    internal bool playingSteps;
+    internal Vector3 randomDirection;
+
+    internal bool playerInRange;
+    internal Color modelColor;
+    internal Vector3 playerDir;
+    internal float stoppingDistanceOrig;
+    internal Vector3 startingPos;
+    internal float angle;
+    internal float speedPatrol;
+    internal float currBlackSpot;
 
 
     void Start()
@@ -67,41 +59,27 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistanceOrig = agent.stoppingDistance;
         startingPos = transform.position;
         speedPatrol = agent.speed;
+        currBlackSpot = gameManager.instance.blackspot.blackSpotMultiplier;
         if (!stationary && canRoam)
             roam();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void movementAnimationChange()
     {
-        if(!anim.GetBool("Dead"))
-        {
-            if(linearRoam && !playerInRange)
-                anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude * 0.5f, Time.deltaTime * animLerpSpeed));
-            else
-                anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
-
-            if (agent.enabled)
-            {
-                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
-                {
-                    playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
-                    angle = Vector3.Angle(playerDir, transform.forward);
-                    if(CompareTag("Ranged"))
-                        canSeePlayer(shoot(), isShooting);
-                    else if(CompareTag("Melee"))
-                        canSeePlayer(melee(), isMelee);
-
-                }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
-                    roam();
-                else if (!canRoam && stationary)
-                    facePlayer();
-            }
-        }
+        if (linearRoam && !playerInRange)
+            anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude * 0.5f, Time.deltaTime * animLerpSpeed));
+        else
+            anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
     }
 
-    IEnumerator PlaySteps()
+    public void blackSpotUpdate()
+    {
+        if (currBlackSpot != gameManager.instance.blackspot.blackSpotMultiplier)
+        {
+            currBlackSpot = gameManager.instance.blackspot.blackSpotMultiplier;
+            HP = (int)(HP * (1 + gameManager.instance.blackspot.blackSpotMultiplier));
+        }
+    }
+    public IEnumerator PlaySteps()
     {
         if (agent.velocity.normalized.magnitude > 0.3f && !playingSteps)
         {
@@ -118,7 +96,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void roam()
+    public void roam()
     {
         agent.stoppingDistance = 0;
         agent.speed = speedPatrol;
@@ -141,7 +119,7 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetPath(path);
     }
 
-    void canSeePlayer(IEnumerator attack, bool isAttacking)
+    public void canSeePlayer(IEnumerator attack, bool isAttacking)
     {
         RaycastHit hit;
         if (Physics.Raycast(headPos.transform.position, playerDir, out hit, sightDist))
@@ -164,13 +142,13 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void facePlayer()
+    public void facePlayer()
     {
         playerDir.y = 0;
         Quaternion rotation = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
-    public void takeDamage(float dmg)
+    public virtual void takeDamage(float dmg)
     {
         HP -= dmg;
         aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
@@ -187,29 +165,6 @@ public class enemyAI : MonoBehaviour, IDamage
         else if (HP > 0)
             StartCoroutine(flashDamage());
 
-    }
-
-    IEnumerator shoot()
-    {
-        isShooting = true;
-        anim.SetTrigger("attack");
-        aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
-        Instantiate(bullet, attackPos.transform.position, transform.rotation);
-        yield return new WaitForSeconds(attackRate);
-        isShooting = false;
-    }
-
-
-    IEnumerator melee()
-    {
-        isMelee = true;
-        if(gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= meleeAttackRange)
-        {
-            aud.PlayOneShot(enemyWeaponAud, enemyWeaponAudVol);
-            anim.SetTrigger("attack");
-        }
-        yield return new WaitForSeconds(attackRate);
-        isMelee = false;
     }
 
     IEnumerator flashDamage()
