@@ -1,6 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-
 --- !u!1 &930592770
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1506434954615215607}
-
 --- !u!1 &1506434954615441879
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,12 +109,12 @@ GameObject:
   - component: {fileID: 1506434954615215607}
   - component: {fileID: 7204424958204243267}
   - component: {fileID: 4941685614310209918}
-  - component: {fileID: 4514644955722817552}
   - component: {fileID: 8970215132580245310}
   - component: {fileID: 1383946122127371567}
   - component: {fileID: 540687465415110388}
   - component: {fileID: 4643414466578391910}
   - component: {fileID: 1220553411}
+  - component: {fileID: 163892308}
   m_Layer: 3
   m_Name: Enemy - PirateCaptain
   m_TagString: Melee
@@ -137,6 +135,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7204424958199462937}
+  - {fileID: 930592771}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,67 +261,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4514644955722817552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1506434954615441879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85dc833d44fc39e479f614a4bfe02428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 8970215132580245310}
-  model: {fileID: 7204424958204243267}
-  col: {fileID: 540687465415110388}
-  anim: {fileID: 4941685614310209918}
-  drops:
-  - {fileID: 2512782620296928835, guid: 98ace9e725741cb46a2176b96ee572d9, type: 3}
-  - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
-  HP: 5
-  reward: 0
-  speedChase: 5
-  facePlayerSpeed: 10
-  animLerpSpeed: 4
-  sightDist: 10
-  viewAngle: 45
-  damagedDuration: 0.25
-  headPos: {fileID: 7204424958198964253}
-  attackRate: 1
-  attackPos: {fileID: 0}
-  weapon: {fileID: 6040629496798059391}
-  bullet: {fileID: 0}
-  meleeAttackRange: 0.2
-  meleeDamage: 20
-  linearRoam: 0
-  stationary: 0
-  noRotation: 0
-  roamDist: 5
-  canRoam: 1
-  aud: {fileID: 4643414466578391910}
-  enemyHurtAud:
-  - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
-  - {fileID: 8300000, guid: a1f5b9264c493494dbee9e3cdc4d82b1, type: 3}
-  - {fileID: 8300000, guid: b3b43f422ff7ce847b6576455d52bbde, type: 3}
-  - {fileID: 8300000, guid: 10e9dcb25540ed14084171265a65015c, type: 3}
-  - {fileID: 8300000, guid: ef479bcec7f51a84ebfadd4927d66bcd, type: 3}
-  - {fileID: 8300000, guid: e9a08e3a510925744b5b13bb9e0029c2, type: 3}
-  enemyHurtAudVol: 0.2
-  enemyStepsAud:
-  - {fileID: 8300000, guid: 52f3c8bd052f8aa43bc3218c8569c264, type: 3}
-  - {fileID: 8300000, guid: 9302f66bc98ed1b48bebefceb9c71990, type: 3}
-  - {fileID: 8300000, guid: 7ff3ba41d5b6c71488dfa6bbc616eee4, type: 3}
-  - {fileID: 8300000, guid: 5c27eed878f99ac488aaeaf1856a65af, type: 3}
-  - {fileID: 8300000, guid: 4230ce3efcbe99b4c9ade69b8deba896, type: 3}
-  - {fileID: 8300000, guid: aaca02fcf4997584a8cb200fadbec197, type: 3}
-  - {fileID: 8300000, guid: f5d824ed178aa264aaa3ec3e4166c7bf, type: 3}
-  - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
-  - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
-  enemyStepsAudVol: 0.2
-  enemyWeaponAud: {fileID: 8300000, guid: e23613aead8316f4f9c014e8c3c2b73a, type: 3}
-  enemyWeaponAudVol: 0.2
 --- !u!195 &8970215132580245310
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -481,6 +419,65 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 1.63, z: 0}
+--- !u!114 &163892308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506434954615441879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e162b5724804fe84f8407955de65e3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 8970215132580245310}
+  model: {fileID: 7204424958204243267}
+  col: {fileID: 1383946122127371567}
+  anim: {fileID: 4941685614310209918}
+  drops:
+  - {fileID: 5647004934308242227, guid: 5cfb8e402df4a884d8fc33a8d062f75d, type: 3}
+  - {fileID: 6482535713155909065, guid: 85cf71357af4b6241bd6544e0c35c08c, type: 3}
+  - {fileID: 3576859548827341246, guid: 5603d3fdbcd98ac46af540cba52937ae, type: 3}
+  - {fileID: 2512782620296928835, guid: 98ace9e725741cb46a2176b96ee572d9, type: 3}
+  - {fileID: 2612704222007822689, guid: 3f20510f4288e5e47a7dc400e3441951, type: 3}
+  - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
+  HP: 75
+  speedChase: 5
+  facePlayerSpeed: 10
+  animLerpSpeed: 4
+  sightDist: 10
+  viewAngle: 45
+  damagedDuration: 0.25
+  headPos: {fileID: 7204424958198964253}
+  weapon: {fileID: 6040629496798059391}
+  linearRoam: 0
+  stationary: 0
+  noRotation: 0
+  roamDist: 7
+  canRoam: 1
+  aud: {fileID: 4643414466578391910}
+  enemyHurtAud:
+  - {fileID: 8300000, guid: a553a711d69ffd3429b3f6fa52d5e143, type: 3}
+  - {fileID: 8300000, guid: a1f5b9264c493494dbee9e3cdc4d82b1, type: 3}
+  - {fileID: 8300000, guid: b3b43f422ff7ce847b6576455d52bbde, type: 3}
+  - {fileID: 8300000, guid: 10e9dcb25540ed14084171265a65015c, type: 3}
+  - {fileID: 8300000, guid: ef479bcec7f51a84ebfadd4927d66bcd, type: 3}
+  - {fileID: 8300000, guid: e9a08e3a510925744b5b13bb9e0029c2, type: 3}
+  enemyHurtAudVol: 0.3
+  enemyStepsAud:
+  - {fileID: 8300000, guid: 52f3c8bd052f8aa43bc3218c8569c264, type: 3}
+  - {fileID: 8300000, guid: 9302f66bc98ed1b48bebefceb9c71990, type: 3}
+  - {fileID: 8300000, guid: 7ff3ba41d5b6c71488dfa6bbc616eee4, type: 3}
+  - {fileID: 8300000, guid: 5c27eed878f99ac488aaeaf1856a65af, type: 3}
+  - {fileID: 8300000, guid: 4230ce3efcbe99b4c9ade69b8deba896, type: 3}
+  - {fileID: 8300000, guid: aaca02fcf4997584a8cb200fadbec197, type: 3}
+  - {fileID: 8300000, guid: f5d824ed178aa264aaa3ec3e4166c7bf, type: 3}
+  - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
+  - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
+  enemyStepsAudVol: 0.2
+  enemyWeaponAudVol: 0.3
+  swordStat: {fileID: 11400000, guid: 0535e69596680bc4aa99249aee9dbbd7, type: 2}
 --- !u!1 &6040629496798059391
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +521,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6040629496798059391}
-  m_Mesh: {fileID: 4300000, guid: 605e43d2b34256b499ae5158fc54e065, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &1856256824970190861
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -593,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6197b1d084939e4d814510b26fc7bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EAI: {fileID: 4514644955722817552}
+  EAI: {fileID: 163892308}
 --- !u!1 &7204424958198964225
 GameObject:
   m_ObjectHideFlags: 0

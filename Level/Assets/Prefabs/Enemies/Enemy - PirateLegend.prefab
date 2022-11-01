@@ -339,23 +339,14 @@ MonoBehaviour:
   drops:
   - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
   HP: 100
-  reward: 0
   speedChase: 7
   facePlayerSpeed: 10
   animLerpSpeed: 4
-  sightDist: 20
+  sightDist: 40
   viewAngle: 60
   damagedDuration: 0.25
   headPos: {fileID: 7204424958198964253}
-  gunStat: {fileID: 11400000, guid: 162ba3e0e43391a4ea25c0c155ed7865, type: 2}
-  swordStat: {fileID: 11400000, guid: 0535e69596680bc4aa99249aee9dbbd7, type: 2}
-  attackRate: 1
-  attackPos: {fileID: 8969799475119498008}
   weapon: {fileID: 6040629496798059391}
-  bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
-  meleeAttackRange: 0.2
-  damage: 25
-  attackSwitchRange: 5
   linearRoam: 0
   stationary: 0
   noRotation: 0
@@ -381,10 +372,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54a8b92be37778c40ad83ca8c0ac6f3e, type: 3}
   - {fileID: 8300000, guid: a974c074a188e194fb11401032c47f2e, type: 3}
   enemyStepsAudVol: 0.1
-  enemyWeaponAud:
-  - {fileID: 8300000, guid: bd7806da797f37849871f6ec0ddd005d, type: 3}
-  - {fileID: 8300000, guid: 4a16b9b4c229b2a4ebab6e567dddf9b1, type: 3}
   enemyWeaponAudVol: 0.3
+  gunStat: {fileID: 11400000, guid: 162ba3e0e43391a4ea25c0c155ed7865, type: 2}
+  swordStat: {fileID: 11400000, guid: 0535e69596680bc4aa99249aee9dbbd7, type: 2}
+  attackPos: {fileID: 8969799475119498008}
+  bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
+  attackSwitchRange: 5
 --- !u!1 &6040629496798059391
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +393,7 @@ GameObject:
   - component: {fileID: 931533969}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Melee
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +421,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6040629496798059391}
-  m_Mesh: {fileID: 4300000, guid: 147010db0e4edbd4bb44c331b4a1149b, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &1856256824970190861
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -9,6 +9,6 @@ public class pirateLegendMeleeDamage: MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            gameManager.instance.playerScript.takeDamage(EAI.damage);
+            gameManager.instance.playerScript.takeDamage(EAI.swordStat.strength);
     }
 }
