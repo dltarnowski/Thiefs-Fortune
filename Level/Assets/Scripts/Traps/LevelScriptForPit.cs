@@ -7,10 +7,10 @@ public class LevelScriptForPit : MonoBehaviour
     [SerializeField] MeshDeformer meshDeformer;
     [SerializeField] Vector3 point;
 
-    [SerializeField] float one;
-    [SerializeField] float two;
-    [SerializeField] float three;
-    [SerializeField] float four;
+    [SerializeField] float radius;
+    [SerializeField] float stepRadius;
+    [SerializeField] float strength;
+    [SerializeField] float stepStrength;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,6 @@ public class LevelScriptForPit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        meshDeformer.Deform(point, one, two, three, four, Vector3.down);
+        meshDeformer.Deform(point, radius, stepRadius, strength, stepStrength, Vector3.down);
     }
 }

@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject playerDamageIndicator;
     public GameObject underwaterIndicator;
+    public GameObject map;
     public GameObject spawnPosition;
     public Image playerHPBar;
     public Image playerHPLost;
