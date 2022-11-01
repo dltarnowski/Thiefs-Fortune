@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
     [SerializeField] Camera firstPersonCam_Cam;
+    [SerializeField] GameObject miniMapIcon;
     public Animator anim;
     public GameObject itemDropPoint;
 
@@ -69,8 +70,13 @@ public class playerController : MonoBehaviour
     [SerializeField] bool isOnSand;
     Vector3 move;
 
+    float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+    float jumpBufferTime = 0.2f;
+    float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
+    bool mapActive;
     public bool isUnderwater;
     void Start()
     {
@@ -97,7 +103,7 @@ public class playerController : MonoBehaviour
 
         ItemSelect();
 
-       
+        MapSelect();
 
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
@@ -115,13 +121,13 @@ public class playerController : MonoBehaviour
 
         StartCoroutine(PlaySteps());
 
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh 
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh
             && EquipmentManager.instance.currentEquipment[0] == gunStats)
         {
             anim.SetBool("IsRanged", true);
             StartCoroutine(shoot());
         }
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh 
+        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh
             && EquipmentManager.instance.currentEquipment[1] == swordStat && swordStat.hitsUntilBrokenCurrentAmount >= 0)
         {
             anim.SetBool("IsRanged", false);
@@ -179,12 +185,6 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        //Reset jump
-        if (controller.isGrounded && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-            timesJumped = 0;
-        }
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -238,8 +238,45 @@ public class playerController : MonoBehaviour
             anim.SetBool("IsWalking", false);
 
 
+        //Coyote Time
+        if (controller.isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //Jump Buffer
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+
+        //Jump
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        {
+            anim.SetTrigger("IsJumping");
+
+            playerVelocity.y = jumpHeight;
+
+            jumpBufferCounter = 0;
+        }
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        {
+            playerVelocity.y = jumpHeight * 0.5f;
+
+            coyoteTimeCounter = 0;
+        }
+
         //Run
-        if(canSprint == true)
+        if (canSprint == true)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -276,21 +313,7 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.staminaBar.color = staminColor;
                 canSprint = true;
-            }    
-        }
-
-        //Jump
-        if (Input.GetButtonDown("Jump") && timesJumped < jumpsMax)
-        {
-            anim.SetTrigger("IsJumping");
-
-            playerVelocity.y = jumpHeight;
-            timesJumped++;
-        }
-        if (Input.GetButtonUp("Jump") && controller.isGrounded == true)
-        {
-
-            playerVelocity.y = jumpHeight * 0.5f;
+            }
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -373,6 +396,30 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
+    void MapSelect()
+    {
+        if (!mapActive)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                gameManager.instance.map.SetActive(true);
+                mapActive = true;
+                miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                Time.timeScale = 0;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                gameManager.instance.map.SetActive(false);
+                mapActive = false;
+                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                Time.timeScale = 1;
+            }
+        }
+    }
+
     public void takeDamage(float dmg)
     {
         if (HP + dmg > HPOrig)
@@ -401,7 +448,7 @@ public class playerController : MonoBehaviour
         float fillA = gameManager.instance.playerHPBar.fillAmount;
         float fillB = gameManager.instance.playerHPLost.fillAmount;
         float healthDiff = HP / HPOrig;
-        if(fillB > healthDiff)
+        if (fillB > healthDiff)
         {
             gameManager.instance.playerHPBar.fillAmount = healthDiff;
             gameManager.instance.playerHPLost.color = Color.red;

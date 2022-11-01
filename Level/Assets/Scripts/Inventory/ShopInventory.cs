@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopInventory : MonoBehaviour
@@ -34,9 +35,7 @@ public class ShopInventory : MonoBehaviour
         {
             if (items.Count >= space)
                 return false;
-
-            items.Add(item);
-
+                items.Add(item);
 
             if (onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
@@ -47,7 +46,7 @@ public class ShopInventory : MonoBehaviour
 
     public void Remove(Item item)
     {
-        items.Remove(item);
+            items.Remove(item);
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();

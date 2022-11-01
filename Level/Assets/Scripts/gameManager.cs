@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFlash;
     public GameObject playerDamageIndicator;
     public GameObject underwaterIndicator;
+    public GameObject map;
     public GameObject spawnPosition;
     public Image playerHPBar;
     public Image playerHPLost;
@@ -60,6 +61,9 @@ public class gameManager : MonoBehaviour
     public GameObject npcDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
+    public bool weaponCollide;
+    public bool consumeCollide;
+    public bool TutorialCollide;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
