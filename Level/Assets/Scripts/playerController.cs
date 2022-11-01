@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     [SerializeField] Camera firstPersonCam_Cam;
     [SerializeField] GameObject miniMapIcon;
     [SerializeField] LayerMask whatIsEnemy;
+    [SerializeField] Transform meleeHitPoint;
     public Animator anim;
     public GameObject waterDetectionPoint;
     public GameObject itemDropPoint;
@@ -114,12 +115,12 @@ public class playerController : MonoBehaviour
             ChangePlayerVolume();
         }
 
-        /*
+
         if (currGunVolume != gameManager.instance.GunVolumeSlider.value)
         {
             ChangeGunVolume();
         }
-        */
+
 
         movement();
 
@@ -155,7 +156,6 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.ammoCount = gunStats.ammoCount;
 
                 RaycastHit hit;
-                Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * gunStats.distance, Color.red, 20);
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
                 {
                     //  -------      WAITING ON IDAMAGE      -------
@@ -186,6 +186,8 @@ public class playerController : MonoBehaviour
             }
         }
     }
+
+
 
     void movement()
     {
@@ -367,16 +369,7 @@ public class playerController : MonoBehaviour
                 isSwinging = true;
                 anim.SetTrigger("Attacking");
                 aud.PlayOneShot(gruntAudio[Random.Range(0, gruntAudio.Length)]);
-                RaycastHit[] hit = Physics.BoxCastAll(Camera.main.transform.position, transform.lossyScale, Camera.main.transform.forward, Camera.main.transform.rotation, swordStat.distance, whatIsEnemy);
-                for(int i = 0; i < hit.Length; i++)
-                {
-                    if (hit[i].collider.GetComponent<IDamage>() != null)
-                    {
-                        swordStat.hitsUntilBrokenCurrentAmount--;
-                        hit[i].collider.GetComponent<IDamage>().takeDamage(swordStat.strength);
-                        Instantiate(swordStat.hitFX, hit[i].point, hit[i].collider.gameObject.transform.rotation, hit[i].collider.gameObject.transform);
-                    }
-                }
+                Invoke("meleeDamage", anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
                 recoilScript.MeleeSwing();
                 if (swordStat.hitsUntilBrokenCurrentAmount <= 0)
                 {
@@ -385,6 +378,19 @@ public class playerController : MonoBehaviour
                 }
                 yield return new WaitForSeconds(swordStat.speed);
                 isSwinging = false;
+            }
+        }
+    }
+    void meleeDamage()
+    {
+        RaycastHit[] hit = Physics.BoxCastAll(meleeHitPoint.transform.position, transform.lossyScale, meleeHitPoint.transform.forward, meleeHitPoint.transform.rotation, swordStat.distance, whatIsEnemy);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.GetComponent<IDamage>() != null)
+            {
+                swordStat.hitsUntilBrokenCurrentAmount--;
+                hit[i].collider.GetComponent<IDamage>().takeDamage(swordStat.strength);
+                Instantiate(swordStat.hitFX, hit[i].point, hit[i].collider.gameObject.transform.rotation, hit[i].collider.gameObject.transform);
             }
         }
     }
