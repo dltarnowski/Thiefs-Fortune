@@ -27,22 +27,22 @@ public class BasicMovement : MonoBehaviour
 
     void ObjectiveCheck()
     {
-        if (Input.GetKeyDown(KeyCode.W) && inputCheck == 0)
+        if (Input.GetKeyDown(KeyCode.W) && inputCheck == 1)
         {
             gameManager.instance.objectives[inputCheck].color = Color.green;
             inputCheck++;
         }
-        else if (Input.GetKeyDown(KeyCode.A) && inputCheck == 1)
+        else if (Input.GetKeyDown(KeyCode.A) && inputCheck == 2)
         {
             gameManager.instance.objectives[inputCheck].color = Color.green;
             inputCheck++;
         }
-        else if (Input.GetKeyDown(KeyCode.S) && inputCheck == 2)
+        else if (Input.GetKeyDown(KeyCode.S) && inputCheck == 3)
         {
             gameManager.instance.objectives[inputCheck].color = Color.green;
             inputCheck++;
         }
-        else if (Input.GetKeyDown(KeyCode.D) && inputCheck == 3)
+        else if (Input.GetKeyDown(KeyCode.D) && inputCheck == 4)
         {
             gameManager.instance.objectives[inputCheck].color = Color.green;
             inputCheck++;

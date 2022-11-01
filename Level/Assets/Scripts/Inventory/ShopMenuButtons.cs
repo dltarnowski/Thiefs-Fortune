@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class ShopMenuButtons : MonoBehaviour
 {
-    ShopInventory inventory;
-    public GameObject shopMenu;
+    public static ShopInventory inventory;
     public GameObject playerInventory;
     public GameObject buyInventory;
     public GameObject sellInventory;
@@ -20,15 +19,15 @@ public class ShopMenuButtons : MonoBehaviour
     }
     public void Talk()
     {
-        NPCManager.instance.dialogue.enabled = false;
-        NPCManager.instance.followUpDialogue.enabled = true;
+        NPCManager.instance.dialogue.gameObject.SetActive(false);
+        NPCManager.instance.followUpDialogue.gameObject.SetActive(true);
     }
 
     public void Shop()
     {
         gameManager.instance.hint.SetActive(false);
         gameManager.instance.npcDialogue.SetActive(false);
-        shopMenu.SetActive(true);
+        NPCManager.instance.shopUI.SetActive(true);
         playerInventory.SetActive(true);
         BuyTab();
     }
@@ -36,7 +35,7 @@ public class ShopMenuButtons : MonoBehaviour
     public void CloseShop()
     {
         gameManager.instance.npcDialogue.SetActive(true);
-        shopMenu.SetActive(false);
+        NPCManager.instance.shopUI.SetActive(false);
         playerInventory.SetActive(false);
     }
 
@@ -56,7 +55,7 @@ public class ShopMenuButtons : MonoBehaviour
         sellInventory.SetActive(false);
         buyTab.interactable = false;
         sellTab.interactable = true;
-        inventory.onItemChangedCallback.Invoke();
+        Inventory.instance.onItemChangedCallback.Invoke();
     }
 
     public void SellTab()
@@ -65,6 +64,6 @@ public class ShopMenuButtons : MonoBehaviour
         sellInventory.SetActive(true);
         buyTab.interactable = true;
         sellTab.interactable = false;
-        inventory.onItemChangedCallback.Invoke();
+        Inventory.instance.onItemChangedCallback.Invoke();
     }
 }
