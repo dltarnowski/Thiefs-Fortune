@@ -14,11 +14,10 @@ public class SpikeTrap : MonoBehaviour
     bool damageToPlayer;
     bool playerInTrigger;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        if (timedSpikes)
-            if (Time.fixedTime % secondsUntilSpikes == 0)
-                ActivateSpikes();
+        if(timedSpikes)
+            StartCoroutine(ActivateSpikes());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,7 +68,7 @@ public class SpikeTrap : MonoBehaviour
 
     }
 
-    void ActivateSpikes()
+    IEnumerator ActivateSpikes()
     {
         damage = gameManager.instance.playerScript.HPOrig / 5;
 
@@ -87,5 +86,8 @@ public class SpikeTrap : MonoBehaviour
             anim.SetTrigger("close");
             StartCoroutine(FinishAnimation());
         }
+
+        yield return new WaitForSeconds(secondsUntilSpikes);
+        StartCoroutine(ActivateSpikes());
     }
 }
