@@ -8,6 +8,8 @@ public class NPCDialogueManager : MonoBehaviour
     public TextMeshProUGUI dialogue;
     public Animator anim;
 
+    int random;
+
     List<string> dialogueList = new List<string>();
 
     private void Start()
@@ -26,6 +28,8 @@ public class NPCDialogueManager : MonoBehaviour
     }
     private void Update()
     {
+        random = Random.Range(0, dialogueList.Count);
+
         if (gameManager.instance.npcCollide && Input.GetKeyDown(KeyCode.E) && anim.GetBool("isOpen") == false)
         {
             gameManager.instance.NpcPause();
@@ -33,7 +37,12 @@ public class NPCDialogueManager : MonoBehaviour
             gameManager.instance.mainCamera.SetActive(false);
             gameManager.instance.npcCam.SetActive(true);
             anim.SetBool("isOpen", true);
-            dialogue.text = dialogueList[Random.Range(0, dialogueList.Count)];
+            dialogue.text = dialogueList[random];
+
+            if(random <= 5 && random >= 2)
+            {
+                winManager.instance.clueCount++;
+            }
         }
 
     }

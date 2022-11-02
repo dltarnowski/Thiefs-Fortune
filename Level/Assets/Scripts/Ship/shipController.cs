@@ -21,8 +21,9 @@ public class shipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(onShip && Input.GetKeyDown(KeyCode.R))
+        if(onShip && Input.GetKeyDown(KeyCode.E))
         {
+            gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
             sailsUp.SetActive(!controllingShip);
@@ -56,6 +57,7 @@ public class shipController : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(true);
             onShip = true;
         }
     }
@@ -64,6 +66,7 @@ public class shipController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(false);
             onShip = false;
         }
     }
