@@ -1069,6 +1069,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 163892308, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930592770, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 540687465415110388, guid: 6add6842205e111498493bfffe660254, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1137,6 +1145,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 34264541acc5abe4288c85f50d4b4365, type: 2}
+    - target: {fileID: 7204424958198964729, guid: 6add6842205e111498493bfffe660254, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7204424958204243267, guid: 6add6842205e111498493bfffe660254, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1314,8 +1326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05a395f5bb72ac43b6de9ab71f7cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blunder: {fileID: 0}
-  dialogue: {fileID: 0}
 --- !u!114 &1309190827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1557,8 +1567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05a395f5bb72ac43b6de9ab71f7cd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blunder: {fileID: 0}
-  dialogue: {fileID: 0}
 --- !u!114 &1590839986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18794,8 +18802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daba797ca5b0a87478676c3bc512df3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flame: {fileID: 2978180800303209345}
-  light: {fileID: 2978180800803802142}
 --- !u!4 &2978180800100622765
 Transform:
   m_ObjectHideFlags: 0
@@ -18823,15 +18829,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab953bbf78d164f49aeee46291ae0aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseGravity: 1
-  DestroyParticles: 1
-  DestroyParticlesAfterSeconds: 5
-  Force: 20
-  Radius: 30
-  Audio: {fileID: 2978180800100622774}
-  Debris: {fileID: 0}
-  Renderer: {fileID: 2978180800100622760}
-  Filter: {fileID: 2978180800100622763}
 --- !u!82 &2978180800100622774
 AudioSource:
   m_ObjectHideFlags: 0
@@ -23912,15 +23909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab953bbf78d164f49aeee46291ae0aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseGravity: 1
-  DestroyParticles: 1
-  DestroyParticlesAfterSeconds: 5
-  Force: 20
-  Radius: 30
-  Audio: {fileID: 2978180801044371185}
-  Debris: {fileID: 0}
-  Renderer: {fileID: 2978180801044371183}
-  Filter: {fileID: 2978180801044371180}
 --- !u!4 &2978180801044371178
 Transform:
   m_ObjectHideFlags: 0
@@ -23948,8 +23936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daba797ca5b0a87478676c3bc512df3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flame: {fileID: 2978180801515465926}
-  light: {fileID: 2978180799868517209}
 --- !u!33 &2978180801044371180
 MeshFilter:
   m_ObjectHideFlags: 0
