@@ -82,7 +82,7 @@ public class TutorialManager : MonoBehaviour
             basicMoveUIObj.SetActive(true);
             objectiveText.text = "Let's start with some basic movement! You can look around with your mouse and can move through the world using [W], [A], [S], [D]. Let's try it now!";
         }
-        else if(advanceMoveTrigger)
+        else if (advanceMoveTrigger && gameManager.instance.playerScript.enabled == true)
         {
             advanceMoveUIObj.SetActive(true);
             objectiveText.text = "Now let's take a look at some more " + '"' + "advanced" + '"' + " techniques. Use [SPACE] to Jump, Hold [SHIFT] while moving to sprint, and use [L-CTRL] to crouch";
@@ -123,10 +123,10 @@ public class TutorialManager : MonoBehaviour
             completeButton.SetActive(false);
             advanceMoveUIObj.SetActive(false);
             advanceMoveTrigger = false;
-            objectiveText.text = "Now that you know how to move, let's move onto the next lesson!";
+            objectiveText.text = "Now that you know how to move, take a stroll over to your new ship and give it a shot. The controls are the same! Head to Chicken Head Enclave for your first clue.";
             nextPoint.transform.position = inventoryPoint.transform.position;
         }
-        if (tutorialProgress == 3)
+        /*if (tutorialProgress == 3)
         {
             completeButton.SetActive(false);
             inventoryUIObj.SetActive(false);
@@ -142,7 +142,7 @@ public class TutorialManager : MonoBehaviour
         if(tutorialProgress == 5)
         {
             objectiveText.text = "You're quite the sharpshooter! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know!";
-        }
+        }*/
 
         StartCoroutine(CleanUp());
     }

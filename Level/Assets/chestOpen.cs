@@ -20,6 +20,8 @@ public class chestOpen : MonoBehaviour
     {
         if(canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
         {
+            winManager.instance.clueCount++;
+            gameManager.instance.hint.SetActive(false);
             anim.SetTrigger("open");
             blackSpotDropChance = Random.Range(0f, 1f);
             if (blackSpotDropChance <= 0.1)
@@ -27,13 +29,26 @@ public class chestOpen : MonoBehaviour
             else
                 Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
             opened = true;
+
+            TutorialManager.instance.objectiveName.text = "Note Found!";
+            TutorialManager.instance.objectiveText.text = "My love and I are in exile and even here, we aren't safe. We must head to Port Placeholder for sanctuary! There, I have some friends who I can let know my whereabouts.";
+            TutorialManager.instance.beginButton.SetActive(false);
+            TutorialManager.instance.completeButton.SetActive(false);
+            TutorialManager.instance.dialogueBox.SetActive(true);
+            StartCoroutine(CleanUp());
         }
+    }
+    public IEnumerator CleanUp()
+    {
+        yield return new WaitForSeconds(7f);
+        TutorialManager.instance.dialogueBox.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(true);
             canOpen = true;
         }        
     }
@@ -41,6 +56,7 @@ public class chestOpen : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(false);
             canOpen = false;
         }        
     }
