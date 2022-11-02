@@ -64,6 +64,8 @@ public class gameManager : MonoBehaviour
     public bool weaponCollide;
     public bool consumeCollide;
     public bool TutorialCollide;
+    public bool npcCollide;
+    public GameObject npcCam;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
@@ -96,10 +98,6 @@ public class gameManager : MonoBehaviour
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
         towersLeft = 2;
-        foreach(var ammo in ammoArray)
-        {
-            ammo.enabled = false;
-        }
     }
 
     // Update is called once per frame
