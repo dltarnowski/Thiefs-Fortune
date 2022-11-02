@@ -36,6 +36,7 @@ public class Interaction : MonoBehaviour
                 gameManager.instance.hint.SetActive(false);
                 Icon.SetActive(false);
                 Icon2.SetActive(true);
+                GetComponent<TutorialManager>().enabled = true;
             }
         }
     }
@@ -45,7 +46,6 @@ public class Interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerInRange = true;
-            TutorialManager.instance.StartTutorial();
         }
     }
     private void OnTriggerExit(Collider other)
