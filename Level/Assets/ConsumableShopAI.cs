@@ -21,6 +21,9 @@ public class ConsumableShopAI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                NPCManager.instance.dialogue.gameObject.SetActive(true);
+                NPCManager.instance.followUpDialogue.gameObject.SetActive(false);
+
                 NPCManager.instance.NPCCamera = shopCam;
                 NPCManager.instance.name.text = "Franky " + '"' + "PHAT" + '"' + " Findley";
                 NPCManager.instance.talkButtonText.text = "Willy said you might know where to find Captain Pirate?";
