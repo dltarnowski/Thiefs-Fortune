@@ -128,8 +128,11 @@ public class TutorialManager : MonoBehaviour
         }
         if (tutorialProgress == 3)
         {
+            completeButton.SetActive(false);
             inventoryUIObj.SetActive(false);
+            inventoryTrigger = false;
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
+            nextPoint.transform.position = meleePoint.transform.position;
         }
         if(tutorialProgress == 4)
         {

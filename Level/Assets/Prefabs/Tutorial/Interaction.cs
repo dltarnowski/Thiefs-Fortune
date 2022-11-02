@@ -59,6 +59,7 @@ public class Interaction : MonoBehaviour
             }
             if (TutorialManager.instance.inventoryTrigger)
             {
+                TutorialManager.instance.objectiveName.text = "Inventory";
                 TutorialManager.instance.objectiveText.text = "See the ammo pouch floating up ahead? Why don't you walk over it? Press begin to learn the basic of accessing and managing your inventory!";
             }
             if (TutorialManager.instance.meleeTrigger)
