@@ -64,6 +64,8 @@ public class gameManager : MonoBehaviour
     public bool weaponCollide;
     public bool consumeCollide;
     public bool TutorialCollide;
+    public bool npcCollide;
+    public GameObject npcCam;
 
     [Header("----- Gun -----")]
     public GameObject mainCamera;
