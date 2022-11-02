@@ -44,8 +44,11 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
-        NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
-            //dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
+        if(gameManager.instance.consumeCollide == true)
+            NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
+        else if(gameManager.instance.weaponCollide == true)
+            NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
+
         gameManager.instance.mainCamera.SetActive(true);
         NPCManager.instance.NPCCamera.SetActive(false);
     }

@@ -20,6 +20,9 @@ public class ShopAI : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                NPCManager.instance.dialogue.gameObject.SetActive(true);
+                NPCManager.instance.followUpDialogue.gameObject.SetActive(false);
+
                 NPCManager.instance.NPCCamera = shopCam;
                 NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
                 NPCManager.instance.name.text = "Willy " + '"' + "Full Sails" + '"' + " Wilkerson";
