@@ -259,20 +259,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'David - Level Designer
-
-
-    Nick - Enemy AI
-
-
-    Patrick - Player Controller,
-    Sound manager
-
-
-    Austin - Weapons
-
-
-    Shemaiah - UI Designer'
+  m_text: "David - Level Designer\n\nNick - Enemy AI\n\nPatrick - Player Controller,
+    Sound manager\n\nAustin - Weapons Manager\n\nShemaiah - UI Designer\n\n                           
+    Assets\n\nAnimations - BlinkStudios and Kevin Iglesias\n\nDay Night cycle - Pleebie
+    Jeebies \n\nModels - AurynSky and Synty Studios \n\nSounds - Gamemaster Audio
+    \n\nPartical effects - Polygonal Stuff\n\nWater model - Polygonal Stuff\n\nMarine
+    UI - ClayMan\n\nMap arrow sprite - Pixel Play\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -541,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022f74c949f7c2b4eba02432fac59a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 10
+  transitionTime: 15
   SceneSelect: 4
 --- !u!1 &662850706
 GameObject:
@@ -725,6 +717,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139725298531451193, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1488404739827658409, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_RootOrder
       value: 5
