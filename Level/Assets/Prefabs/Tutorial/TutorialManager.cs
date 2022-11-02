@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
     private int Stepindex;
     int inputCheck;
     public Image[] Checks;
+    public float wait = 5f;
 
     public static TutorialManager instance;
 
@@ -29,7 +30,6 @@ public class TutorialManager : MonoBehaviour
             {
                 Step[Stepindex].SetActive(false);
             }
-            //Basic Movement
             if (Stepindex == 0)
             {
                 if (Input.GetKeyDown(KeyCode.W) && inputCheck == 0)
@@ -52,16 +52,23 @@ public class TutorialManager : MonoBehaviour
                     Checks[inputCheck].color = Color.green;
                     inputCheck++;
                 }
-                Stepindex++;
-            }
-            else if (Stepindex == 1)
-            {
-                if (Input.GetKeyDown("Fire1"))
-                {
+               
+                wait -= Time.deltaTime;
+                if(wait <= 0)
                     Stepindex++;
+            }
+            else if (Stepindex == 1 && wait <= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    Checks[inputCheck].color = Color.green;
+                    inputCheck++;
+                    gameManager.instance.objectiveComplete.SetActive(false);
                 }
+                Stepindex++;
             }
             Debug.Log(Stepindex);
         }
+       
     }
 }

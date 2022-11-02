@@ -11,11 +11,11 @@ public class BasicShooting : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.instance.TutorialCollide == true && Input.GetKeyDown(KeyCode.E))
+        /*if (gameManager.instance.TutorialCollide == true && Input.GetKeyDown(KeyCode.E))
         {
             gameManager.instance.basicMoveUI.SetActive(true);
         }
-
+*/
         if (gameManager.instance.basicMoveUI.activeSelf)
             ObjectiveCheck();
 
@@ -23,16 +23,16 @@ public class BasicShooting : MonoBehaviour
         {
             gameManager.instance.basicMoveUI.SetActive(false);
             gameManager.instance.objectiveComplete.SetActive(true);
-            gameManager.instance.objectiveComplete.SetActive(false);
         }
     }
 
     void ObjectiveCheck()
     {
-        /*if (Input.GetKeyDown("") && inputCheck == 0)
+        if (Input.GetKeyDown(KeyCode.F) && inputCheck == 0)
         {
             Checks[inputCheck].color = Color.green;
             inputCheck++;
-        }*/
+            gameManager.instance.objectiveComplete.SetActive(false);
+        }
     }
 }
