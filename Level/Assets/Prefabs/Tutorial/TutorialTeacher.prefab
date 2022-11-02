@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3160606531285509543}
   - component: {fileID: 1481562140}
   - component: {fileID: 3146384174475647987}
+  - component: {fileID: 3146384174475647988}
   m_Layer: 0
   m_Name: TutorialTeacher
   m_TagString: Untagged
@@ -153,6 +154,23 @@ MonoBehaviour:
   target: {fileID: 0}
   Icon: {fileID: 7588481253745284720}
   Icon2: {fileID: 5488394248461248879}
+--- !u!114 &3146384174475647988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146980890730116495}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00532dfe8d9915c4b8690488115e51ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Step:
+  - {fileID: 0}
+  - {fileID: 0}
+  Checks: []
+  wait: 5
 --- !u!1001 &3146384174795654667
 PrefabInstance:
   m_ObjectHideFlags: 0
