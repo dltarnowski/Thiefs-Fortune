@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,13 @@ public class Interaction : MonoBehaviour
 {
     public bool playerInRange;
 
+    public float facePlayerSpeed;
     private Animator anim;
     public Transform target;
     [SerializeField] GameObject Icon;
-    
+
+    Vector3 playerDir;
+
 
     void Start()
     {
@@ -20,21 +24,26 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null && playerInRange == true)
+        playerDir = gameManager.instance.player.transform.position - transform.position;
+
+        if (playerInRange)
         {
-            transform.LookAt(target);
-            gameManager.instance.hint.SetActive(true);
+            facePlayer(playerDir);
         }
+
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             TutorialManager.instance.dialogueBox.SetActive(true);
             TutorialManager.instance.beginButton.SetActive(true);
-            gameManager.instance.NpcPause();
+            gameManager.instance.hint.SetActive(false);
+
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            gameManager.instance.cameraScript.enabled = false;
 
             if (anim != null)
             {
                 anim.SetTrigger("Speak");
-                gameManager.instance.hint.SetActive(false);
                 Icon.SetActive(false);
             }
 
@@ -45,6 +54,7 @@ public class Interaction : MonoBehaviour
             }
             if (TutorialManager.instance.advanceMoveTrigger)
             {
+                TutorialManager.instance.objectiveName.text = "Advanced Movement";
                 TutorialManager.instance.objectiveText.text = "I think you're ready for something harder. Press begin to learn advanced movement within the world!";
             }
             if (TutorialManager.instance.inventoryTrigger)
@@ -60,6 +70,13 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveText.text = "Sometimes, a gun is best. Press begin to learn how to use ranged attacks!";
             }
         }
+    }
+
+    public void facePlayer(Vector3 dir)
+    {
+        dir.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
 
     private void OnTriggerEnter(Collider other)

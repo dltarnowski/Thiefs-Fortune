@@ -19,8 +19,8 @@ public class BlockOut_OpenWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (deathMenu.activeSelf)
-            edgeUI.SetActive(false);
+        /*if (deathMenu.activeSelf)
+            edgeUI.SetActive(false);*/
 
         if(playerOutOfBounds)
         {

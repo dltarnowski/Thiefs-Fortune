@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,6 +66,11 @@ public class TutorialManager : MonoBehaviour
             basicPoint.SetActive(false);
             advancePoint.SetActive(true);
         }
+        if(tutorialProgress == 2)
+        {
+            advancePoint.SetActive(false);
+            inventoryPoint.SetActive(true);
+        }
     }
 
     public void Begin()
@@ -81,7 +84,7 @@ public class TutorialManager : MonoBehaviour
         }
         else if(advanceMoveTrigger)
         {
-            basicMoveUIObj.SetActive(true);
+            advanceMoveUIObj.SetActive(true);
             objectiveText.text = "Now let's take a look at some more " + '"' + "advanced" + '"' + " techniques. Use [SPACE] to Jump, Hold [SHIFT] while moving to sprint, and use [L-CTRL] to crouch";
         }
         else if (inventoryTrigger)
@@ -103,41 +106,51 @@ public class TutorialManager : MonoBehaviour
 
     public void Complete()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        gameManager.instance.cameraScript.enabled = true;
+
         if (tutorialProgress == 1)
         {
-            basicMoveUIObj.SetActive(false);
             completeButton.SetActive(false);
+            basicMoveUIObj.SetActive(false);
+            basicMoveTrigger = false;
             objectiveText.text = "Looks like your sea legs are land legs! Find me up a ways for your next lesson!";
-            gameManager.instance.NpcUnpause();
             nextPoint.transform.position = advancePoint.transform.position;
-            StartCoroutine(CleanUp());
         }
-        else if(tutorialProgress == 2)
+        if(tutorialProgress == 2)
         {
+            completeButton.SetActive(false);
             advanceMoveUIObj.SetActive(false);
+            advanceMoveTrigger = false;
             objectiveText.text = "Now that you know how to move, let's move onto the next lesson!";
+            nextPoint.transform.position = inventoryPoint.transform.position;
         }
-        else if (tutorialProgress == 3)
+        if (tutorialProgress == 3)
         {
             inventoryUIObj.SetActive(false);
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
         }
-        else if(tutorialProgress == 4)
+        if(tutorialProgress == 4)
         {
             meleeUIObj.SetActive(false);
             objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
         }
-        else if(tutorialProgress == 5)
+        if(tutorialProgress == 5)
         {
             objectiveText.text = "You're quite the sharpshooter! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know!";
         }
+
+        StartCoroutine(CleanUp());
     }
     public IEnumerator CleanUp()
-    {
-        yield return new WaitForSeconds(3f);
+    {   
+        objectivesComplete = 0;
+        yield return new WaitForSeconds(4.5f);
         dialogueBox.SetActive(false);
         skull.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        Instantiate(skull, nextPoint.transform.position, nextPoint.transform.rotation);
+        yield return new WaitForSeconds(2f);
+        skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
+        skull.SetActive(true);
     }
 }

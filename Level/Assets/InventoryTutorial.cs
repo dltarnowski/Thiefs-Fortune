@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdvanceMovement : MonoBehaviour
+public class InventoryTutorial : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,19 +18,19 @@ public class AdvanceMovement : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space))
+        if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.I))
         {
-            TutorialManager.instance.advanceMoveUI[0].color = Color.green;
+            TutorialManager.instance.inventoryUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift))
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift))
         {
-            TutorialManager.instance.advanceMoveUI[1].color = Color.green;
+            TutorialManager.instance.inventoryUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl))
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl))
         {
-            TutorialManager.instance.advanceMoveUI[2].color = Color.green;
+            TutorialManager.instance.inventoryUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
 
@@ -38,7 +38,7 @@ public class AdvanceMovement : MonoBehaviour
         {
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
-            TutorialManager.instance.tutorialProgress = 2;
+            TutorialManager.instance.tutorialProgress = 3;
         }
     }
 
@@ -46,12 +46,12 @@ public class AdvanceMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            TutorialManager.instance.advanceMoveTrigger = true;
+            TutorialManager.instance.inventoryTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        TutorialManager.instance.advanceMoveTrigger = false;
+        TutorialManager.instance.inventoryTrigger = false;
     }
 }
