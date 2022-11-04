@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 4614405096279337664}
   - component: {fileID: 4614405096279337695}
   - component: {fileID: 6949288156267120634}
+  - component: {fileID: 323507870}
   m_Layer: 3
   m_Name: Enemy - Shark
   m_TagString: Shark
@@ -568,7 +569,7 @@ MonoBehaviour:
   facePlayerSpeed: 10
   animLerpSpeed: 0
   sightDist: 15
-  viewAngle: 60
+  viewAngle: 180
   damagedDuration: 0.25
   headPos: {fileID: 4614405096279582898}
   weapon: {fileID: 0}
@@ -618,7 +619,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 0.2
   m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
 --- !u!135 &4614405096279337695
@@ -711,6 +712,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.70761955, y: 0.105450064, z: 0}
     m_Extent: {x: 2.0167904, y: 0.8621911, z: 1.0149341}
   m_DirtyAABB: 0
+--- !u!135 &323507870
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614405096279574872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.12081183, z: 0.83}
 --- !u!1 &4614405096279575678
 GameObject:
   m_ObjectHideFlags: 0
