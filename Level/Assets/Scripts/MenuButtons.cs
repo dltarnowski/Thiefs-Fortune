@@ -71,5 +71,15 @@ public class MenuButtons : MonoBehaviour
         gameManager.instance.settingsMenu.SetActive(false);
         gameManager.instance.pauseMenu.SetActive(true);
     }
-   
+    public void Help()
+    {
+        gameManager.instance.settingsMenu.SetActive(false);
+        gameManager.instance.helpMenu.SetActive(true);
+    }
+    public void Back2()
+    {
+        gameManager.instance.helpMenu.SetActive(false);
+        gameManager.instance.settingsMenu.SetActive(true);
+    }
+
 }
