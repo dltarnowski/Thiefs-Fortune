@@ -79,6 +79,7 @@ public class gameManager : MonoBehaviour
     public Slider MusicSlider;
     public Slider PlayerAudioSlider;
     public Slider GunVolumeSlider;
+  
 
     [Header("----- Audio -----")]
     public musicSwap music;
