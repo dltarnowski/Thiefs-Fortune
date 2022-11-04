@@ -11,10 +11,10 @@ public class BobAndSpin : MonoBehaviour
     [SerializeField] float bounceSpeed = .25f;
     [SerializeField] int rotationSpeed = 45;
 
-    
+
     private void FixedUpdate()
     {
-        gameObject.transform.Translate( new Vector3(0, (Mathf.PingPong(bounceSpeed * Time.time, bounceHeight) - bounceHeight/2) /100, 0));
+        gameObject.transform.Translate(new Vector3(0, (Mathf.PingPong(bounceSpeed * Time.time, bounceHeight) - bounceHeight / 2) / 100, 0));
 
         gameObject.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
     }
