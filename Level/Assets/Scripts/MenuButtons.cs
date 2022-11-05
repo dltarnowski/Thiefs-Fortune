@@ -6,8 +6,8 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    int currentPosition;
-    int start = 0;
+    //int currentPosition;
+    //int start = 0;
 
     public void Resume()
     {
@@ -71,5 +71,37 @@ public class MenuButtons : MonoBehaviour
         gameManager.instance.settingsMenu.SetActive(false);
         gameManager.instance.pauseMenu.SetActive(true);
     }
-   
+    public void Help()
+    {
+        gameManager.instance.settingsMenu.SetActive(false);
+        gameManager.instance.helpMenu.SetActive(true);
+    }
+    public void Back2()
+    {
+        gameManager.instance.helpMenu.SetActive(false);
+        gameManager.instance.settingsMenu.SetActive(true);
+    }
+    //used in Main Menu Scene
+    public void cameraChange()
+    {
+        MainMenuManager.instance.MainButtons.SetActive(false);
+        MainMenuManager.instance.MMMcamera = true;
+        MainMenuManager.instance.SettingScreen.SetActive(true);
+    }
+    public void cameraChange2()
+    {
+        MainMenuManager.instance.MMMcamera = false;
+        MainMenuManager.instance.SettingScreen.SetActive(false);
+        MainMenuManager.instance.MainButtons.SetActive(true);
+    }
+    public void Help2()
+    {
+        MainMenuManager.instance.settingsMenu.SetActive(false);
+        MainMenuManager.instance.helpMenu.SetActive(true);
+    }
+    public void Back3()
+    {
+        MainMenuManager.instance.helpMenu.SetActive(false);
+        MainMenuManager.instance.settingsMenu.SetActive(true);
+    }
 }

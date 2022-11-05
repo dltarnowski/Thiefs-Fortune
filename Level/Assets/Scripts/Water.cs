@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    [SerializeField] float waterHeight = -3.2f;
+    //[SerializeField] float waterHeight = -3.2f;
 
     private void OnTriggerEnter(Collider other)
     {
