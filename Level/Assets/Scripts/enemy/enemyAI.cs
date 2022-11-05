@@ -153,7 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if(enemyHurtAudVol > 0)
             aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
 
-        if (HP <= 0)
+        if(HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
             anim.SetBool("Dead", true);
