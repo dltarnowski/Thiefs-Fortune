@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class meleeEnemyAI : enemyAI
+public class TutorialMeleeNPC : meleeEnemyAI
 {
-    [Header("----- Melee Weapon Stats -----")]
-    [SerializeField] internal Sword swordStat;
-    internal bool isMelee;
-
-    internal bool equipped;
+    // Start is called before the first frame update
+    void Start()
+    {
+        TutorialManager.instance.meleeEnemiesLeft++;
+    }
 
     // Update is called once per frame
     void Update()
     {
         if (!anim.GetBool("Dead"))
         {
-            if(!equipped)
+            if (!equipped)
             {
                 weapon.GetComponent<MeshFilter>().sharedMesh = swordStat.model.GetComponent<MeshFilter>().sharedMesh;
                 weapon.GetComponent<MeshRenderer>().sharedMaterial = swordStat.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -41,16 +40,15 @@ public class meleeEnemyAI : enemyAI
             }
         }
     }
-
-    public IEnumerator melee()
+    public override void takeDamage(float dmg)
     {
-        isMelee = true;
-        if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
-        {
-            aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
-            anim.SetTrigger("attack");
-        }
-        yield return new WaitForSeconds(swordStat.speed);
-        isMelee = false;
+        base.takeDamage(dmg);
+
+        if (HP <= 0)
+            checkEnemyTotal();
+    }
+    public void checkEnemyTotal()
+    {
+        TutorialManager.instance.meleeEnemiesLeft--;
     }
 }

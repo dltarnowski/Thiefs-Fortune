@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     public TextMeshProUGUI objectiveText;
     public GameObject beginButton;
     public GameObject completeButton;
+    public GameObject continueButton;
 
     [Header("----- Objective Check UI -----")]
     public GameObject basicMoveUIObj;
@@ -37,8 +38,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject basicPoint;
     public GameObject advancePoint;
     public GameObject inventoryPoint;
-    public GameObject meleePoint;
-    public GameObject rangedPoint;
+    public GameObject combatPoint;
     public GameObject nextPoint;
 
     [Header("----- Buttons -----")]
@@ -52,8 +52,13 @@ public class TutorialManager : MonoBehaviour
     public GameObject skull;
     public GameObject exclamation;
     public GameObject ammoBag;
+    public GameObject meleeSpawnerObj;
+    public spawner meleeSpawner;
+    public GameObject rangedSpawner;
     public int objectivesComplete;
     public int tutorialProgress;
+    public int meleeEnemiesLeft;
+    public int rangedEnemiesLeft;
     public bool tutorialActive;
 
     // Start is called before the first frame update
@@ -80,6 +85,11 @@ public class TutorialManager : MonoBehaviour
             advancePoint.SetActive(false);
             inventoryPoint.SetActive(true);
         }
+        if(tutorialProgress == 3)
+        {
+            inventoryPoint.SetActive(false);
+            combatPoint.SetActive(true);
+        }
     }
 
     public void Begin()
@@ -105,6 +115,12 @@ public class TutorialManager : MonoBehaviour
         }
         else if (meleeTrigger)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            gameManager.instance.cameraScript.enabled = true;
+
+            meleeSpawnerObj.SetActive(true);
+
             meleeUIObj.SetActive(true);
             objectiveText.text = "Make sure your melee weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
         }
@@ -113,6 +129,16 @@ public class TutorialManager : MonoBehaviour
             rangedUIObj.SetActive(true);
             objectiveText.text = "Make sure your ranged weapon is equipped by pressing [2]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
         }
+    }
+
+    public void Continue()
+    {
+        meleeTrigger = false;
+        rangedTrigger = true;
+
+        continueButton.SetActive(false);
+        beginButton.SetActive(true);
+
     }
 
     public void Complete()
@@ -144,8 +170,9 @@ public class TutorialManager : MonoBehaviour
             inventoryUIObj.SetActive(false);
             gameManager.instance.inventoryPanel.SetActive(false);
             inventoryTrigger = false;
+
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
-            nextPoint.transform.position = meleePoint.transform.position;
+            nextPoint.transform.position = combatPoint.transform.position;
         }
         if (tutorialProgress == 4)
         {
@@ -170,5 +197,11 @@ public class TutorialManager : MonoBehaviour
         skull.SetActive(true);
         exclamation.SetActive(true);
         tutorialActive = false;
+    }
+
+    public IEnumerator EnemySpawnDelay()
+    {
+        yield return new WaitForSeconds(2.75f);
+        meleeSpawnerObj.SetActive(true);
     }
 }

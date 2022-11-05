@@ -31,7 +31,7 @@ public class Interaction : MonoBehaviour
             facePlayer(playerDir);
         }
 
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 3 && !TutorialManager.instance.tutorialActive)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 5 && !TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.dialogueBox.SetActive(true);
             TutorialManager.instance.beginButton.SetActive(true);
@@ -64,6 +64,7 @@ public class Interaction : MonoBehaviour
             }
             if (TutorialManager.instance.meleeTrigger)
             {
+                TutorialManager.instance.objectiveName.text = "Melee Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee attacks!";
             }
             if (TutorialManager.instance.rangedTrigger)
@@ -84,7 +85,11 @@ public class Interaction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.hint.SetActive(true);
+            if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialActive)
+                gameManager.instance.hint.SetActive(false);
+            else
+                gameManager.instance.hint.SetActive(true);
+
             playerInRange = true;
         }
     }
