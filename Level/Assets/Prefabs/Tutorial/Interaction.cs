@@ -31,7 +31,7 @@ public class Interaction : MonoBehaviour
             facePlayer(playerDir);
         }
 
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 2)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 3 && !TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.dialogueBox.SetActive(true);
             TutorialManager.instance.beginButton.SetActive(true);
@@ -44,7 +44,7 @@ public class Interaction : MonoBehaviour
             if (anim != null)
             {
                 anim.SetTrigger("Speak");
-                Icon.SetActive(false);
+                TutorialManager.instance.exclamation.SetActive(false);
             }
 
             if (TutorialManager.instance.basicMoveTrigger)
@@ -60,7 +60,7 @@ public class Interaction : MonoBehaviour
             if (TutorialManager.instance.inventoryTrigger)
             {
                 TutorialManager.instance.objectiveName.text = "Inventory";
-                TutorialManager.instance.objectiveText.text = "See the ammo pouch floating up ahead? Why don't you walk over it? Press begin to learn the basic of accessing and managing your inventory!";
+                TutorialManager.instance.objectiveText.text = "You have now picked up your first new item! Press begin to learn the basic of accessing and managing your inventory!";
             }
             if (TutorialManager.instance.meleeTrigger)
             {
@@ -93,6 +93,6 @@ public class Interaction : MonoBehaviour
         playerInRange = false;
         anim.SetTrigger("Idle");
         gameManager.instance.hint.SetActive(false);
-        Icon.SetActive(true);
+        TutorialManager.instance.exclamation.SetActive(true);
     }
 }

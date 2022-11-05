@@ -411,7 +411,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
-    void MapSelect()
+    public void MapSelect()
     {
         if (!mapActive)
         {

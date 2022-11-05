@@ -9,6 +9,6 @@ public class meleeSharkDamage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            gameManager.instance.playerScript.takeDamage(EAI.meleeDamage);
+            gameManager.instance.playerScript.takeDamage(EAI.damage);
     }
 }

@@ -6,8 +6,8 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    int currentPosition;
-    int start = 0;
+    //int currentPosition;
+    //int start = 0;
 
     public void Resume()
     {
