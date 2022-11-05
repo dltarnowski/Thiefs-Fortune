@@ -70,7 +70,9 @@ public class EquipmentManager : MonoBehaviour
         Equipment oldEquipment = null;
         if (currentEquipment[slotIndex] != null)
         {
-            if(currentEquipment[slotIndex] is Weapon)
+            TutorialManager.instance.unequipButton = true;
+
+            if (currentEquipment[slotIndex] is Weapon)
             {
                 if (currentEquipment[slotIndex].GetType() == typeof(Gun))
                 {
@@ -92,6 +94,10 @@ public class EquipmentManager : MonoBehaviour
             {
                 onEquipmentChanged.Invoke(null, oldEquipment);
             }
+        }
+        else
+        {
+            TutorialManager.instance.unequipButton = false;
         }
     }
 
