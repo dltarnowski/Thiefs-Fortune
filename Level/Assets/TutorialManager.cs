@@ -53,8 +53,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject exclamation;
     public GameObject ammoBag;
     public GameObject meleeSpawnerObj;
-    public spawner meleeSpawner;
-    public GameObject rangedSpawner;
+    public GameObject rangedSpawnerObj;
     public int objectivesComplete;
     public int tutorialProgress;
     public int meleeEnemiesLeft;
@@ -126,6 +125,12 @@ public class TutorialManager : MonoBehaviour
         }
         else if (rangedTrigger)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            gameManager.instance.cameraScript.enabled = true;
+
+            rangedSpawnerObj.SetActive(true);
+
             rangedUIObj.SetActive(true);
             objectiveText.text = "Make sure your ranged weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
         }
@@ -133,10 +138,6 @@ public class TutorialManager : MonoBehaviour
 
     public void Continue()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        gameManager.instance.cameraScript.enabled = true;
-
         meleeTrigger = false;
         rangedTrigger = true;
 
