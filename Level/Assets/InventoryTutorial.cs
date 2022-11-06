@@ -18,17 +18,17 @@ public class InventoryTutorial : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.I))
+        if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.I) && TutorialManager.instance.inventoryUI[0].color != Color.green)
         {
             TutorialManager.instance.inventoryUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift))
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.equipButton && TutorialManager.instance.inventoryUI[1].color != Color.green)
         {
             TutorialManager.instance.inventoryUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl))
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.unequipButton && TutorialManager.instance.inventoryUI[2].color != Color.green)
         {
             TutorialManager.instance.inventoryUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;

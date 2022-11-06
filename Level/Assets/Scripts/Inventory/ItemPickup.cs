@@ -36,12 +36,17 @@ public class ItemPickup : MonoBehaviour
                     Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
             }
 
-
             if(!Inventory.instance.items.Contains(item))
                 isSwapped = Inventory.instance.Add(item);
 
+            if(TutorialManager.instance.tutorialActive)
+            {
+                TutorialManager.instance.ammoBag.SetActive(false);
+            }
+
             if(isSwapped || !(item is Weapon))
                 Destroy(gameObject);
+
         }
     }
 }
