@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialMeleeNPC : meleeEnemyAI
+public class TutorialNPC : meleeEnemyAI
 {
     // Start is called before the first frame update
     void Start()
     {
-        TutorialManager.instance.meleeEnemiesLeft++;
+
     }
 
     // Update is called once per frame
@@ -43,12 +43,13 @@ public class TutorialMeleeNPC : meleeEnemyAI
     public override void takeDamage(float dmg)
     {
         base.takeDamage(dmg);
-
-        if (HP <= 0)
-            checkEnemyTotal();
     }
-    public void checkEnemyTotal()
+
+    public void OnDestroy()
     {
-        TutorialManager.instance.meleeEnemiesLeft--;
+        if(TutorialManager.instance.meleeTrigger)
+            TutorialManager.instance.meleeEnemiesLeft--;
+        else if(TutorialManager.instance.rangedTrigger)
+            TutorialManager.instance.rangedEnemiesLeft--;
     }
 }
