@@ -58,6 +58,10 @@ public class CombatTutorial : MonoBehaviour
                 TutorialManager.instance.beginButton.SetActive(false);
                 TutorialManager.instance.completeButton.SetActive(true);
                 TutorialManager.instance.tutorialProgress = 5;
+
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                gameManager.instance.cameraScript.enabled = false;
             }
         }
     }

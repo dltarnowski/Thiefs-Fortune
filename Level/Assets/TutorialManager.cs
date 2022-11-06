@@ -122,23 +122,29 @@ public class TutorialManager : MonoBehaviour
             meleeSpawnerObj.SetActive(true);
 
             meleeUIObj.SetActive(true);
-            objectiveText.text = "Make sure your melee weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
+            objectiveText.text = "Make sure your melee weapon is equipped by pressing [2]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
         }
         else if (rangedTrigger)
         {
             rangedUIObj.SetActive(true);
-            objectiveText.text = "Make sure your ranged weapon is equipped by pressing [2]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
+            objectiveText.text = "Make sure your ranged weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
         }
     }
 
     public void Continue()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        gameManager.instance.cameraScript.enabled = true;
+
         meleeTrigger = false;
         rangedTrigger = true;
 
         continueButton.SetActive(false);
         beginButton.SetActive(true);
 
+        meleeUIObj.SetActive(false);
+        objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
     }
 
     public void Complete()
@@ -173,11 +179,6 @@ public class TutorialManager : MonoBehaviour
 
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
             nextPoint.transform.position = combatPoint.transform.position;
-        }
-        if (tutorialProgress == 4)
-        {
-            meleeUIObj.SetActive(false);
-            objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
         }
         if (tutorialProgress == 5)
         {
