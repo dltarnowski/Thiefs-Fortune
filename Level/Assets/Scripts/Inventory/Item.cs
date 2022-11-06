@@ -21,8 +21,6 @@ public abstract class Item : ScriptableObject
     {
         // use the item
         // Something might happen
-
-        Debug.Log("Using" + name);
     }    
 
     public virtual void unUse()
