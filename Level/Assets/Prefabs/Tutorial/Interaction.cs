@@ -24,6 +24,11 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TutorialManager.instance.finalTrigger)
+        {
+            TutorialManager.instance.tutorialActive = false;
+        }
+
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
         if (playerInRange)
@@ -31,7 +36,7 @@ public class Interaction : MonoBehaviour
             facePlayer(playerDir);
         }
 
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 5 && !TutorialManager.instance.tutorialActive)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress <= 5 && !TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.dialogueBox.SetActive(true);
             TutorialManager.instance.beginButton.SetActive(true);
@@ -67,9 +72,11 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Melee Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee attacks!";
             }
-            if (TutorialManager.instance.rangedTrigger)
+            if(TutorialManager.instance.finalTrigger)
             {
-                TutorialManager.instance.objectiveText.text = "Sometimes, a gun is best. Press begin to learn how to use ranged attacks!";
+                TutorialManager.instance.objectiveName.text = "Final Thoughts";
+                TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
+                TutorialManager.instance.continueButton.SetActive(true);
             }
         }
     }

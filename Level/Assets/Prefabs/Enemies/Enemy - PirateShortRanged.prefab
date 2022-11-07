@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 6569415140366986260}
   - component: {fileID: 6767999236334279497}
   - component: {fileID: 817574998}
-  - component: {fileID: 6267376950421163705}
+  - component: {fileID: 2026926730591796872}
   m_Layer: 3
   m_Name: Enemy - PirateShortRanged
   m_TagString: Ranged
@@ -2186,7 +2186,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 1.63, z: 0}
---- !u!114 &6267376950421163705
+--- !u!114 &2026926730591796872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2195,16 +2195,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5209616646559402807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccdd215b0cb02845aa64a3afb4ac5cc, type: 3}
+  m_Script: {fileID: 11500000, guid: a2660a00d896ba94bae40247584ab009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 4297088496540310847, guid: 6292d4c83175c22478a24b11215baec2, type: 3}
-  model: {fileID: 2604640032892149570, guid: 6292d4c83175c22478a24b11215baec2, type: 3}
-  col: {fileID: 4638180374099680501, guid: 6292d4c83175c22478a24b11215baec2, type: 3}
-  anim: {fileID: 237192116448168831, guid: 6292d4c83175c22478a24b11215baec2, type: 3}
+  agent: {fileID: 2366416213182000606}
+  model: {fileID: 4562404211656994723}
+  col: {fileID: 6569415140366986260}
+  anim: {fileID: 1747340319569574814}
   drops:
   - {fileID: 2612704222007822689, guid: 3f20510f4288e5e47a7dc400e3441951, type: 3}
-  HP: 1
+  HP: 50
   speedChase: 5
   facePlayerSpeed: 10
   animLerpSpeed: 4
@@ -2218,7 +2218,7 @@ MonoBehaviour:
   noRotation: 0
   roamDist: 7
   canRoam: 1
-  aud: {fileID: 553503776122868071, guid: 6292d4c83175c22478a24b11215baec2, type: 3}
+  aud: {fileID: 6767999236334279497}
   enemyHurtAud:
   - {fileID: 0}
   - {fileID: 0}
@@ -2239,7 +2239,9 @@ MonoBehaviour:
   - {fileID: 0}
   enemyStepsAudVol: 0.2
   enemyWeaponAudVol: 0.3
-  swordStat: {fileID: 11400000, guid: 97d52f3124b6f2a48a6a350166865657, type: 2}
+  attackPos: {fileID: 3997422536040635848, guid: a25f336a08b31354dbf0b7ec650b2c26, type: 3}
+  bullet: {fileID: 3390380820653025824, guid: 35ca9a52b835cad4483543c0cd478eaa, type: 3}
+  gunStat: {fileID: 11400000, guid: 23238c86014cd894f849e5dc8ffa2c1d, type: 2}
 --- !u!1 &8930188836347320527
 GameObject:
   m_ObjectHideFlags: 0
