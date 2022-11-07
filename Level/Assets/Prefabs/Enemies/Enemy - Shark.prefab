@@ -1,6 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-
 --- !u!1 &1272513083
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 4614405096279337694}
-
 --- !u!1 &4614405095700332698
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,9 +495,10 @@ GameObject:
   - component: {fileID: 4614405096279337664}
   - component: {fileID: 4614405096279337695}
   - component: {fileID: 6949288156267120634}
+  - component: {fileID: 323507870}
   m_Layer: 3
   m_Name: Enemy - Shark
-  m_TagString: Melee
+  m_TagString: Shark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -518,6 +517,7 @@ Transform:
   m_Children:
   - {fileID: 4614405096279354448}
   - {fileID: 4614405095700332699}
+  - {fileID: 1272513084}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -555,25 +555,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4614405096279337664}
   model: {fileID: 6949288156267120634}
-  cannonCtrl: {fileID: 0}
   col: {fileID: 4614405096279337665}
   anim: {fileID: 4614405096286769364}
-  HP: 20
-  reward: 0
+  drops:
+  - {fileID: 5647004934308242227, guid: 5cfb8e402df4a884d8fc33a8d062f75d, type: 3}
+  - {fileID: 6482535713155909065, guid: 85cf71357af4b6241bd6544e0c35c08c, type: 3}
+  - {fileID: 3576859548827341246, guid: 5603d3fdbcd98ac46af540cba52937ae, type: 3}
+  - {fileID: 2512782620296928835, guid: 98ace9e725741cb46a2176b96ee572d9, type: 3}
+  - {fileID: 2612704222007822689, guid: 3f20510f4288e5e47a7dc400e3441951, type: 3}
+  - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
+  HP: 300
   speedChase: 10
   facePlayerSpeed: 10
-  deadLerpSpeed: 2
+  animLerpSpeed: 0
   sightDist: 15
-  viewAngle: 45
+  viewAngle: 180
   damagedDuration: 0.25
   headPos: {fileID: 4614405096279582898}
-  roamDist: 10
-  attackRate: 0.5
-  attackPos: {fileID: 4614405095700332698}
-  meleeAttackRange: 0.1
-  meleeDamage: 50
+  weapon: {fileID: 0}
+  linearRoam: 0
   stationary: 0
   noRotation: 0
+  roamDist: 10
+  canRoam: 1
+  aud: {fileID: 0}
+  enemyHurtAud: []
+  enemyHurtAudVol: 0
+  enemyStepsAud: []
+  enemyStepsAudVol: 0
+  enemyWeaponAudVol: 0
+  deadLerpSpeed: 2
+  damage: 50
 --- !u!136 &4614405096279337665
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -607,7 +619,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 0.2
   m_WalkableMask: 8
   m_ObstacleAvoidanceType: 4
 --- !u!135 &4614405096279337695
@@ -700,6 +712,19 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.70761955, y: 0.105450064, z: 0}
     m_Extent: {x: 2.0167904, y: 0.8621911, z: 1.0149341}
   m_DirtyAABB: 0
+--- !u!135 &323507870
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4614405096279574872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.12081183, z: 0.83}
 --- !u!1 &4614405096279575678
 GameObject:
   m_ObjectHideFlags: 0

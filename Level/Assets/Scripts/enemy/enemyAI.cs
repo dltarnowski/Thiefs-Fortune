@@ -119,7 +119,7 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetPath(path);
     }
 
-    public void canSeePlayer(IEnumerator attack, bool isAttacking)
+    public void canSeePlayer(IEnumerator attack = null, bool isAttacking = true)
     {
         RaycastHit hit;
         if (Physics.Raycast(headPos.transform.position, playerDir, out hit, sightDist))
@@ -150,15 +150,16 @@ public class enemyAI : MonoBehaviour, IDamage
     public virtual void takeDamage(float dmg)
     {
         HP -= dmg;
-        aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
+        if(enemyHurtAudVol > 0)
+            aud.PlayOneShot(enemyHurtAud[Random.Range(0, enemyHurtAud.Length - 1)], enemyHurtAudVol);
 
-        if (HP <= 0)
+        if(HP <= 0)
         {
             gameManager.instance.checkEnemyTotal();
             anim.SetBool("Dead", true);
             col.enabled = false;
             agent.enabled = false;
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 2);
             Instantiate(drops[Random.Range(0, drops.Length - 1)], transform.position, transform.rotation);
         }
         else if (HP > 0)
@@ -166,7 +167,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     }
 
-    IEnumerator flashDamage()
+    public IEnumerator flashDamage()
     {
         model.material.color = Color.red;
         agent.enabled = false;
