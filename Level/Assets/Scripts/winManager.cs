@@ -30,11 +30,7 @@ public class winManager : MonoBehaviour
         if(legendSpawned && currLegend == null && !win)
         {
             win = true;
-            TutorialManager.instance.objectiveName.text = "YOU WIN!!!";
-            TutorialManager.instance.objectiveText.text = "You have defeated Captain Pirate and your black spot has been removed! Sail the seas and become a pirate legend!";
-            TutorialManager.instance.beginButton.SetActive(false);
-            TutorialManager.instance.completeButton.SetActive(false);
-            TutorialManager.instance.dialogueBox.SetActive(true);
+            gameManager.instance.winMenu.SetActive(true);
             StartCoroutine(CleanUp());
         }
     }

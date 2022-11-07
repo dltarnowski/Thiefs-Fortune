@@ -1,6 +1,7 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Purchasing;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
@@ -10,6 +11,7 @@ public class InventorySlot : MonoBehaviour
     public Button equipButton;
     public Button unEquipButton;
     public Inventory inventory;
+    public InventorySlot inventorySlot;
     public TextMeshProUGUI itemCount;
     public GameObject countUI;
     Item item;
@@ -50,11 +52,13 @@ public class InventorySlot : MonoBehaviour
         if (CompareTag("Equipment Slot"))
             unEquipButton.interactable = true;
 
-        if(item is Consumable)
+        if (item is Consumable)
         {
             countUI.SetActive(true);
             itemCount.text = item.numOfItems.ToString();
         }
+        else
+            countUI.SetActive(false);
 
     }
 
@@ -63,8 +67,8 @@ public class InventorySlot : MonoBehaviour
         if (item is Consumable)
         {
             countUI.SetActive(false);
-            itemCount.text = " ";
         }
+
         item = null;
 
         icon.sprite = null;
