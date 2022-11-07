@@ -57,7 +57,9 @@ public class InventoryUI : MonoBehaviour
                 slots[i].AddItem(inventory.items[i]);
             }
             else
+            {
                 slots[i].ClearSlot();
+            }
         }
 
         for(int i = 0; i < activeSlots.Length; i++)
