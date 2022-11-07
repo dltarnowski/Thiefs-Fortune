@@ -7,9 +7,9 @@ public class meleeEnemyAI : enemyAI
 {
     [Header("----- Melee Weapon Stats -----")]
     [SerializeField] internal Sword swordStat;
-    bool isMelee;
+    internal bool isMelee;
 
-    bool equipped;
+    internal bool equipped;
 
     // Update is called once per frame
     void Update()
@@ -42,7 +42,7 @@ public class meleeEnemyAI : enemyAI
         }
     }
 
-    IEnumerator melee()
+    public IEnumerator melee()
     {
         isMelee = true;
         if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
