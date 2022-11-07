@@ -34,6 +34,8 @@ public class ItemPickup : MonoBehaviour
             {
                 if (Inventory.instance.items.Contains(item))
                     Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
+                else
+                    item.numOfItems = 1;
             }
 
             if(!Inventory.instance.items.Contains(item))
