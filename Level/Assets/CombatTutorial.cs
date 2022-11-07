@@ -40,18 +40,19 @@ public class CombatTutorial : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 gameManager.instance.cameraScript.enabled = false;
+                TutorialManager.instance.objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
+
+                TutorialManager.instance.objectivesComplete = 0;
             }
         }
         else if(TutorialManager.instance.rangedTrigger == true)
         {
-            TutorialManager.instance.objectivesComplete = 0;
-
-            if (TutorialManager.instance.rangedUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space) && TutorialManager.instance.rangedUI[0].color != Color.green)
+            if (TutorialManager.instance.rangedUIObj.activeSelf && TutorialManager.instance.rangedEnemiesLeft <= 1 && TutorialManager.instance.rangedUI[0].color != Color.green)
             {
                 TutorialManager.instance.rangedUI[0].color = Color.green;
                 TutorialManager.instance.objectivesComplete++;
             }
-            else if (TutorialManager.instance.rangedUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift) && TutorialManager.instance.rangedUI[1].color != Color.green)
+            else if (TutorialManager.instance.rangedUIObj.activeSelf && TutorialManager.instance.rangedEnemiesLeft <= 0 && TutorialManager.instance.rangedUI[1].color != Color.green)
             {
                 TutorialManager.instance.rangedUI[1].color = Color.green;
                 TutorialManager.instance.objectivesComplete++;
@@ -62,6 +63,10 @@ public class CombatTutorial : MonoBehaviour
                 TutorialManager.instance.beginButton.SetActive(false);
                 TutorialManager.instance.completeButton.SetActive(true);
                 TutorialManager.instance.tutorialProgress = 5;
+
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                gameManager.instance.cameraScript.enabled = false;
             }
         }
     }

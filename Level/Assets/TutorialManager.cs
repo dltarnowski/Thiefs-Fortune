@@ -33,6 +33,7 @@ public class TutorialManager : MonoBehaviour
     public bool inventoryTrigger;
     public bool meleeTrigger;
     public bool rangedTrigger;
+    public bool finalTrigger;
 
     [Header("----- Objectives -----")]
     public GameObject basicPoint;
@@ -40,6 +41,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject inventoryPoint;
     public GameObject combatPoint;
     public GameObject nextPoint;
+    public GameObject finalPoint;
 
     [Header("----- Buttons -----")]
     public bool equipButton;
@@ -121,7 +123,7 @@ public class TutorialManager : MonoBehaviour
             meleeSpawnerObj.SetActive(true);
 
             meleeUIObj.SetActive(true);
-            objectiveText.text = "Make sure your melee weapon is equipped by pressing [2]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
+            objectiveText.text = "Make sure your melee weapon is equipped by pressing [2]. Kill the enemies by centering your body to the enemy and pressing the [L-MOUSE BUTTON]";
         }
         else if (rangedTrigger)
         {
@@ -130,6 +132,7 @@ public class TutorialManager : MonoBehaviour
             gameManager.instance.cameraScript.enabled = true;
 
             rangedSpawnerObj.SetActive(true);
+            skull.SetActive(false);
 
             rangedUIObj.SetActive(true);
             objectiveText.text = "Make sure your ranged weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
@@ -138,14 +141,30 @@ public class TutorialManager : MonoBehaviour
 
     public void Continue()
     {
-        meleeTrigger = false;
-        rangedTrigger = true;
+        if (!finalTrigger)
+        {
+            meleeTrigger = false;
+            rangedTrigger = true;
 
-        continueButton.SetActive(false);
-        beginButton.SetActive(true);
+            continueButton.SetActive(false);
+            beginButton.SetActive(true);
 
-        meleeUIObj.SetActive(false);
-        objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
+            meleeUIObj.SetActive(false);
+            objectiveName.text = "Ranged Combat";
+            objectiveText.text = "Sometimes, a gun is best. Press begin to learn how to use ranged attacks!";
+        }
+        else
+        {
+            beginButton.SetActive(false);
+            continueButton.SetActive(false);
+            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the Log Book in your Settings Menu for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            gameManager.instance.cameraScript.enabled = true;
+
+            StartCoroutine(CleanUp());
+        }
     }
 
     public void Complete()
@@ -183,7 +202,12 @@ public class TutorialManager : MonoBehaviour
         }
         if (tutorialProgress == 5)
         {
+            completeButton.SetActive(false);
+            rangedUIObj.SetActive(false);
             objectiveText.text = "You're quite the sharpshooter! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know!";
+            nextPoint.transform.position = finalPoint.transform.position;
+            rangedTrigger = false;
+            finalPoint.SetActive(true);
         }
 
         StartCoroutine(CleanUp());
@@ -191,19 +215,19 @@ public class TutorialManager : MonoBehaviour
     public IEnumerator CleanUp()
     {   
         objectivesComplete = 0;
-        yield return new WaitForSeconds(2.75f);
-        dialogueBox.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
         skull.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
+        dialogueBox.SetActive(false);
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
-        skull.SetActive(true);
-        exclamation.SetActive(true);
-        tutorialActive = false;
-    }
 
-    public IEnumerator EnemySpawnDelay()
-    {
-        yield return new WaitForSeconds(2.75f);
-        meleeSpawnerObj.SetActive(true);
+        if (!finalTrigger)
+        {
+            skull.SetActive(true);
+            exclamation.SetActive(true);
+        }
+
+        tutorialActive = false;
+
     }
 }
