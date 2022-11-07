@@ -30,7 +30,6 @@ public class chestOpen : MonoBehaviour
                 Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
             opened = true;
 
-            TutorialManager.instance.objectiveName.text = "Note Found!";
             TutorialManager.instance.objectiveText.text = "My love and I are in exile and even here, we aren't safe. We must head to Port Placeholder for sanctuary! There, I have some friends who I can let know my whereabouts.";
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(false);

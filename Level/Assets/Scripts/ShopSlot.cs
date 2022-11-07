@@ -11,6 +11,7 @@ public class ShopSlot : MonoBehaviour
     public Button buy;
     public Item item;
     public TextMeshProUGUI price;
+    public GameObject countUI;
 
     bool canBuy;
 
@@ -35,10 +36,10 @@ public class ShopSlot : MonoBehaviour
     {
         if (canBuy)
         {
+            gameManager.instance.currencyNumber -= item.buyPrice;
+            //shopInventory.Remove(item);
             inventory.Add(item);
-            shopInventory.Remove(item);
         }
-        gameManager.instance.currencyNumber -= item.buyPrice;
         gameManager.instance.playerScript.updatePlayerHUD();
     }
 
@@ -50,8 +51,8 @@ public class ShopSlot : MonoBehaviour
             gameManager.instance.playerScript.updatePlayerHUD();
 
             inventory.Remove(item);
-            //Inventory.instance.onItemChangedCallback.Invoke();
 
+            Inventory.instance.onItemChangedCallback.Invoke();
         }
 
     }
