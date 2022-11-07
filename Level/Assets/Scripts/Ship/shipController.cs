@@ -38,6 +38,8 @@ public class shipController : MonoBehaviour
         {
             RevertParent();
         }
+
+        gameManager.instance.playerScript.MapSelect();
     }
 
     void ChangeParent()

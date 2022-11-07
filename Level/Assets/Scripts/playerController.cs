@@ -75,9 +75,9 @@ public class playerController : MonoBehaviour
     [SerializeField] bool isOnSand;
     Vector3 move;
 
-    float coyoteTime = 0.2f;
+    float coyoteTime = 0.5f;
     float coyoteTimeCounter;
-    float jumpBufferTime = 0.2f;
+    float jumpBufferTime = 0.4f;
     float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
@@ -411,7 +411,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
-    void MapSelect()
+    public void MapSelect()
     {
         if (!mapActive)
         {

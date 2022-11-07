@@ -17,6 +17,7 @@ public class HealthPotion : Consumable
             {
                 EquipmentManager.instance.currentEquipment[(int)this.equipmentSlot] = null;
                 Inventory.instance.onItemChangedCallback();
+                // Play UI message that alerts player
             }
             else
                 this.numOfItems--;

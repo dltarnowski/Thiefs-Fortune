@@ -24,6 +24,11 @@ public class Interaction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TutorialManager.instance.finalTrigger)
+        {
+            TutorialManager.instance.tutorialActive = false;
+        }
+
         playerDir = gameManager.instance.player.transform.position - transform.position;
 
         if (playerInRange)
@@ -31,7 +36,7 @@ public class Interaction : MonoBehaviour
             facePlayer(playerDir);
         }
 
-        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress < 2)
+        if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress <= 5 && !TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.dialogueBox.SetActive(true);
             TutorialManager.instance.beginButton.SetActive(true);
@@ -44,7 +49,7 @@ public class Interaction : MonoBehaviour
             if (anim != null)
             {
                 anim.SetTrigger("Speak");
-                Icon.SetActive(false);
+                TutorialManager.instance.exclamation.SetActive(false);
             }
 
             if (TutorialManager.instance.basicMoveTrigger)
@@ -60,15 +65,18 @@ public class Interaction : MonoBehaviour
             if (TutorialManager.instance.inventoryTrigger)
             {
                 TutorialManager.instance.objectiveName.text = "Inventory";
-                TutorialManager.instance.objectiveText.text = "See the ammo pouch floating up ahead? Why don't you walk over it? Press begin to learn the basic of accessing and managing your inventory!";
+                TutorialManager.instance.objectiveText.text = "You have now picked up your first new item! Press begin to learn the basic of accessing and managing your inventory!";
             }
             if (TutorialManager.instance.meleeTrigger)
             {
+                TutorialManager.instance.objectiveName.text = "Melee Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee attacks!";
             }
-            if (TutorialManager.instance.rangedTrigger)
+            if(TutorialManager.instance.finalTrigger)
             {
-                TutorialManager.instance.objectiveText.text = "Sometimes, a gun is best. Press begin to learn how to use ranged attacks!";
+                TutorialManager.instance.objectiveName.text = "Final Thoughts";
+                TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
+                TutorialManager.instance.continueButton.SetActive(true);
             }
         }
     }
@@ -84,7 +92,11 @@ public class Interaction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.hint.SetActive(true);
+            if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialActive)
+                gameManager.instance.hint.SetActive(false);
+            else
+                gameManager.instance.hint.SetActive(true);
+
             playerInRange = true;
         }
     }
@@ -93,6 +105,6 @@ public class Interaction : MonoBehaviour
         playerInRange = false;
         anim.SetTrigger("Idle");
         gameManager.instance.hint.SetActive(false);
-        Icon.SetActive(true);
+        TutorialManager.instance.exclamation.SetActive(true);
     }
 }

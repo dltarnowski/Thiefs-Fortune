@@ -27,13 +27,23 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
-            if (inventoryUI.activeSelf)
-                gameManager.instance.cursorLockPause();
+
+            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.meleeTrigger && inventoryUI.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                gameManager.instance.cameraScript.enabled = false;
+            }
             else
-                gameManager.instance.cursorUnlockUnpause();
+            {
+                if (inventoryUI.activeSelf)
+                    gameManager.instance.cursorLockPause();
+                else
+                    gameManager.instance.cursorUnlockUnpause();
+            }
         }
     }
 

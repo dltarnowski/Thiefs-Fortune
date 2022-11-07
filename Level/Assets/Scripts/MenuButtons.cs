@@ -6,8 +6,8 @@ using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
-    int currentPosition;
-    int start = 0;
+    //int currentPosition;
+    //int start = 0;
 
     public void Resume()
     {
@@ -103,5 +103,9 @@ public class MenuButtons : MonoBehaviour
     {
         MainMenuManager.instance.helpMenu.SetActive(false);
         MainMenuManager.instance.settingsMenu.SetActive(true);
+    }
+    public void GoToCredits()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 }

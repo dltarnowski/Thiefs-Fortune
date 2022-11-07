@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.30000007, y: 0.3, z: 0.30000007}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5488394248461248876}
+  - {fileID: 5488394247622707404}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -43.894, z: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   playerInRange: 0
   facePlayerSpeed: 5
   target: {fileID: 0}
-  Icon: {fileID: 5488394248461248879}
+  Icon: {fileID: 0}
 --- !u!1 &5488394247623070956
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,12 +178,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5488394247623070956}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.32, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5488394248461248876}
+  m_Father: {fileID: 3151299584671840949}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5488394247624001772
@@ -251,35 +251,3 @@ MonoBehaviour:
   rotationVelocity: {x: 0, y: 90, z: 0}
   swingVector: {x: 0, y: 0.1, z: 0}
   swingFrequency: 3
---- !u!1 &5488394248461248879
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5488394248461248876}
-  m_Layer: 0
-  m_Name: SignExclamationMarkM
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5488394248461248876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5488394248461248879}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.36, z: 0}
-  m_LocalScale: {x: 3.333332, y: 3.333333, z: 3.333332}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5488394247622707404}
-  m_Father: {fileID: 3151299584671840949}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
