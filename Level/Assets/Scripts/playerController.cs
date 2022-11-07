@@ -75,9 +75,9 @@ public class playerController : MonoBehaviour
     [SerializeField] bool isOnSand;
     Vector3 move;
 
-    float coyoteTime = 0.2f;
+    float coyoteTime = 0.5f;
     float coyoteTimeCounter;
-    float jumpBufferTime = 0.2f;
+    float jumpBufferTime = 0.4f;
     float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
