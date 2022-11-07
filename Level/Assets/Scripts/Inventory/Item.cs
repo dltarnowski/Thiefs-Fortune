@@ -12,7 +12,7 @@ public abstract class Item : ScriptableObject
     public bool isDefaultItem = false;
     public float strength;
     public GameObject model;
-    public int numOfItems;
+    public int numOfItems = 0;
     public int buyPrice;
     public int sellPrice;
 

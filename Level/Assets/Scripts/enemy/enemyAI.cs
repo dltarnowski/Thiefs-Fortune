@@ -159,7 +159,7 @@ public class enemyAI : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             col.enabled = false;
             agent.enabled = false;
-            Destroy(gameObject, 5);
+            Destroy(gameObject, 2);
             Instantiate(drops[Random.Range(0, drops.Length - 1)], transform.position, transform.rotation);
         }
         else if (HP > 0)
