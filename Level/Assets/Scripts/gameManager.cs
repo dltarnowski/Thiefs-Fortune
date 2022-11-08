@@ -74,6 +74,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- Other -----")]
     public bool isPaused;
+    public GameObject importantNote;
     public bool crossHairVisible = true;
     public Slider MSSlider;
     public Slider MusicSlider;
