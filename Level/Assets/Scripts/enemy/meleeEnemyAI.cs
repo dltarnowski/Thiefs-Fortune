@@ -34,7 +34,7 @@ public class meleeEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(melee(), isMelee);
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();

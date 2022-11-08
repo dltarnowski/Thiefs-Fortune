@@ -41,7 +41,7 @@ public class rangedEnemyAI : enemyAI
                     canSeePlayer(shoot(), isShooting);
 
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();

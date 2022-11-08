@@ -124,7 +124,7 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPos.transform.position, playerDir, out hit, sightDist))
         {
-            if (hit.collider.CompareTag("Player") && angle <= viewAngle)
+            if (hit.collider.CompareTag("Player"))
             {
                 if(!stationary)
                 {
