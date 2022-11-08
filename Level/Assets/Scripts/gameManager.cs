@@ -72,6 +72,11 @@ public class gameManager : MonoBehaviour
     public GameObject mainCamera;
     public Recoil recoilScript;
 
+    [Header("----- Mini Map -----")]
+    public GameObject[] miniMapObjectiveIcons;
+    public Pointer miniMapPointer;
+    public Camera miniMapCamera;
+
     [Header("----- Other -----")]
     public bool isPaused;
     public bool crossHairVisible = true;
@@ -79,7 +84,6 @@ public class gameManager : MonoBehaviour
     public Slider MusicSlider;
     public Slider PlayerAudioSlider;
     public Slider GunVolumeSlider;
-  
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -175,6 +179,19 @@ public class gameManager : MonoBehaviour
             winMenu.SetActive(true);
             cursorUnlockUnpause();
         }
+    }
+
+    public void CurrentObjectiveMiniMapIcon()
+    {
+        for (int i = 0; i < miniMapObjectiveIcons.Length; ++i)
+        {
+            if (i == winManager.instance.clueCount)
+                miniMapObjectiveIcons[i].SetActive(true);
+            else
+                miniMapObjectiveIcons[i].SetActive(false);
+        }
+
+        miniMapPointer.SetTarget();
     }
 
     public void ReduceAmmo()
