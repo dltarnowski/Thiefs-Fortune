@@ -163,6 +163,8 @@ public class TutorialManager : MonoBehaviour
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
 
+            finalTrigger = false;
+
             StartCoroutine(CleanUp());
         }
     }
