@@ -8,6 +8,7 @@ public class Geyser : MonoBehaviour
     [SerializeField] ParticleSystem[] geyserBlast;
     [SerializeField] AudioClip geyserAudio;
     [SerializeField] Vector3 point;
+    [SerializeField] float shootPlayerUp;
 
     AudioSource geyserAudioSource;
 
@@ -32,7 +33,7 @@ public class Geyser : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    { 
         if (other.CompareTag("Player"))
         {
             foreach (ParticleSystem geyser in geyserBlast)
@@ -41,6 +42,13 @@ public class Geyser : MonoBehaviour
             }
             geyserAudioSource.PlayOneShot(geyserAudio);
             damage = gameManager.instance.playerScript.HPOrig / 5;
+            gameManager.instance.player.transform.Translate(Vector3.Lerp(gameManager.instance.player.transform.position, 
+
+                                                                         new Vector3(gameManager.instance.player.transform.position.x,
+                                                                                     shootPlayerUp, 
+                                                                                     gameManager.instance.player.transform.position.z),
+
+                                                                         .1f));
             gameManager.instance.playerScript.takeDamage((int)damage);
         }
     }

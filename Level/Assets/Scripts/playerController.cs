@@ -81,7 +81,7 @@ public class playerController : MonoBehaviour
     float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
-    bool mapActive;
+    int mapActive;
     public bool isUnderwater;
     void Start()
     {
@@ -406,6 +406,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[1].Use();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
+            //if (EquipmentManager.instance.currentEquipment[2].numOfItems == 0)
             EquipmentManager.instance.currentEquipment[2].Use();
         if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
             EquipmentManager.instance.currentEquipment[3].Use();
@@ -413,26 +414,29 @@ public class playerController : MonoBehaviour
 
     public void MapSelect()
     {
-        if (!mapActive)
+        if (!gameManager.instance.map.activeSelf && mapActive == 0)
         {
             if (Input.GetKeyDown(KeyCode.M))
             {
                 gameManager.instance.map.SetActive(true);
-                mapActive = true;
+                mapActive++;
                 miniMapIcon.transform.localScale = new Vector3 (10,10,10);
                 Time.timeScale = 0;
             }
         }
-        else
+        else if(gameManager.instance.map.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
+            if ((Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape)) && mapActive == 0)
             {
                 gameManager.instance.map.SetActive(false);
-                mapActive = false;
+                mapActive++;
                 miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
                 Time.timeScale = 1;
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.M))
+            mapActive = 0;
     }
 
     public void takeDamage(float dmg)
