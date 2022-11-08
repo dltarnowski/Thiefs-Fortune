@@ -22,6 +22,7 @@ public class ShopMenuButtons : MonoBehaviour
         NPCManager.instance.dialogue.gameObject.SetActive(false);
         NPCManager.instance.followUpDialogue.gameObject.SetActive(true);
         winManager.instance.clueCount++;
+        gameManager.instance.CurrentObjectiveMiniMapIcon();
     }
 
     public void Shop()

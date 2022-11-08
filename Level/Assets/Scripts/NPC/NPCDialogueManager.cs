@@ -42,6 +42,7 @@ public class NPCDialogueManager : MonoBehaviour
             if(random <= 5 && random >= 2)
             {
                 winManager.instance.clueCount++;
+                gameManager.instance.CurrentObjectiveMiniMapIcon();
             }
         }
 
