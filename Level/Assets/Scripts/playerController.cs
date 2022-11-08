@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 public class playerController : MonoBehaviour
@@ -63,8 +60,8 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    public Vector3 playerVelocity;
-    private int timesJumped;
+    private Vector3 playerVelocity;
+    
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
