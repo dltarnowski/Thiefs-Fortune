@@ -1,12 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 public class playerController : MonoBehaviour
 {
 
     [Header("----- Components -----")]
-    public CharacterController controller;
+    [SerializeField] CharacterController controller;
     [SerializeField] GameObject thirdPersonCam_Obj;
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
@@ -60,8 +63,8 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    private Vector3 playerVelocity;
-    
+    public Vector3 playerVelocity;
+
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
@@ -271,13 +274,13 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0 && !isUnderwater)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
             coyoteTimeCounter = 0;
         }
-        else if (isUnderwater && Input.GetButton("Jump"))
+        else if (Input.GetButton("Jump") && isUnderwater)
         {
             if(playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
@@ -324,15 +327,8 @@ public class playerController : MonoBehaviour
             }
         }
 
-        if (isUnderwater)
-            playerVelocity.y += gravityValue / 3 * Time.deltaTime;
-        else
-            playerVelocity.y += gravityValue * Time.deltaTime;
-
-        if (isUnderwater)
-            controller.Move(playerVelocity / 3 * Time.deltaTime);
-        else
-            controller.Move(playerVelocity * Time.deltaTime);
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     IEnumerator PlaySteps()

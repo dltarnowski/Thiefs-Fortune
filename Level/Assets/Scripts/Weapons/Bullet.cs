@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -39,6 +41,9 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, destroyTime);
     }
 
+    private void Update()
+    {
+    }
     private void OnTriggerEnter(Collider other)
     {
             if (other.CompareTag("Player"))

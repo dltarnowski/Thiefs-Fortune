@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class cannonCameraControls : MonoBehaviour
@@ -14,6 +16,7 @@ public class cannonCameraControls : MonoBehaviour
 
     [SerializeField] GameObject barrel;
     float xRotation;
+    float yRotation;
 
     void Start()
     {
