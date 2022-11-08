@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Recoil : MonoBehaviour
@@ -9,6 +11,11 @@ public class Recoil : MonoBehaviour
     Vector3 targetPos;
 
     [SerializeField] Vector3 movementVector;
+
+
+    void Start()
+    {
+    }
 
     // Update is called once per frame
     void Update()

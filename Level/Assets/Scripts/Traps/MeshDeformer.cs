@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -23,16 +24,28 @@ public class MeshDeformer : MonoBehaviour
         meshCollider = GetComponent<MeshCollider> ();
         vertices = mesh.vertices.ToList ();
     }
-    
+
+
+    /* Deforms this mesh
+       point: The point from which deformation of the mesh starts
+       radius: The maximum radius to which the deformation affects
+       stepRadius: The small step value of the maximum radius
+       strength: The maximum strength of the deformation
+       stepStrength: The small step value of the maximum strength
+       direction: The direction of the deformation relative to mesh
+    */
+
     public void Deform (Vector3 point, float radius, float stepRadius, float strength, float stepStrength, Vector3 direction) {
         for (int i = 0; i < vertices.Count; i++) {
             Vector3 vi = transform.TransformPoint (vertices[i]);
+		 //Debug.Log(vi);
             float distance = Vector3.Distance (point, vi);
             float s = strength;
             for (float r = 0.0f; r < radius; r += stepRadius) {
                 if (distance < r) {
                     Vector3 deformation = direction * s;
                     vertices[i] = transform.InverseTransformPoint (vi + deformation);
+                    //Debug.Log(transform.InverseTransformPoint (vi + deformation));
                     break;
                 }
                 s -= stepStrength;

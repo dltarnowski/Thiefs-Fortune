@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ConsumeSlots : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ConsumeSlots : MonoBehaviour
     {
         inventory = Inventory.instance;
         consumeInventory = ConsumableInventory.instance;
+
     }
     private void Update()
     {

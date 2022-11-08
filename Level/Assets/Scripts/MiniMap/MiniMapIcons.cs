@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniMapIcons : MonoBehaviour
@@ -6,14 +8,10 @@ public class MiniMapIcons : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (character != null)
-        {
-            Vector3 newPos = character.position;
-            newPos.y = transform.position.y;
-            transform.position = newPos;
+        Vector3 newPos = character.position;
+        newPos.y = transform.position.y;
+        transform.position = newPos;
 
-            transform.rotation = Quaternion.Euler(90, character.eulerAngles.y + 270, 0);
-
-        }
+        transform.rotation = Quaternion.Euler(90, character.eulerAngles.y + 270, 0);
     }
 }

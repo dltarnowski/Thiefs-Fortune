@@ -1,10 +1,13 @@
-
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Equipment : Item
 {
     public override void Use()
     {
         base.Use();
+
     }
 
     public override void Equip()
@@ -20,5 +23,6 @@ public class Equipment : Item
         base.unUse();
 
         EquipmentManager.instance.Unequip((int)this.equipmentSlot);
+
     }
 }
