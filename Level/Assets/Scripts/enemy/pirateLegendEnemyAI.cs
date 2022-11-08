@@ -48,12 +48,16 @@ public class pirateLegendEnemyAI : enemyAI
     {
         if (agent.remainingDistance < attackSwitchRange)
         {
+            anim.SetBool("rangeIdle", false);
+            anim.SetBool("meleeIdle", true);
             weapon.GetComponent<MeshFilter>().sharedMesh = swordStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = swordStat.model.GetComponent<MeshRenderer>().sharedMaterial;
             canSeePlayer(melee(), isMelee);
         }
         else
         {
+            anim.SetBool("rangeIdle", true);
+            anim.SetBool("meleeIdle", false);
             weapon.GetComponent<MeshFilter>().sharedMesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
             canSeePlayer(shoot(), isShooting);
