@@ -15,7 +15,6 @@ public class MiniMapIcons : MonoBehaviour
             transform.position = newPos;
 
             transform.rotation = Quaternion.Euler(90, character.eulerAngles.y + 270, 0);
-
         }
     }
 }
