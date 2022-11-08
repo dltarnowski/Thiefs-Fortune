@@ -6727,7 +6727,7 @@ MonoBehaviour:
   inventoryTab: {fileID: 0}
   activeTab: {fileID: 0}
   activePanel: {fileID: 0}
-  inventoryPanel: {fileID: 0}
+  inventoryPanel: {fileID: 6195812085442481739}
   healthBar: {fileID: 0}
   npcDialogue: {fileID: 1327075048572831287}
   shopInventory: {fileID: 1670549329222053926}
@@ -21391,14 +21391,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Consume Slot (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4297447375183888157, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5903603802865988424}
-    - target: {fileID: 4297447375183888157, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ConsumeSlots, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7062061925208793366, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -21490,17 +21482,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7062061925208793366, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
   m_PrefabInstance: {fileID: 2846155867800159523}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5903603802865988424 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8543966003437483627, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-  m_PrefabInstance: {fileID: 2846155867800159523}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0706149219e644eb2602e47fe6f058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3692348750454053890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22216,14 +22197,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Consume Slot
       objectReference: {fileID: 0}
-    - target: {fileID: 4297447375183888157, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1365445481088126314}
-    - target: {fileID: 4297447375183888157, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ConsumeSlots, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 7062061925208793366, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -22315,17 +22288,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7062061925208793366, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
   m_PrefabInstance: {fileID: 7233144535433100033}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1365445481088126314 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8543966003437483627, guid: d5d4900e00910464aad2e08bfe1e40ed, type: 3}
-  m_PrefabInstance: {fileID: 7233144535433100033}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0706149219e644eb2602e47fe6f058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7596986514456826071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22798,6 +22760,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2675274606369013117, guid: 2ac7f0ffd50201f45955dd4f1e17dceb, type: 3}
   m_PrefabInstance: {fileID: 7983700741647794885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6195812085442481739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4264978965232323726, guid: 2ac7f0ffd50201f45955dd4f1e17dceb, type: 3}
+  m_PrefabInstance: {fileID: 7983700741647794885}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6195812085947163844 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4264978964726113793, guid: 2ac7f0ffd50201f45955dd4f1e17dceb, type: 3}
@@ -22915,10 +22882,6 @@ PrefabInstance:
     - target: {fileID: 1269945411996119843, guid: 8117af8b7240d4f4e98a2451d45248e0, type: 3}
       propertyPath: m_Name
       value: NPC Dialogue Box
-      objectReference: {fileID: 0}
-    - target: {fileID: 1269945411996119843, guid: 8117af8b7240d4f4e98a2451d45248e0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6767507202455706254, guid: 8117af8b7240d4f4e98a2451d45248e0, type: 3}
       propertyPath: m_Pivot.x

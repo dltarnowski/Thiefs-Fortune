@@ -38,7 +38,7 @@ public class pirateLegendEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     WeaponSwap();
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();
