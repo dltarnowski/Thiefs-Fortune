@@ -23,8 +23,7 @@ public class MeshDeformer : MonoBehaviour
         meshCollider = GetComponent<MeshCollider> ();
         vertices = mesh.vertices.ToList ();
     }
-
-
+    
     public void Deform (Vector3 point, float radius, float stepRadius, float strength, float stepStrength, Vector3 direction) {
         for (int i = 0; i < vertices.Count; i++) {
             Vector3 vi = transform.TransformPoint (vertices[i]);
