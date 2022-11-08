@@ -158,10 +158,12 @@ public class playerController : MonoBehaviour
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
                     {
-                        if (hit.GetType() == typeof(SphereCollider) && !hit.collider.isTrigger)
-                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength * (int)headShotMultiplier);
-                        else
-                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength);
+                        if (hit.collider is SphereCollider)
+                        {
+                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                        }
+                        else if (hit.collider is CapsuleCollider)
+                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
                         Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
