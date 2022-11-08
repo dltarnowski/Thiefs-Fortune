@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class shipController : MonoBehaviour
@@ -13,10 +11,6 @@ public class shipController : MonoBehaviour
 
     public bool controllingShip;
     bool onShip;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class rangedEnemyAI : enemyAI
 {
@@ -10,8 +8,6 @@ public class rangedEnemyAI : enemyAI
     [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject bullet;
     [SerializeField] Gun gunStat;
-
-
 
     bool isShooting;
     bool equipped;

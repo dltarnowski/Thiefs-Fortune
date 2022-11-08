@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class shipCameraControl : MonoBehaviour
@@ -7,13 +5,9 @@ public class shipCameraControl : MonoBehaviour
     [SerializeField] public int sensHort;
     [SerializeField] public int sensVert;
 
-    int lockVertMin;
-    int lockVertMax;
-
     [SerializeField] bool invert;
 
     float xRotation;
-    int currSliderValue;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
