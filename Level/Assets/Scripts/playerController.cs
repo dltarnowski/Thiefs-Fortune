@@ -63,8 +63,8 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    public Vector3 playerVelocity;
-
+    private Vector3 playerVelocity;
+    private int timesJumped;
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
