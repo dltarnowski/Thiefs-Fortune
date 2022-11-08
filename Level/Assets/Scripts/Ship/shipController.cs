@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class shipController : MonoBehaviour
@@ -14,10 +12,6 @@ public class shipController : MonoBehaviour
 
     public bool controllingShip;
     bool onShip;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -27,8 +21,8 @@ public class shipController : MonoBehaviour
             gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
-            sailsUp.SetActive(!controllingShip);
-            sailsDown.SetActive(controllingShip);
+            sailsUp.SetActive(controllingShip);
+            sailsDown.SetActive(!controllingShip);
             shipMove.enabled = !controllingShip;
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;

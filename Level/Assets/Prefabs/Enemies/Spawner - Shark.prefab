@@ -47,7 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 1
   maxEnemies: 3
-  enemy: {fileID: 4614405096279574872, guid: 5f4043afe802ad746b3ff016d42a45fe, type: 3}
+  enemy:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnPos: []
 --- !u!135 &3035185616817209646
 SphereCollider:
   m_ObjectHideFlags: 0

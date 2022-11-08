@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class meleeEnemyAI : enemyAI
 {
@@ -34,7 +32,7 @@ public class meleeEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(melee(), isMelee);
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();
@@ -44,13 +42,16 @@ public class meleeEnemyAI : enemyAI
 
     public IEnumerator melee()
     {
-        isMelee = true;
-        if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+        if(!isMelee)
         {
-            aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
-            anim.SetTrigger("attack");
+            isMelee = true;
+            if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+            {
+                aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
+                anim.SetTrigger("attack");
+            }
+            yield return new WaitForSeconds(swordStat.speed);
+            isMelee = false;
         }
-        yield return new WaitForSeconds(swordStat.speed);
-        isMelee = false;
     }
 }

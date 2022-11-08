@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class pirateLegendEnemyAI : enemyAI
 {
@@ -38,7 +36,7 @@ public class pirateLegendEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     WeaponSwap();
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();
@@ -50,12 +48,16 @@ public class pirateLegendEnemyAI : enemyAI
     {
         if (agent.remainingDistance < attackSwitchRange)
         {
+            anim.SetBool("rangeIdle", false);
+            anim.SetBool("meleeIdle", true);
             weapon.GetComponent<MeshFilter>().sharedMesh = swordStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = swordStat.model.GetComponent<MeshRenderer>().sharedMaterial;
             canSeePlayer(melee(), isMelee);
         }
         else
         {
+            anim.SetBool("rangeIdle", true);
+            anim.SetBool("meleeIdle", false);
             weapon.GetComponent<MeshFilter>().sharedMesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
             canSeePlayer(shoot(), isShooting);
@@ -72,7 +74,7 @@ public class pirateLegendEnemyAI : enemyAI
 
     IEnumerator shoot()
     {
-        if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh)
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh && !isShooting)
         {
             isShooting = true;
             anim.SetTrigger("range");
@@ -90,7 +92,7 @@ public class pirateLegendEnemyAI : enemyAI
     }
     IEnumerator melee()
     {
-        if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh)
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh && !isMelee)
         {
             isMelee = true;
             if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
