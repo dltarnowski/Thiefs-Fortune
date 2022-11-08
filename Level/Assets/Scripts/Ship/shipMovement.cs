@@ -1,16 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class shipMovement : MonoBehaviour
 {
     Vector3 move;
+    [SerializeField] shipCameraControl shipCam;
     [SerializeField] float speed;
+    [SerializeField] float speedIncTimer;
+    [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
-    void Start()
-    {
-        
-    }
+    bool isMoving;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +19,32 @@ public class shipMovement : MonoBehaviour
 
     void movement()
     {
-        move = transform.forward * Input.GetAxis("Vertical");
-        transform.position += move * speed * Time.deltaTime;
+        if(Input.GetAxis("Vertical") > 0)
+        {
+            StartCoroutine(speedInc());
+            move = transform.forward * Input.GetAxis("Vertical");
+            transform.position += move * speed * Time.deltaTime;
+            if(Input.GetAxis("Mouse X") != 0 )
+            {
+                shipCam.sensHort = speed * .65f;
+            }
+        }
+        else
+        {
+            shipCam.sensHort = 0;
+            speed = 0;
+        }
+    }
+
+    IEnumerator speedInc()
+    {
+        if(!isMoving)
+        {
+            isMoving = true;
+            if(speed < maxSpeed)
+                speed += 1;
+            yield return new WaitForSeconds(speedIncTimer);
+            isMoving = false;
+        }
     }
 }
