@@ -20,8 +20,8 @@ public class shipController : MonoBehaviour
             gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
-            sailsUp.SetActive(!controllingShip);
-            sailsDown.SetActive(controllingShip);
+            sailsUp.SetActive(controllingShip);
+            sailsDown.SetActive(!controllingShip);
             shipMove.enabled = !controllingShip;
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;

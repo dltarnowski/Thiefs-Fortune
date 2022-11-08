@@ -28,15 +28,17 @@ public class ItemPickup : MonoBehaviour
                 return;
             }
 
-            if(!(item is Weapon))
+            if(item is Consumable)
             {
                 if (Inventory.instance.items.Contains(item))
                     Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
+                else if (EquipmentManager.instance.currentEquipment[2] != null)
+                    EquipmentManager.instance.currentEquipment[2].numOfItems++;
                 else
                     item.numOfItems = 1;
             }
 
-            if(!Inventory.instance.items.Contains(item))
+            if(!Inventory.instance.items.Contains(item) && EquipmentManager.instance.currentEquipment[2] == null)
                 isSwapped = Inventory.instance.Add(item);
 
             if(TutorialManager.instance.tutorialActive && TutorialManager.instance.ammoBag != null)
