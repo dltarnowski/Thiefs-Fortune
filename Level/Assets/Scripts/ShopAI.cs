@@ -25,7 +25,7 @@ public class ShopAI : MonoBehaviour
 
                 NPCManager.instance.NPCCamera = shopCam;
                 NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
-                NPCManager.instance.name.text = "Willy " + '"' + "Full Sails" + '"' + " Wilkerson";
+                NPCManager.instance.npcName.text = "Willy " + '"' + "Full Sails" + '"' + " Wilkerson";
                 NPCManager.instance.talkButtonText.text = "I'm looking for Captain Pirate. Can you help?";
                 NPCManager.instance.shopButtonText.text = "I hear you sell weapons. What do you have?";
                 NPCManager.instance.followUpDialogue.text = "Last I heard, he was seen heading to Lone Peak Isle. The food vendor on the docks might know more...";
