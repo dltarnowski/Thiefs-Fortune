@@ -191,6 +191,23 @@ public class gameManager : MonoBehaviour
                 miniMapObjectiveIcons[i].SetActive(true);
             else
                 miniMapObjectiveIcons[i].SetActive(false);
+
+            //if (i == 1)
+            //{
+            //    miniMapObjectiveIcons[1].SetActive(true);
+            //    miniMapObjectiveIcons[5].SetActive(true);
+            //    miniMapObjectiveIcons[6].SetActive(true);
+            //    miniMapObjectiveIcons[7].SetActive(true);
+            //    miniMapObjectiveIcons[8].SetActive(true);
+            //}
+            //else
+            //{
+            //    miniMapObjectiveIcons[1].SetActive(false);
+            //    miniMapObjectiveIcons[5].SetActive(false);
+            //    miniMapObjectiveIcons[6].SetActive(false);
+            //    miniMapObjectiveIcons[7].SetActive(false);
+            //    miniMapObjectiveIcons[8].SetActive(false);
+            //}
         }
 
         miniMapPointer.SetTarget();
