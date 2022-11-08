@@ -274,13 +274,13 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0 && !isUnderwater)
+        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
             coyoteTimeCounter = 0;
         }
-        else if (Input.GetButton("Jump") && isUnderwater)
+        else if (isUnderwater && Input.GetButton("Jump"))
         {
             if(playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
@@ -327,8 +327,15 @@ public class playerController : MonoBehaviour
             }
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        if (isUnderwater)
+            playerVelocity.y += gravityValue / 3 * Time.deltaTime;
+        else
+            playerVelocity.y += gravityValue * Time.deltaTime;
+
+        if (isUnderwater)
+            controller.Move(playerVelocity / 3 * Time.deltaTime);
+        else
+            controller.Move(playerVelocity * Time.deltaTime);
     }
 
     IEnumerator PlaySteps()
