@@ -65,13 +65,16 @@ public class cannonEnemyAI : enemyAI
 
     IEnumerator shoot()
     {
-        isShooting = true;
-        anim.SetTrigger("attack");
-        aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
-        bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
-        Instantiate(bullet, attackPos.transform.position, transform.rotation);
-        yield return new WaitForSeconds(gunStat.speed);
-        isShooting = false;
+        if(!isShooting)
+        {
+            isShooting = true;
+            anim.SetTrigger("attack");
+            aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
+            bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
+            Instantiate(bullet, attackPos.transform.position, transform.rotation);
+            yield return new WaitForSeconds(gunStat.speed);
+            isShooting = false;
+        }
     }
 
 }

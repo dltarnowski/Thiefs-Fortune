@@ -70,7 +70,7 @@ public class pirateLegendEnemyAI : enemyAI
 
     IEnumerator shoot()
     {
-        if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh)
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh && !isShooting)
         {
             isShooting = true;
             anim.SetTrigger("range");
@@ -88,7 +88,7 @@ public class pirateLegendEnemyAI : enemyAI
     }
     IEnumerator melee()
     {
-        if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh)
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh && !isMelee)
         {
             isMelee = true;
             if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)

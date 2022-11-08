@@ -42,13 +42,16 @@ public class meleeEnemyAI : enemyAI
 
     public IEnumerator melee()
     {
-        isMelee = true;
-        if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+        if(!isMelee)
         {
-            aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
-            anim.SetTrigger("attack");
+            isMelee = true;
+            if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+            {
+                aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
+                anim.SetTrigger("attack");
+            }
+            yield return new WaitForSeconds(swordStat.speed);
+            isMelee = false;
         }
-        yield return new WaitForSeconds(swordStat.speed);
-        isMelee = false;
     }
 }
