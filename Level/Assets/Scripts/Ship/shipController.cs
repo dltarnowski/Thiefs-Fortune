@@ -8,7 +8,7 @@ public class shipController : MonoBehaviour
     [SerializeField] GameObject sailsDown;
     [SerializeField] GameObject playerPos;
     [SerializeField] shipMovement shipMove;
-    [SerializeField] Animator anim;
+    //[SerializeField] Animator anim;
 
     public bool controllingShip;
     bool onShip;
@@ -27,8 +27,8 @@ public class shipController : MonoBehaviour
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;
 
-            if(anim != null)
-                anim.SetBool("PlayerControllingShip", controllingShip);
+            //if(anim != null)
+            //    anim.SetBool("PlayerControllingShip", controllingShip);
         }
         if (shipCam.activeSelf)
             ChangeParent();
