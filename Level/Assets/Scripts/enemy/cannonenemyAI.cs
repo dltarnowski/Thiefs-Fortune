@@ -45,7 +45,7 @@ public class cannonEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(shoot(), isShooting);
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && canRoam && !playerInRange)
                     roam();
                 else if (!canRoam)
                     facePlayer();
