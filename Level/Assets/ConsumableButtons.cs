@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +10,6 @@ public class ConsumableButtons : MonoBehaviour
     public Button buyTab;
     public Button sellTab;
 
-    private void Start()
-    {
-    }
     public void Talk()
     {
         NPCManager.instance.talking = true;

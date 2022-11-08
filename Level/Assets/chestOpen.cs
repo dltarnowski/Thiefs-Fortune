@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class chestOpen : MonoBehaviour
@@ -21,19 +20,26 @@ public class chestOpen : MonoBehaviour
         if(canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
         {
             winManager.instance.clueCount++;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
             gameManager.instance.hint.SetActive(false);
             anim.SetTrigger("open");
             blackSpotDropChance = Random.Range(0f, 1f);
-            if (blackSpotDropChance <= 0.1)
-                gameManager.instance.blackspot.blackSpotMultiplier *= 1.2f;
-            else
-                Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
-            opened = true;
+            if (gameManager.instance.NotePickup.activeSelf)
+            {
+                if (blackSpotDropChance <= 0.1)
+                    gameManager.instance.blackspot.blackSpotMultiplier *= 1.2f;
+                else
+                    Instantiate(drops[Random.Range(0, drops.Length - 1)], itemSpawnPos.position, itemSpawnPos.rotation);
+                opened = true;
 
-            TutorialManager.instance.objectiveText.text = "My love and I are in exile and even here, we aren't safe. We must head to Port Placeholder for sanctuary! There, I have some friends who I can let know my whereabouts.";
-            TutorialManager.instance.beginButton.SetActive(false);
-            TutorialManager.instance.completeButton.SetActive(false);
-            TutorialManager.instance.dialogueBox.SetActive(true);
+            }
+            else
+            {
+                gameManager.instance.NotePickup.SetActive(true);
+                opened = true;
+            }
+
+
             StartCoroutine(CleanUp());
         }
     }
