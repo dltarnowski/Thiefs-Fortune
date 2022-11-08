@@ -1,4 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class SellInventoryUI : MonoBehaviour
 {
@@ -23,6 +27,11 @@ public class SellInventoryUI : MonoBehaviour
         sellSlots = sellItems.GetComponentsInChildren<ShopSlot>();
 
         UpdateUI();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 
     void UpdateUI()

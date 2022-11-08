@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class rangedEnemyAI : enemyAI
 {
@@ -8,6 +10,8 @@ public class rangedEnemyAI : enemyAI
     [SerializeField] internal GameObject attackPos;
     [SerializeField] GameObject bullet;
     [SerializeField] Gun gunStat;
+
+
 
     bool isShooting;
     bool equipped;
@@ -37,7 +41,7 @@ public class rangedEnemyAI : enemyAI
                     canSeePlayer(shoot(), isShooting);
 
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();
@@ -46,16 +50,13 @@ public class rangedEnemyAI : enemyAI
     }
     IEnumerator shoot()
     {
-        if(!isShooting)
-        {
-            isShooting = true;
-            anim.SetTrigger("attack");
-            aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
-            bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
-            Instantiate(bullet, attackPos.transform.position, transform.rotation);
-            yield return new WaitForSeconds(gunStat.speed);
-            isShooting = false;
-        }
+        isShooting = true;
+        anim.SetTrigger("attack");
+        aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
+        bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
+        Instantiate(bullet, attackPos.transform.position, transform.rotation);
+        yield return new WaitForSeconds(gunStat.speed);
+        isShooting = false;
     }
 
 }

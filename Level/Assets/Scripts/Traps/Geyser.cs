@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Geyser : MonoBehaviour
@@ -10,10 +12,10 @@ public class Geyser : MonoBehaviour
 
     AudioSource geyserAudioSource;
 
-    [SerializeField] float radius;
-    [SerializeField] float stepRadius;
-    [SerializeField] float strength;
-    [SerializeField] float stepStrength;
+    [SerializeField] float one;
+    [SerializeField] float two;
+    [SerializeField] float three;
+    [SerializeField] float four;
 
     float damage;
 
@@ -27,7 +29,7 @@ public class Geyser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        meshDeformer.Deform(point, radius, stepRadius, strength, stepStrength, Vector3.down);
+        meshDeformer.Deform(point, one, two, three, four, Vector3.down);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,8 +42,13 @@ public class Geyser : MonoBehaviour
             }
             geyserAudioSource.PlayOneShot(geyserAudio);
             damage = gameManager.instance.playerScript.HPOrig / 5;
-            gameManager.instance.playerScript.playerVelocity.y = shootPlayerUp;
-            gameManager.instance.playerScript.controller.Move(Vector3.up * gameManager.instance.playerScript.playerVelocity.y * Time.deltaTime);
+            gameManager.instance.player.transform.Translate(Vector3.Lerp(gameManager.instance.player.transform.position, 
+
+                                                                         new Vector3(gameManager.instance.player.transform.position.x,
+                                                                                     shootPlayerUp, 
+                                                                                     gameManager.instance.player.transform.position.z),
+
+                                                                         .1f));
             gameManager.instance.playerScript.takeDamage((int)damage);
         }
     }

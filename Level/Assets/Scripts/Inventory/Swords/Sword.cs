@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Sword", menuName = "Inventory/Sword")]
@@ -21,5 +23,10 @@ public class Sword : Weapon
         returnSpeed = weapon.returnSpeed;
         hitsUntilBrokenCurrentAmount = weapon.hitsUntilBrokenCurrentAmount;
         hitsUntilBrokenStartAmount = weapon.hitsUntilBrokenStartAmount;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

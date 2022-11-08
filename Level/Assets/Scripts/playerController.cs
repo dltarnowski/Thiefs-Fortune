@@ -1,12 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 public class playerController : MonoBehaviour
 {
 
     [Header("----- Components -----")]
-    public CharacterController controller;
+    [SerializeField] CharacterController controller;
     [SerializeField] GameObject thirdPersonCam_Obj;
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
@@ -60,8 +63,8 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    public Vector3 playerVelocity;
-    
+    private Vector3 playerVelocity;
+    private int timesJumped;
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
@@ -158,12 +161,10 @@ public class playerController : MonoBehaviour
                     //  -------      WAITING ON IDAMAGE      -------
                     if (hit.collider.GetComponent<IDamage>() != null)
                     {
-                        if (hit.collider is SphereCollider)
-                        {
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
-                        }
-                        else if (hit.collider is CapsuleCollider)
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                        if (hit.GetType() == typeof(SphereCollider) && !hit.collider.isTrigger)
+                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength * (int)headShotMultiplier);
+                        else
+                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength);
                         Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
@@ -273,13 +274,13 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0 && !isUnderwater)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
             coyoteTimeCounter = 0;
         }
-        else if (isUnderwater && Input.GetButton("Jump"))
+        else if (Input.GetButton("Jump") && isUnderwater)
         {
             if(playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
@@ -326,15 +327,8 @@ public class playerController : MonoBehaviour
             }
         }
 
-        if (isUnderwater)
-            playerVelocity.y += gravityValue / 3 * Time.deltaTime;
-        else
-            playerVelocity.y += gravityValue * Time.deltaTime;
-
-        if (isUnderwater)
-            controller.Move(playerVelocity / 3 * Time.deltaTime);
-        else
-            controller.Move(playerVelocity * Time.deltaTime);
+        playerVelocity.y += gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     IEnumerator PlaySteps()

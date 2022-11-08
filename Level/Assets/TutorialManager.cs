@@ -164,8 +164,6 @@ public class TutorialManager : MonoBehaviour
             gameManager.instance.cameraScript.enabled = true;
 
             StartCoroutine(CleanUp());
-
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
     }
 

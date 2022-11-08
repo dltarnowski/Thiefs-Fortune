@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockOut_OpenWorld : MonoBehaviour
@@ -16,6 +19,8 @@ public class BlockOut_OpenWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if (deathMenu.activeSelf)
+            edgeUI.SetActive(false);*/
 
         if(playerOutOfBounds)
         {

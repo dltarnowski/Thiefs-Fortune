@@ -1,8 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuButtons : MonoBehaviour
 {
+    //int currentPosition;
+    //int start = 0;
+
     public void Resume()
     {
         gameManager.instance.cursorUnlockUnpause();
