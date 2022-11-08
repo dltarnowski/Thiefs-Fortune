@@ -41,7 +41,7 @@ public class ItemPickup : MonoBehaviour
             if(!Inventory.instance.items.Contains(item))
                 isSwapped = Inventory.instance.Add(item);
 
-            if(TutorialManager.instance.tutorialActive)
+            if(TutorialManager.instance.tutorialActive && TutorialManager.instance.ammoBag != null)
             {
                 TutorialManager.instance.ammoBag.SetActive(false);
             }

@@ -406,6 +406,7 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[1].Use();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
+            //if (EquipmentManager.instance.currentEquipment[2].numOfItems == 0)
             EquipmentManager.instance.currentEquipment[2].Use();
         if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
             EquipmentManager.instance.currentEquipment[3].Use();

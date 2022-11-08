@@ -7,7 +7,7 @@ public class NPCManager : MonoBehaviour
 {
     public static NPCManager instance;
 
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI npcName;
     public TextMeshProUGUI dialogue;
     public TextMeshProUGUI followUpDialogue;
     public TextMeshProUGUI talkButtonText;

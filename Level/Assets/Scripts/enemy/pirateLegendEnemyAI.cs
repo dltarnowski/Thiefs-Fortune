@@ -32,17 +32,13 @@ public class pirateLegendEnemyAI : enemyAI
             movementAnimationChange();
             if (agent.enabled)
             {
-                WeaponSwap();
                 if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
-                    if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh)
-                        canSeePlayer(shoot(), isShooting);
-                    else if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh)
-                        canSeePlayer(melee(), isMelee);
+                    WeaponSwap();
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam && !playerInRange)
                     roam();
                 else if (!canRoam && stationary)
                     facePlayer();
@@ -54,17 +50,15 @@ public class pirateLegendEnemyAI : enemyAI
     {
         if (agent.remainingDistance < attackSwitchRange)
         {
-            anim.SetBool("meleeIdle", true);
-            anim.SetBool("rangeIdle", false);
             weapon.GetComponent<MeshFilter>().sharedMesh = swordStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = swordStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+            canSeePlayer(melee(), isMelee);
         }
         else
         {
-            anim.SetBool("meleeIdle", false);
-            anim.SetBool("rangeIdle", true);
             weapon.GetComponent<MeshFilter>().sharedMesh = gunStat.model.GetComponent<MeshFilter>().sharedMesh;
             weapon.GetComponent<MeshRenderer>().sharedMaterial = gunStat.model.GetComponent<MeshRenderer>().sharedMaterial;
+            canSeePlayer(shoot(), isShooting);
         }
     }
 
@@ -78,25 +72,34 @@ public class pirateLegendEnemyAI : enemyAI
 
     IEnumerator shoot()
     {
-        isShooting = true;
-        anim.SetTrigger("range");
-        aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
-        bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
-        Instantiate(bullet, attackPos.transform.position, transform.rotation);
-        yield return new WaitForSeconds(gunStat.speed);
-        isShooting = false;
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == gunStat.model.GetComponent<MeshFilter>().sharedMesh)
+        {
+            isShooting = true;
+            anim.SetTrigger("range");
+            aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
+            bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
+            Invoke("BulletDelay", anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            yield return new WaitForSeconds(gunStat.speed);
+            isShooting = false;
+        }
     }
 
-
+    void BulletDelay()
+    {
+        Instantiate(bullet, attackPos.transform.position, transform.rotation);
+    }
     IEnumerator melee()
     {
-        isMelee = true;
-        if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+        if (weapon.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh)
         {
-            aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
-            anim.SetTrigger("melee");
+            isMelee = true;
+            if (gameManager.instance.player.transform.position.normalized.magnitude - transform.position.normalized.magnitude <= swordStat.distance)
+            {
+                aud.PlayOneShot(swordStat.sound, enemyWeaponAudVol);
+                anim.SetTrigger("melee");
+            }
+            yield return new WaitForSeconds(swordStat.speed);
+            isMelee = false;
         }
-        yield return new WaitForSeconds(swordStat.speed);
-        isMelee = false;
     }
 }

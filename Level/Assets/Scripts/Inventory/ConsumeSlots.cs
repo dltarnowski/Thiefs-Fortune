@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 public class ConsumeSlots : MonoBehaviour
 {
     Inventory inventory;
-    ConsumableInventory shopInventory;
+    ConsumableInventory consumeInventory;
 
     public Image icon;
     public Button buy;
@@ -18,7 +18,7 @@ public class ConsumeSlots : MonoBehaviour
     private void Start()
     {
         inventory = Inventory.instance;
-        shopInventory = ConsumableInventory.instance;
+        consumeInventory = ConsumableInventory.instance;
 
     }
     private void Update()
@@ -42,12 +42,14 @@ public class ConsumeSlots : MonoBehaviour
             }
             else
             {
+                item.numOfItems = 1;
                 inventory.Add(item);
             }
 
         }
         gameManager.instance.currencyNumber -= item.buyPrice;
         gameManager.instance.playerScript.updatePlayerHUD();
+        Inventory.instance.onItemChangedCallback.Invoke();
     }
 
     public void AddItem(Consumable newItem)

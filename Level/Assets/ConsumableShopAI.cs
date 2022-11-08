@@ -25,7 +25,7 @@ public class ConsumableShopAI : MonoBehaviour
                 NPCManager.instance.followUpDialogue.gameObject.SetActive(false);
 
                 NPCManager.instance.NPCCamera = shopCam;
-                NPCManager.instance.name.text = "Franky " + '"' + "PHAT" + '"' + " Findley";
+                NPCManager.instance.npcName.text = "Franky " + '"' + "PHAT" + '"' + " Findley";
                 NPCManager.instance.talkButtonText.text = "Willy said you might know where to find Captain Pirate?";
                 NPCManager.instance.shopButtonText.text = "You sell ammo and health elixirs. Right?";
                 NPCManager.instance.followUpDialogue.text = "Willy sent you? Yah, I heard he's camped out at Serpent Cove. I'd avoid him though if I were you...";
