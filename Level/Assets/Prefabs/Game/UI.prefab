@@ -6739,7 +6739,16 @@ MonoBehaviour:
   npcCam: {fileID: 0}
   mainCamera: {fileID: 0}
   recoilScript: {fileID: 0}
+  miniMapObjectiveIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  miniMapPointer: {fileID: 0}
+  miniMapCamera: {fileID: 0}
   isPaused: 0
+  importantNote: {fileID: 0}
+  NotePickup: {fileID: 0}
   crossHairVisible: 1
   MSSlider: {fileID: 3804171513373854093}
   MusicSlider: {fileID: 90725967036246390}
@@ -6758,7 +6767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3220f8c9c13e8e4e9c287a037d7e9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 1327075048209743454}
+  npcName: {fileID: 0}
   dialogue: {fileID: 1327075048802517251}
   followUpDialogue: {fileID: 1490106717565946403}
   talkButtonText: {fileID: 6967356901817650927}
@@ -21857,17 +21866,6 @@ PrefabInstance:
       objectReference: {fileID: 1670549329222053921}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb77342370a8b204899850b957788a8a, type: 3}
---- !u!114 &1327075048209743454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6123697703213909313, guid: eb77342370a8b204899850b957788a8a, type: 3}
-  m_PrefabInstance: {fileID: 5084855506131204895}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1327075048572831287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6123697703572765992, guid: eb77342370a8b204899850b957788a8a, type: 3}

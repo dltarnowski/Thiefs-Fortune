@@ -208,6 +208,7 @@ public class TutorialManager : MonoBehaviour
             nextPoint.transform.position = finalPoint.transform.position;
             rangedTrigger = false;
             finalPoint.SetActive(true);
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
 
         StartCoroutine(CleanUp());

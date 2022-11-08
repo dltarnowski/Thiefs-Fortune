@@ -21,6 +21,7 @@ public class chestOpen : MonoBehaviour
         if(canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
         {
             winManager.instance.clueCount++;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
             gameManager.instance.hint.SetActive(false);
             anim.SetTrigger("open");
             blackSpotDropChance = Random.Range(0f, 1f);
