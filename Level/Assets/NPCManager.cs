@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -7,7 +5,7 @@ public class NPCManager : MonoBehaviour
 {
     public static NPCManager instance;
 
-    public TextMeshProUGUI name;
+    public TextMeshProUGUI npcName;
     public TextMeshProUGUI dialogue;
     public TextMeshProUGUI followUpDialogue;
     public TextMeshProUGUI talkButtonText;
@@ -23,5 +21,4 @@ public class NPCManager : MonoBehaviour
     {
         instance = this;
     }
-
 }

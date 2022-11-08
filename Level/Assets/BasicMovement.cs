@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
@@ -53,7 +51,6 @@ public class BasicMovement : MonoBehaviour
         {
             gameManager.instance.TutorialCollide = true;
             TutorialManager.instance.basicMoveTrigger = gameManager.instance.TutorialCollide;
-            Debug.Log("Trigger");
         }
     }
 

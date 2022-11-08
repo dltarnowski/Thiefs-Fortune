@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
@@ -41,7 +39,7 @@ public class ItemPickup : MonoBehaviour
             if(!Inventory.instance.items.Contains(item))
                 isSwapped = Inventory.instance.Add(item);
 
-            if(TutorialManager.instance.tutorialActive)
+            if(TutorialManager.instance.tutorialActive && TutorialManager.instance.ammoBag != null)
             {
                 TutorialManager.instance.ammoBag.SetActive(false);
             }
