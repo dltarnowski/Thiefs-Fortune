@@ -53,7 +53,6 @@ public class BasicMovement : MonoBehaviour
         {
             gameManager.instance.TutorialCollide = true;
             TutorialManager.instance.basicMoveTrigger = gameManager.instance.TutorialCollide;
-            Debug.Log("Trigger");
         }
     }
 

@@ -6,7 +6,7 @@ public class FractureObject : MonoBehaviour, IDamage
 {
     public GameObject destroyedVersion;
     public ParticleSystem flame;
-    public Light light;
+    public Light fireLight;
 
     public void takeDamage(float damage)
     {
@@ -15,7 +15,7 @@ public class FractureObject : MonoBehaviour, IDamage
         if (flame.isPlaying)
             flame.Stop();
 
-        light.enabled = false;
+        fireLight.enabled = false;
 
         Destroy(gameObject);
 
