@@ -83,7 +83,6 @@ GameObject:
   - component: {fileID: 6504414450259954542}
   - component: {fileID: 8737687927360264413}
   - component: {fileID: 8737687927360264416}
-  - component: {fileID: 8737687927360264415}
   - component: {fileID: 8737687927360264414}
   m_Layer: 10
   m_Name: SM_Env_Ocean_Tile_01 (705)
@@ -190,22 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05227663be8d9374ab5a65b482f19421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8737687927360264415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6340256566849561152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6a6df342b52d24092cf6bbb590c535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waveHeight: 0.01
-  waveFrequency: 0.6
-  waveLength: 0.75
-  waveOriginPosition: {x: 0, y: 0, z: 0}
 --- !u!65 &8737687927360264414
 BoxCollider:
   m_ObjectHideFlags: 0

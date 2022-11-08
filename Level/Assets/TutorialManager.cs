@@ -162,6 +162,8 @@ public class TutorialManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
+            finalTrigger = false;
 
             StartCoroutine(CleanUp());
         }
@@ -208,7 +210,6 @@ public class TutorialManager : MonoBehaviour
             nextPoint.transform.position = finalPoint.transform.position;
             rangedTrigger = false;
             finalPoint.SetActive(true);
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
 
         StartCoroutine(CleanUp());
