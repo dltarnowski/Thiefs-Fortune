@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class shipCameraControl : MonoBehaviour
 {
-    [SerializeField] public int sensHort;
+    [SerializeField] public float sensHort;
     [SerializeField] public int sensVert;
 
     [SerializeField] bool invert;

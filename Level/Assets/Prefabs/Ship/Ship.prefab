@@ -73,7 +73,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfea864d61be37647b2186f97f90ea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  shipCam: {fileID: 2995921654258606564}
+  speed: 0
+  speedIncTimer: 0.3
+  maxSpeed: 15
   rotateSpeed: 3
 --- !u!135 &1825332772160599332
 SphereCollider:
@@ -249,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581274cf28b365f4c97d57e9b737e140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHort: 10
+  sensHort: 0
   sensVert: 150
   invert: 0
 --- !u!1 &2995921654379671916
