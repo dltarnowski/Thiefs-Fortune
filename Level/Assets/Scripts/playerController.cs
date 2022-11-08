@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour
 {
 
     [Header("----- Components -----")]
-    [SerializeField] CharacterController controller;
+    public CharacterController controller;
     [SerializeField] GameObject thirdPersonCam_Obj;
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
@@ -63,7 +63,7 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    private Vector3 playerVelocity;
+    public Vector3 playerVelocity;
     private int timesJumped;
     [Header("----- Misc. -----")]
     public bool isShooting;
