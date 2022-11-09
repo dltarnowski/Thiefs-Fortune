@@ -40,11 +40,11 @@ public class NPCDialogueManager : MonoBehaviour
 
             dialogue.text = dialogueList[random];
 
-            if(random <= 5 && random >= 2)
-            {
+            /*if(random <= 5 && random >= 2)
+            {*/
                 winManager.instance.clueCount++;
                 gameManager.instance.CurrentObjectiveMiniMapIcon();
-            }
+            //}
         }
 
     }
