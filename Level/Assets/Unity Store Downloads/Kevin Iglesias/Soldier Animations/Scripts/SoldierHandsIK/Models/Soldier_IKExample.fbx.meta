@@ -1,114 +1,320 @@
 fileFormatVersion: 2
 guid: 457b42a2706adca4fa691c6afaa337c9
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: B-ankle_L
-    100002: B-ankle_R
-    100004: B-ball_L
-    100006: B-ball_R
-    100008: B-clavicle_L
-    100010: B-clavicle_R
-    100012: B-elbow_L
-    100014: B-elbow_R
-    100016: B-finger_01_L
-    100018: B-finger_01_R
-    100020: B-finger_02_L
-    100022: B-finger_02_R
-    100024: B-finger_03_L
-    100026: B-finger_03_R
-    100028: B-hand_L
-    100030: B-hand_R
-    100032: B-head
-    100034: B-hips
-    100036: B-indexFinger_01_L
-    100038: B-indexFinger_01_R
-    100040: B-indexFinger_02_L
-    100042: B-indexFinger_02_R
-    100044: B-indexFinger_03_L
-    100046: B-indexFinger_03_R
-    100048: B-lowerLeg_L
-    100050: B-lowerLeg_R
-    100052: B-neck
-    100054: B-shoulder_L
-    100056: B-shoulder_R
-    100058: B-spine_01
-    100060: B-spine_02
-    100062: B-spine_03
-    100064: B-thumb_01_L
-    100066: B-thumb_01_R
-    100068: B-thumb_02_L
-    100070: B-thumb_02_R
-    100072: B-upperLeg_L
-    100074: B-upperLeg_R
-    100076: DummyRig_IKTest
-    100078: Helmet_IKTest
-    100080: Root
-    100082: Soldier_IKTest
-    100084: //RootNode
-    100086: DummyRig_IKExample
-    100088: Helmet_IKExample
-    100090: Soldier_IKExample
-    400000: B-ankle_L
-    400002: B-ankle_R
-    400004: B-ball_L
-    400006: B-ball_R
-    400008: B-clavicle_L
-    400010: B-clavicle_R
-    400012: B-elbow_L
-    400014: B-elbow_R
-    400016: B-finger_01_L
-    400018: B-finger_01_R
-    400020: B-finger_02_L
-    400022: B-finger_02_R
-    400024: B-finger_03_L
-    400026: B-finger_03_R
-    400028: B-hand_L
-    400030: B-hand_R
-    400032: B-head
-    400034: B-hips
-    400036: B-indexFinger_01_L
-    400038: B-indexFinger_01_R
-    400040: B-indexFinger_02_L
-    400042: B-indexFinger_02_R
-    400044: B-indexFinger_03_L
-    400046: B-indexFinger_03_R
-    400048: B-lowerLeg_L
-    400050: B-lowerLeg_R
-    400052: B-neck
-    400054: B-shoulder_L
-    400056: B-shoulder_R
-    400058: B-spine_01
-    400060: B-spine_02
-    400062: B-spine_03
-    400064: B-thumb_01_L
-    400066: B-thumb_01_R
-    400068: B-thumb_02_L
-    400070: B-thumb_02_R
-    400072: B-upperLeg_L
-    400074: B-upperLeg_R
-    400076: DummyRig_IKTest
-    400078: Helmet_IKTest
-    400080: Root
-    400082: //RootNode
-    400084: Soldier_IKTest
-    400086: DummyRig_IKExample
-    400088: Helmet_IKExample
-    400090: Soldier_IKExample
-    2100000: Mat__VillagerTexture_png
-    2100002: Mat_001__VillagerTexture_png_003
-    4300000: Soldier_IKTest
-    4300002: Helmet_IKTest
-    4300004: Soldier_IKExample
-    4300006: Helmet_IKExample
-    9500000: //RootNode
-    13700000: Helmet_IKTest
-    13700002: Soldier_IKTest
-    13700004: Helmet_IKExample
-    13700006: Soldier_IKExample
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: B-ankle_L
+  - first:
+      1: 100002
+    second: B-ankle_R
+  - first:
+      1: 100004
+    second: B-ball_L
+  - first:
+      1: 100006
+    second: B-ball_R
+  - first:
+      1: 100008
+    second: B-clavicle_L
+  - first:
+      1: 100010
+    second: B-clavicle_R
+  - first:
+      1: 100012
+    second: B-elbow_L
+  - first:
+      1: 100014
+    second: B-elbow_R
+  - first:
+      1: 100016
+    second: B-finger_01_L
+  - first:
+      1: 100018
+    second: B-finger_01_R
+  - first:
+      1: 100020
+    second: B-finger_02_L
+  - first:
+      1: 100022
+    second: B-finger_02_R
+  - first:
+      1: 100024
+    second: B-finger_03_L
+  - first:
+      1: 100026
+    second: B-finger_03_R
+  - first:
+      1: 100028
+    second: B-hand_L
+  - first:
+      1: 100030
+    second: B-hand_R
+  - first:
+      1: 100032
+    second: B-head
+  - first:
+      1: 100034
+    second: B-hips
+  - first:
+      1: 100036
+    second: B-indexFinger_01_L
+  - first:
+      1: 100038
+    second: B-indexFinger_01_R
+  - first:
+      1: 100040
+    second: B-indexFinger_02_L
+  - first:
+      1: 100042
+    second: B-indexFinger_02_R
+  - first:
+      1: 100044
+    second: B-indexFinger_03_L
+  - first:
+      1: 100046
+    second: B-indexFinger_03_R
+  - first:
+      1: 100048
+    second: B-lowerLeg_L
+  - first:
+      1: 100050
+    second: B-lowerLeg_R
+  - first:
+      1: 100052
+    second: B-neck
+  - first:
+      1: 100054
+    second: B-shoulder_L
+  - first:
+      1: 100056
+    second: B-shoulder_R
+  - first:
+      1: 100058
+    second: B-spine_01
+  - first:
+      1: 100060
+    second: B-spine_02
+  - first:
+      1: 100062
+    second: B-spine_03
+  - first:
+      1: 100064
+    second: B-thumb_01_L
+  - first:
+      1: 100066
+    second: B-thumb_01_R
+  - first:
+      1: 100068
+    second: B-thumb_02_L
+  - first:
+      1: 100070
+    second: B-thumb_02_R
+  - first:
+      1: 100072
+    second: B-upperLeg_L
+  - first:
+      1: 100074
+    second: B-upperLeg_R
+  - first:
+      1: 100076
+    second: DummyRig_IKTest
+  - first:
+      1: 100078
+    second: Helmet_IKTest
+  - first:
+      1: 100080
+    second: Root
+  - first:
+      1: 100082
+    second: Soldier_IKTest
+  - first:
+      1: 100084
+    second: //RootNode
+  - first:
+      1: 100086
+    second: DummyRig_IKExample
+  - first:
+      1: 100088
+    second: Helmet_IKExample
+  - first:
+      1: 100090
+    second: Soldier_IKExample
+  - first:
+      4: 400000
+    second: B-ankle_L
+  - first:
+      4: 400002
+    second: B-ankle_R
+  - first:
+      4: 400004
+    second: B-ball_L
+  - first:
+      4: 400006
+    second: B-ball_R
+  - first:
+      4: 400008
+    second: B-clavicle_L
+  - first:
+      4: 400010
+    second: B-clavicle_R
+  - first:
+      4: 400012
+    second: B-elbow_L
+  - first:
+      4: 400014
+    second: B-elbow_R
+  - first:
+      4: 400016
+    second: B-finger_01_L
+  - first:
+      4: 400018
+    second: B-finger_01_R
+  - first:
+      4: 400020
+    second: B-finger_02_L
+  - first:
+      4: 400022
+    second: B-finger_02_R
+  - first:
+      4: 400024
+    second: B-finger_03_L
+  - first:
+      4: 400026
+    second: B-finger_03_R
+  - first:
+      4: 400028
+    second: B-hand_L
+  - first:
+      4: 400030
+    second: B-hand_R
+  - first:
+      4: 400032
+    second: B-head
+  - first:
+      4: 400034
+    second: B-hips
+  - first:
+      4: 400036
+    second: B-indexFinger_01_L
+  - first:
+      4: 400038
+    second: B-indexFinger_01_R
+  - first:
+      4: 400040
+    second: B-indexFinger_02_L
+  - first:
+      4: 400042
+    second: B-indexFinger_02_R
+  - first:
+      4: 400044
+    second: B-indexFinger_03_L
+  - first:
+      4: 400046
+    second: B-indexFinger_03_R
+  - first:
+      4: 400048
+    second: B-lowerLeg_L
+  - first:
+      4: 400050
+    second: B-lowerLeg_R
+  - first:
+      4: 400052
+    second: B-neck
+  - first:
+      4: 400054
+    second: B-shoulder_L
+  - first:
+      4: 400056
+    second: B-shoulder_R
+  - first:
+      4: 400058
+    second: B-spine_01
+  - first:
+      4: 400060
+    second: B-spine_02
+  - first:
+      4: 400062
+    second: B-spine_03
+  - first:
+      4: 400064
+    second: B-thumb_01_L
+  - first:
+      4: 400066
+    second: B-thumb_01_R
+  - first:
+      4: 400068
+    second: B-thumb_02_L
+  - first:
+      4: 400070
+    second: B-thumb_02_R
+  - first:
+      4: 400072
+    second: B-upperLeg_L
+  - first:
+      4: 400074
+    second: B-upperLeg_R
+  - first:
+      4: 400076
+    second: DummyRig_IKTest
+  - first:
+      4: 400078
+    second: Helmet_IKTest
+  - first:
+      4: 400080
+    second: Root
+  - first:
+      4: 400082
+    second: //RootNode
+  - first:
+      4: 400084
+    second: Soldier_IKTest
+  - first:
+      4: 400086
+    second: DummyRig_IKExample
+  - first:
+      4: 400088
+    second: Helmet_IKExample
+  - first:
+      4: 400090
+    second: Soldier_IKExample
+  - first:
+      21: 2100000
+    second: Mat__VillagerTexture_png
+  - first:
+      21: 2100002
+    second: Mat_001__VillagerTexture_png_003
+  - first:
+      43: 4300000
+    second: Soldier_IKTest
+  - first:
+      43: 4300002
+    second: Helmet_IKTest
+  - first:
+      43: 4300004
+    second: Soldier_IKExample
+  - first:
+      43: 4300006
+    second: Helmet_IKExample
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Helmet_IKTest
+  - first:
+      137: 13700002
+    second: Soldier_IKTest
+  - first:
+      137: 13700004
+    second: Helmet_IKExample
+  - first:
+      137: 13700006
+    second: Soldier_IKExample
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -117,6 +323,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -138,28 +345,37 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 3
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
-    indexFormat: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -168,10 +384,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: B-hips
       humanName: Hips
@@ -491,8 +707,7 @@ ModelImporter:
     - name: Helmet_IKExample
       parentName: Soldier_IKExample(Clone)
       position: {x: 0.000000019308535, y: 1.7844769, z: -0.025470968}
-      rotation: {x: 0.000003784895, y: -0.000000028972021, z: -0.000000025989202,
-        w: 1}
+      rotation: {x: 0.000003784895, y: -0.000000028972021, z: -0.000000025989202, w: 1}
       scale: {x: 1, y: 1.0000004, z: 0.9999999}
     - name: DummyRig_IKExample
       parentName: Soldier_IKExample(Clone)
@@ -701,13 +916,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
