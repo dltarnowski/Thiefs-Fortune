@@ -9,6 +9,7 @@ public class shipMovement : MonoBehaviour
     [SerializeField] float speedIncTimer;
     [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
+    [SerializeField] ParticleSystem wake;
     bool isMoving;
 
     // Update is called once per frame
@@ -21,6 +22,9 @@ public class shipMovement : MonoBehaviour
     {
         if(Input.GetAxis("Vertical") > 0)
         {
+            if(!wake.isPlaying)
+                wake.Play();
+
             StartCoroutine(speedInc());
             move = transform.forward * Input.GetAxis("Vertical");
             transform.position += move * speed * Time.deltaTime;
@@ -33,6 +37,7 @@ public class shipMovement : MonoBehaviour
         {
             shipCam.sensHort = 0;
             speed = 0;
+            wake.Stop();
         }
     }
 

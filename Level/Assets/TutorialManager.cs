@@ -163,7 +163,7 @@ public class TutorialManager : MonoBehaviour
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
             gameManager.instance.CurrentObjectiveMiniMapIcon();
-            finalTrigger = false;
+            tutorialProgress = 6;
 
             StartCoroutine(CleanUp());
         }
@@ -223,7 +223,7 @@ public class TutorialManager : MonoBehaviour
         dialogueBox.SetActive(false);
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
-        if (!finalTrigger)
+        if (!finalTrigger && tutorialProgress <= 5)
         {
             skull.SetActive(true);
             exclamation.SetActive(true);
