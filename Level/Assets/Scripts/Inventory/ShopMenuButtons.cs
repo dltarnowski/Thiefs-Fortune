@@ -55,6 +55,7 @@ public class ShopMenuButtons : MonoBehaviour
 
         gameManager.instance.mainCamera.SetActive(true);
         NPCManager.instance.NPCCamera.SetActive(false);
+        gameManager.instance.miniMapWindow.SetActive(true);
     }
 
     public void BuyTab()

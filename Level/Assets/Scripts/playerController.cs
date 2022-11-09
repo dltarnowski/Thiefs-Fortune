@@ -339,7 +339,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -352,7 +352,7 @@ public class playerController : MonoBehaviour
 
             playingSteps = false;
         }
-        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -506,6 +506,8 @@ public class playerController : MonoBehaviour
     }
     public void respawn()
     {
+        isUnderwater = false;
+
         if (gameManager.instance.pauseMenu)
         {
             gameManager.instance.pauseMenu.SetActive(false);

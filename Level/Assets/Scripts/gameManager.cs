@@ -76,6 +76,7 @@ public class gameManager : MonoBehaviour
     public GameObject[] miniMapObjectiveIcons;
     public Pointer miniMapPointer;
     public Camera miniMapCamera;
+    public GameObject miniMapWindow;
 
     [Header("----- Other -----")]
     public bool isPaused;
@@ -86,6 +87,7 @@ public class gameManager : MonoBehaviour
     public Slider MusicSlider;
     public Slider PlayerAudioSlider;
     public Slider GunVolumeSlider;
+    public bool handmaiden;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -111,7 +113,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf && !helpMenu.activeSelf)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);

@@ -157,7 +157,7 @@ public class TutorialManager : MonoBehaviour
         {
             beginButton.SetActive(false);
             continueButton.SetActive(false);
-            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the Log Book in your Settings Menu for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
+            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the HELP OPTION in your PAUSE>SETTINGS MENU for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

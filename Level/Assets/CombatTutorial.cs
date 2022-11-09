@@ -20,17 +20,6 @@ public class CombatTutorial : MonoBehaviour
     {
         if (TutorialManager.instance.meleeTrigger == true)
         {
-            if (TutorialManager.instance.meleeUIObj.activeSelf && TutorialManager.instance.meleeEnemiesLeft == 1 && TutorialManager.instance.meleeUI[0].color != Color.green)
-            {
-                TutorialManager.instance.meleeUI[0].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-            else if (TutorialManager.instance.meleeUIObj.activeSelf && TutorialManager.instance.meleeEnemiesLeft == 0 && TutorialManager.instance.meleeUI[1].color != Color.green)
-            {
-                TutorialManager.instance.meleeUI[1].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-
             if (TutorialManager.instance.objectivesComplete == 2)
             {
                 TutorialManager.instance.beginButton.SetActive(false);
@@ -47,17 +36,6 @@ public class CombatTutorial : MonoBehaviour
         }
         else if(TutorialManager.instance.rangedTrigger == true)
         {
-            if (TutorialManager.instance.rangedUIObj.activeSelf && TutorialManager.instance.rangedEnemiesLeft <= 1 && TutorialManager.instance.rangedUI[0].color != Color.green)
-            {
-                TutorialManager.instance.rangedUI[0].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-            else if (TutorialManager.instance.rangedUIObj.activeSelf && TutorialManager.instance.rangedEnemiesLeft <= 0 && TutorialManager.instance.rangedUI[1].color != Color.green)
-            {
-                TutorialManager.instance.rangedUI[1].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-
             if (TutorialManager.instance.objectivesComplete == 2)
             {
                 TutorialManager.instance.beginButton.SetActive(false);
