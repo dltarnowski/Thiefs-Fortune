@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject Ammo;
     public int ammoCount;
     public cameraControls cameraScript;
+    public GameObject origSpawn;
 
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
@@ -109,7 +110,6 @@ public class gameManager : MonoBehaviour
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
         towersLeft = 2;
     }
-
     // Update is called once per frame
     void Update()
     {

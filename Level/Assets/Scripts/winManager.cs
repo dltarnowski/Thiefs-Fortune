@@ -31,6 +31,7 @@ public class winManager : MonoBehaviour
         {
             win = true;
             gameManager.instance.miniMapObjectiveIcons[4].SetActive(false);
+            gameManager.instance.miniMapPointer.gameObject.SetActive(false);
             gameManager.instance.winMenu.SetActive(true);
             StartCoroutine(CleanUp());
         }

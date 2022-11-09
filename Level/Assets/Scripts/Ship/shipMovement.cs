@@ -3,15 +3,20 @@ using UnityEngine;
 
 public class shipMovement : MonoBehaviour
 {
+    public static shipMovement instance;
     Vector3 move;
     [SerializeField] shipCameraControl shipCam;
     [SerializeField] float speed;
     [SerializeField] float speedIncTimer;
     [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
-    [SerializeField] ParticleSystem wake;
+    [SerializeField] public ParticleSystem wake;
     bool isMoving;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Update is called once per frame
     void Update()
     {
