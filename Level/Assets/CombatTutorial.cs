@@ -34,8 +34,21 @@ public class CombatTutorial : MonoBehaviour
                 TutorialManager.instance.objectivesComplete = 0;
             }
         }
-        else if(TutorialManager.instance.rangedTrigger == true)
+        else if (TutorialManager.instance.rangedTrigger == true)
         {
+            if (TutorialManager.instance.rangedEnemiesLeft == 1)
+            {
+
+                TutorialManager.instance.rangedUI[0].color = Color.green;
+                TutorialManager.instance.objectivesComplete++;
+            }
+            else if (TutorialManager.instance.rangedEnemiesLeft == 0)
+            {
+
+                TutorialManager.instance.rangedUI[0].color = Color.green;
+                TutorialManager.instance.objectivesComplete++;
+            }
+
             if (TutorialManager.instance.objectivesComplete == 2)
             {
                 TutorialManager.instance.beginButton.SetActive(false);

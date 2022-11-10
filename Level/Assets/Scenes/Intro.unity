@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 1111920209}
   - component: {fileID: 1111920212}
   - component: {fileID: 1111920210}
+  - component: {fileID: 1111920213}
   m_Layer: 5
   m_Name: Game Intro
   m_TagString: Untagged
@@ -280,7 +281,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -305,6 +306,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111920208}
   m_CullTransparentMesh: 1
+--- !u!114 &1111920213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111920208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f52dd0e02be3814b982f968ddab8527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://taverasn.github.io/ThiefsFortune-IntroVid/PrimeAndroidIntro.mp4
+  vidplayer: {fileID: 1111920210}
 --- !u!1 &1167725513
 GameObject:
   m_ObjectHideFlags: 0
