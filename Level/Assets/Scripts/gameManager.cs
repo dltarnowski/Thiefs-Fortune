@@ -74,7 +74,7 @@ public class gameManager : MonoBehaviour
     public Recoil recoilScript;
 
     [Header("----- Mini Map -----")]
-    public GameObject[] miniMapObjectiveIcons;
+    public List<GameObject> miniMapObjectiveIcons;
     public Pointer miniMapPointer;
     public Camera miniMapCamera;
     public GameObject miniMapWindow;
@@ -189,9 +189,9 @@ public class gameManager : MonoBehaviour
     public void CurrentObjectiveMiniMapIcon()
     {
         if (winManager.instance.plMiniMapObjective != null)
-            gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount] = winManager.instance.plMiniMapObjective;
+            miniMapObjectiveIcons.Add(winManager.instance.plMiniMapObjective);
 
-        for (int i = 0; i < miniMapObjectiveIcons.Length; ++i)
+        for (int i = 0; i < miniMapObjectiveIcons.Count; ++i)
         {
             if (i == winManager.instance.clueCount)
                 miniMapObjectiveIcons[i].SetActive(true);
