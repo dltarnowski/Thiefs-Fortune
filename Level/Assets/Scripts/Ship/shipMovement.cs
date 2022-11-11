@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class shipMovement : MonoBehaviour
 {
+    public static shipMovement instance;
     Vector3 move;
     [SerializeField] shipCameraControl shipCam;
     [SerializeField] float speed;
     [SerializeField] float speedIncTimer;
     [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
+    [SerializeField] public ParticleSystem wake;
     bool isMoving;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -21,6 +27,9 @@ public class shipMovement : MonoBehaviour
     {
         if(Input.GetAxis("Vertical") > 0)
         {
+            if(!wake.isPlaying)
+                wake.Play();
+
             StartCoroutine(speedInc());
             move = transform.forward * Input.GetAxis("Vertical");
             transform.position += move * speed * Time.deltaTime;
@@ -33,6 +42,7 @@ public class shipMovement : MonoBehaviour
         {
             shipCam.sensHort = 0;
             speed = 0;
+            wake.Stop();
         }
     }
 

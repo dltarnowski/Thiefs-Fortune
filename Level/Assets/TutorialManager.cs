@@ -157,11 +157,13 @@ public class TutorialManager : MonoBehaviour
         {
             beginButton.SetActive(false);
             continueButton.SetActive(false);
-            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the Log Book in your Settings Menu for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
+            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the HELP OPTION in your PAUSE>SETTINGS MENU for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
+            tutorialProgress = 6;
 
             StartCoroutine(CleanUp());
         }
@@ -208,7 +210,6 @@ public class TutorialManager : MonoBehaviour
             nextPoint.transform.position = finalPoint.transform.position;
             rangedTrigger = false;
             finalPoint.SetActive(true);
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
 
         StartCoroutine(CleanUp());
@@ -222,7 +223,7 @@ public class TutorialManager : MonoBehaviour
         dialogueBox.SetActive(false);
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
-        if (!finalTrigger)
+        if (!finalTrigger && tutorialProgress <= 5)
         {
             skull.SetActive(true);
             exclamation.SetActive(true);

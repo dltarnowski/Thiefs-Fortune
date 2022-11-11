@@ -3,12 +3,14 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     [SerializeField] public Item item;
+    [SerializeField] public int despawn;
 
     bool isSwapped;
 
     private void Start()
     {
-        Destroy(gameObject, 30);    
+        if(despawn > 0)
+            Destroy(gameObject, despawn);    
     }
 
     private void OnTriggerEnter(Collider other)

@@ -23,7 +23,8 @@ public class ShopSlot : MonoBehaviour
     }
     private void Update()
     {
-        BuyCheck();
+        if(ShopMenuButtons.instance.buyInventory.activeSelf)
+            BuyCheck();
 
         if(!canBuy && CompareTag("ShopBuy"))
         {
@@ -88,7 +89,7 @@ public class ShopSlot : MonoBehaviour
     public void BuyCheck()
     {
         if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
-           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item))
+           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item) && item != null)
         {
             canBuy = true;
         }

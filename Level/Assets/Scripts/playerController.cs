@@ -90,11 +90,11 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
+        jumpHeightOrig = jumpHeight;
+        gravityValueOrig = gravityValue;
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
-        jumpHeightOrig = jumpHeight;
-        gravityValueOrig = gravityValue;
     }
 
 
@@ -339,7 +339,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -352,7 +352,7 @@ public class playerController : MonoBehaviour
 
             playingSteps = false;
         }
-        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -506,6 +506,8 @@ public class playerController : MonoBehaviour
     }
     public void respawn()
     {
+        Water.instance.WaterReset();
+
         if (gameManager.instance.pauseMenu)
         {
             gameManager.instance.pauseMenu.SetActive(false);

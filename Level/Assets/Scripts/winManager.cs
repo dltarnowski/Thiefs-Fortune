@@ -30,6 +30,8 @@ public class winManager : MonoBehaviour
         if(legendSpawned && currLegend == null && !win)
         {
             win = true;
+            gameManager.instance.miniMapObjectiveIcons[4].SetActive(false);
+            gameManager.instance.miniMapPointer.gameObject.SetActive(false);
             gameManager.instance.winMenu.SetActive(true);
             StartCoroutine(CleanUp());
         }

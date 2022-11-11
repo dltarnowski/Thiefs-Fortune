@@ -9,17 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5589664567528046116}
-  - component: {fileID: 4319788467366179530}
-  - component: {fileID: 6593128075674650261}
   - component: {fileID: 7276359221518885918}
   - component: {fileID: 6835098965359614506}
   - component: {fileID: 4089192344420736088}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island_Main (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5589664567528046116
 Transform:
@@ -29,45 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953930393981139417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11706412, y: 0, z: 0.9269369}
+  m_LocalPosition: {x: 1.29, y: 0.004, z: 0.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7344997855668662062}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -194.989, z: 0}
---- !u!114 &4319788467366179530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953930393981139417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c085fdd76ab86946bd30fb375d1392f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recalculateNormals: 1
-  collisionDetection: 1
---- !u!114 &6593128075674650261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953930393981139417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368f3a6cf312ee444971372aa44f7522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshDeformer: {fileID: 0}
-  point: {x: 67.64, y: -55.44, z: 238.22}
-  radius: 5
-  stepRadius: 0.05
-  strength: 50
-  stepStrength: 0.5
 --- !u!33 &7276359221518885918
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -141,17 +107,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7344997855668662062}
-  - component: {fileID: 813655416841764352}
-  - component: {fileID: 8209770490856672001}
   - component: {fileID: 1201317067301254422}
   - component: {fileID: 3768350533802779958}
   - component: {fileID: 2604725964049797751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7344997855668662062
 Transform:
@@ -170,38 +134,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -194.989, z: 0}
---- !u!114 &813655416841764352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632780899457504411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c085fdd76ab86946bd30fb375d1392f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recalculateNormals: 1
-  collisionDetection: 1
---- !u!114 &8209770490856672001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632780899457504411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368f3a6cf312ee444971372aa44f7522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshDeformer: {fileID: 813655416841764352}
-  point: {x: 67.64, y: -55.44, z: 238.22}
-  radius: 0
-  stepRadius: 0
-  strength: 0
-  stepStrength: 0
 --- !u!33 &1201317067301254422
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -275,17 +207,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2866232106945837395}
-  - component: {fileID: 84393524682504256}
-  - component: {fileID: 2388129849495172913}
   - component: {fileID: 97140326527743340}
   - component: {fileID: 5795123581775779982}
   - component: {fileID: 5784955952688509945}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Island_Main (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2866232106945837395
 Transform:
@@ -295,45 +225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3903687062820652135}
   m_LocalRotation: {x: -0, y: -0.10996728, z: -0, w: 0.9939352}
-  m_LocalPosition: {x: 1.7429266, y: -0.286, z: -4.30883}
+  m_LocalPosition: {x: 2.91, y: -0.286, z: -2.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7344997855668662062}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -372.627, z: 0}
---- !u!114 &84393524682504256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903687062820652135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c085fdd76ab86946bd30fb375d1392f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recalculateNormals: 1
-  collisionDetection: 1
---- !u!114 &2388129849495172913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3903687062820652135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368f3a6cf312ee444971372aa44f7522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meshDeformer: {fileID: 0}
-  point: {x: 67.64, y: -55.44, z: 238.22}
-  radius: 5
-  stepRadius: 0.05
-  strength: 50
-  stepStrength: 0.5
 --- !u!33 &97140326527743340
 MeshFilter:
   m_ObjectHideFlags: 0

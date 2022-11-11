@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class ShopMenuButtons : MonoBehaviour
 {
+    public static ShopMenuButtons instance;
+
     public static ShopInventory inventory;
     public GameObject playerInventory;
     public GameObject buyInventory;
@@ -10,6 +12,10 @@ public class ShopMenuButtons : MonoBehaviour
     public Button buyTab;
     public Button sellTab;
 
+    private void Awake()
+    {
+        instance = this; 
+    }
     private void Start()
     {
         inventory = ShopInventory.instance;
@@ -49,6 +55,7 @@ public class ShopMenuButtons : MonoBehaviour
 
         gameManager.instance.mainCamera.SetActive(true);
         NPCManager.instance.NPCCamera.SetActive(false);
+        gameManager.instance.miniMapWindow.SetActive(true);
     }
 
     public void BuyTab()

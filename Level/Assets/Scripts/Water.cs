@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
+    public static Water instance;
     //[SerializeField] float waterHeight = -3.2f;
-
+    private void Awake()
+    {
+        instance = this; 
+    }
+    public void WaterReset()
+    {
+        gameManager.instance.underwaterIndicator.SetActive(false);
+        gameManager.instance.playerScript.jumpHeight = gameManager.instance.playerScript.jumpHeightOrig;
+        gameManager.instance.playerScript.gravityValue = gameManager.instance.playerScript.gravityValueOrig;
+        gameManager.instance.playerScript.isUnderwater = false;
+        gameManager.instance.playerScript.anim.SetBool("IsInWater", false);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") /*&& gameManager.instance.playerScript.waterDetectionPoint.transform.position.y < waterHeight*/)
