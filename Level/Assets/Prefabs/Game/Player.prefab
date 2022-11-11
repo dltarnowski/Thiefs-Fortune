@@ -4740,7 +4740,7 @@ GameObject:
   - component: {fileID: 2667262506602702774}
   - component: {fileID: 2667262506621998668}
   - component: {fileID: 2667262506622083320}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Gun Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9479,7 +9479,7 @@ GameObject:
   - component: {fileID: 2667262506602703704}
   - component: {fileID: 2667262506622093444}
   - component: {fileID: 2667262506622069850}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FX_Rifle_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14409,7 +14409,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 1535
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -14433,7 +14433,7 @@ GameObject:
   - component: {fileID: 4394722230702239405}
   - component: {fileID: 4394722230702239406}
   - component: {fileID: 528592904}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14904,6 +14904,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c5a4cd4e19236b74e9c26d9d2d866d7d, type: 2}
+    - target: {fileID: 341896122714670807, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 341896122714670807, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2789542584581321313, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
       propertyPath: m_IsActive
       value: 0
