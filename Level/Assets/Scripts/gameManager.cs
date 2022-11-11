@@ -95,7 +95,7 @@ public class gameManager : MonoBehaviour
     public musicSwap music;
 
     int towersLeft;
-    
+
 
     // Start is called before the first frame update
     void Awake()
@@ -129,7 +129,7 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
-   
+
 
     public IEnumerator playerDamage()
     {
@@ -188,6 +188,9 @@ public class gameManager : MonoBehaviour
 
     public void CurrentObjectiveMiniMapIcon()
     {
+        if (winManager.instance.plMiniMapObjective != null)
+            gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount] = winManager.instance.plMiniMapObjective;
+
         for (int i = 0; i < miniMapObjectiveIcons.Length; ++i)
         {
             if (i == winManager.instance.clueCount)
@@ -218,13 +221,13 @@ public class gameManager : MonoBehaviour
 
     public void ReduceAmmo()
     {
-        if(ammoArray.Length > 0)
-            ammoArray[ammoCount-1].enabled = false;
+        if (ammoArray.Length > 0)
+            ammoArray[ammoCount - 1].enabled = false;
     }
 
     public void IncreaseAmmo()
     {
-        for(int i = 0; i < ammoArray.Length; i++)
+        for (int i = 0; i < ammoArray.Length; i++)
         {
             ammoArray[i].enabled = true;
         }
