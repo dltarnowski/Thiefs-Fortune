@@ -89,6 +89,7 @@ public class gameManager : MonoBehaviour
     public Slider PlayerAudioSlider;
     public Slider GunVolumeSlider;
     public bool handmaiden;
+    public GameObject[] islandObjects;
 
     [Header("----- Audio -----")]
     public musicSwap music;

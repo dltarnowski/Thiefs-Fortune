@@ -11,7 +11,10 @@ public class shipMovement : MonoBehaviour
     [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
     [SerializeField] public ParticleSystem wake;
+    [SerializeField] int bounceOffObject;
+
     bool isMoving;
+    
 
     private void Awake()
     {
@@ -32,10 +35,10 @@ public class shipMovement : MonoBehaviour
 
             StartCoroutine(speedInc());
             move = transform.forward * Input.GetAxis("Vertical");
-            transform.position += move * speed * Time.deltaTime;
+            transform.parent.position += move * speed * Time.deltaTime;
             if(Input.GetAxis("Mouse X") != 0 )
             {
-                shipCam.sensHort = speed * .65f;
+                shipCam.sensHort = rotateSpeed * .65f;
             }
         }
         else
@@ -55,6 +58,17 @@ public class shipMovement : MonoBehaviour
                 speed += 1;
             yield return new WaitForSeconds(speedIncTimer);
             isMoving = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        foreach (GameObject island in gameManager.instance.islandObjects)
+        {
+            if (other.gameObject == island)
+            {
+                speed = -bounceOffObject;
+            }
         }
     }
 }
