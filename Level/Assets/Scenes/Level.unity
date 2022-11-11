@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 1245982673}
   m_IndirectSpecularColor: {r: 0.4419611, g: 0.49092418, b: 0.5708692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -1537,22 +1537,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1092906063, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
-      propertyPath: maxSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092906063, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
-      propertyPath: rotateSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092906063, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
-      propertyPath: speedIncTimer
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092906063, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
-      propertyPath: bounceOffObject
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1825332772163808618, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_Name
       value: Ship
@@ -1563,7 +1547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 174.71
+      value: 177.1
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1571,11 +1555,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 920.86
+      value: 925
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.94682306
+      value: 0.068028696
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1583,7 +1567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.32175472
+      value: 0.9976834
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1595,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 37.538
+      value: 172.198
       objectReference: {fileID: 0}
     - target: {fileID: 1825332772163964018, guid: b0224a2101e253c43a971f10fa7a914f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2703,6 +2687,11 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 648394129562943168, guid: 82b3bd6e91caa344a95edd88fd495df7, type: 3}
   m_PrefabInstance: {fileID: 4677034175176080165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1245982673 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+  m_PrefabInstance: {fileID: 1884234502}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1255932416
 PrefabInstance:
@@ -6834,7 +6823,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1756, y: -601.67}
+  m_AnchoredPosition: {x: -2022, y: -601.67}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1276590986836013704
@@ -15162,7 +15151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -546, y: -601.67}
+  m_AnchoredPosition: {x: -298, y: -601.67}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4240801624566208495
@@ -16781,7 +16770,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8041026625229667529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1342}
+  m_LocalPosition: {x: 0, y: 0, z: 1973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
