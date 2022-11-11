@@ -35,7 +35,7 @@ public class NPCDialogueManager : MonoBehaviour
         if (!gameManager.instance.handmaiden)
         {
             if (gameManager.instance.npcCollide && Input.GetKeyDown(KeyCode.E) && anim.GetBool("isOpen") == false)
-                
+
             {
                 gameManager.instance.NpcPause();
                 gameManager.instance.hint.SetActive(false);
@@ -46,7 +46,7 @@ public class NPCDialogueManager : MonoBehaviour
                 dialogue.text = dialogueList[otherRandom];
             }
         }
-        else if(gameManager.instance.handmaiden && Input.GetKeyDown(KeyCode.E) && anim.GetBool("isOpen") == false)
+        else if (gameManager.instance.handmaiden && Input.GetKeyDown(KeyCode.E) && anim.GetBool("isOpen") == false)
         {
             gameManager.instance.NpcPause();
             gameManager.instance.hint.SetActive(false);
@@ -55,8 +55,11 @@ public class NPCDialogueManager : MonoBehaviour
             anim.SetBool("isOpen", true);
 
             dialogue.text = dialogueList[random];
-            winManager.instance.clueCount++;
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
+            if (winManager.instance.clueCount == 1)
+            {
+                winManager.instance.clueCount++;
+                gameManager.instance.CurrentObjectiveMiniMapIcon();
+            }
         }
 
     }

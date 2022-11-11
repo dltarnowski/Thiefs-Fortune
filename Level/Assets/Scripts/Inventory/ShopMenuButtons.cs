@@ -14,7 +14,7 @@ public class ShopMenuButtons : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
     private void Start()
     {
@@ -24,8 +24,17 @@ public class ShopMenuButtons : MonoBehaviour
     {
         NPCManager.instance.dialogue.gameObject.SetActive(false);
         NPCManager.instance.followUpDialogue.gameObject.SetActive(true);
-        winManager.instance.clueCount++;
-        gameManager.instance.CurrentObjectiveMiniMapIcon();
+
+        if (winManager.instance.clueCount == 2 && NPCManager.instance.shopUI == NPCManager.instance.weaponUI)
+        {
+            winManager.instance.clueCount++;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
+        }
+        else if (winManager.instance.clueCount == 3 && NPCManager.instance.shopUI == NPCManager.instance.consumeUI)
+        {
+            winManager.instance.clueCount++;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
+        }
     }
 
     public void Shop()
@@ -48,9 +57,9 @@ public class ShopMenuButtons : MonoBehaviour
     {
         gameManager.instance.npcDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
-        if(gameManager.instance.consumeCollide == true)
+        if (gameManager.instance.consumeCollide == true)
             NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
-        else if(gameManager.instance.weaponCollide == true)
+        else if (gameManager.instance.weaponCollide == true)
             NPCManager.instance.dialogue.text = "What's that smell... Sniff Sniff... Huh I think that's me... Oh Hi! What can I do for you today?";
 
         gameManager.instance.mainCamera.SetActive(true);

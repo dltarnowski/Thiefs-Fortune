@@ -18,10 +18,13 @@ public class chestOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
+        if (canOpen && Input.GetKeyDown(KeyCode.E) && !opened)
         {
-            winManager.instance.clueCount++;
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
+            if (winManager.instance.clueCount == 0)
+            {
+                winManager.instance.clueCount++;
+                gameManager.instance.CurrentObjectiveMiniMapIcon();
+            }
             gameManager.instance.hint.SetActive(false);
             anim.SetTrigger("open");
             blackSpotDropChance = Random.Range(0f, 1f);
@@ -56,7 +59,7 @@ public class chestOpen : MonoBehaviour
         {
             gameManager.instance.hint.SetActive(true);
             canOpen = true;
-        }        
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -64,6 +67,6 @@ public class chestOpen : MonoBehaviour
         {
             gameManager.instance.hint.SetActive(false);
             canOpen = false;
-        }        
+        }
     }
 }
