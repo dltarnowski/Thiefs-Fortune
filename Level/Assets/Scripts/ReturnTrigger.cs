@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ReturnTrigger : MonoBehaviour
 {
-    public float transitionTime = 33;
+    public float transitionTime;
     public int SceneSelect;
 
     void Update()
