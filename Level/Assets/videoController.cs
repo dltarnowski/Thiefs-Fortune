@@ -7,9 +7,12 @@ public class videoController : MonoBehaviour
 {
     public string url;
     public VideoPlayer vidplayer;
+    [SerializeField] GameObject Barrel;
+    [SerializeField] GameObject Background;
+    private bool playing;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         vidplayer = GetComponent<VideoPlayer>();
         vidplayer.url = url;
@@ -18,9 +21,12 @@ public class videoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
+        if (!playing && vidplayer.isPlaying)
         {
+            playing = true;
             Play();
+            Barrel.SetActive(false);
+            Background.SetActive(false);
         }
 
     }

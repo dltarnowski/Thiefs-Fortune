@@ -14,8 +14,14 @@ public class BobAndSpin : MonoBehaviour
 
     private void FixedUpdate()
     {
-        gameObject.transform.Translate(new Vector3(0, (Mathf.PingPong(bounceSpeed * Time.time, bounceHeight) - bounceHeight / 2) / 100, 0));
 
-        gameObject.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        if(CompareTag("Barrel"))
+            gameObject.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        else
+        {
+            gameObject.transform.Translate(new Vector3(0, (Mathf.PingPong(bounceSpeed * Time.time, bounceHeight) - bounceHeight / 2) / 100, 0));
+            gameObject.transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        }
+
     }
 }
