@@ -427,6 +427,7 @@ public class playerController : MonoBehaviour
                 gameManager.instance.map.SetActive(true);
                 mapActive++;
                 miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(100, 100, 100);
                 Time.timeScale = 0;
             }
         }
@@ -436,7 +437,8 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.map.SetActive(false);
                 mapActive++;
-                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                miniMapIcon.transform.localScale = new Vector3(2, 2, 2);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(10, 10, 10);
                 Time.timeScale = 1;
             }
         }
