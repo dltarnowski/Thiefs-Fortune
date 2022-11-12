@@ -286,7 +286,7 @@ public class playerController : MonoBehaviour
         }
 
         //Run
-        if (canSprint == true)
+        if (canSprint == true && move.x != 0)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
