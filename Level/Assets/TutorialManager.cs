@@ -35,6 +35,10 @@ public class TutorialManager : MonoBehaviour
     public bool rangedTrigger;
     public bool finalTrigger;
 
+    [Header("----- Spawns -----")]
+    public GameObject basicSpawn;
+    public GameObject advanceSpawn;
+
     [Header("----- Objectives -----")]
     public GameObject basicPoint;
     public GameObject advancePoint;
@@ -95,8 +99,11 @@ public class TutorialManager : MonoBehaviour
 
     public void Begin()
     {
+        gameManager.instance.cameraScript.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         beginButton.SetActive(false);
-        tutorialActive = true;
 
         if (basicMoveTrigger)
         {
@@ -108,13 +115,13 @@ public class TutorialManager : MonoBehaviour
             advanceMoveUIObj.SetActive(true);
             objectiveText.text = "Now let's take a look at some more " + '"' + "advanced" + '"' + " techniques. Use [SPACE] to Jump, Hold [SHIFT] while moving to sprint, and use [L-CTRL] to crouch";
         }
-        else if (inventoryTrigger)
+        /*else if (inventoryTrigger)
         {
             inventoryUIObj.SetActive(true);
             objectiveText.text = "Open your inventory by pressing [I]. Click (+) in the corner of your ammo to equip it. It'll now be in your active inventory. You can unequip with (-). Health pickups work the same." +
                 "You can use ammo and health by pressing [3] and [4].";
-        }
-        else if (meleeTrigger)
+        }*/
+        /*else if (meleeTrigger)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -124,8 +131,8 @@ public class TutorialManager : MonoBehaviour
 
             meleeUIObj.SetActive(true);
             objectiveText.text = "Make sure your melee weapon is equipped by pressing [2]. Kill the enemies by centering your body to the enemy and pressing the [L-MOUSE BUTTON]";
-        }
-        else if (rangedTrigger)
+        }*/
+        /*else if (rangedTrigger)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -136,7 +143,7 @@ public class TutorialManager : MonoBehaviour
 
             rangedUIObj.SetActive(true);
             objectiveText.text = "Make sure your ranged weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
-        }
+        }*/
     }
 
     public void Continue()
@@ -181,7 +188,7 @@ public class TutorialManager : MonoBehaviour
             basicMoveUIObj.SetActive(false);
             basicMoveTrigger = false;
             objectiveText.text = "Looks like your sea legs are land legs! Find me up a ways for your next lesson!";
-            nextPoint.transform.position = advancePoint.transform.position;
+            nextPoint.transform.position = advanceSpawn.transform.position;
         }
         if(tutorialProgress == 2)
         {
@@ -219,17 +226,25 @@ public class TutorialManager : MonoBehaviour
         objectivesComplete = 0;
         yield return new WaitForSeconds(1.5f);
         skull.SetActive(false);
-        yield return new WaitForSeconds(1.5f);
-        dialogueBox.SetActive(false);
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
         if (!finalTrigger && tutorialProgress <= 5)
         {
+            yield return new WaitForSeconds(1.2f);
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
+        yield return new WaitForSeconds(2f);
+        dialogueBox.SetActive(false);
 
         tutorialActive = false;
 
+    }
+
+    public void AnimationStop()
+    {
+        gameManager.instance.playerScript.anim.SetBool("IsRanged", false);
+        gameManager.instance.playerScript.anim.SetBool("IsWalking", false);
+        gameManager.instance.playerScript.anim.SetBool("IsInWater", false);
     }
 }

@@ -60,7 +60,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
-    public GameObject npcDialogue;
+    public GameObject shopDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public bool weaponCollide;
@@ -109,7 +109,6 @@ public class gameManager : MonoBehaviour
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
-        towersLeft = 2;
     }
     // Update is called once per frame
     void Update()
@@ -239,7 +238,7 @@ public class gameManager : MonoBehaviour
         if(deathMenu.activeSelf)
             menuCurrentlyOpen = true;
 
-        if (npcDialogue.activeSelf)
+        if (shopDialogue.activeSelf)
             menuCurrentlyOpen = true;
 
         if (shopInventory.activeSelf)
@@ -252,6 +251,12 @@ public class gameManager : MonoBehaviour
             menuCurrentlyOpen = true;
 
         if (NPCManager.instance.shopUI.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (NPCDialogueManager.instance.anim.GetBool("isOpen") == true)
+            menuCurrentlyOpen = true;
+
+        if (TutorialManager.instance.tutorialActive)
             menuCurrentlyOpen = true;
 
         return menuCurrentlyOpen;

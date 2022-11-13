@@ -31,7 +31,7 @@ public class ShopMenuButtons : MonoBehaviour
     public void Shop()
     {
         gameManager.instance.hint.SetActive(false);
-        gameManager.instance.npcDialogue.SetActive(false);
+        gameManager.instance.shopDialogue.SetActive(false);
         NPCManager.instance.shopUI.SetActive(true);
         playerInventory.SetActive(true);
         BuyTab();
@@ -39,14 +39,14 @@ public class ShopMenuButtons : MonoBehaviour
 
     public void CloseShop()
     {
-        gameManager.instance.npcDialogue.SetActive(true);
+        gameManager.instance.shopDialogue.SetActive(true);
         NPCManager.instance.shopUI.SetActive(false);
         playerInventory.SetActive(false);
     }
 
     public void Bye()
     {
-        gameManager.instance.npcDialogue.SetActive(false);
+        gameManager.instance.shopDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
         if(gameManager.instance.consumeCollide == true)
             NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
