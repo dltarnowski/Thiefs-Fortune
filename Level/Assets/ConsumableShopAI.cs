@@ -15,7 +15,7 @@ public class ConsumableShopAI : MonoBehaviour
     void Update()
     {
 
-        if (gameManager.instance.consumeCollide && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (gameManager.instance.consumeCollide && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
 
@@ -41,7 +41,7 @@ public class ConsumableShopAI : MonoBehaviour
 
                 gameManager.instance.NpcPause();
 
-                gameManager.instance.npcDialogue.SetActive(gameManager.instance.consumeCollide);
+                gameManager.instance.shopDialogue.SetActive(gameManager.instance.consumeCollide);
             }
         }
     }

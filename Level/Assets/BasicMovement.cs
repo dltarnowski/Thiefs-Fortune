@@ -41,6 +41,10 @@ public class BasicMovement : MonoBehaviour
 
         if (TutorialManager.instance.objectivesComplete == 4)
         {
+            gameManager.instance.cameraScript.enabled = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
             TutorialManager.instance.tutorialProgress = 1;

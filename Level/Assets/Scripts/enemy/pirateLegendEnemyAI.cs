@@ -30,7 +30,7 @@ public class pirateLegendEnemyAI : enemyAI
             movementAnimationChange();
             if (agent.enabled)
             {
-                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
+                if (playerInRange && !gameManager.instance.shopDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);

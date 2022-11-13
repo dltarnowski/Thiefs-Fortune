@@ -14,7 +14,7 @@ public class ShopAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.instance.weaponCollide && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (gameManager.instance.weaponCollide && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             anim.SetBool("isWaving", true);
 
@@ -40,7 +40,7 @@ public class ShopAI : MonoBehaviour
 
                 gameManager.instance.NpcPause();
                 
-                gameManager.instance.npcDialogue.SetActive(gameManager.instance.weaponCollide);
+                gameManager.instance.shopDialogue.SetActive(gameManager.instance.weaponCollide);
             }
         }
     }
