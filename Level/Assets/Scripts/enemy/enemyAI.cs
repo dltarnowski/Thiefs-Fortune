@@ -25,11 +25,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] internal GameObject weapon;
 
     [Header("----- Roam Settings -----")]
-    [SerializeField] internal bool linearRoam;
-    [SerializeField] internal bool stationary;
-    [SerializeField] internal bool noRotation;
     [SerializeField] internal int roamDist;
-    [SerializeField] internal bool canRoam = true;
 
     [Header("----- Audio -----")]
     [SerializeField] internal AudioSource aud;
@@ -59,12 +55,11 @@ public class enemyAI : MonoBehaviour, IDamage
         startingPos = transform.position;
         speedPatrol = agent.speed;
         currBlackSpot = gameManager.instance.blackspot.blackSpotMultiplier;
-        if (!stationary && canRoam)
-            roam();
+        roam();
     }
     public void movementAnimationChange()
     {
-        if (linearRoam && !playerInRange)
+        if (!playerInRange)
             anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude * 0.5f, Time.deltaTime * animLerpSpeed));
         else
             anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
@@ -99,10 +94,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         agent.stoppingDistance = 0;
         agent.speed = speedPatrol;
-        if(linearRoam)
-            randomDirection = new Vector3(0, 0, 1) * Random.Range(-roamDist, roamDist);
-        else
-            randomDirection = Random.insideUnitSphere * roamDist;
+        randomDirection = Random.insideUnitSphere * roamDist;
         randomDirection += startingPos;
 
         NavMeshHit hit;
@@ -125,12 +117,10 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angle <= viewAngle)
             {
-                if(!stationary)
-                {
-                    agent.speed = speedChase;
-                    agent.stoppingDistance = stoppingDistanceOrig;
-                    agent.SetDestination(gameManager.instance.player.transform.position);
-                }
+                agent.speed = speedChase;
+                agent.stoppingDistance = stoppingDistanceOrig;
+                agent.SetDestination(gameManager.instance.player.transform.position);
+                
                 if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 
