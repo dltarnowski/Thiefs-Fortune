@@ -621,6 +621,9 @@ MonoBehaviour:
   meleeTrigger: 0
   rangedTrigger: 0
   finalTrigger: 0
+  basicSpawn: {fileID: 0}
+  advanceSpawn: {fileID: 0}
+  inventorySpawn: {fileID: 0}
   basicPoint: {fileID: 0}
   advancePoint: {fileID: 0}
   inventoryPoint: {fileID: 0}
@@ -6120,7 +6123,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 5348035563745373455}
   helpMenu: {fileID: 4083070204030070824}
   deathMenu: {fileID: 5003442953894507438}
-  menuCurrentlyOpen: {fileID: 0}
+  menuCurrentlyOpen: 0
   acObject: {fileID: 0}
   playerDamageFlash: {fileID: 3405431497816484670}
   playerDamageIndicator: {fileID: 7551098363441286900}
@@ -6151,7 +6154,7 @@ MonoBehaviour:
   activePanel: {fileID: 0}
   inventoryPanel: {fileID: 1620185446930670836}
   healthBar: {fileID: 0}
-  npcDialogue: {fileID: 1327075048572831287}
+  shopDialogue: {fileID: 0}
   shopInventory: {fileID: 1670549329222053926}
   coinCountText: {fileID: 8789723952298691124}
   weaponCollide: 0
@@ -21158,11 +21161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1327075048572831287 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6123697703572765992, guid: eb77342370a8b204899850b957788a8a, type: 3}
-  m_PrefabInstance: {fileID: 5084855506131204895}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1327075048802517251 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6123697702729103900, guid: eb77342370a8b204899850b957788a8a, type: 3}

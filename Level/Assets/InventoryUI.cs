@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") && TutorialManager.instance.tutorialProgress >= 2)
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
 
