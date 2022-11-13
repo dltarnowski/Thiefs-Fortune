@@ -63,13 +63,13 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Advanced Movement";
                 TutorialManager.instance.objectiveText.text = "I think you're ready for something harder. Press begin to learn advanced movement within the world!";
             }
-            /*if (TutorialManager.instance.inventoryTrigger && TutorialManager.instance.tutorialProgress < 3)
+            if (TutorialManager.instance.inventoryTrigger && TutorialManager.instance.tutorialProgress < 3)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Inventory";
                 TutorialManager.instance.objectiveText.text = "You have now picked up your first new item! Press begin to learn the basic of accessing and managing your inventory!";
-            }*/
+            }
             /*if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialProgress < 4)
             {
                 InteractionBegin();
