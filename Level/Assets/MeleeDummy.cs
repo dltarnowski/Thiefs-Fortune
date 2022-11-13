@@ -21,6 +21,8 @@ public class MeleeDummy : MonoBehaviour, IDamage
     public void takeDamage(float dmg)
     {
         anim.SetTrigger("Hit");
-        TutorialManager.instance.meleeEnemiesLeft--;
+
+        if(TutorialManager.instance.meleeEnemiesLeft <= 2)
+            TutorialManager.instance.meleeEnemiesLeft--;
     }
 }
