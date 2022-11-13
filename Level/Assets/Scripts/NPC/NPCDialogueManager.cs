@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCDialogueManager : MonoBehaviour
 {
+    public static NPCDialogueManager instance;
+
     public GameObject dialogueBox;
     public TextMeshProUGUI dialogue;
     public Animator anim;
@@ -13,6 +15,10 @@ public class NPCDialogueManager : MonoBehaviour
 
     List<string> dialogueList = new List<string>();
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         dialogueList.Add("Heard you're looking for Captain Noble. Have you talked to Willy the Weaponsmith?");
