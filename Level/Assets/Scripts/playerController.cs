@@ -61,7 +61,7 @@ public class playerController : MonoBehaviour
     float currGunVolume;
 
     public Vector3 playerVelocity;
-    
+
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
@@ -152,23 +152,44 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.ReduceAmmo();
                 //gameManager.instance.ammoCount = gunStats.ammoCount;
 
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                if (thirdPersonCam_Obj.activeSelf)
                 {
-                    //  -------      WAITING ON IDAMAGE      -------
-                    if (hit.collider.GetComponent<IDamage>() != null)
+                    RaycastHit hit;
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
                     {
-                        if (hit.collider is SphereCollider)
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
                         {
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                         }
-                        else if (hit.collider is CapsuleCollider)
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
-                        Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
-
+                else if (firstPersonCam_Obj.activeSelf)
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(firstPersonCam_Cam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                    {
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        }
+                    }
+                }
                 aud.PlayOneShot(gunStats.sound);
+
                 gameManager.instance.recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStats.muzzleLocations[barrel].position;
                 gunSmoke.Play();
@@ -211,6 +232,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", true);
+            transform.GetComponent<CharacterController>().height = 1.4f;
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y - crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
@@ -218,6 +240,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", false);
+            transform.GetComponent<CharacterController>().height = 2;
             transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
                                                                     transform.GetChild(0).localPosition.y + crouchHeight,
                                                                     transform.GetChild(0).localPosition.z);
@@ -281,7 +304,7 @@ public class playerController : MonoBehaviour
         }
         else if (isUnderwater && Input.GetButton("Jump"))
         {
-            if(playerVelocity.y <= maxSwimSpeed)
+            if (playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
         }
 
@@ -414,7 +437,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
             //if (EquipmentManager.instance.currentEquipment[2].numOfItems == 0)
             EquipmentManager.instance.currentEquipment[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null && HP < HPOrig)
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
@@ -426,17 +449,19 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.map.SetActive(true);
                 mapActive++;
-                miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                miniMapIcon.transform.localScale = new Vector3(10, 10, 10);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(50, 50, 50);
                 Time.timeScale = 0;
             }
         }
-        else if(gameManager.instance.map.activeSelf)
+        else if (gameManager.instance.map.activeSelf)
         {
             if ((Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape)) && mapActive == 0)
             {
                 gameManager.instance.map.SetActive(false);
                 mapActive++;
-                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                miniMapIcon.transform.localScale = new Vector3(2, 2, 2);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(10, 10, 10);
                 Time.timeScale = 1;
             }
         }
