@@ -41,6 +41,7 @@ public class BasicMovement : MonoBehaviour
 
         if (TutorialManager.instance.objectivesComplete == 4)
         {
+            TutorialManager.instance.AnimationStop();
             gameManager.instance.cameraScript.enabled = false;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -55,8 +56,7 @@ public class BasicMovement : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            gameManager.instance.TutorialCollide = true;
-            TutorialManager.instance.basicMoveTrigger = gameManager.instance.TutorialCollide;
+            TutorialManager.instance.basicMoveTrigger = true;
         }
     }
 
