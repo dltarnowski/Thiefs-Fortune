@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 226692270}
   m_IndirectSpecularColor: {r: 0.4419611, g: 0.49092418, b: 0.5708692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!108 &226692270 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+  m_PrefabInstance: {fileID: 1179690663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &325132226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,6 +455,7 @@ GameObject:
   - component: {fileID: 564478908}
   - component: {fileID: 564478907}
   - component: {fileID: 564478910}
+  - component: {fileID: 564478911}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -538,6 +544,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 20
   SceneSelect: 3
+--- !u!114 &564478911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564478906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e37bd998b26a244815cde9fdd302d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skip: 0
+  transitionTime: 20
+  SceneSelect: 3
 --- !u!1 &633724475
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +570,7 @@ GameObject:
   - component: {fileID: 633724476}
   - component: {fileID: 633724478}
   - component: {fileID: 633724477}
+  - component: {fileID: 633724479}
   m_Layer: 5
   m_Name: Skip Text
   m_TagString: Untagged
@@ -673,6 +695,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633724475}
   m_CullTransparentMesh: 1
+--- !u!95 &633724479
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633724475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17c6eef2d0f469b458a5968aabee3184, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &662850706
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139725298531451193, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1488404739827658409, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_RootOrder
       value: 5
