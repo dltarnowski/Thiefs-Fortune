@@ -56,34 +56,28 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Basic Movement";
                 TutorialManager.instance.objectiveText.text = "Let's get shake off those sea legs. Press begin to learn basic movement within the world!";
             }
-            /*if (TutorialManager.instance.advanceMoveTrigger && TutorialManager.instance.tutorialProgress < 2)
+            if (TutorialManager.instance.advanceMoveTrigger && TutorialManager.instance.tutorialProgress < 2)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Advanced Movement";
                 TutorialManager.instance.objectiveText.text = "I think you're ready for something harder. Press begin to learn advanced movement within the world!";
             }
-            if (TutorialManager.instance.inventoryTrigger && TutorialManager.instance.tutorialProgress < 3)
+            /*if (TutorialManager.instance.inventoryTrigger && TutorialManager.instance.tutorialProgress < 3)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Inventory";
                 TutorialManager.instance.objectiveText.text = "You have now picked up your first new item! Press begin to learn the basic of accessing and managing your inventory!";
-            }
-            if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialProgress < 4)
+            }*/
+            /*if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialProgress < 4)
             {
-                TutorialManager.instance.dialogueBox.SetActive(true);
-                TutorialManager.instance.beginButton.SetActive(true);
-                gameManager.instance.hint.SetActive(false);
-
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-                gameManager.instance.cameraScript.enabled = false;
+                InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Melee Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee attacks!";
-            }
-            if(TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
+            }*/
+            /*if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
             {
                 TutorialManager.instance.dialogueBox.SetActive(true);
                 TutorialManager.instance.beginButton.SetActive(true);
