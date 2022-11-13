@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &164483475465999869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6512581083151436533}
+  m_Layer: 10
+  m_Name: Gold Piles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6512581083151436533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164483475465999869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8524860638935098006}
+  - {fileID: 8524860639520738914}
+  - {fileID: 8524860640484810021}
+  - {fileID: 8524860638451634519}
+  - {fileID: 8524860639792940128}
+  - {fileID: 8524860640361775565}
+  m_Father: {fileID: 7010221738542292572}
+  m_RootOrder: 46
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5421385054754597558
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +46,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7010221738542292572}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Snake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,12 +111,7 @@ Transform:
   - {fileID: 6093741858320606813}
   - {fileID: 6093741858391452792}
   - {fileID: 6093741858634051716}
-  - {fileID: 8524860638935098006}
-  - {fileID: 8524860639520738914}
-  - {fileID: 8524860640484810021}
-  - {fileID: 8524860638451634519}
-  - {fileID: 8524860639792940128}
-  - {fileID: 8524860640361775565}
+  - {fileID: 6512581083151436533}
   - {fileID: 6093741859755686668}
   - {fileID: 6093741857843513179}
   - {fileID: 6093741859146346534}
@@ -90,9 +122,108 @@ Transform:
   - {fileID: 6093741858586872731}
   - {fileID: 6093741858938539015}
   - {fileID: 6093741859891454972}
+  - {fileID: 5559386222069707864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5559386222069988784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5559386222069707864}
+  - component: {fileID: 5559386222068956830}
+  - component: {fileID: 5559386222067961304}
+  - component: {fileID: 5603944449425152548}
+  m_Layer: 0
+  m_Name: SM_Env_Rock_Large_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &5559386222069707864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559386222069988784}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -140.01001, y: 27.439999, z: -220.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7010221738542292572}
+  m_RootOrder: 57
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5559386222068956830
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559386222069988784}
+  m_Mesh: {fileID: 4300000, guid: 24d886cb8e942db419b018ea0144c3f3, type: 3}
+--- !u!23 &5559386222067961304
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559386222069988784}
+  m_Enabled: 1
+  m_CastShadows: 2
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5e1235b2e417983469723d36f05de88d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5603944449425152548
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559386222069988784}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 24d886cb8e942db419b018ea0144c3f3, type: 3}
 --- !u!1 &6079018542337420723
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6079018542337420724}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: itemSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +267,8 @@ GameObject:
   - component: {fileID: 6093741857799273651}
   - component: {fileID: 6093741857800223463}
   - component: {fileID: 6085783550804433591}
-  m_Layer: 0
+  - component: {fileID: 1938326847529003497}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,6 +354,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326847529003497
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741857802371541}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741857807338875
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +381,7 @@ GameObject:
   - component: {fileID: 6093741857807550285}
   - component: {fileID: 6093741857810530181}
   - component: {fileID: 6093741857809389747}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Grass_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +465,7 @@ GameObject:
   - component: {fileID: 6093741857840621617}
   - component: {fileID: 6093741857841522057}
   - component: {fileID: 6085815365836858395}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Prop_TreasurePile_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,12 +480,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6093741857843751925}
   m_LocalRotation: {x: 0.06406422, y: 0.0004038464, z: -0.03900116, w: 0.9971834}
-  m_LocalPosition: {x: -148.05603, y: 29.223, z: -220.38812}
+  m_LocalPosition: {x: -148.02, y: 29.24, z: -219.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 53
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 7.342, y: -0.242, z: -4.495}
 --- !u!33 &6093741857840621617
 MeshFilter:
@@ -415,7 +563,7 @@ GameObject:
   - component: {fileID: 6093741857863689152}
   - component: {fileID: 6093741857864715578}
   - component: {fileID: 6085762212836427996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +661,7 @@ GameObject:
   - component: {fileID: 6093741857881850155}
   - component: {fileID: 6093741857880891717}
   - component: {fileID: 6085763211827563255}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_04 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +681,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 55
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6093741857881850155
 MeshFilter:
@@ -611,7 +759,7 @@ GameObject:
   - component: {fileID: 6093741858003509859}
   - component: {fileID: 6093741858002439321}
   - component: {fileID: 6085762212948003199}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +857,8 @@ GameObject:
   - component: {fileID: 6093741858131578595}
   - component: {fileID: 6093741858130432955}
   - component: {fileID: 6085974781679116651}
-  m_Layer: 0
+  - component: {fileID: 1938326848400377775}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,6 +944,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b5a9fe27f6d8cb0409b973910bb5505a, type: 3}
+--- !u!54 &1938326848400377775
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858132667095}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858174843374
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +972,8 @@ GameObject:
   - component: {fileID: 6093741858171767800}
   - component: {fileID: 6093741858173103604}
   - component: {fileID: 6086533795390458728}
-  m_Layer: 0
+  - component: {fileID: 1938326848148457561}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_03 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,6 +1059,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4034c2997372dbc4aabd01b166acb78e, type: 3}
+--- !u!54 &1938326848148457561
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858174843374}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858208170979
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +1087,8 @@ GameObject:
   - component: {fileID: 6093741858207153791}
   - component: {fileID: 6093741858206047761}
   - component: {fileID: 6085763211367871907}
-  m_Layer: 0
+  - component: {fileID: 1938326847547140088}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_04 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,6 +1174,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 421fd44f2bb5fcf43b47ba898ed96df1, type: 3}
+--- !u!54 &1938326847547140088
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858208170979}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858244397930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,7 +1202,7 @@ GameObject:
   - component: {fileID: 6093741858245456492}
   - component: {fileID: 6093741858246577694}
   - component: {fileID: 6085492395654176368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1300,8 @@ GameObject:
   - component: {fileID: 6093741858319785537}
   - component: {fileID: 6093741858318833685}
   - component: {fileID: 6085783551322929221}
-  m_Layer: 0
+  - component: {fileID: 1938326849505618826}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,6 +1387,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326849505618826
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858320868135}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858354366205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1415,8 @@ GameObject:
   - component: {fileID: 6093741858353363867}
   - component: {fileID: 6093741858352348623}
   - component: {fileID: 6085783551289351583}
-  m_Layer: 0
+  - component: {fileID: 1938326848495300965}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,6 +1502,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326848495300965
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858354366205}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858391797066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1530,8 @@ GameObject:
   - component: {fileID: 6093741858392729154}
   - component: {fileID: 6093741858393752474}
   - component: {fileID: 6085139944563464090}
-  m_Layer: 0
+  - component: {fileID: 1938326849184484164}
+  m_Layer: 10
   m_Name: SM_Bld_Rickety_Dock_Platform_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,6 +1617,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: eddc399e69c589a42a09f40e2f25cc34, type: 3}
+--- !u!54 &1938326849184484164
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858391797066}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858406323221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,7 +1645,8 @@ GameObject:
   - component: {fileID: 6093741858403150195}
   - component: {fileID: 6093741858404298535}
   - component: {fileID: 6085783551274159991}
-  m_Layer: 0
+  - component: {fileID: 1938326848443382581}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1415,7 +1666,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 58
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6093741858403150195
 MeshFilter:
@@ -1481,6 +1732,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326848443382581
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858406323221}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858444737750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,7 +1760,7 @@ GameObject:
   - component: {fileID: 6093741858447869392}
   - component: {fileID: 6093741858446883234}
   - component: {fileID: 6085492395319634380}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,7 +1858,7 @@ GameObject:
   - component: {fileID: 6093741858524412420}
   - component: {fileID: 6093741858525467902}
   - component: {fileID: 6085762212427600152}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,7 +1956,7 @@ GameObject:
   - component: {fileID: 6093741858583466457}
   - component: {fileID: 6093741858584440235}
   - component: {fileID: 6085492394913119685}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1976,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 59
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6093741858583466457
 MeshFilter:
@@ -1786,7 +2053,7 @@ GameObject:
   - component: {fileID: 6093741858595201011}
   - component: {fileID: 6093741858591809319}
   - component: {fileID: 6093741858592882895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Prop_Shipwreck_03_Sails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1880,7 +2147,8 @@ GameObject:
   - component: {fileID: 6086391207537145903}
   - component: {fileID: 6085141022437130065}
   - component: {fileID: 6085669391105233153}
-  m_Layer: 0
+  - component: {fileID: 1938326848406682968}
+  m_Layer: 10
   m_Name: SM_Prop_Shipwreck_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1901,7 +2169,7 @@ Transform:
   m_Children:
   - {fileID: 6093741858595201011}
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 57
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: -25.544, y: 148.873, z: 0}
 --- !u!33 &6093741858591782647
 MeshFilter:
@@ -2107,6 +2375,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43893029362897042, guid: bc23d2229467d7a48b7c53965d94d89e, type: 2}
+--- !u!54 &1938326848406682968
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858594902167}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858599639094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,7 +2403,7 @@ GameObject:
   - component: {fileID: 6093741858602787120}
   - component: {fileID: 6093741858601819458}
   - component: {fileID: 6085492394895756588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2217,7 +2501,8 @@ GameObject:
   - component: {fileID: 6093741858607456963}
   - component: {fileID: 6093741858606384923}
   - component: {fileID: 6085139944784417563}
-  m_Layer: 0
+  - component: {fileID: 1938326848824798894}
+  m_Layer: 10
   m_Name: SM_Bld_Rickety_Dock_Platform_02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2303,6 +2588,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: eddc399e69c589a42a09f40e2f25cc34, type: 3}
+--- !u!54 &1938326848824798894
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858604427723}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858621052383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2616,7 @@ GameObject:
   - component: {fileID: 6093741858624203993}
   - component: {fileID: 6093741858623066283}
   - component: {fileID: 6085492395008426181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2415,7 +2716,7 @@ GameObject:
   - component: {fileID: 6085640858523706615}
   - component: {fileID: 6085846013101917827}
   - component: {fileID: 6086583734862626403}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Mangrove_Tree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2541,7 +2842,7 @@ GameObject:
   - component: {fileID: 6093741858636954628}
   - component: {fileID: 6093741858635879166}
   - component: {fileID: 6085762212532803352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2639,7 +2940,7 @@ GameObject:
   - component: {fileID: 6093741858638430136}
   - component: {fileID: 6093741858637422550}
   - component: {fileID: 6085763211069961316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2659,7 +2960,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 56
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: -139.659, z: 0}
 --- !u!33 &6093741858638430136
 MeshFilter:
@@ -2737,7 +3038,7 @@ GameObject:
   - component: {fileID: 6093741858641481820}
   - component: {fileID: 6093741858642558630}
   - component: {fileID: 6085762212511202112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2835,7 +3136,8 @@ GameObject:
   - component: {fileID: 6093741858659794049}
   - component: {fileID: 6093741858658843349}
   - component: {fileID: 6085783551528704645}
-  m_Layer: 0
+  - component: {fileID: 1938326849385565954}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2921,6 +3223,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326849385565954
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858660860391}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858665209791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,7 +3251,8 @@ GameObject:
   - component: {fileID: 6093741858664194777}
   - component: {fileID: 6093741858663048333}
   - component: {fileID: 6085783551516296413}
-  m_Layer: 0
+  - component: {fileID: 1938326849458869310}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3019,6 +3338,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326849458869310
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858665209791}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858743406048
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,7 +3365,7 @@ GameObject:
   - component: {fileID: 6093741858743304950}
   - component: {fileID: 6093741858744644940}
   - component: {fileID: 6093741858745617906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Flowers_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3114,7 +3449,8 @@ GameObject:
   - component: {fileID: 6093741858769780908}
   - component: {fileID: 6093741858770476532}
   - component: {fileID: 6085974781038063396}
-  m_Layer: 0
+  - component: {fileID: 1938326849223619857}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3200,6 +3536,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b5a9fe27f6d8cb0409b973910bb5505a, type: 3}
+--- !u!54 &1938326849223619857
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858768774296}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858823869620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,7 +3564,7 @@ GameObject:
   - component: {fileID: 6093741858822892268}
   - component: {fileID: 6093741858821873868}
   - component: {fileID: 6085492401924422208}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3310,7 +3662,8 @@ GameObject:
   - component: {fileID: 6093741858833998043}
   - component: {fileID: 6093741858833023157}
   - component: {fileID: 6085763212888763143}
-  m_Layer: 0
+  - component: {fileID: 1938326849266237220}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_04 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3396,6 +3749,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 421fd44f2bb5fcf43b47ba898ed96df1, type: 3}
+--- !u!54 &1938326849266237220
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741858830835015}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741858843220912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3408,7 +3777,7 @@ GameObject:
   - component: {fileID: 6093741858846368438}
   - component: {fileID: 6093741858845236932}
   - component: {fileID: 6085492394652831402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3505,7 +3874,7 @@ GameObject:
   - component: {fileID: 6093741858874022668}
   - component: {fileID: 6093741858874776478}
   - component: {fileID: 6093741858876195322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Flowers_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3589,7 +3958,7 @@ GameObject:
   - component: {fileID: 6093741858905515393}
   - component: {fileID: 6093741858904443771}
   - component: {fileID: 6085762213875109533}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3686,7 +4055,7 @@ GameObject:
   - component: {fileID: 6093741858922969028}
   - component: {fileID: 6093741858926477438}
   - component: {fileID: 6093741858925377728}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Flowers_01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3770,7 +4139,7 @@ GameObject:
   - component: {fileID: 6093741858935133765}
   - component: {fileID: 6093741858936105527}
   - component: {fileID: 6085492394695408217}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3790,7 +4159,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 60
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6093741858935133765
 MeshFilter:
@@ -3868,7 +4237,7 @@ GameObject:
   - component: {fileID: 6093741858946687845}
   - component: {fileID: 6093741858945720087}
   - component: {fileID: 6085492394686074745}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3966,7 +4335,7 @@ GameObject:
   - component: {fileID: 6093741859026963351}
   - component: {fileID: 6093741859026068323}
   - component: {fileID: 6085160299727821563}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Rock_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4064,7 +4433,8 @@ GameObject:
   - component: {fileID: 6093741859083404934}
   - component: {fileID: 6093741859082838154}
   - component: {fileID: 6086533796225680918}
-  m_Layer: 0
+  - component: {fileID: 1938326847987326293}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4150,6 +4520,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4034c2997372dbc4aabd01b166acb78e, type: 3}
+--- !u!54 &1938326847987326293
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741859084514448}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741859146808604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,7 +4548,7 @@ GameObject:
   - component: {fileID: 6093741859147742620}
   - component: {fileID: 6093741859148781638}
   - component: {fileID: 6085554361910249884}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Prop_TreasurePile_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4177,12 +4563,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6093741859146808604}
   m_LocalRotation: {x: -0, y: -0, z: -0.027120918, w: 0.9996322}
-  m_LocalPosition: {x: -141.86896, y: 28.677708, z: -222.40344}
+  m_LocalPosition: {x: -141.07, y: 28.66, z: -224.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 54
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.108}
 --- !u!33 &6093741859147742620
 MeshFilter:
@@ -4260,7 +4646,7 @@ GameObject:
   - component: {fileID: 6093741859154185166}
   - component: {fileID: 6093741859153126708}
   - component: {fileID: 6085762214229762258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Bld_Shanty_Roof_05 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4358,7 +4744,7 @@ GameObject:
   - component: {fileID: 6093741859247686461}
   - component: {fileID: 6093741859248892873}
   - component: {fileID: 6085160299546939985}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Rock_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4456,7 +4842,7 @@ GameObject:
   - component: {fileID: 6093741859288006007}
   - component: {fileID: 6093741859289121029}
   - component: {fileID: 6085492394476884331}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4554,7 +4940,8 @@ GameObject:
   - component: {fileID: 6093741859337896799}
   - component: {fileID: 6093741859338970759}
   - component: {fileID: 6085139946582061703}
-  m_Layer: 0
+  - component: {fileID: 1938326847500914483}
+  m_Layer: 10
   m_Name: SM_Bld_Rickety_Dock_Platform_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4640,6 +5027,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: eddc399e69c589a42a09f40e2f25cc34, type: 3}
+--- !u!54 &1938326847500914483
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741859340929111}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741859442378745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4651,7 +5054,7 @@ GameObject:
   - component: {fileID: 6093741859442079141}
   - component: {fileID: 6093741859439136527}
   - component: {fileID: 6093741859440125183}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmBush_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4735,7 +5138,7 @@ GameObject:
   - component: {fileID: 6093741859523998323}
   - component: {fileID: 6093741859522891265}
   - component: {fileID: 6085492394243120751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4833,7 +5236,8 @@ GameObject:
   - component: {fileID: 6093741859632431244}
   - component: {fileID: 6093741859631285976}
   - component: {fileID: 6085783550555137672}
-  m_Layer: 0
+  - component: {fileID: 1938326848596905619}
+  m_Layer: 10
   m_Name: SM_Env_Rock_Huge_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4919,6 +5323,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ee789e7286a65894c882af3d22b75b76, type: 3}
+--- !u!54 &1938326848596905619
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741859633462762}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741859718657190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,7 +5351,7 @@ GameObject:
   - component: {fileID: 6093741859715501472}
   - component: {fileID: 6093741859716477394}
   - component: {fileID: 6085492393915556284}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5029,7 +5449,7 @@ GameObject:
   - component: {fileID: 6093741859754897098}
   - component: {fileID: 6093741859753840092}
   - component: {fileID: 6085582058341969684}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Prop_TreasurePile_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5049,7 +5469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 52
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.659}
 --- !u!33 &6093741859754897098
 MeshFilter:
@@ -5127,7 +5547,7 @@ GameObject:
   - component: {fileID: 6093741859759147923}
   - component: {fileID: 6093741859758028769}
   - component: {fileID: 6085492393874270095}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5225,7 +5645,7 @@ GameObject:
   - component: {fileID: 6093741859764507041}
   - component: {fileID: 6093741859763426165}
   - component: {fileID: 6085192827944018247}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5323,7 +5743,7 @@ GameObject:
   - component: {fileID: 6093741859805368427}
   - component: {fileID: 6093741859806450367}
   - component: {fileID: 6085192827917705357}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_PalmTree_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5421,7 +5841,8 @@ GameObject:
   - component: {fileID: 6093741859823372489}
   - component: {fileID: 6093741859822389247}
   - component: {fileID: 6085672146726371037}
-  m_Layer: 0
+  - component: {fileID: 1938326848102727007}
+  m_Layer: 10
   m_Name: SM_Bld_Dock_Bridge_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5507,6 +5928,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43559080558914170, guid: 519de3d1988f256418569e366aa37f4b, type: 2}
+--- !u!54 &1938326848102727007
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741859820123709}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741859879709247
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,7 +5956,8 @@ GameObject:
   - component: {fileID: 6093741859882705207}
   - component: {fileID: 6093741859881665775}
   - component: {fileID: 6085139946059796719}
-  m_Layer: 0
+  - component: {fileID: 1938326847473927610}
+  m_Layer: 10
   m_Name: SM_Bld_Rickety_Dock_Platform_02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5605,6 +6043,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: eddc399e69c589a42a09f40e2f25cc34, type: 3}
+--- !u!54 &1938326847473927610
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093741859879709247}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6093741859891764552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,7 +6071,7 @@ GameObject:
   - component: {fileID: 6093741859894879812}
   - component: {fileID: 6093741859893910726}
   - component: {fileID: 6085841715660531858}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Env_Rock_Skull_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5635,9 +6089,10 @@ Transform:
   m_LocalPosition: {x: -142.59, y: 30.14, z: -216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5395320516105937575}
   m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 61
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: -156.455, z: 0}
 --- !u!33 &6093741859894879812
 MeshFilter:
@@ -5716,7 +6171,7 @@ GameObject:
   - component: {fileID: 6859105025348237448}
   - component: {fileID: 6859105025348237449}
   - component: {fileID: 6859105025348237450}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5813,7 +6268,7 @@ GameObject:
   - component: {fileID: 6803549131509008085}
   - component: {fileID: 6781307479570456289}
   - component: {fileID: 6788778284260509793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ChestTD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5896,7 +6351,7 @@ GameObject:
   - component: {fileID: 6803637101432541547}
   - component: {fileID: 6781444101732873883}
   - component: {fileID: 6788627186553564257}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ChestBD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5982,7 +6437,7 @@ GameObject:
   - component: {fileID: 8524860638453480828}
   - component: {fileID: 8524860638453480830}
   - component: {fileID: 5323483089870821400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6001,8 +6456,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 49
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860638452468683
 MeshFilter:
@@ -6095,6 +6550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
 --- !u!1 &8524860638934745368
 GameObject:
   m_ObjectHideFlags: 0
@@ -6109,7 +6565,7 @@ GameObject:
   - component: {fileID: 8524860638932733629}
   - component: {fileID: 8524860638932733631}
   - component: {fileID: 5323483090054392793}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6124,12 +6580,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524860638934745368}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -142.09692, y: 28.787785, z: -224.22632}
+  m_LocalPosition: {x: -143.38, y: 29.169998, z: -223.595}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 46
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860638933710858
 MeshFilter:
@@ -6222,6 +6678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
 --- !u!1 &8524860639520370156
 GameObject:
   m_ObjectHideFlags: 0
@@ -6236,7 +6693,7 @@ GameObject:
   - component: {fileID: 8524860639522579017}
   - component: {fileID: 8524860639522579019}
   - component: {fileID: 5323483088792438573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6251,12 +6708,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524860639520370156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -140.65692, y: 28.623589, z: -220.27484}
+  m_LocalPosition: {x: -145.69, y: 29.599998, z: -218.83002}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 47
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860639521412350
 MeshFilter:
@@ -6349,6 +6806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
 --- !u!1 &8524860639793162222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6363,7 +6821,7 @@ GameObject:
   - component: {fileID: 8524860639795308619}
   - component: {fileID: 8524860639795308617}
   - component: {fileID: 5323483089064906031}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6378,12 +6836,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524860639793162222}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -147.70755, y: 29.39233, z: -219.05603}
+  m_LocalPosition: {x: -144.93, y: 29.809998, z: -221.54999}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 50
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860639794208508
 MeshFilter:
@@ -6476,6 +6934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
 --- !u!1 &8524860640362029635
 GameObject:
   m_ObjectHideFlags: 0
@@ -6490,7 +6949,7 @@ GameObject:
   - component: {fileID: 8524860640359951846}
   - component: {fileID: 8524860640359951844}
   - component: {fileID: 5323483089633740930}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6505,12 +6964,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524860640362029635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -143.46204, y: 29.053112, z: -222.11713}
+  m_LocalPosition: {x: -143.46204, y: 29.317001, z: -222.11713}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 51
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860640358882129
 MeshFilter:
@@ -6603,6 +7062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
 --- !u!1 &8524860640484638379
 GameObject:
   m_ObjectHideFlags: 0
@@ -6617,7 +7077,7 @@ GameObject:
   - component: {fileID: 8524860640486650126}
   - component: {fileID: 8524860640486650124}
   - component: {fileID: 5323483089456616554}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Large Coin Pile (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6632,12 +7092,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8524860640484638379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -148.46552, y: 29.466614, z: -219.59308}
+  m_LocalPosition: {x: -144.34, y: 29.419998, z: -219.58002}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7010221738542292572}
-  m_RootOrder: 48
+  m_Father: {fileID: 6512581083151436533}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8524860640487770041
 MeshFilter:
@@ -6730,3 +7190,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 11a838cae73314e4a8105292266cc073, type: 2}
+  despawn: 0
+--- !u!1001 &1938326848488036150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6093741859891454972}
+    m_Modifications:
+    - target: {fileID: 5766391565566375312, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_Name
+      value: Objective Icon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375312, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+--- !u!4 &5395320516105937575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
+  m_PrefabInstance: {fileID: 1938326848488036150}
+  m_PrefabAsset: {fileID: 0}
