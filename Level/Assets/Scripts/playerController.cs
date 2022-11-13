@@ -309,7 +309,7 @@ public class playerController : MonoBehaviour
         }
 
         //Run
-        if (canSprint == true && move.x != 0)
+        if (canSprint == true && move.x != 0 && anim.GetBool("IsCrouched") == false)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
