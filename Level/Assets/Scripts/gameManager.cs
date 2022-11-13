@@ -25,7 +25,7 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject helpMenu;
     public GameObject deathMenu;
-    public GameObject menuCurrentlyOpen;
+    public bool menuCurrentlyOpen;
 
     [Header("----- Player UI -----")]
     public GameObject acObject;
@@ -114,7 +114,9 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf && !helpMenu.activeSelf && !NPCManager.instance.shopUI.activeSelf)
+        MenuCurrentlyOpen();
+
+        if (Input.GetButtonDown("Cancel") && !menuCurrentlyOpen)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -228,5 +230,30 @@ public class gameManager : MonoBehaviour
         {
             ammoArray[i].enabled = true;
         }
+    }
+
+    public bool MenuCurrentlyOpen()
+    {
+        menuCurrentlyOpen = false;
+
+        if(deathMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (npcDialogue.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (shopInventory.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (settingsMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (helpMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (NPCManager.instance.shopUI.activeSelf)
+            menuCurrentlyOpen = true;
+
+        return menuCurrentlyOpen;
     }
 }
