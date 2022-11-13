@@ -31,6 +31,8 @@ public class gameManager : MonoBehaviour
     public GameObject acObject;
     public GameObject playerDamageFlash;
     public GameObject playerDamageIndicator;
+    public GameObject playerHealthFlash;
+    public GameObject playerHealthIndicator;
     public GameObject underwaterIndicator;
     public GameObject map;
     public GameObject spawnPosition;
@@ -130,8 +132,13 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
-   
 
+    public IEnumerator playerHeal()
+    {
+        playerHealthFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerHealthFlash.SetActive(false);
+    }
     public IEnumerator playerDamage()
     {
         playerDamageFlash.SetActive(true);

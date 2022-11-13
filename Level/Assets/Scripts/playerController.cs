@@ -491,7 +491,24 @@ public class playerController : MonoBehaviour
         }
 
     }
+    public void GetHealth(float dmg)
+    {
+        if (HP + dmg > HPOrig)
+            HP = HPOrig;
+        HP -= dmg;
+        lerpTime = 0f;
 
+        StartCoroutine(gameManager.instance.playerHeal());
+        if (HP <= 0)
+        {
+            gameManager.instance.Crosshair.SetActive(false);
+            gameManager.instance.playerHealthFlash.SetActive(false);
+
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
+
+    }
     public void updatePlayerHUD()
     {
         //Health bar updates
