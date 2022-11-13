@@ -38,6 +38,7 @@ public class TutorialManager : MonoBehaviour
     [Header("----- Spawns -----")]
     public GameObject basicSpawn;
     public GameObject advanceSpawn;
+    public GameObject inventorySpawn;
 
     [Header("----- Objectives -----")]
     public GameObject basicPoint;
@@ -115,12 +116,12 @@ public class TutorialManager : MonoBehaviour
             advanceMoveUIObj.SetActive(true);
             objectiveText.text = "Now let's take a look at some more " + '"' + "advanced" + '"' + " techniques. Use [SPACE] to Jump, Hold [SHIFT] while moving to sprint, and use [L-CTRL] to crouch";
         }
-        /*else if (inventoryTrigger)
+        else if (inventoryTrigger)
         {
             inventoryUIObj.SetActive(true);
             objectiveText.text = "Open your inventory by pressing [I]. Click (+) in the corner of your ammo to equip it. It'll now be in your active inventory. You can unequip with (-). Health pickups work the same." +
-                "You can use ammo and health by pressing [3] and [4].";
-        }*/
+                "You can use AMMO by pressing [3] and HEALTH by pressing [4].";
+        }
         /*else if (meleeTrigger)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -197,7 +198,7 @@ public class TutorialManager : MonoBehaviour
             ammoBag.SetActive(true);
             advanceMoveTrigger = false;
             objectiveText.text = "Now, we all know that a pirate is only as good as the things he carries. Look for the floating bag of ammo up ahead and walk over it to pick it up. Then come find me!";
-            nextPoint.transform.position = inventoryPoint.transform.position;
+            nextPoint.transform.position = inventorySpawn.transform.position;
         }
         if (tutorialProgress == 3)
         {
