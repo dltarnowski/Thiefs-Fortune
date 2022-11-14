@@ -208,7 +208,7 @@ public class TutorialManager : MonoBehaviour
 
         if (!finalTrigger && tutorialProgress <= 5)
         {
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(.6f);
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
