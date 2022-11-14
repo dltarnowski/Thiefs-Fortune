@@ -31,7 +31,7 @@ public class TutorialManager : MonoBehaviour
     public bool basicMoveTrigger;
     public bool advanceMoveTrigger;
     public bool inventoryTrigger;
-    public bool meleeTrigger;
+    public bool combatTrigger;
     public bool rangedTrigger;
     public bool finalTrigger;
 
@@ -39,6 +39,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject basicSpawn;
     public GameObject advanceSpawn;
     public GameObject inventorySpawn;
+    public GameObject combatSpawn;
+    public GameObject finalSpawn;
 
     [Header("----- Objectives -----")]
     public GameObject basicPoint;
@@ -122,59 +124,33 @@ public class TutorialManager : MonoBehaviour
             objectiveText.text = "Open your inventory by pressing [I]. Click (+) in the corner of your ammo to equip it. It'll now be in your active inventory. You can unequip with (-). Health pickups work the same." +
                 "You can use AMMO by pressing [3] and HEALTH by pressing [4].";
         }
-        /*else if (meleeTrigger)
+        else if (combatTrigger)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
-
-            meleeSpawnerObj.SetActive(true);
 
             meleeUIObj.SetActive(true);
-            objectiveText.text = "Make sure your melee weapon is equipped by pressing [2]. Kill the enemies by centering your body to the enemy and pressing the [L-MOUSE BUTTON]";
-        }*/
-        /*else if (rangedTrigger)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            gameManager.instance.cameraScript.enabled = true;
-
-            rangedSpawnerObj.SetActive(true);
-            skull.SetActive(false);
-
             rangedUIObj.SetActive(true);
-            objectiveText.text = "Make sure your ranged weapon is equipped by pressing [1]. Kill the enemies by lining up your reticle and pressing the [L-MOUSE BUTTON]";
-        }*/
+            objectiveText.text = "Welcome to your very own Combat Range! On the left is your melee combat zone and to the right is ranged. Switch between weapons in your active inventory using [1] and [2]. Try to land two of each attack!";
+        }
     }
 
     public void Continue()
     {
-        if (!finalTrigger)
-        {
-            meleeTrigger = false;
-            rangedTrigger = true;
 
-            continueButton.SetActive(false);
-            beginButton.SetActive(true);
+        beginButton.SetActive(false);
+        continueButton.SetActive(false);
+        objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the HELP OPTION in your PAUSE>SETTINGS MENU for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
 
-            meleeUIObj.SetActive(false);
-            objectiveName.text = "Ranged Combat";
-            objectiveText.text = "Sometimes, a gun is best. Press begin to learn how to use ranged attacks!";
-        }
-        else
-        {
-            beginButton.SetActive(false);
-            continueButton.SetActive(false);
-            objectiveText.text = "Also? I just showed you the basics. You'll wanna take a look at the HELP OPTION in your PAUSE>SETTINGS MENU for all of the controls. I almost forgot! The boat behind me is yours. Safe travels and good luck!";
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        gameManager.instance.cameraScript.enabled = true;
+        gameManager.instance.CurrentObjectiveMiniMapIcon();
+        tutorialProgress = 6;
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            gameManager.instance.cameraScript.enabled = true;
-            gameManager.instance.CurrentObjectiveMiniMapIcon();
-            tutorialProgress = 6;
+        StartCoroutine(CleanUp());
 
-            StartCoroutine(CleanUp());
-        }
     }
 
     public void Complete()
@@ -208,14 +184,15 @@ public class TutorialManager : MonoBehaviour
             inventoryTrigger = false;
 
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
-            nextPoint.transform.position = combatPoint.transform.position;
+            nextPoint.transform.position = combatSpawn.transform.position;
         }
-        if (tutorialProgress == 5)
+        if (tutorialProgress == 4)
         {
             completeButton.SetActive(false);
             rangedUIObj.SetActive(false);
-            objectiveText.text = "You're quite the sharpshooter! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know!";
-            nextPoint.transform.position = finalPoint.transform.position;
+            meleeUIObj.SetActive(false);
+            objectiveText.text = "Looks like you can handle yourself just fine! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know! Also? Come back anytime and practice!";
+            nextPoint.transform.position = finalSpawn.transform.position;
             rangedTrigger = false;
             finalPoint.SetActive(true);
         }
@@ -225,7 +202,7 @@ public class TutorialManager : MonoBehaviour
     public IEnumerator CleanUp()
     {   
         objectivesComplete = 0;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.3f);
         skull.SetActive(false);
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
@@ -235,7 +212,7 @@ public class TutorialManager : MonoBehaviour
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         dialogueBox.SetActive(false);
 
         tutorialActive = false;
@@ -247,5 +224,8 @@ public class TutorialManager : MonoBehaviour
         gameManager.instance.playerScript.anim.SetBool("IsRanged", false);
         gameManager.instance.playerScript.anim.SetBool("IsWalking", false);
         gameManager.instance.playerScript.anim.SetBool("IsInWater", false);
+        gameManager.instance.player.GetComponent<CharacterController>().height = 2;
+        gameManager.instance.playerScript.anim.SetBool("IsCrouched", false);
+        gameManager.instance.playerScript.anim.ResetTrigger("IsJumping");
     }
 }

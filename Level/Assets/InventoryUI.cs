@@ -31,7 +31,7 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
 
-            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.meleeTrigger && inventoryUI.activeSelf)
+            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.combatTrigger && inventoryUI.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
@@ -39,6 +39,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+                gameManager.instance.cameraScript.enabled = true;
+
                 if (inventoryUI.activeSelf)
                     gameManager.instance.cursorLockPause();
                 else
