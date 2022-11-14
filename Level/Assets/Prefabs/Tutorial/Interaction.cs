@@ -117,10 +117,12 @@ public class Interaction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (TutorialManager.instance.combatTrigger && TutorialManager.instance.tutorialActive)
-                gameManager.instance.hint.SetActive(false);
-            else if (!TutorialManager.instance.tutorialActive)
-                gameManager.instance.hint.SetActive(true);
+            if (TutorialManager.instance.dialogueBox.activeSelf)
+            {
+                TutorialManager.instance.dialogueBox.SetActive(false);
+            } 
+           
+            gameManager.instance.hint.SetActive(true);
 
             playerInRange = true;
         }
