@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ConsumableInventory : MonoBehaviour
@@ -31,16 +29,12 @@ public class ConsumableInventory : MonoBehaviour
 
     public bool Add(Consumable item)
     {
-        if (!item.isDefaultItem)
-        {
-            if (items.Count >= space)
-                return false;
-            items.Add(item);
+        if (items.Count >= space)
+            return false;
+        items.Add(item);
 
-            if (onItemChangedCallback != null)
-                onItemChangedCallback.Invoke();
-
-        }
+        if (onItemChangedCallback != null)
+            onItemChangedCallback.Invoke();
         return true;
     }
 

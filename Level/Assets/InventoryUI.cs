@@ -27,11 +27,11 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") && TutorialManager.instance.tutorialProgress >= 2)
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
 
-            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.meleeTrigger && inventoryUI.activeSelf)
+            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.combatTrigger && inventoryUI.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
@@ -39,6 +39,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+                gameManager.instance.cameraScript.enabled = true;
+
                 if (inventoryUI.activeSelf)
                     gameManager.instance.cursorLockPause();
                 else
@@ -57,7 +59,9 @@ public class InventoryUI : MonoBehaviour
                 slots[i].AddItem(inventory.items[i]);
             }
             else
+            {
                 slots[i].ClearSlot();
+            }
         }
 
         for(int i = 0; i < activeSlots.Length; i++)

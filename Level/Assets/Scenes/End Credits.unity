@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44489563, g: 0.4944619, b: 0.57362133, a: 1}
+  m_Sun: {fileID: 226692270}
+  m_IndirectSpecularColor: {r: 0.4419611, g: 0.49092418, b: 0.5708692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!108 &226692270 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
+  m_PrefabInstance: {fileID: 1179690663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &325132226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,7 +222,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000076292, y: -785}
-  m_SizeDelta: {x: 695.6823, y: 462.6397}
+  m_SizeDelta: {x: 695.6823, y: 1922.3931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &453466350
 Animator:
@@ -259,12 +264,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "David - Level Designer\n\nNick - Enemy AI\n\nPatrick - Player Controller,
-    Sound manager\n\nAustin - Weapons Manager\n\nShemaiah - UI Designer\n\n                           
-    Assets\n\nAnimations - BlinkStudios and Kevin Iglesias\n\nDay Night cycle - Pleebie
-    Jeebies \n\nModels - AurynSky and Synty Studios \n\nSounds - Gamemaster Audio
-    \n\nPartical effects - Polygonal Stuff\n\nWater model - Polygonal Stuff\n\nMarine
-    UI - ClayMan\n\nMap arrow sprite - Pixel Play\n"
+  m_text: "UI - David, Nick, Shemaiah\n\nMap/Minimap - Austin\n\nHazards/Obstacles
+    - Austin\n\nTurorial - David\n\nInventory System - Nick/David\n\nItem System
+    - Nick\n\nWeapons and Pickups - Nick/Austin\n\nLevel Design - David/Austin\n\nEnemies
+    - Nick\n\nShip - Nick\n\nPlayer - Patrick/Nick/Austin\n\nSettings - Shemaiah\n\nCutscenes
+    - Shemaiah\n\nUI Designer - Shemaiah\n\n                            Assets\n\nAnimations
+    - BlinkStudios and Kevin Iglesias\n\nDay Night cycle - Pleebie Jeebies \n\nModels
+    - AurynSky and Synty Studios \n\nSounds - Gamemaster Audio \n\nPartical effects
+    - Polygonal Stuff\n\nWater model - Polygonal Stuff\n\nMarine UI - ClayMan\n\nMap
+    arrow sprite - Pixel Play\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -447,6 +455,7 @@ GameObject:
   - component: {fileID: 564478908}
   - component: {fileID: 564478907}
   - component: {fileID: 564478910}
+  - component: {fileID: 564478911}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -533,8 +542,179 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022f74c949f7c2b4eba02432fac59a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 15
+  transitionTime: 20
   SceneSelect: 3
+--- !u!114 &564478911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564478906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e37bd998b26a244815cde9fdd302d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skip: 0
+  transitionTime: 20
+  SceneSelect: 3
+--- !u!1 &633724475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633724476}
+  - component: {fileID: 633724478}
+  - component: {fileID: 633724477}
+  - component: {fileID: 633724479}
+  m_Layer: 5
+  m_Name: Skip Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &633724476
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633724475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 662850707}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 545.0001, y: -260.5}
+  m_SizeDelta: {x: 0, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &633724477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633724475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: PRESS ANY KEY TO SKIP
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -241.14716, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &633724478
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633724475}
+  m_CullTransparentMesh: 1
+--- !u!95 &633724479
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633724475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17c6eef2d0f469b458a5968aabee3184, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &662850706
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +748,7 @@ RectTransform:
   m_Children:
   - {fileID: 739537123}
   - {fileID: 453466349}
+  - {fileID: 633724476}
   m_Father: {fileID: 564478909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -768,46 +949,6 @@ PrefabInstance:
     - target: {fileID: 2851848976138063795, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_Name
       value: Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -50.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -24.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.54134345
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5202935
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.4653354
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.46872705
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 88.272
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -32.189
-      objectReference: {fileID: 0}
-    - target: {fileID: 8712553000222513736, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 50.495
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}

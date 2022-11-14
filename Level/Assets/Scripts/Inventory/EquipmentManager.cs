@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -26,6 +24,8 @@ public class EquipmentManager : MonoBehaviour
     {
         int equipSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[equipSlots];
+        starterGun = Instantiate(starterGun);
+        starterSword = Instantiate(starterSword);
         Equip(starterGun);
         Equip(starterSword);
     }

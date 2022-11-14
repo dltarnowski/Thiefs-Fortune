@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class cannonEnemyAI : enemyAI
 {
@@ -23,8 +21,6 @@ public class cannonEnemyAI : enemyAI
 
     void Start()
     {
-        if (canRoam)
-            roam();
         if (cannon != null)
             cannon.transform.parent = transform;
     }
@@ -45,10 +41,8 @@ public class cannonEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(shoot(), isShooting);
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
                     roam();
-                else if (!canRoam)
-                    facePlayer();
             }
         }
     }
@@ -67,13 +61,16 @@ public class cannonEnemyAI : enemyAI
 
     IEnumerator shoot()
     {
-        isShooting = true;
-        anim.SetTrigger("attack");
-        aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
-        bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
-        Instantiate(bullet, attackPos.transform.position, transform.rotation);
-        yield return new WaitForSeconds(gunStat.speed);
-        isShooting = false;
+        if(!isShooting)
+        {
+            isShooting = true;
+            anim.SetTrigger("attack");
+            aud.PlayOneShot(gunStat.sound, enemyWeaponAudVol);
+            bullet.GetComponent<Bullet>().damage = gunStat.strength * (1 + gameManager.instance.blackspot.blackSpotMultiplier);
+            Instantiate(bullet, attackPos.transform.position, transform.rotation);
+            yield return new WaitForSeconds(gunStat.speed);
+            isShooting = false;
+        }
     }
 
 }

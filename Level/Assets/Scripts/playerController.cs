@@ -1,15 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 public class playerController : MonoBehaviour
 {
 
     [Header("----- Components -----")]
-    [SerializeField] CharacterController controller;
+    public CharacterController controller;
     [SerializeField] GameObject thirdPersonCam_Obj;
     [SerializeField] GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
@@ -63,8 +60,8 @@ public class playerController : MonoBehaviour
     float currVolume;
     float currGunVolume;
 
-    private Vector3 playerVelocity;
-    private int timesJumped;
+    public Vector3 playerVelocity;
+
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
@@ -81,7 +78,7 @@ public class playerController : MonoBehaviour
     float jumpBufferCounter;
     public int barrel;
     private Color staminColor;
-    bool mapActive;
+    int mapActive;
     public bool isUnderwater;
     void Start()
     {
@@ -93,11 +90,11 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
+        jumpHeightOrig = jumpHeight;
+        gravityValueOrig = gravityValue;
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
-        jumpHeightOrig = jumpHeight;
-        gravityValueOrig = gravityValue;
     }
 
 
@@ -146,7 +143,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
@@ -155,21 +152,44 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.ReduceAmmo();
                 //gameManager.instance.ammoCount = gunStats.ammoCount;
 
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                if (thirdPersonCam_Obj.activeSelf)
                 {
-                    //  -------      WAITING ON IDAMAGE      -------
-                    if (hit.collider.GetComponent<IDamage>() != null)
+                    RaycastHit hit;
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
                     {
-                        if (hit.GetType() == typeof(SphereCollider) && !hit.collider.isTrigger)
-                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength * (int)headShotMultiplier);
-                        else
-                            hit.collider.GetComponent<IDamage>().takeDamage((int)gunStats.strength);
-                        Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        }
                     }
                 }
-
+                else if (firstPersonCam_Obj.activeSelf)
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(firstPersonCam_Cam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                    {
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        }
+                    }
+                }
                 aud.PlayOneShot(gunStats.sound);
+
                 gameManager.instance.recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStats.muzzleLocations[barrel].position;
                 gunSmoke.Play();
@@ -212,16 +232,18 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", true);
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            transform.GetComponent<CharacterController>().height = 1.4f;
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", false);
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            transform.GetComponent<CharacterController>().height = 2;
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
 
         //Move
@@ -274,20 +296,20 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (Input.GetButtonUp("Jump") && playerVelocity.y > 0 && !isUnderwater)
+        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
             coyoteTimeCounter = 0;
         }
-        else if (Input.GetButton("Jump") && isUnderwater)
+        else if (isUnderwater && Input.GetButton("Jump"))
         {
-            if(playerVelocity.y <= maxSwimSpeed)
+            if (playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
         }
 
         //Run
-        if (canSprint == true)
+        if (canSprint == true && move.x != 0 && anim.GetBool("IsCrouched") == false)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -327,13 +349,20 @@ public class playerController : MonoBehaviour
             }
         }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        if (isUnderwater)
+            playerVelocity.y += gravityValue / 3 * Time.deltaTime;
+        else
+            playerVelocity.y += gravityValue * Time.deltaTime;
+
+        if (isUnderwater)
+            controller.Move(playerVelocity / 3 * Time.deltaTime);
+        else
+            controller.Move(playerVelocity * Time.deltaTime);
     }
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -346,7 +375,7 @@ public class playerController : MonoBehaviour
 
             playingSteps = false;
         }
-        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -362,7 +391,7 @@ public class playerController : MonoBehaviour
     }
     IEnumerator swing()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isSwinging)
             {
@@ -406,33 +435,39 @@ public class playerController : MonoBehaviour
             EquipmentManager.instance.currentEquipment[1].Use();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
+            //if (EquipmentManager.instance.currentEquipment[2].numOfItems == 0)
             EquipmentManager.instance.currentEquipment[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null && HP < HPOrig)
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
     public void MapSelect()
     {
-        if (!mapActive)
+        if (!gameManager.instance.map.activeSelf && mapActive == 0)
         {
             if (Input.GetKeyDown(KeyCode.M))
             {
                 gameManager.instance.map.SetActive(true);
-                mapActive = true;
-                miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                mapActive++;
+                miniMapIcon.transform.localScale = new Vector3(10, 10, 10);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(50, 50, 50);
                 Time.timeScale = 0;
             }
         }
-        else
+        else if (gameManager.instance.map.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
+            if ((Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape)) && mapActive == 0)
             {
                 gameManager.instance.map.SetActive(false);
-                mapActive = false;
-                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                mapActive++;
+                miniMapIcon.transform.localScale = new Vector3(2, 2, 2);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(10, 10, 10);
                 Time.timeScale = 1;
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.M))
+            mapActive = 0;
     }
 
     public void takeDamage(float dmg)
@@ -456,7 +491,24 @@ public class playerController : MonoBehaviour
         }
 
     }
+    public void GetHealth(float dmg)
+    {
+        if (HP + dmg > HPOrig)
+            HP = HPOrig;
+        HP -= dmg;
+        lerpTime = 0f;
 
+        StartCoroutine(gameManager.instance.playerHeal());
+        if (HP <= 0)
+        {
+            gameManager.instance.Crosshair.SetActive(false);
+            gameManager.instance.playerHealthFlash.SetActive(false);
+
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
+
+    }
     public void updatePlayerHUD()
     {
         //Health bar updates
@@ -496,6 +548,8 @@ public class playerController : MonoBehaviour
     }
     public void respawn()
     {
+        Water.instance.WaterReset();
+
         if (gameManager.instance.pauseMenu)
         {
             gameManager.instance.pauseMenu.SetActive(false);

@@ -8,13 +8,14 @@ public class Geyser : MonoBehaviour
     [SerializeField] ParticleSystem[] geyserBlast;
     [SerializeField] AudioClip geyserAudio;
     [SerializeField] Vector3 point;
+    [SerializeField] float shootPlayerUp;
 
     AudioSource geyserAudioSource;
 
-    [SerializeField] float one;
-    [SerializeField] float two;
-    [SerializeField] float three;
-    [SerializeField] float four;
+    [SerializeField] float radius;
+    [SerializeField] float stepRadius;
+    [SerializeField] float strength;
+    [SerializeField] float stepStrength;
 
     float damage;
 
@@ -28,11 +29,11 @@ public class Geyser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        meshDeformer.Deform(point, one, two, three, four, Vector3.down);
+        meshDeformer.Deform(point, radius, stepRadius, strength, stepStrength, Vector3.down);
     }
 
     private void OnTriggerEnter(Collider other)
-    {
+    { 
         if (other.CompareTag("Player"))
         {
             foreach (ParticleSystem geyser in geyserBlast)
@@ -41,6 +42,8 @@ public class Geyser : MonoBehaviour
             }
             geyserAudioSource.PlayOneShot(geyserAudio);
             damage = gameManager.instance.playerScript.HPOrig / 5;
+            gameManager.instance.playerScript.playerVelocity.y = shootPlayerUp;
+            gameManager.instance.playerScript.controller.Move(Vector3.up * gameManager.instance.playerScript.playerVelocity.y * Time.deltaTime);
             gameManager.instance.playerScript.takeDamage((int)damage);
         }
     }
