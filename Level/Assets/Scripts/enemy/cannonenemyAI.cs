@@ -21,8 +21,6 @@ public class cannonEnemyAI : enemyAI
 
     void Start()
     {
-        if (canRoam)
-            roam();
         if (cannon != null)
             cannon.transform.parent = transform;
     }
@@ -43,10 +41,8 @@ public class cannonEnemyAI : enemyAI
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(shoot(), isShooting);
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
                     roam();
-                else if (!canRoam)
-                    facePlayer();
             }
         }
     }
