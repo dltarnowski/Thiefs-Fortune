@@ -136,7 +136,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void Continue()
+    /*public void Continue()
     {
 
         beginButton.SetActive(false);
@@ -151,7 +151,7 @@ public class TutorialManager : MonoBehaviour
 
         StartCoroutine(CleanUp());
 
-    }
+    }*/
 
     public void Complete()
     {
@@ -191,10 +191,12 @@ public class TutorialManager : MonoBehaviour
             completeButton.SetActive(false);
             rangedUIObj.SetActive(false);
             meleeUIObj.SetActive(false);
-            objectiveText.text = "Looks like you can handle yourself just fine! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know! Also? Come back anytime and practice!";
+            //objectiveText.text = "Looks like you can handle yourself just fine! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know! Also? Come back anytime and practice!";
+            
             nextPoint.transform.position = finalSpawn.transform.position;
-            rangedTrigger = false;
-            finalPoint.SetActive(true);
+            combatTrigger = false;
+            //finalPoint.SetActive(true);
+            finalTrigger = true;
         }
 
         StartCoroutine(CleanUp());
