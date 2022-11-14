@@ -14,50 +14,23 @@ public class CombatTutorial : MonoBehaviour
     void Update()
     {
         ObjectiveCheck();
+        Debug.Log(TutorialManager.instance.objectivesComplete);
     }
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.meleeTrigger == true)
+        if (TutorialManager.instance.combatTrigger == true)
         {
-            if (TutorialManager.instance.objectivesComplete == 2)
+            if (TutorialManager.instance.objectivesComplete == 4)
             {
-                TutorialManager.instance.beginButton.SetActive(false);
-                TutorialManager.instance.continueButton.SetActive(true);
-                TutorialManager.instance.tutorialProgress = 4;
-
+                TutorialManager.instance.AnimationStop();
+                gameManager.instance.cameraScript.enabled = false;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
-                gameManager.instance.cameraScript.enabled = false;
-                TutorialManager.instance.objectiveText.text = "That was a swing and a hit, but perhaps a little close for comfort. Let's move onto some ranged attacks.";
 
-                TutorialManager.instance.objectivesComplete = 0;
-            }
-        }
-        else if (TutorialManager.instance.rangedTrigger == true)
-        {
-            if (TutorialManager.instance.rangedEnemiesLeft == 1)
-            {
-
-                TutorialManager.instance.rangedUI[0].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-            else if (TutorialManager.instance.rangedEnemiesLeft == 0)
-            {
-
-                TutorialManager.instance.rangedUI[0].color = Color.green;
-                TutorialManager.instance.objectivesComplete++;
-            }
-
-            if (TutorialManager.instance.objectivesComplete == 2)
-            {
                 TutorialManager.instance.beginButton.SetActive(false);
                 TutorialManager.instance.completeButton.SetActive(true);
-                TutorialManager.instance.tutorialProgress = 5;
-
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-                gameManager.instance.cameraScript.enabled = false;
+                TutorialManager.instance.tutorialProgress = 4;
             }
         }
     }
@@ -66,12 +39,12 @@ public class CombatTutorial : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            TutorialManager.instance.meleeTrigger = true;
+            TutorialManager.instance.combatTrigger = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        TutorialManager.instance.meleeTrigger = false;
+        TutorialManager.instance.combatTrigger = false;
     }
 }

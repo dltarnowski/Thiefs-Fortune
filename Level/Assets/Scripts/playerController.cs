@@ -233,17 +233,17 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("IsCrouched", true);
             transform.GetComponent<CharacterController>().height = 1.4f;
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", false);
             transform.GetComponent<CharacterController>().height = 2;
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
 
         //Move
