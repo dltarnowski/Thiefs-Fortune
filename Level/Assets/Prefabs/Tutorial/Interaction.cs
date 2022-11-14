@@ -77,14 +77,14 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee and ranged attacks!";
             }
-            if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
+            /*if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Final Thoughts";
                 TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
                 TutorialManager.instance.continueButton.SetActive(true);
-            }
+            }*/
         }
         else if(!playerInRange && !TutorialManager.instance.tutorialActive)
         {

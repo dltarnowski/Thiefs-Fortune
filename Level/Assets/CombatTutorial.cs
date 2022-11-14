@@ -23,6 +23,7 @@ public class CombatTutorial : MonoBehaviour
         {
             if (TutorialManager.instance.objectivesComplete == 4)
             {
+                TutorialManager.instance.objectiveText.text = "Great job! That's all I can teach you. Now to help you: The captain you're looking for was last seen on Chicken Head Enclave. You can open your map by pressing [M]. Grab that boat and be on your way!";
                 TutorialManager.instance.AnimationStop();
                 gameManager.instance.cameraScript.enabled = false;
                 Cursor.lockState = CursorLockMode.Confined;

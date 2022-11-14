@@ -18,7 +18,7 @@ public class newSpawnPos : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!changed)
+        if (!changed && other.CompareTag("Player"))
         {
             changed = true;
             gameManager.instance.spawnPosition = this.gameObject;

@@ -10,7 +10,7 @@ public class winManager : MonoBehaviour
     [SerializeField] Transform pirateLegendSpawnPos;
     [SerializeField] GameObject winUI;
     [SerializeField] public int clueCount;
-    [SerializeField] GameObject currLegend;
+    [SerializeField] public GameObject currLegend;
     bool legendSpawned;
     bool win;
     void Start()
@@ -26,6 +26,8 @@ public class winManager : MonoBehaviour
             legendSpawned = true;
             Instantiate(pirateLegend, pirateLegendSpawnPos.position, pirateLegendSpawnPos.rotation);
             currLegend = GameObject.FindGameObjectWithTag("Legend");
+            //gameManager.instance.miniMapObjectiveIcons.Add(currLegend.GetComponent<MiniMapIcons>().gameObject);
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
         if(legendSpawned && currLegend == null && !win)
         {

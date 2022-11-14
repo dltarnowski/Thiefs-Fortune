@@ -18,6 +18,7 @@ public class shipController : MonoBehaviour
     {
         if(onShip && Input.GetKeyDown(KeyCode.E))
         {
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
             gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
