@@ -212,8 +212,8 @@ public class TutorialManager : MonoBehaviour
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
-        yield return new WaitForSeconds(1.5f);
-        dialogueBox.SetActive(false);
+        /*yield return new WaitForSeconds(1.5f);
+        dialogueBox.SetActive(false);*/
 
         tutorialActive = false;
 
