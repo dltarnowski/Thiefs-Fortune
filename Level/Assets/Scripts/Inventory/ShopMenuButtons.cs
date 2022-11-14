@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class ShopMenuButtons : MonoBehaviour
     public Button buyTab;
     public Button sellTab;
 
+    bool weaponNPC;
+    bool consumeNPC;
+
     private void Awake()
     {
         instance = this; 
@@ -24,8 +28,18 @@ public class ShopMenuButtons : MonoBehaviour
     {
         NPCManager.instance.dialogue.gameObject.SetActive(false);
         NPCManager.instance.followUpDialogue.gameObject.SetActive(true);
-        winManager.instance.clueCount++;
-        gameManager.instance.CurrentObjectiveMiniMapIcon();
+
+        if (!weaponNPC && gameManager.instance.weaponCollide && winManager.instance.clueCount == 2)
+        {
+            winManager.instance.clueCount++;
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
+            weaponNPC = true;
+        }
+        if (!consumeNPC && gameManager.instance.consumeCollide && winManager.instance.clueCount == 3)
+        {
+            winManager.instance.clueCount++;
+            consumeNPC = true;
+        }
     }
 
     public void Shop()
