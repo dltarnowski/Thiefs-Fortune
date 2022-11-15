@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
+    public static Interaction instance;
     public bool playerInRange;
 
     public float facePlayerSpeed;
@@ -15,7 +16,10 @@ public class Interaction : MonoBehaviour
 
     Vector3 playerDir;
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
