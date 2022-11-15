@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 226692270}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.4419611, g: 0.49092418, b: 0.5708692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!108 &226692270 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
-  m_PrefabInstance: {fileID: 1179690663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &325132226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,8 +216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000076292, y: -785}
-  m_SizeDelta: {x: 695.6823, y: 1922.3931}
+  m_AnchoredPosition: {x: 0.0000076292, y: -968.8876}
+  m_SizeDelta: {x: 695.6823, y: 2290.1685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &453466350
 Animator:
@@ -272,7 +267,8 @@ MonoBehaviour:
     - BlinkStudios and Kevin Iglesias\n\nDay Night cycle - Pleebie Jeebies \n\nModels
     - AurynSky and Synty Studios \n\nSounds - Gamemaster Audio \n\nPartical effects
     - Polygonal Stuff\n\nWater model - Polygonal Stuff\n\nMarine UI - ClayMan\n\nMap
-    arrow sprite - Pixel Play\n"
+    arrow sprite - Pixel Play\n\n\t\t        QA\nTerrance Hall\n\nKyle Coger\n\r\nJake
+    Wilson\n\nCalvin Schmidt"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -542,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022f74c949f7c2b4eba02432fac59a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 20
+  transitionTime: 25
   SceneSelect: 3
 --- !u!114 &564478911
 MonoBehaviour:
@@ -557,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skip: 0
-  transitionTime: 20
+  transitionTime: 25
   SceneSelect: 3
 --- !u!1 &633724475
 GameObject:
@@ -898,7 +894,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 845878557, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 139725298531451193, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 139725298973317420, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 565989994569179830, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 569963055948888589, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -949,6 +961,30 @@ PrefabInstance:
     - target: {fileID: 2851848976138063795, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_Name
       value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851848976138063795, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973435965863802760, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4113680275733755104, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550027370935796129, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898291663388395863, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764335227888892534, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}

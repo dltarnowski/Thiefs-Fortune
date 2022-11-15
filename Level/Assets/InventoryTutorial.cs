@@ -18,17 +18,17 @@ public class InventoryTutorial : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.I) && TutorialManager.instance.inventoryUI[0].color != Color.green)
+        if (TutorialManager.instance.inventoryUIObj.activeSelf && Input.GetKeyDown(KeyCode.I) && TutorialManager.instance.inventoryUI[0].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.inventoryUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.equipButton && TutorialManager.instance.inventoryUI[1].color != Color.green)
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.equipButton && TutorialManager.instance.inventoryUI[1].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.inventoryUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.unequipButton && TutorialManager.instance.inventoryUI[2].color != Color.green)
+        else if (TutorialManager.instance.inventoryUIObj.activeSelf && TutorialManager.instance.unequipButton && TutorialManager.instance.inventoryUI[2].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.inventoryUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
@@ -38,6 +38,9 @@ public class InventoryTutorial : MonoBehaviour
         {
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.inventoryUIObj.SetActive(false);
+            TutorialManager.instance.inventoryPoint.SetActive(false);
+            TutorialManager.instance.inventoryTrigger = false;
             TutorialManager.instance.tutorialProgress = 3;
         }
     }

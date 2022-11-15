@@ -79,29 +79,33 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerInRange = Interaction.instance.playerInRange;
+
         if (tutorialProgress == 0)
         {
             basicPoint.SetActive(true);
         }
         if (tutorialProgress == 1)
         {
-            basicPoint.SetActive(false);
             advancePoint.SetActive(true);
         }
         if(tutorialProgress == 2)
         {
-            advancePoint.SetActive(false);
             inventoryPoint.SetActive(true);
         }
         if(tutorialProgress == 3)
         {
-            inventoryPoint.SetActive(false);
             combatPoint.SetActive(true);
+        }
+        if(tutorialProgress == 4)
+        {
+            finalPoint.SetActive(true);
         }
     }
 
     public void Begin()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
         gameManager.instance.cameraScript.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -136,8 +140,9 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    /*public void Continue()
+    public void Continue()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
 
         beginButton.SetActive(false);
         continueButton.SetActive(false);
@@ -151,38 +156,34 @@ public class TutorialManager : MonoBehaviour
 
         StartCoroutine(CleanUp());
 
-    }*/
+    }
 
     public void Complete()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameManager.instance.cameraScript.enabled = true;
 
+        tutorialActive = false;
+
         if (tutorialProgress == 1)
         {
             completeButton.SetActive(false);
-            basicMoveUIObj.SetActive(false);
-            basicMoveTrigger = false;
             objectiveText.text = "Looks like your sea legs are land legs! Find me up a ways for your next lesson!";
             nextPoint.transform.position = advanceSpawn.transform.position;
         }
         if(tutorialProgress == 2)
         {
             completeButton.SetActive(false);
-            advanceMoveUIObj.SetActive(false);
             ammoBag.SetActive(true);
-            advanceMoveTrigger = false;
             objectiveText.text = "Now, we all know that a pirate is only as good as the things he carries. Look for the floating bag of ammo up ahead and walk over it to pick it up. Then come find me!";
             nextPoint.transform.position = inventorySpawn.transform.position;
         }
         if (tutorialProgress == 3)
         {
             completeButton.SetActive(false);
-            inventoryUIObj.SetActive(false);
             gameManager.instance.inventoryPanel.SetActive(false);
-            inventoryTrigger = false;
-
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
             nextPoint.transform.position = combatSpawn.transform.position;
         }
@@ -191,12 +192,8 @@ public class TutorialManager : MonoBehaviour
             completeButton.SetActive(false);
             rangedUIObj.SetActive(false);
             meleeUIObj.SetActive(false);
-            //objectiveText.text = "Looks like you can handle yourself just fine! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know! Also? Come back anytime and practice!";
-            
+            objectiveText.text = "Looks like you can handle yourself just fine! And with that, we're near the end of our lessons! Now that you've humored me, perhaps I can give you a hand. Come find me and I'll tell you what I know! Also? Come back anytime and practice!";
             nextPoint.transform.position = finalSpawn.transform.position;
-            combatTrigger = false;
-            //finalPoint.SetActive(true);
-            finalTrigger = true;
         }
 
         StartCoroutine(CleanUp());
@@ -206,19 +203,21 @@ public class TutorialManager : MonoBehaviour
         objectivesComplete = 0;
         yield return new WaitForSeconds(1.3f);
         skull.SetActive(false);
+        Interaction.instance.playerInRange = false;
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
-        if (!finalTrigger && tutorialProgress <= 5)
+        if (tutorialProgress <= 5)
         {
             yield return new WaitForSeconds(.6f);
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
-        /*yield return new WaitForSeconds(1.5f);
-        dialogueBox.SetActive(false);*/
 
-        tutorialActive = false;
-
+        if (tutorialProgress == 6)
+        {
+            yield return new WaitForSeconds(1.5f);
+            dialogueBox.SetActive(false);
+        }
     }
 
     public void AnimationStop()
@@ -229,5 +228,8 @@ public class TutorialManager : MonoBehaviour
         gameManager.instance.player.GetComponent<CharacterController>().height = 2;
         gameManager.instance.playerScript.anim.SetBool("IsCrouched", false);
         gameManager.instance.playerScript.anim.ResetTrigger("IsJumping");
+        gameManager.instance.playerScript.anim.SetFloat("Speed", 0);
+        //gameManager.instance.playerScript.move.x = 0;
+        gameManager.instance.playerScript.anim.SetBool("Idle", true);
     }
 }
