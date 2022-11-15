@@ -38,8 +38,11 @@ public class Interaction : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress <= 5 && !TutorialManager.instance.tutorialActive)
         {
+            TutorialManager.instance.AnimationStop();
             TutorialManager.instance.tutorialActive = true;
+
             gameManager.instance.cameraScript.enabled = false;
+
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
@@ -108,9 +111,6 @@ public class Interaction : MonoBehaviour
         TutorialManager.instance.beginButton.SetActive(true);
         gameManager.instance.hint.SetActive(false);
 
-        gameManager.instance.playerScript.anim.SetBool("IsRanged", false);
-        gameManager.instance.playerScript.anim.SetBool("IsWalking", false);
-        gameManager.instance.playerScript.anim.SetBool("IsInWater", false);
     }
 
     private void OnTriggerEnter(Collider other)
