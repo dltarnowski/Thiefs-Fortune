@@ -48,6 +48,9 @@ public class BasicMovement : MonoBehaviour
 
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.basicMoveUIObj.SetActive(false);
+            TutorialManager.instance.basicPoint.SetActive(false);
+            TutorialManager.instance.basicMoveTrigger = false;
             TutorialManager.instance.tutorialProgress = 1;
         }
     }

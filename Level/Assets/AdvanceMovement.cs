@@ -44,6 +44,9 @@ public class AdvanceMovement : MonoBehaviour
 
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.advanceMoveUIObj.SetActive(false);
+            TutorialManager.instance.advancePoint.SetActive(false);
+            TutorialManager.instance.advanceMoveTrigger = false;
             TutorialManager.instance.tutorialProgress = 2;
         }
     }
