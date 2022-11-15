@@ -52,18 +52,14 @@ public class ConsumableShopAI : MonoBehaviour
         {
             gameManager.instance.consumeCollide = true;
             NPCManager.instance.shopUI = NPCManager.instance.consumeUI;
+            gameManager.instance.hint.SetActive(true);
         }
 
-        gameManager.instance.hint.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.consumeCollide = false;
-        }
-
+        gameManager.instance.consumeCollide = false;
         gameManager.instance.hint.SetActive(false);
     }
 }

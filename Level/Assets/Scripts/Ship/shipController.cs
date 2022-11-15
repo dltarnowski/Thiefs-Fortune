@@ -72,10 +72,7 @@ public class shipController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.hint.SetActive(false);
-            onShip = false;
-        }
+        gameManager.instance.hint.SetActive(false);
+        onShip = false;
     }
 }
