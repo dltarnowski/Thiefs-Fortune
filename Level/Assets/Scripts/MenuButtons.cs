@@ -20,6 +20,23 @@ public class MenuButtons : MonoBehaviour
             gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         }
     }
+    public void ContinueExploring()
+    {
+        gameManager.instance.cursorUnlockUnpause();
+        StartCoroutine(HideMenu());
+        if (!gameManager.instance.crossHairVisible)
+        {
+            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
+            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
+        }
+    }
+    public IEnumerator HideMenu()
+    {
+        gameManager.instance.VictoryAnim.SetBool("Up", true);
+        yield return new WaitForSeconds(1.2f);
+        gameManager.instance.VictoryAnim.SetBool("Up", false);
+        gameManager.instance.winMenu.SetActive(false);
+    }
     public void Play()
     {
         Time.timeScale = 1;
