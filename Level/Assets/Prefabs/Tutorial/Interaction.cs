@@ -52,7 +52,7 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.exclamation.SetActive(false);
             }
 
-            if (TutorialManager.instance.basicMoveTrigger && TutorialManager.instance.tutorialProgress < 1)
+            if (TutorialManager.instance.basicMoveTrigger)
             {
                 InteractionBegin();
 
@@ -80,14 +80,14 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee and ranged attacks!";
             }
-            /*if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
+            if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Final Thoughts";
                 TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
                 TutorialManager.instance.continueButton.SetActive(true);
-            }*/
+            }
         }
         else if(!playerInRange && !TutorialManager.instance.tutorialActive)
         {
@@ -117,23 +117,33 @@ public class Interaction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (TutorialManager.instance.dialogueBox.activeSelf)
+
+            if(TutorialManager.instance.finalPoint.activeSelf)
             {
-                TutorialManager.instance.dialogueBox.SetActive(false);
-            } 
-           
-            gameManager.instance.hint.SetActive(true);
+                TutorialManager.instance.finalTrigger = true;
+            }
+            if (!TutorialManager.instance.tutorialActive)
+            {
+                if (TutorialManager.instance.dialogueBox.activeSelf)
+                {
+                    TutorialManager.instance.dialogueBox.SetActive(false);
+                }
+                gameManager.instance.hint.SetActive(true);
+            }
 
             playerInRange = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        playerInRange = false;
+        TutorialManager.instance.finalTrigger = false;
         anim.SetTrigger("Idle");
         gameManager.instance.hint.SetActive(false);
 
         if(!TutorialManager.instance.tutorialActive)
+        {
             TutorialManager.instance.exclamation.SetActive(true);
+            playerInRange = false;
+        }
     }
 }

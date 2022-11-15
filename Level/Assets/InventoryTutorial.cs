@@ -38,6 +38,9 @@ public class InventoryTutorial : MonoBehaviour
         {
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.inventoryUIObj.SetActive(false);
+            TutorialManager.instance.inventoryPoint.SetActive(false);
+            TutorialManager.instance.inventoryTrigger = false;
             TutorialManager.instance.tutorialProgress = 3;
         }
     }
