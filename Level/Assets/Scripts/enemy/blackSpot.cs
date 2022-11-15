@@ -12,7 +12,6 @@ public class blackSpot : MonoBehaviour
     float spawnChance;
     float currblackspot;
     bool isSpawning;
-    bool firstRaid;
     void Start()
     {
         FillBlackSpot();
@@ -21,11 +20,8 @@ public class blackSpot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isSpawning && blackSpotMultiplier > 0 && !TutorialManager.instance.tutorialActive)
+        if(!isSpawning && blackSpotMultiplier > 0 && TutorialManager.instance.tutorialProgress >= 5)
         {
-            if (!firstRaid)
-                Invoke("firstTimeSpawn", 15f);
-            else
                 StartCoroutine(raid());
         }
 
@@ -35,11 +31,6 @@ public class blackSpot : MonoBehaviour
         }
     }
 
-    public void firstTimeSpawn()
-    {
-        firstRaid = true;
-        StartCoroutine(raid());
-    }
 
     public void FillBlackSpot()
     {
@@ -50,7 +41,10 @@ public class blackSpot : MonoBehaviour
     IEnumerator raid()
     {
         isSpawning = true;
-        Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+        spawnChance = Random.Range(0f, 1f);
+        Debug.Log(spawnChance);
+        if (spawnChance < .2f)
+            Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
         isSpawning = false;
     }
