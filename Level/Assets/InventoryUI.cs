@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI instance;
     public Transform itemsParent;
     public Transform activeItems;
 
@@ -11,7 +12,12 @@ public class InventoryUI : MonoBehaviour
     Inventory inventory;
     InventorySlot[] slots;
     InventorySlot[] activeSlots;
+    bool isPaused;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,23 +35,13 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory") && TutorialManager.instance.tutorialProgress >= 2)
         {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            isPaused = !isPaused;
+            inventoryUI.SetActive(isPaused);
 
-            if (TutorialManager.instance.basicMoveTrigger || TutorialManager.instance.advanceMoveTrigger || TutorialManager.instance.inventoryTrigger || TutorialManager.instance.combatTrigger && inventoryUI.activeSelf)
-            {
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-                gameManager.instance.cameraScript.enabled = false;
-            }
-            else
-            {
-                gameManager.instance.cameraScript.enabled = true;
-
-                if (inventoryUI.activeSelf)
-                    gameManager.instance.cursorLockPause();
-                else
-                    gameManager.instance.cursorUnlockUnpause();
-            }
+            if (isPaused)
+                gameManager.instance.cursorLockPause();
+            else if(!isPaused && !gameManager.instance.isPaused)
+                gameManager.instance.cursorUnlockUnpause();
         }
     }
 

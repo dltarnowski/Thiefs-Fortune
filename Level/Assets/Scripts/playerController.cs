@@ -70,7 +70,7 @@ public class playerController : MonoBehaviour
     bool canSprint = true;
     bool isSwinging;
     [SerializeField] bool isOnSand;
-    Vector3 move;
+    public Vector3 move;
 
     float coyoteTime = 0.5f;
     float coyoteTimeCounter;

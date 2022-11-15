@@ -128,7 +128,7 @@ public class gameManager : MonoBehaviour
 
             if (isPaused)
                 cursorLockPause();
-            else
+            else if(!isPaused && !inventoryPanel.activeSelf)
                 cursorUnlockUnpause();
         }
     }

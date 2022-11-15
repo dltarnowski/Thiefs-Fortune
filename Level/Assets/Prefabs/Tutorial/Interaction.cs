@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
+    public static Interaction instance;
     public bool playerInRange;
 
     public float facePlayerSpeed;
@@ -15,7 +16,10 @@ public class Interaction : MonoBehaviour
 
     Vector3 playerDir;
 
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -38,8 +42,11 @@ public class Interaction : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress <= 5 && !TutorialManager.instance.tutorialActive)
         {
+            TutorialManager.instance.AnimationStop();
             TutorialManager.instance.tutorialActive = true;
+
             gameManager.instance.cameraScript.enabled = false;
+
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
@@ -49,7 +56,7 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.exclamation.SetActive(false);
             }
 
-            if (TutorialManager.instance.basicMoveTrigger && TutorialManager.instance.tutorialProgress < 1)
+            if (TutorialManager.instance.basicMoveTrigger)
             {
                 InteractionBegin();
 
@@ -77,18 +84,18 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Combat";
                 TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee and ranged attacks!";
             }
-            /*if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
+            if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
             {
                 InteractionBegin();
 
                 TutorialManager.instance.objectiveName.text = "Final Thoughts";
                 TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
                 TutorialManager.instance.continueButton.SetActive(true);
-            }*/
+                TutorialManager.instance.tutorialProgress = 5;
+            }
         }
         else if(!playerInRange && !TutorialManager.instance.tutorialActive)
         {
-            TutorialManager.instance.dialogueBox.SetActive(false);
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.continueButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(false);
@@ -108,32 +115,39 @@ public class Interaction : MonoBehaviour
         TutorialManager.instance.beginButton.SetActive(true);
         gameManager.instance.hint.SetActive(false);
 
-        gameManager.instance.playerScript.anim.SetBool("IsRanged", false);
-        gameManager.instance.playerScript.anim.SetBool("IsWalking", false);
-        gameManager.instance.playerScript.anim.SetBool("IsInWater", false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (TutorialManager.instance.dialogueBox.activeSelf)
+
+            if(TutorialManager.instance.finalPoint.activeSelf)
             {
-                TutorialManager.instance.dialogueBox.SetActive(false);
-            } 
-           
-            gameManager.instance.hint.SetActive(true);
+                TutorialManager.instance.finalTrigger = true;
+            }
+            if (!TutorialManager.instance.tutorialActive)
+            {
+                if (TutorialManager.instance.dialogueBox.activeSelf)
+                {
+                    TutorialManager.instance.dialogueBox.SetActive(false);
+                }
+                gameManager.instance.hint.SetActive(true);
+            }
 
             playerInRange = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        playerInRange = false;
+        TutorialManager.instance.finalTrigger = false;
         anim.SetTrigger("Idle");
         gameManager.instance.hint.SetActive(false);
 
         if(!TutorialManager.instance.tutorialActive)
+        {
             TutorialManager.instance.exclamation.SetActive(true);
+            playerInRange = false;
+        }
     }
 }

@@ -38,10 +38,10 @@ public class MaidenNPCAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.instance.hint.SetActive(true);
 
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(true);
             gameManager.instance.npcCam = cam;
             gameManager.instance.handmaiden = true;
         }
@@ -50,10 +50,7 @@ public class MaidenNPCAI : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         gameManager.instance.hint.SetActive(false);
+        gameManager.instance.handmaiden = false;
 
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.handmaiden = false;
-        }
     }
 }

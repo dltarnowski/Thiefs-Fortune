@@ -19,17 +19,17 @@ public class AdvanceMovement : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space) && TutorialManager.instance.advanceMoveUI[0].color != Color.green)
+        if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space) && TutorialManager.instance.advanceMoveUI[0].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift) && TutorialManager.instance.advanceMoveUI[1].color != Color.green)
+        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift) && TutorialManager.instance.advanceMoveUI[1].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl) && TutorialManager.instance.advanceMoveUI[2].color != Color.green)
+        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl) && TutorialManager.instance.advanceMoveUI[2].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
@@ -38,12 +38,15 @@ public class AdvanceMovement : MonoBehaviour
         if (TutorialManager.instance.objectivesComplete == 3)
         {
             TutorialManager.instance.AnimationStop();
-            gameManager.instance.cameraScript.enabled = false;
             Cursor.lockState = CursorLockMode.Confined;
+            gameManager.instance.cameraScript.enabled = false;
             Cursor.visible = true;
 
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.advanceMoveUIObj.SetActive(false);
+            TutorialManager.instance.advancePoint.SetActive(false);
+            TutorialManager.instance.advanceMoveTrigger = false;
             TutorialManager.instance.tutorialProgress = 2;
         }
     }
