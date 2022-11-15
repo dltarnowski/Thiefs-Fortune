@@ -19,17 +19,17 @@ public class AdvanceMovement : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space) && TutorialManager.instance.advanceMoveUI[0].color != Color.green)
+        if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.Space) && TutorialManager.instance.advanceMoveUI[0].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift) && TutorialManager.instance.advanceMoveUI[1].color != Color.green)
+        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftShift) && TutorialManager.instance.advanceMoveUI[1].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl) && TutorialManager.instance.advanceMoveUI[2].color != Color.green)
+        else if (TutorialManager.instance.advanceMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.LeftControl) && TutorialManager.instance.advanceMoveUI[2].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.advanceMoveUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;

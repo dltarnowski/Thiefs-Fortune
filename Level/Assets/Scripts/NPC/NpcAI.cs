@@ -41,10 +41,10 @@ public class NpcAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        gameManager.instance.hint.SetActive(true);
 
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.hint.SetActive(true);
             gameManager.instance.npcCollide = true;
             gameManager.instance.npcCam = cam;
         }
@@ -53,10 +53,6 @@ public class NpcAI : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         gameManager.instance.hint.SetActive(false);
-
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.npcCollide = false;
-        }
+        gameManager.instance.npcCollide = false;
     }
 }

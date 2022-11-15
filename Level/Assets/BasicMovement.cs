@@ -18,22 +18,22 @@ public class BasicMovement : MonoBehaviour
 
     public void ObjectiveCheck()
     {
-        if(TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.W) && TutorialManager.instance.basicMoveUI[0].color != Color.green)
+        if(TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.W) && TutorialManager.instance.basicMoveUI[0].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.basicMoveUI[0].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.A) && TutorialManager.instance.basicMoveUI[1].color != Color.green)
+        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.A) && TutorialManager.instance.basicMoveUI[1].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.basicMoveUI[1].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.S) && TutorialManager.instance.basicMoveUI[2].color != Color.green)
+        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.S) && TutorialManager.instance.basicMoveUI[2].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.basicMoveUI[2].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
         }
-        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.D) && TutorialManager.instance.basicMoveUI[3].color != Color.green)
+        else if (TutorialManager.instance.basicMoveUIObj.activeSelf && Input.GetKeyDown(KeyCode.D) && TutorialManager.instance.basicMoveUI[3].color != Color.green && TutorialManager.instance.tutorialActive)
         {
             TutorialManager.instance.basicMoveUI[3].color = Color.green;
             TutorialManager.instance.objectivesComplete++;
