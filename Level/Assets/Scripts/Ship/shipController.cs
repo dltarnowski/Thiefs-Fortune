@@ -29,12 +29,16 @@ public class shipController : MonoBehaviour
                 shipMovement.instance.wake.Stop();
             }
 
+
+
             sailsUp.SetActive(controllingShip);
             sailsDown.SetActive(!controllingShip);
             shipMove.enabled = !controllingShip;
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;
 
+            if (shipMove.enabled == false)
+                shipMove.speed = 0;
             //if(anim != null)
             //    anim.SetBool("PlayerControllingShip", controllingShip);
         }
