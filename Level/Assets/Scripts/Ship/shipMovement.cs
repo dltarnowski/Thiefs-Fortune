@@ -6,6 +6,7 @@ public class shipMovement : MonoBehaviour
     public static shipMovement instance;
     Vector3 move;
     [SerializeField] shipCameraControl shipCam;
+    [SerializeField] internal AudioSource aud;
     [SerializeField] public float speed;
     [SerializeField] float speedIncTimer;
     [SerializeField] float maxSpeed;
@@ -33,6 +34,9 @@ public class shipMovement : MonoBehaviour
             if(!wake.isPlaying)
                 wake.Play();
 
+            if (!aud.isPlaying)
+                aud.Play();
+
             StartCoroutine(speedInc());
             move = transform.forward * Input.GetAxis("Vertical");
             transform.parent.position += move * speed * Time.deltaTime;
@@ -46,6 +50,7 @@ public class shipMovement : MonoBehaviour
             shipCam.sensHort = 0;
             speed = 0;
             wake.Stop();
+            aud.Stop();
         }
     }
 

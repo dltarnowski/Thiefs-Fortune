@@ -24,11 +24,13 @@ public class shipController : MonoBehaviour
             gameManager.instance.mainCamera.SetActive(controllingShip);
             gameManager.instance.playerScript.anim.enabled = !gameManager.instance.playerScript.anim.enabled;
 
-            if(shipMovement.instance.wake.isPlaying)
+            if(shipMove.wake.isPlaying)
             {
-                shipMovement.instance.wake.Stop();
+                shipMove.wake.Stop();
             }
 
+            if (shipMove.aud.isPlaying)
+                shipMove.aud.Stop();
 
 
             sailsUp.SetActive(controllingShip);
