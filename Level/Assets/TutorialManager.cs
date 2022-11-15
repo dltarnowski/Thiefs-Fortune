@@ -79,6 +79,8 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerInRange = Interaction.instance.playerInRange;
+
         if (tutorialProgress == 0)
         {
             basicPoint.SetActive(true);
@@ -140,6 +142,7 @@ public class TutorialManager : MonoBehaviour
 
     public void Continue()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
 
         beginButton.SetActive(false);
         continueButton.SetActive(false);
@@ -161,6 +164,8 @@ public class TutorialManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameManager.instance.cameraScript.enabled = true;
+
+        tutorialActive = false;
 
         if (tutorialProgress == 1)
         {
@@ -198,6 +203,7 @@ public class TutorialManager : MonoBehaviour
         objectivesComplete = 0;
         yield return new WaitForSeconds(1.3f);
         skull.SetActive(false);
+        Interaction.instance.playerInRange = false;
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
         if (tutorialProgress <= 5)
@@ -212,9 +218,6 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
             dialogueBox.SetActive(false);
         }
-
-        tutorialActive = false;
-
     }
 
     public void AnimationStop()
