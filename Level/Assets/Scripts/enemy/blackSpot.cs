@@ -12,6 +12,7 @@ public class blackSpot : MonoBehaviour
     float spawnChance;
     float currblackspot;
     bool isSpawning;
+    bool firstRaid;
     void Start()
     {
         FillBlackSpot();
@@ -20,13 +21,24 @@ public class blackSpot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isSpawning && blackSpotMultiplier > 0 && TutorialManager.instance.tutorialProgress >= 5)
-            StartCoroutine(raid());
+        if(!isSpawning && blackSpotMultiplier > 0 && !TutorialManager.instance.tutorialActive)
+        {
+            if (!firstRaid)
+                Invoke("firstTimeSpawn", 15f);
+            else
+                StartCoroutine(raid());
+        }
 
         if(currblackspot != blackSpotMultiplier)
         {
             FillBlackSpot();
         }
+    }
+
+    public void firstTimeSpawn()
+    {
+        firstRaid = true;
+        StartCoroutine(raid());
     }
 
     public void FillBlackSpot()
