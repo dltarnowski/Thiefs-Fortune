@@ -143,7 +143,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.winMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
@@ -391,7 +391,7 @@ public class playerController : MonoBehaviour
     }
     IEnumerator swing()
     {
-        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.winMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isSwinging)
             {
