@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI instance;
     public Transform itemsParent;
     public Transform activeItems;
 
@@ -12,6 +13,11 @@ public class InventoryUI : MonoBehaviour
     InventorySlot[] slots;
     InventorySlot[] activeSlots;
     bool isPaused;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {

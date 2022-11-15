@@ -91,11 +91,11 @@ public class Interaction : MonoBehaviour
                 TutorialManager.instance.objectiveName.text = "Final Thoughts";
                 TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
                 TutorialManager.instance.continueButton.SetActive(true);
+                TutorialManager.instance.tutorialProgress = 5;
             }
         }
         else if(!playerInRange && !TutorialManager.instance.tutorialActive)
         {
-            TutorialManager.instance.dialogueBox.SetActive(false);
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.continueButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(false);

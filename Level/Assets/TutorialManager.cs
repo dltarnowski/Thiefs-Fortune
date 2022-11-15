@@ -152,7 +152,6 @@ public class TutorialManager : MonoBehaviour
         Cursor.visible = false;
         gameManager.instance.cameraScript.enabled = true;
         gameManager.instance.CurrentObjectiveMiniMapIcon();
-        tutorialProgress = 6;
 
         StartCoroutine(CleanUp());
 
@@ -184,6 +183,7 @@ public class TutorialManager : MonoBehaviour
         {
             completeButton.SetActive(false);
             gameManager.instance.inventoryPanel.SetActive(false);
+            gameManager.instance.cursorUnlockUnpause();
             objectiveText.text = "Now that you know how to stock yourself up, let's get prepared for some action!";
             nextPoint.transform.position = combatSpawn.transform.position;
         }
@@ -206,16 +206,16 @@ public class TutorialManager : MonoBehaviour
         Interaction.instance.playerInRange = false;
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
 
-        if (tutorialProgress <= 5)
+        if (tutorialProgress <= 4)
         {
             yield return new WaitForSeconds(.6f);
             skull.SetActive(true);
             exclamation.SetActive(true);
         }
 
-        if (tutorialProgress == 6)
+        if (tutorialProgress == 5)
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(5f);
             dialogueBox.SetActive(false);
         }
     }

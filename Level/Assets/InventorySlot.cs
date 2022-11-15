@@ -103,11 +103,13 @@ public class InventorySlot : MonoBehaviour
             if (CompareTag("Inventory Slot"))
             {
                 TutorialManager.instance.equipButton = true;
+                TutorialManager.instance.unequipButton = false;
                 item.Equip();
                 ClearSlot();
             }
             else
             {
+                TutorialManager.instance.unequipButton = true;
                 TutorialManager.instance.equipButton = false;
                 item.unUse();
                 ClearSlot();
