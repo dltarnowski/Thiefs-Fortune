@@ -197,7 +197,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -4001,7 +4001,7 @@ Transform:
   - {fileID: 1161026489928866715}
   - {fileID: 4223635323993229922}
   - {fileID: 5766391565314013384}
-  - {fileID: 6697275133162944425}
+  - {fileID: 8373204686395558971}
   - {fileID: 7070918718760023420}
   - {fileID: 1544600380050888639}
   - {fileID: 369857582}
@@ -4112,6 +4112,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9ad268ad668a1f84a8e251a3194de025, type: 3}
   - {fileID: 8300000, guid: 9ec028b14becfb344a7f31a468d30713, type: 3}
   playerStepsAudVol: 0.031
+  playerVelocity: {x: 0, y: 0, z: 0}
   isShooting: 0
   selectItem: 0
   isOnSand: 0
@@ -4739,7 +4740,7 @@ GameObject:
   - component: {fileID: 2667262506602702774}
   - component: {fileID: 2667262506621998668}
   - component: {fileID: 2667262506622083320}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Gun Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9478,7 +9479,7 @@ GameObject:
   - component: {fileID: 2667262506602703704}
   - component: {fileID: 2667262506622093444}
   - component: {fileID: 2667262506622069850}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FX_Rifle_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14214,7 +14215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5549271907670059949
 Transform:
   m_ObjectHideFlags: 0
@@ -14223,7 +14224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710382986473668341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.101, y: 1.6, z: 0.065}
+  m_LocalPosition: {x: 0.101, y: 1.6, z: 0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14273,7 +14274,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 26.991467
   orthographic: 0
   orthographic size: 5
@@ -14401,7 +14402,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -14432,7 +14433,7 @@ GameObject:
   - component: {fileID: 4394722230702239405}
   - component: {fileID: 4394722230702239406}
   - component: {fileID: 528592904}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14515,10 +14516,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.11343833
-  m_Height: 1.3
+  m_Radius: 0.2
+  m_Height: 2.38
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: -0.0000002864921}
+  m_Center: {x: 0, y: 1.06, z: -0.0000002864921}
 --- !u!1 &4394722232126371131
 GameObject:
   m_ObjectHideFlags: 0
@@ -14595,7 +14596,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
+  far clip plane: 250
   field of view: 40
   orthographic: 0
   orthographic size: 10
@@ -14692,7 +14693,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -14838,7 +14839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 80
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14846,19 +14847,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14866,7 +14867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -14888,21 +14889,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5766391565566375312, guid: 14da589f8a4c16d4d8e59ae18bf40ead, type: 3}
   m_PrefabInstance: {fileID: 1933430105}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2188690008423069614
+--- !u!1001 &3935530914821786684
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 549276323931233813}
     m_Modifications:
-    - target: {fileID: 125891539410150293, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2789542584581321313, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4749374661588928593, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
       propertyPath: m_Name
       value: TargetIndicator
@@ -14953,8 +14946,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
---- !u!4 &6697275133162944425 stripped
+--- !u!4 &8373204686395558971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4804858978221359111, guid: 27dbd0e58a44ef14d96776c00ea5d793, type: 3}
-  m_PrefabInstance: {fileID: 2188690008423069614}
+  m_PrefabInstance: {fileID: 3935530914821786684}
   m_PrefabAsset: {fileID: 0}

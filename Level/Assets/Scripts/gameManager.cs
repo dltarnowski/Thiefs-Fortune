@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject Ammo;
     public int ammoCount;
     public cameraControls cameraScript;
+    public GameObject origSpawn;
 
     [Header("----- Menu UI -----")]
     public GameObject winMenu;
@@ -24,12 +25,14 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject helpMenu;
     public GameObject deathMenu;
-    public GameObject menuCurrentlyOpen;
+    public bool menuCurrentlyOpen;
 
     [Header("----- Player UI -----")]
     public GameObject acObject;
     public GameObject playerDamageFlash;
     public GameObject playerDamageIndicator;
+    public GameObject playerHealthFlash;
+    public GameObject playerHealthIndicator;
     public GameObject underwaterIndicator;
     public GameObject map;
     public GameObject spawnPosition;
@@ -59,7 +62,7 @@ public class gameManager : MonoBehaviour
 
     [Header("----- NPC UI -----")]
     public GameObject healthBar;
-    public GameObject npcDialogue;
+    public GameObject shopDialogue;
     public GameObject shopInventory;
     public TextMeshProUGUI coinCountText;
     public bool weaponCollide;
@@ -73,9 +76,10 @@ public class gameManager : MonoBehaviour
     public Recoil recoilScript;
 
     [Header("----- Mini Map -----")]
-    public GameObject[] miniMapObjectiveIcons;
+    public List<GameObject> miniMapObjectiveIcons;
     public Pointer miniMapPointer;
     public Camera miniMapCamera;
+    public GameObject miniMapWindow;
 
     [Header("----- Other -----")]
     public bool isPaused;
@@ -86,6 +90,8 @@ public class gameManager : MonoBehaviour
     public Slider MusicSlider;
     public Slider PlayerAudioSlider;
     public Slider GunVolumeSlider;
+    public bool handmaiden;
+    public GameObject[] islandObjects;
 
     [Header("----- Audio -----")]
     public musicSwap music;
@@ -105,13 +111,13 @@ public class gameManager : MonoBehaviour
         recoilScript = GameObject.Find("Camera Recoil").GetComponent<Recoil>();
         spawnPosition = GameObject.FindGameObjectWithTag("Spawn Position");
         music = GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<musicSwap>();
-        towersLeft = 2;
     }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !deathMenu.activeSelf && !npcDialogue.activeSelf && !shopInventory.activeSelf && !settingsMenu.activeSelf)
+        MenuCurrentlyOpen();
+
+        if (Input.GetButtonDown("Cancel") && !menuCurrentlyOpen)
         {
             crossHairVisible = !crossHairVisible;
             Crosshair.SetActive(crossHairVisible);
@@ -126,8 +132,13 @@ public class gameManager : MonoBehaviour
                 cursorUnlockUnpause();
         }
     }
-   
 
+    public IEnumerator playerHeal()
+    {
+        playerHealthFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerHealthFlash.SetActive(false);
+    }
     public IEnumerator playerDamage()
     {
         playerDamageFlash.SetActive(true);
@@ -185,12 +196,29 @@ public class gameManager : MonoBehaviour
 
     public void CurrentObjectiveMiniMapIcon()
     {
-        for (int i = 0; i < miniMapObjectiveIcons.Length; ++i)
+        for (int i = 0; i < miniMapObjectiveIcons.Count; ++i)
         {
             if (i == winManager.instance.clueCount)
                 miniMapObjectiveIcons[i].SetActive(true);
             else
                 miniMapObjectiveIcons[i].SetActive(false);
+
+            //if (i == 1)
+            //{
+            //    miniMapObjectiveIcons[1].SetActive(true);
+            //    miniMapObjectiveIcons[5].SetActive(true);
+            //    miniMapObjectiveIcons[6].SetActive(true);
+            //    miniMapObjectiveIcons[7].SetActive(true);
+            //    miniMapObjectiveIcons[8].SetActive(true);
+            //}
+            //else
+            //{
+            //    miniMapObjectiveIcons[1].SetActive(false);
+            //    miniMapObjectiveIcons[5].SetActive(false);
+            //    miniMapObjectiveIcons[6].SetActive(false);
+            //    miniMapObjectiveIcons[7].SetActive(false);
+            //    miniMapObjectiveIcons[8].SetActive(false);
+            //}
         }
 
         miniMapPointer.SetTarget();
@@ -208,5 +236,36 @@ public class gameManager : MonoBehaviour
         {
             ammoArray[i].enabled = true;
         }
+    }
+
+    public bool MenuCurrentlyOpen()
+    {
+        menuCurrentlyOpen = false;
+
+        if(deathMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (shopDialogue.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (shopInventory.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (settingsMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (helpMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (NPCManager.instance.shopUI.activeSelf)
+            menuCurrentlyOpen = true;
+
+        if (NPCDialogueManager.instance.anim.GetBool("isOpen") == true)
+            menuCurrentlyOpen = true;
+
+        if (TutorialManager.instance.tutorialActive)
+            menuCurrentlyOpen = true;
+
+        return menuCurrentlyOpen;
     }
 }

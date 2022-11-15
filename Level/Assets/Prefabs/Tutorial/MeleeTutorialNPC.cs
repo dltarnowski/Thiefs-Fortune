@@ -6,6 +6,8 @@ public class MeleeTutorialNPC : meleeEnemyAI
 {
     public void OnDestroy()
     {
+        TutorialManager.instance.meleeUI[0].color = Color.green;
+        TutorialManager.instance.objectivesComplete++;
         TutorialManager.instance.meleeEnemiesLeft--;
     }
 }

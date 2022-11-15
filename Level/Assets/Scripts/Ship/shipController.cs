@@ -8,6 +8,7 @@ public class shipController : MonoBehaviour
     [SerializeField] GameObject sailsDown;
     [SerializeField] GameObject playerPos;
     [SerializeField] shipMovement shipMove;
+    //[SerializeField] Animator anim;
 
     public bool controllingShip;
     bool onShip;
@@ -17,14 +18,25 @@ public class shipController : MonoBehaviour
     {
         if(onShip && Input.GetKeyDown(KeyCode.E))
         {
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
             gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
+            gameManager.instance.playerScript.anim.enabled = !gameManager.instance.playerScript.anim.enabled;
+
+            if(shipMovement.instance.wake.isPlaying)
+            {
+                shipMovement.instance.wake.Stop();
+            }
+
             sailsUp.SetActive(controllingShip);
             sailsDown.SetActive(!controllingShip);
             shipMove.enabled = !controllingShip;
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;
+
+            //if(anim != null)
+            //    anim.SetBool("PlayerControllingShip", controllingShip);
         }
         if (shipCam.activeSelf)
             ChangeParent();

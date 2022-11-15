@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +13,9 @@ public class ConsumableButtons : MonoBehaviour
     public Button buyTab;
     public Button sellTab;
 
+    private void Start()
+    {
+    }
     public void Talk()
     {
         NPCManager.instance.talking = true;
@@ -18,7 +24,7 @@ public class ConsumableButtons : MonoBehaviour
     public void Shop()
     {
         gameManager.instance.hint.SetActive(false);
-        gameManager.instance.npcDialogue.SetActive(false);
+        gameManager.instance.shopDialogue.SetActive(false);
         shopMenu.SetActive(true);
         playerInventory.SetActive(true);
         BuyTab();
@@ -26,14 +32,14 @@ public class ConsumableButtons : MonoBehaviour
 
     public void CloseShop()
     {
-        gameManager.instance.npcDialogue.SetActive(true);
+        gameManager.instance.shopDialogue.SetActive(true);
         shopMenu.SetActive(false);
         playerInventory.SetActive(false);
     }
 
     public void Bye()
     {
-        gameManager.instance.npcDialogue.SetActive(false);
+        gameManager.instance.shopDialogue.SetActive(false);
         gameManager.instance.NpcUnpause();
         NPCManager.instance.dialogue.text = "I don't know nothin' about nothin'... What can I do for you today?";
         gameManager.instance.mainCamera.SetActive(true);

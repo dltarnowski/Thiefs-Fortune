@@ -30,17 +30,15 @@ public class rangedEnemyAI : enemyAI
 
             if (agent.enabled)
             {
-                if (playerInRange && !gameManager.instance.npcDialogue.activeSelf)
+                if (playerInRange && !gameManager.instance.shopDialogue.activeSelf)
                 {
                     playerDir = gameManager.instance.player.transform.position - headPos.transform.position;
                     angle = Vector3.Angle(playerDir, transform.forward);
                     canSeePlayer(shoot(), isShooting);
 
                 }
-                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position && !stationary && canRoam)
+                if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
                     roam();
-                else if (!canRoam && stationary)
-                    facePlayer();
             }
         }
     }

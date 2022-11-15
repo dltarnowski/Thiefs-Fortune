@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
@@ -39,8 +41,16 @@ public class BasicMovement : MonoBehaviour
 
         if (TutorialManager.instance.objectivesComplete == 4)
         {
+            TutorialManager.instance.AnimationStop();
+            gameManager.instance.cameraScript.enabled = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.basicMoveUIObj.SetActive(false);
+            TutorialManager.instance.basicPoint.SetActive(false);
+            TutorialManager.instance.basicMoveTrigger = false;
             TutorialManager.instance.tutorialProgress = 1;
         }
     }
@@ -49,8 +59,7 @@ public class BasicMovement : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            gameManager.instance.TutorialCollide = true;
-            TutorialManager.instance.basicMoveTrigger = gameManager.instance.TutorialCollide;
+            TutorialManager.instance.basicMoveTrigger = true;
         }
     }
 

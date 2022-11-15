@@ -61,7 +61,7 @@ public class playerController : MonoBehaviour
     float currGunVolume;
 
     public Vector3 playerVelocity;
-    
+
     [Header("----- Misc. -----")]
     public bool isShooting;
     public int selectItem;
@@ -70,7 +70,7 @@ public class playerController : MonoBehaviour
     bool canSprint = true;
     bool isSwinging;
     [SerializeField] bool isOnSand;
-    Vector3 move;
+    public Vector3 move;
 
     float coyoteTime = 0.5f;
     float coyoteTimeCounter;
@@ -90,11 +90,11 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDamageIndicator.GetComponent<Animator>().SetFloat("HP", HP);
         maxStamina = Stam;
         staminColor = new Color(0f, 250f, 253f, 255f);
+        jumpHeightOrig = jumpHeight;
+        gravityValueOrig = gravityValue;
         respawn();
         recoilScript = transform.Find("Main Camera/Camera Recoil").GetComponent<Recoil>();
         gunSmoke = GetComponentInChildren<ParticleSystem>();
-        jumpHeightOrig = jumpHeight;
-        gravityValueOrig = gravityValue;
     }
 
 
@@ -143,7 +143,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
@@ -152,23 +152,44 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.ReduceAmmo();
                 //gameManager.instance.ammoCount = gunStats.ammoCount;
 
-                RaycastHit hit;
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                if (thirdPersonCam_Obj.activeSelf)
                 {
-                    //  -------      WAITING ON IDAMAGE      -------
-                    if (hit.collider.GetComponent<IDamage>() != null)
+                    RaycastHit hit;
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
                     {
-                        if (hit.collider is SphereCollider)
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
                         {
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                         }
-                        else if (hit.collider is CapsuleCollider)
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
-                        Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
                     }
                 }
-
+                else if (firstPersonCam_Obj.activeSelf)
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(firstPersonCam_Cam.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, gunStats.distance))
+                    {
+                        //  -------      WAITING ON IDAMAGE      -------
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            if (hit.collider is SphereCollider)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength * headShotMultiplier);
+                            }
+                            else if (hit.collider is CapsuleCollider)
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunStats.strength);
+                            Instantiate(gunStats.hitFX, hit.point, hit.collider.gameObject.transform.rotation, hit.collider.gameObject.transform);
+                        }
+                    }
+                }
                 aud.PlayOneShot(gunStats.sound);
+
                 gameManager.instance.recoilScript.RecoilFire();
                 gunSmoke.transform.localPosition = gunStats.muzzleLocations[barrel].position;
                 gunSmoke.Play();
@@ -211,16 +232,18 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", true);
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            transform.GetComponent<CharacterController>().height = 1.4f;
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", false);
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            transform.GetComponent<CharacterController>().height = 2;
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
 
         //Move
@@ -281,12 +304,12 @@ public class playerController : MonoBehaviour
         }
         else if (isUnderwater && Input.GetButton("Jump"))
         {
-            if(playerVelocity.y <= maxSwimSpeed)
+            if (playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
         }
 
         //Run
-        if (canSprint == true)
+        if (canSprint == true && move.x != 0 && anim.GetBool("IsCrouched") == false)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -339,7 +362,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator PlaySteps()
     {
-        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand)
+        if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && !isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -352,7 +375,7 @@ public class playerController : MonoBehaviour
 
             playingSteps = false;
         }
-        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand)
+        else if (move.magnitude > 0.3f && !playingSteps && controller.isGrounded && isOnSand && !isUnderwater)
         {
             playingSteps = true;
 
@@ -368,7 +391,7 @@ public class playerController : MonoBehaviour
     }
     IEnumerator swing()
     {
-        if (!gameManager.instance.npcDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isSwinging)
             {
@@ -414,7 +437,7 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && EquipmentManager.instance.currentEquipment[2] != null)
             //if (EquipmentManager.instance.currentEquipment[2].numOfItems == 0)
             EquipmentManager.instance.currentEquipment[2].Use();
-        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null)
+        if (Input.GetKeyDown(KeyCode.Alpha4) && EquipmentManager.instance.currentEquipment[3] != null && HP < HPOrig)
             EquipmentManager.instance.currentEquipment[3].Use();
     }
 
@@ -426,17 +449,19 @@ public class playerController : MonoBehaviour
             {
                 gameManager.instance.map.SetActive(true);
                 mapActive++;
-                miniMapIcon.transform.localScale = new Vector3 (10,10,10);
+                miniMapIcon.transform.localScale = new Vector3(10, 10, 10);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(50, 50, 50);
                 Time.timeScale = 0;
             }
         }
-        else if(gameManager.instance.map.activeSelf)
+        else if (gameManager.instance.map.activeSelf)
         {
             if ((Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape)) && mapActive == 0)
             {
                 gameManager.instance.map.SetActive(false);
                 mapActive++;
-                miniMapIcon.transform.localScale = new Vector3(1, 1, 1);
+                miniMapIcon.transform.localScale = new Vector3(2, 2, 2);
+                gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(10, 10, 10);
                 Time.timeScale = 1;
             }
         }
@@ -466,7 +491,24 @@ public class playerController : MonoBehaviour
         }
 
     }
+    public void GetHealth(float dmg)
+    {
+        if (HP + dmg > HPOrig)
+            HP = HPOrig;
+        HP -= dmg;
+        lerpTime = 0f;
 
+        StartCoroutine(gameManager.instance.playerHeal());
+        if (HP <= 0)
+        {
+            gameManager.instance.Crosshair.SetActive(false);
+            gameManager.instance.playerHealthFlash.SetActive(false);
+
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.cursorLockPause();
+        }
+
+    }
     public void updatePlayerHUD()
     {
         //Health bar updates
@@ -506,6 +548,8 @@ public class playerController : MonoBehaviour
     }
     public void respawn()
     {
+        Water.instance.WaterReset();
+
         if (gameManager.instance.pauseMenu)
         {
             gameManager.instance.pauseMenu.SetActive(false);

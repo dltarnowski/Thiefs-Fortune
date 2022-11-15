@@ -8,7 +8,7 @@ public class HealthPotion : Consumable
     public override void Use()
     {
         base.Use();
-        gameManager.instance.playerScript.takeDamage(-(int)this.strength);
+        gameManager.instance.playerScript.GetHealth(-(int)this.strength);
         if (this.numOfItems >= 0)
         {
             if (this.numOfItems == 0)

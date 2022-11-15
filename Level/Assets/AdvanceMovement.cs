@@ -1,3 +1,6 @@
+using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AdvanceMovement : MonoBehaviour
@@ -34,8 +37,16 @@ public class AdvanceMovement : MonoBehaviour
 
         if (TutorialManager.instance.objectivesComplete == 3)
         {
+            TutorialManager.instance.AnimationStop();
+            Cursor.lockState = CursorLockMode.Confined;
+            gameManager.instance.cameraScript.enabled = false;
+            Cursor.visible = true;
+
             TutorialManager.instance.beginButton.SetActive(false);
             TutorialManager.instance.completeButton.SetActive(true);
+            TutorialManager.instance.advanceMoveUIObj.SetActive(false);
+            TutorialManager.instance.advancePoint.SetActive(false);
+            TutorialManager.instance.advanceMoveTrigger = false;
             TutorialManager.instance.tutorialProgress = 2;
         }
     }

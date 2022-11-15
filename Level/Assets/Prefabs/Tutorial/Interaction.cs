@@ -38,13 +38,13 @@ public class Interaction : MonoBehaviour
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && TutorialManager.instance.tutorialProgress <= 5 && !TutorialManager.instance.tutorialActive)
         {
-            TutorialManager.instance.dialogueBox.SetActive(true);
-            TutorialManager.instance.beginButton.SetActive(true);
-            gameManager.instance.hint.SetActive(false);
+            TutorialManager.instance.AnimationStop();
+            TutorialManager.instance.tutorialActive = true;
+
+            gameManager.instance.cameraScript.enabled = false;
 
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            gameManager.instance.cameraScript.enabled = false;
 
             if (anim != null)
             {
@@ -54,30 +54,47 @@ public class Interaction : MonoBehaviour
 
             if (TutorialManager.instance.basicMoveTrigger)
             {
+                InteractionBegin();
+
                 TutorialManager.instance.objectiveName.text = "Basic Movement";
                 TutorialManager.instance.objectiveText.text = "Let's get shake off those sea legs. Press begin to learn basic movement within the world!";
             }
-            if (TutorialManager.instance.advanceMoveTrigger)
+            if (TutorialManager.instance.advanceMoveTrigger && TutorialManager.instance.tutorialProgress < 2)
             {
+                InteractionBegin();
+
                 TutorialManager.instance.objectiveName.text = "Advanced Movement";
                 TutorialManager.instance.objectiveText.text = "I think you're ready for something harder. Press begin to learn advanced movement within the world!";
             }
-            if (TutorialManager.instance.inventoryTrigger)
+            if (TutorialManager.instance.inventoryTrigger && TutorialManager.instance.tutorialProgress < 3)
             {
+                InteractionBegin();
+
                 TutorialManager.instance.objectiveName.text = "Inventory";
                 TutorialManager.instance.objectiveText.text = "You have now picked up your first new item! Press begin to learn the basic of accessing and managing your inventory!";
             }
-            if (TutorialManager.instance.meleeTrigger)
+            if (TutorialManager.instance.combatTrigger && TutorialManager.instance.tutorialProgress < 4)
             {
-                TutorialManager.instance.objectiveName.text = "Melee Combat";
-                TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee attacks!";
+                InteractionBegin();
+
+                TutorialManager.instance.objectiveName.text = "Combat";
+                TutorialManager.instance.objectiveText.text = "There are many dangers in the world. Press begin to learn how to use melee and ranged attacks!";
             }
-            if(TutorialManager.instance.finalTrigger)
+            if (TutorialManager.instance.finalTrigger && TutorialManager.instance.tutorialProgress <= 5)
             {
+                InteractionBegin();
+
                 TutorialManager.instance.objectiveName.text = "Final Thoughts";
                 TutorialManager.instance.objectiveText.text = "The man you're looking for? Captain Noble? Heard he was camped out on Chicken Head Enclave. (Press [M] to open your map and check). Now, that was six months ago. But it might be a good place to start.";
                 TutorialManager.instance.continueButton.SetActive(true);
             }
+        }
+        else if(!playerInRange && !TutorialManager.instance.tutorialActive)
+        {
+            TutorialManager.instance.dialogueBox.SetActive(false);
+            TutorialManager.instance.beginButton.SetActive(false);
+            TutorialManager.instance.continueButton.SetActive(false);
+            TutorialManager.instance.completeButton.SetActive(false);
         }
     }
 
@@ -88,23 +105,45 @@ public class Interaction : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
     }
 
+    public void InteractionBegin()
+    {
+        TutorialManager.instance.dialogueBox.SetActive(true);
+        TutorialManager.instance.beginButton.SetActive(true);
+        gameManager.instance.hint.SetActive(false);
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (TutorialManager.instance.meleeTrigger && TutorialManager.instance.tutorialActive)
-                gameManager.instance.hint.SetActive(false);
-            else
+
+            if(TutorialManager.instance.finalPoint.activeSelf)
+            {
+                TutorialManager.instance.finalTrigger = true;
+            }
+            if (!TutorialManager.instance.tutorialActive)
+            {
+                if (TutorialManager.instance.dialogueBox.activeSelf)
+                {
+                    TutorialManager.instance.dialogueBox.SetActive(false);
+                }
                 gameManager.instance.hint.SetActive(true);
+            }
 
             playerInRange = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        playerInRange = false;
+        TutorialManager.instance.finalTrigger = false;
         anim.SetTrigger("Idle");
         gameManager.instance.hint.SetActive(false);
-        TutorialManager.instance.exclamation.SetActive(true);
+
+        if(!TutorialManager.instance.tutorialActive)
+        {
+            TutorialManager.instance.exclamation.SetActive(true);
+            playerInRange = false;
+        }
     }
 }

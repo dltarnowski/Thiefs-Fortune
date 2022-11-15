@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -49,9 +50,7 @@ public class blackSpot : MonoBehaviour
     IEnumerator raid()
     {
         isSpawning = true;
-        spawnChance = Random.Range(0, 1f);
-        if(spawnChance < blackSpotMultiplier)
-            Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+        Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
         isSpawning = false;
     }
