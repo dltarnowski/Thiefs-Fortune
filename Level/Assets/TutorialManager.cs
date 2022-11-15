@@ -102,6 +102,7 @@ public class TutorialManager : MonoBehaviour
 
     public void Begin()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
         gameManager.instance.cameraScript.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -155,6 +156,7 @@ public class TutorialManager : MonoBehaviour
 
     public void Complete()
     {
+        gameManager.instance.playerScript.anim.SetBool("Idle", false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         gameManager.instance.cameraScript.enabled = true;
@@ -229,5 +231,8 @@ public class TutorialManager : MonoBehaviour
         gameManager.instance.player.GetComponent<CharacterController>().height = 2;
         gameManager.instance.playerScript.anim.SetBool("IsCrouched", false);
         gameManager.instance.playerScript.anim.ResetTrigger("IsJumping");
+        gameManager.instance.playerScript.anim.SetFloat("Speed", 0);
+        //gameManager.instance.playerScript.move.x = 0;
+        gameManager.instance.playerScript.anim.SetBool("Idle", true);
     }
 }

@@ -38,8 +38,8 @@ public class AdvanceMovement : MonoBehaviour
         if (TutorialManager.instance.objectivesComplete == 3)
         {
             TutorialManager.instance.AnimationStop();
-            gameManager.instance.cameraScript.enabled = false;
             Cursor.lockState = CursorLockMode.Confined;
+            gameManager.instance.cameraScript.enabled = false;
             Cursor.visible = true;
 
             TutorialManager.instance.beginButton.SetActive(false);
