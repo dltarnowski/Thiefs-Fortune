@@ -249,16 +249,9 @@ public class gameManager : MonoBehaviour
 
         if (shopInventory.activeSelf)
             menuCurrentlyOpen = true;
-        
-        if (winMenu.activeSelf)   
-        {
+
+        if (winMenu.activeSelf)
             menuCurrentlyOpen = true;
-            gameManager.instance.winMenu.SetActive(true);
-            gameManager.instance.VictoryAnim.SetBool("Down", true);
-            Time.timeScale = 1;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-        }
 
         if (settingsMenu.activeSelf)
             menuCurrentlyOpen = true;

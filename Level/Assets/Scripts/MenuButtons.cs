@@ -22,13 +22,9 @@ public class MenuButtons : MonoBehaviour
     }
     public void ContinueExploring()
     {
-        gameManager.instance.cursorUnlockUnpause();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         StartCoroutine(HideMenu());
-        if (!gameManager.instance.crossHairVisible)
-        {
-            gameManager.instance.crossHairVisible = !gameManager.instance.crossHairVisible;
-            gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
-        }
     }
     public IEnumerator HideMenu()
     {

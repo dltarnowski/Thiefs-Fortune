@@ -21,7 +21,7 @@ public class winManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(clueCount == 4 && !legendSpawned)
+        if (clueCount == 4 && !legendSpawned)
         {
             legendSpawned = true;
             Instantiate(pirateLegend, pirateLegendSpawnPos.position, pirateLegendSpawnPos.rotation);
@@ -29,13 +29,20 @@ public class winManager : MonoBehaviour
             //gameManager.instance.miniMapObjectiveIcons.Add(currLegend.GetComponent<MiniMapIcons>().gameObject);
             gameManager.instance.CurrentObjectiveMiniMapIcon();
         }
-        if(legendSpawned && currLegend == null && !win)
+        if (legendSpawned && currLegend == null && !win)
         {
             win = true;
             gameManager.instance.miniMapObjectiveIcons[4].SetActive(false);
             gameManager.instance.miniMapPointer.gameObject.SetActive(false);
             gameManager.instance.winMenu.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
             StartCoroutine(CleanUp());
+        }
+        if (gameManager.instance.winMenu.activeSelf)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
