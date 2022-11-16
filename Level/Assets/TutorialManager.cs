@@ -170,6 +170,11 @@ public class TutorialManager : MonoBehaviour
 
         tutorialActive = false;
 
+        gameManager.instance.playerScript.thirdPersonCam_Obj.SetActive(true);
+        gameManager.instance.playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+        gameManager.instance.playerScript.firstPersonCam_Obj.SetActive(false);
+        gameManager.instance.playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
+
         if (tutorialProgress == 1)
         {
             completeButton.SetActive(false);
