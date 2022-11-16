@@ -8309,6 +8309,7 @@ GameObject:
   - component: {fileID: 4797809788153789066}
   - component: {fileID: 3342368394007752406}
   - component: {fileID: 4719339754858366998}
+  - component: {fileID: 1932241234}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -8512,6 +8513,10 @@ MonoBehaviour:
   - {fileID: 0}
   VictoryAnim: {fileID: 1412762572571258162}
   music: {fileID: 0}
+  MSVaule: 0
+  playervolumeVaule: 0
+  audioVaule: 0
+  gunVaule: 0
 --- !u!114 &2771891811004316489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8592,6 +8597,26 @@ MonoBehaviour:
   consumables: []
   starterGun: {fileID: 11400000, guid: 356e342717603dc44be5b7dfdc82206c, type: 2}
   starterSword: {fileID: 11400000, guid: ee61e7510b8d957478ff6e6b6fce1824, type: 2}
+--- !u!114 &1932241234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585069960627703937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676c7b7eb40ff6b42bf1ac9e416933b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MSSlider: {fileID: 3804171513373854093}
+  MSVaule: 0
+  PlayerVolumeSlider: {fileID: 3452351980081886631}
+  playervolumeVaule: 0
+  AudioSlider: {fileID: 90725967036246390}
+  audioVaule: 0
+  gunSlider: {fileID: 4603420021612986690}
+  gunVaule: 0
 --- !u!1 &2637852565436915343
 GameObject:
   m_ObjectHideFlags: 0
@@ -11764,8 +11789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MSSlider: {fileID: 0}
   MSVaule: 0
-  volumeSlider: {fileID: 3452351980081886631}
-  volumeVaule: 0
+  PlayerVolumeSlider: {fileID: 0}
+  playervolumeVaule: 0
   AudioSlider: {fileID: 0}
   audioVaule: 0
   gunSlider: {fileID: 0}

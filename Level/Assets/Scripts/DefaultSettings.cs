@@ -17,10 +17,6 @@ public class DefaultSettings : MonoBehaviour
     [SerializeField] private Slider gunSlider;
     public float gunVaule;
    
-    private void Awake()
-    {
-        //DefaultSettings();
-    }
     void Start()
     {
         LoadMSSettings();
@@ -35,13 +31,6 @@ public class DefaultSettings : MonoBehaviour
         SaveAudioSettings();
         SaveGunSettings();
     }
-    /*public void DefaultSettings()
-    {
-        MSVaule = 350;
-        playervolumeVaule = 0.5f;
-        audioVaule = 0.5f;
-        gunVaule = 0.5f;
-    }*/
     //Manages Mouse senseitivity
     public void SaveMSSettings()
     {
