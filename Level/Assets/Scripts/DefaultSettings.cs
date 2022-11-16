@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class DefaultSettings : MonoBehaviour
 {
@@ -20,7 +21,10 @@ public class DefaultSettings : MonoBehaviour
     [SerializeField] private Slider OverallSlider;
     public float overallVaule;
 
-    void Start()
+    [SerializeField] AudioMixer MasterMixer;
+    public float volume;
+
+    void OnEnable()
     {
         LoadMSSettings();
         LoadPVSettings();
@@ -28,7 +32,7 @@ public class DefaultSettings : MonoBehaviour
         LoadGunSettings();
         LoadOverallSettings();
     }
-    private void Update()
+    public void SaveAllSettings()
     {
         SaveMSSettings();
         SavePlayerVolumeSettings();
@@ -40,7 +44,7 @@ public class DefaultSettings : MonoBehaviour
     public void SaveMSSettings()
     {
         MSVaule = MSSlider.value;
-        gameManager.instance.MSVaule = MSVaule;
+        MainMenuManager.instance.MSVaule = MSVaule;
         PlayerPrefs.SetFloat("msValue", MSVaule);
         LoadMSSettings();
     }
@@ -53,7 +57,7 @@ public class DefaultSettings : MonoBehaviour
     public void SavePlayerVolumeSettings()
     {
         playervolumeVaule = PlayerVolumeSlider.value;
-        gameManager.instance.playervolumeVaule = playervolumeVaule;
+        MainMenuManager.instance.playervolumeVaule = playervolumeVaule;
         PlayerPrefs.SetFloat("VolumeValue", playervolumeVaule);
         LoadPVSettings();
     }
@@ -66,7 +70,7 @@ public class DefaultSettings : MonoBehaviour
     public void SaveAudioSettings()
     {
         audioVaule = AudioSlider.value;
-        gameManager.instance.audioVaule = audioVaule;
+        MainMenuManager.instance.audioVaule = audioVaule;
         PlayerPrefs.SetFloat("AudioValue", audioVaule);
         LoadAudioSettings();
     }
@@ -79,7 +83,7 @@ public class DefaultSettings : MonoBehaviour
     public void SaveGunSettings()
     {
         gunVaule = gunSlider.value;
-        gameManager.instance.gunVaule = gunVaule;
+        MainMenuManager.instance.gunVaule = gunVaule;
         PlayerPrefs.SetFloat("GunSlider", gunVaule);
         LoadGunSettings();
     }
@@ -92,7 +96,7 @@ public class DefaultSettings : MonoBehaviour
     public void SaveOverallSettings()
     {
         overallVaule = OverallSlider.value;
-        gameManager.instance.gunVaule = overallVaule;
+        MainMenuManager.instance.OverallVaule = overallVaule;
         PlayerPrefs.SetFloat("OverallSlider", overallVaule);
         LoadOverallSettings();
     }
@@ -100,6 +104,5 @@ public class DefaultSettings : MonoBehaviour
     {
         float overallVaule = PlayerPrefs.GetFloat("OverallSlider");
         OverallSlider.value = overallVaule;
-        AudioListener.volume = overallVaule;
     }
 }
