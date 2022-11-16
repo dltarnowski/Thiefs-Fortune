@@ -34,14 +34,19 @@ public class ConsumeSlots : MonoBehaviour
     {
         if (canBuy)
         {
-            if(inventory.items.Contains(item))
+            if (item is Consumable)
             {
-                item.numOfItems++;
-            }
-            else
-            {
-                item.numOfItems = 1;
-                inventory.Add(item);
+                if (Inventory.instance.items.Contains(item))
+                    Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
+                else if (EquipmentManager.instance.currentEquipment[2] != null)
+                    EquipmentManager.instance.currentEquipment[2].numOfItems++;
+                else if (EquipmentManager.instance.currentEquipment[3] != null)
+                    EquipmentManager.instance.currentEquipment[3].numOfItems++;
+                else
+                {
+                    item.numOfItems = 1;
+                    inventory.Add(item);
+                }
             }
 
         }

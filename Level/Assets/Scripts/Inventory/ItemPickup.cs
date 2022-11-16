@@ -9,7 +9,8 @@ public class ItemPickup : MonoBehaviour
 
     private void Start()
     {
-        item = Instantiate(item);
+        if(!(item is Consumable))
+            item = Instantiate(item);
         if(despawn > 0)
             Destroy(gameObject, despawn);    
     }
