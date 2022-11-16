@@ -98,12 +98,12 @@ public class gameManager : MonoBehaviour
     public musicSwap music;
 
     int towersLeft;
-    [Header("----- Settings -----")]
+   /* [Header("----- Settings -----")]
     public float MSVaule;
     public float playervolumeVaule;
     public float audioVaule;
     public float gunVaule;
-    public float OverallVaule;
+    public float OverallVaule;*/
 
     // Start is called before the first frame update
     void Awake()
@@ -283,12 +283,12 @@ public class gameManager : MonoBehaviour
         return menuCurrentlyOpen;
     }
 
-    public void DefaultSettings()
+    /*public void DefaultSettings()
     {
         MSVaule = 350;
         playervolumeVaule = 0.5f;
         audioVaule = 0.5f;
         gunVaule = 0.5f;
         OverallVaule = 0.5f;
-    }
+    }*/
 }
