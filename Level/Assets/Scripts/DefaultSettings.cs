@@ -16,13 +16,17 @@ public class DefaultSettings : MonoBehaviour
 
     [SerializeField] private Slider gunSlider;
     public float gunVaule;
-   
+
+    [SerializeField] private Slider OverallSlider;
+    public float overallVaule;
+
     void Start()
     {
         LoadMSSettings();
         LoadPVSettings();
         LoadAudioSettings();
         LoadGunSettings();
+        LoadOverallSettings();
     }
     private void Update()
     {
@@ -30,6 +34,7 @@ public class DefaultSettings : MonoBehaviour
         SavePlayerVolumeSettings();
         SaveAudioSettings();
         SaveGunSettings();
+        SaveOverallSettings();
     }
     //Manages Mouse senseitivity
     public void SaveMSSettings()
@@ -82,5 +87,19 @@ public class DefaultSettings : MonoBehaviour
     {
         float gunVaule = PlayerPrefs.GetFloat("GunSlider");
         gunSlider.value = gunVaule;
+    }
+    //Manages Overall volume
+    public void SaveOverallSettings()
+    {
+        overallVaule = OverallSlider.value;
+        gameManager.instance.gunVaule = overallVaule;
+        PlayerPrefs.SetFloat("OverallSlider", overallVaule);
+        LoadOverallSettings();
+    }
+    void LoadOverallSettings()
+    {
+        float overallVaule = PlayerPrefs.GetFloat("OverallSlider");
+        OverallSlider.value = overallVaule;
+        AudioListener.volume = overallVaule;
     }
 }

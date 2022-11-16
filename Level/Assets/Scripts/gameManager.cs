@@ -103,6 +103,7 @@ public class gameManager : MonoBehaviour
     public float playervolumeVaule;
     public float audioVaule;
     public float gunVaule;
+    public float OverallVaule;
 
     // Start is called before the first frame update
     void Awake()
@@ -288,5 +289,6 @@ public class gameManager : MonoBehaviour
         playervolumeVaule = 0.5f;
         audioVaule = 0.5f;
         gunVaule = 0.5f;
+        OverallVaule = 0.5f;
     }
 }

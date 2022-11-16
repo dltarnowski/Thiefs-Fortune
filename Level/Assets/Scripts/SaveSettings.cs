@@ -16,6 +16,10 @@ public class SaveSettings : MonoBehaviour
     
     [SerializeField] private Slider gunSlider;
     public float gunVaule;
+
+    [SerializeField] private Slider OverallSlider;
+    public float overallVaule;
+
     private void Awake()
     {
         DefaultSettings();
@@ -37,10 +41,11 @@ public class SaveSettings : MonoBehaviour
 
     public void DefaultSettings()
     {
-       MSVaule = 350;
-       playervolumeVaule = 0.5f;
-       audioVaule = 0.5f;
-       gunVaule = 0.5f;
+        MSVaule = 350;
+        playervolumeVaule = 0.5f;
+        audioVaule = 0.5f;
+        gunVaule = 0.5f;
+        overallVaule = 0.5f;
     }
 
 
@@ -91,5 +96,19 @@ public class SaveSettings : MonoBehaviour
     {
         float gunVaule = PlayerPrefs.GetFloat("GunSlider");
         gunSlider.value = gunVaule;
+    }
+    //Manages Overall volume
+    public void SaveOverallSettings()
+    {
+        overallVaule = OverallSlider.value;
+        gameManager.instance.gunVaule = overallVaule;
+        PlayerPrefs.SetFloat("OverallSlider", overallVaule);
+        LoadOverallSettings();
+    }
+    void LoadOverallSettings()
+    {
+        float overallVaule = PlayerPrefs.GetFloat("OverallSlider");
+        OverallSlider.value = overallVaule;
+        AudioListener.volume = overallVaule;
     }
 }
