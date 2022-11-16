@@ -42,6 +42,7 @@ public class gameManager : MonoBehaviour
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
     public blackSpot blackspot;
+    public GameObject reloadHint;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -131,6 +132,11 @@ public class gameManager : MonoBehaviour
             else if(!isPaused && !inventoryPanel.activeSelf)
                 cursorUnlockUnpause();
         }
+
+        if (playerScript.gunStats.ammoCount <= 0)
+            reloadHint.SetActive(true);
+        else
+            reloadHint.SetActive(false);
     }
 
     public IEnumerator playerHeal()
