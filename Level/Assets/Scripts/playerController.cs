@@ -7,8 +7,8 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     public CharacterController controller;
-    [SerializeField] GameObject thirdPersonCam_Obj;
-    [SerializeField] GameObject firstPersonCam_Obj;
+    public GameObject thirdPersonCam_Obj;
+    public GameObject firstPersonCam_Obj;
     [SerializeField] Camera thirdPersonCam_Cam;
     [SerializeField] Camera firstPersonCam_Cam;
     [SerializeField] GameObject miniMapIcon;
@@ -277,7 +277,7 @@ public class playerController : MonoBehaviour
         }
 
         //Jump Buffer
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && controller.isGrounded)
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -296,7 +296,7 @@ public class playerController : MonoBehaviour
 
             jumpBufferCounter = 0;
         }
-        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0)
+        if (!isUnderwater && Input.GetButtonUp("Jump") && playerVelocity.y > 0 && controller.isGrounded)
         {
             playerVelocity.y = jumpHeight * 0.5f;
 
@@ -451,7 +451,7 @@ public class playerController : MonoBehaviour
                 mapActive++;
                 miniMapIcon.transform.localScale = new Vector3(10, 10, 10);
                 gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(50, 50, 50);
-                Time.timeScale = 0;
+                gameManager.instance.cursorLockPause();
             }
         }
         else if (gameManager.instance.map.activeSelf)
@@ -462,7 +462,7 @@ public class playerController : MonoBehaviour
                 mapActive++;
                 miniMapIcon.transform.localScale = new Vector3(2, 2, 2);
                 gameManager.instance.miniMapObjectiveIcons[winManager.instance.clueCount].gameObject.transform.localScale = new Vector3(10, 10, 10);
-                Time.timeScale = 1;
+                gameManager.instance.cursorUnlockUnpause();
             }
         }
 
