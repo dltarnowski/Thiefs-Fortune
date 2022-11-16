@@ -163,6 +163,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerScript.thirdPersonCam_Obj.SetActive(true);
+        playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+        playerScript.firstPersonCam_Obj.SetActive(false);
+        playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
     }
 
     public void NpcPause()
