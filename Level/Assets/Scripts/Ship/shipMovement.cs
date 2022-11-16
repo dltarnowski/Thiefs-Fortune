@@ -6,7 +6,8 @@ public class shipMovement : MonoBehaviour
     public static shipMovement instance;
     Vector3 move;
     [SerializeField] shipCameraControl shipCam;
-    [SerializeField] float speed;
+    [SerializeField] internal AudioSource aud;
+    [SerializeField] public float speed;
     [SerializeField] float speedIncTimer;
     [SerializeField] float maxSpeed;
     [SerializeField] float rotateSpeed;
@@ -14,7 +15,6 @@ public class shipMovement : MonoBehaviour
     [SerializeField] int bounceOffObject;
 
     bool isMoving;
-    
 
     private void Awake()
     {
@@ -28,10 +28,14 @@ public class shipMovement : MonoBehaviour
 
     void movement()
     {
+            
         if(Input.GetAxis("Vertical") > 0)
         {
             if(!wake.isPlaying)
                 wake.Play();
+
+            if (!aud.isPlaying)
+                aud.Play();
 
             StartCoroutine(speedInc());
             move = transform.forward * Input.GetAxis("Vertical");
@@ -46,6 +50,7 @@ public class shipMovement : MonoBehaviour
             shipCam.sensHort = 0;
             speed = 0;
             wake.Stop();
+            aud.Stop();
         }
     }
 

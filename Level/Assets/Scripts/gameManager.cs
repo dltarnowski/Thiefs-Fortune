@@ -92,7 +92,7 @@ public class gameManager : MonoBehaviour
     public Slider GunVolumeSlider;
     public bool handmaiden;
     public GameObject[] islandObjects;
-
+    [SerializeField] public Animator VictoryAnim;
     [Header("----- Audio -----")]
     public musicSwap music;
 
@@ -145,7 +145,6 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         playerDamageFlash.SetActive(false);
     }
-
     public void cursorLockPause()
     {
         Time.timeScale = 0;
@@ -250,6 +249,16 @@ public class gameManager : MonoBehaviour
 
         if (shopInventory.activeSelf)
             menuCurrentlyOpen = true;
+        
+        if (winMenu.activeSelf)   
+        {
+            menuCurrentlyOpen = true;
+            gameManager.instance.winMenu.SetActive(true);
+            gameManager.instance.VictoryAnim.SetBool("Down", true);
+            Time.timeScale = 1;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
         if (settingsMenu.activeSelf)
             menuCurrentlyOpen = true;
@@ -265,6 +274,7 @@ public class gameManager : MonoBehaviour
 
         if (TutorialManager.instance.tutorialActive)
             menuCurrentlyOpen = true;
+
 
         return menuCurrentlyOpen;
     }
