@@ -193,6 +193,7 @@ public class TutorialManager : MonoBehaviour
         }
         if (tutorialProgress == 4)
         {
+            ammoSpawner.SetActive(false);
             completeButton.SetActive(false);
             rangedUIObj.SetActive(false);
             meleeUIObj.SetActive(false);
