@@ -33,7 +33,7 @@ public class InventoryUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Inventory") && TutorialManager.instance.tutorialProgress >= 2)
+        if (Input.GetButtonDown("Inventory") && TutorialManager.instance.tutorialProgress >= 2 && !gameManager.instance.map.activeSelf)
         {
             isPaused = !isPaused;
             inventoryUI.SetActive(isPaused);

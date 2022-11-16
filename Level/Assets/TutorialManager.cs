@@ -75,7 +75,7 @@ public class TutorialManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        nextPoint = new GameObject();
+        nextPoint = basicPoint;
     }
 
     // Update is called once per frame
