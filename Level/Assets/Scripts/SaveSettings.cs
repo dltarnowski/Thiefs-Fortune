@@ -8,8 +8,8 @@ public class SaveSettings : MonoBehaviour
     [SerializeField] private Slider MSSlider;
     public float MSVaule;
     
-    [SerializeField] private Slider volumeSlider;
-    public float volumeVaule;
+    [SerializeField] private Slider PlayerVolumeSlider;
+    public float playervolumeVaule;
 
     [SerializeField] private Slider AudioSlider;
     public float audioVaule;
@@ -37,10 +37,10 @@ public class SaveSettings : MonoBehaviour
 
     public void DefaultSettings()
     {
-        MSVaule = 350;
-        volumeVaule = 0.5f;
-        audioVaule = 0.5f;
-        gunVaule = 0.5f;
+       MSVaule = 350;
+       playervolumeVaule = 0.5f;
+       audioVaule = 0.5f;
+       gunVaule = 0.5f;
     }
 
 
@@ -59,14 +59,14 @@ public class SaveSettings : MonoBehaviour
     //Manages Player volume
     public void SavePlayerVolumeSettings()
     {
-        volumeVaule = volumeSlider.value;
-        PlayerPrefs.SetFloat("VolumeValue", volumeVaule);
+        playervolumeVaule = PlayerVolumeSlider.value;
+        PlayerPrefs.SetFloat("VolumeValue", playervolumeVaule);
         LoadPVSettings();
     }
     void LoadPVSettings()
     {
-        float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        volumeSlider.value = volumeValue;
+        float playervolumeValue = PlayerPrefs.GetFloat("VolumeValue");
+        PlayerVolumeSlider.value = playervolumeValue;
     }
     //Manages Music volume
     public void SaveAudioSettings()
