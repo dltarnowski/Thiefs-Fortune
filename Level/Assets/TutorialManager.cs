@@ -57,6 +57,7 @@ public class TutorialManager : MonoBehaviour
     public bool currentTab;
 
     [Header("----- Other -----")]
+    public GameObject ammoSpawner;
     public bool playerInRange;
     public GameObject skull;
     public GameObject exclamation;
@@ -68,6 +69,7 @@ public class TutorialManager : MonoBehaviour
     public int meleeEnemiesLeft;
     public int rangedEnemiesLeft;
     public bool tutorialActive;
+    public bool pickedUp;
 
     // Start is called before the first frame update
     void Awake()
@@ -130,6 +132,8 @@ public class TutorialManager : MonoBehaviour
         }
         else if (combatTrigger)
         {
+            ammoSpawner.SetActive(true);
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             gameManager.instance.cameraScript.enabled = true;
