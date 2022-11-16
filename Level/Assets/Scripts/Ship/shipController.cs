@@ -18,15 +18,20 @@ public class shipController : MonoBehaviour
     {
         if(onShip && Input.GetKeyDown(KeyCode.E))
         {
+            gameManager.instance.CurrentObjectiveMiniMapIcon();
             gameManager.instance.hint.SetActive(false);
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
             gameManager.instance.playerScript.anim.enabled = !gameManager.instance.playerScript.anim.enabled;
 
-            if(shipMovement.instance.wake.isPlaying)
+            if(shipMove.wake.isPlaying)
             {
-                shipMovement.instance.wake.Stop();
+                shipMove.wake.Stop();
             }
+
+            if (shipMove.aud.isPlaying)
+                shipMove.aud.Stop();
+
 
             sailsUp.SetActive(controllingShip);
             sailsDown.SetActive(!controllingShip);
@@ -34,6 +39,8 @@ public class shipController : MonoBehaviour
             shipCam.SetActive(!controllingShip);
             controllingShip = !controllingShip;
 
+            if (shipMove.enabled == false)
+                shipMove.speed = 0;
             //if(anim != null)
             //    anim.SetBool("PlayerControllingShip", controllingShip);
         }
@@ -71,10 +78,7 @@ public class shipController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            gameManager.instance.hint.SetActive(false);
-            onShip = false;
-        }
+        gameManager.instance.hint.SetActive(false);
+        onShip = false;
     }
 }

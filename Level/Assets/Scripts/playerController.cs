@@ -70,7 +70,7 @@ public class playerController : MonoBehaviour
     bool canSprint = true;
     bool isSwinging;
     [SerializeField] bool isOnSand;
-    Vector3 move;
+    public Vector3 move;
 
     float coyoteTime = 0.5f;
     float coyoteTimeCounter;
@@ -143,7 +143,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator shoot()
     {
-        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.winMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isShooting && gunStats.ammoCount > 0)
             {
@@ -233,17 +233,17 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("IsCrouched", true);
             transform.GetComponent<CharacterController>().height = 1.4f;
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y - crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y - crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
         if (Input.GetKeyUp(KeyCode.LeftControl) && Cursor.lockState == CursorLockMode.Locked)
         {
             anim.SetBool("IsCrouched", false);
             transform.GetComponent<CharacterController>().height = 2;
-            transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
-                                                                    transform.GetChild(0).localPosition.y + crouchHeight,
-                                                                    transform.GetChild(0).localPosition.z);
+            //transform.GetChild(0).localPosition = new Vector3(transform.GetChild(0).localPosition.x,
+                                                                    //transform.GetChild(0).localPosition.y + crouchHeight,
+                                                                    //transform.GetChild(0).localPosition.z);
         }
 
         //Move
@@ -391,7 +391,7 @@ public class playerController : MonoBehaviour
     }
     IEnumerator swing()
     {
-        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf)
+        if (!gameManager.instance.shopDialogue.activeSelf && !gameManager.instance.shopInventory.activeSelf && !gameManager.instance.pauseMenu.activeSelf && !gameManager.instance.deathMenu.activeSelf && !gameManager.instance.winMenu.activeSelf)
         {
             if (Input.GetButton("Fire1") && !isSwinging)
             {

@@ -21,13 +21,16 @@ public class blackSpot : MonoBehaviour
     void Update()
     {
         if(!isSpawning && blackSpotMultiplier > 0 && TutorialManager.instance.tutorialProgress >= 5)
-            StartCoroutine(raid());
+        {
+                StartCoroutine(raid());
+        }
 
         if(currblackspot != blackSpotMultiplier)
         {
             FillBlackSpot();
         }
     }
+
 
     public void FillBlackSpot()
     {
@@ -38,7 +41,10 @@ public class blackSpot : MonoBehaviour
     IEnumerator raid()
     {
         isSpawning = true;
-        Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+        spawnChance = Random.Range(0f, 1f);
+        Debug.Log(spawnChance);
+        if (spawnChance < .2f)
+            Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
         isSpawning = false;
     }

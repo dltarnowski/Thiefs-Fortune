@@ -6,23 +6,23 @@ public class MeleeDummy : MonoBehaviour, IDamage
 {
     public Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void takeDamage(float dmg)
     {
         anim.SetTrigger("Hit");
-
-        if(TutorialManager.instance.meleeEnemiesLeft <= 2)
+        if(TutorialManager.instance.tutorialActive)
+        {
             TutorialManager.instance.meleeEnemiesLeft--;
+
+            if (TutorialManager.instance.meleeEnemiesLeft == 1)
+            {
+                TutorialManager.instance.meleeUI[0].color = Color.green;
+                TutorialManager.instance.objectivesComplete++;
+            }
+            else if (TutorialManager.instance.meleeEnemiesLeft == 0)
+            {
+                TutorialManager.instance.meleeUI[1].color = Color.green;
+                TutorialManager.instance.objectivesComplete++;
+            }
+        }
     }
 }

@@ -53,6 +53,11 @@ public class ItemPickup : MonoBehaviour
                 TutorialManager.instance.ammoBag.SetActive(false);
             }
 
+            if(TutorialManager.instance.tutorialActive && TutorialManager.instance.combatTrigger)
+            {
+                TutorialManager.instance.pickedUp = true;
+            }
+
             if(isSwapped || !(item is Weapon))
                 Destroy(gameObject);
 

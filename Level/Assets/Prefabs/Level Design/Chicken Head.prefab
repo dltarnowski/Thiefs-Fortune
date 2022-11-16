@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 5849628614999340053}
   - component: {fileID: 5849628614998282559}
   - component: {fileID: 5894493192077140361}
-  - component: {fileID: 592213201}
+  - component: {fileID: 1133361160}
   m_Layer: 10
   m_Name: SM_Bld_Rickety_Dock_01
   m_TagString: Untagged
@@ -618,7 +618,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e7e55da109c796f4b98184f507d2e4f0, type: 3}
---- !u!54 &592213201
+--- !u!54 &1133361160
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8137,9 +8137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6614298005496384132}
   - component: {fileID: 6525487682528477134}
-  - component: {fileID: 6525487682528476721}
   - component: {fileID: 6525487682528476720}
   - component: {fileID: 6525487682528476723}
+  - component: {fileID: 45546414}
   m_Layer: 10
   m_Name: Chest
   m_TagString: Untagged
@@ -8187,22 +8187,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6525487682528476721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6620150161871325610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07d82d22fbc605d4d82478c21c3265cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 6525487682528477134}
-  drops:
-  - {fileID: 8205407135513404088, guid: bac18288913a0124aa470756abe1ace8, type: 3}
-  itemSpawnPos: {fileID: 5900380661775690509}
 --- !u!135 &6525487682528476720
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8229,6 +8213,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2323303, y: 1, z: 1}
   m_Center: {x: -0.025466919, y: 0, z: 0}
+--- !u!114 &45546414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620150161871325610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 929bb4da43b6ec94ca8a26c199c2d616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6525487682528477134}
 --- !u!1001 &2623538470035223272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8312,7 +8309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375312, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5766391565566375313, guid: ba6a306c8f32d5a4aa24fbd4c50703d7, type: 3}
       propertyPath: m_RootOrder

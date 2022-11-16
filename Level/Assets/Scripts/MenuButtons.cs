@@ -20,6 +20,19 @@ public class MenuButtons : MonoBehaviour
             gameManager.instance.Crosshair.SetActive(gameManager.instance.crossHairVisible);
         }
     }
+    public void ContinueExploring()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(HideMenu());
+    }
+    public IEnumerator HideMenu()
+    {
+        gameManager.instance.VictoryAnim.SetBool("Up", true);
+        yield return new WaitForSeconds(1.2f);
+        gameManager.instance.VictoryAnim.SetBool("Up", false);
+        gameManager.instance.winMenu.SetActive(false);
+    }
     public void Play()
     {
         Time.timeScale = 1;

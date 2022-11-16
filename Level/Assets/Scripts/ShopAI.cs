@@ -51,9 +51,9 @@ public class ShopAI : MonoBehaviour
         {
             gameManager.instance.weaponCollide = true;
             NPCManager.instance.shopUI = NPCManager.instance.weaponUI;
+            gameManager.instance.hint.SetActive(true);
         }
 
-        gameManager.instance.hint.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
@@ -61,8 +61,8 @@ public class ShopAI : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameManager.instance.weaponCollide = false;
+            gameManager.instance.hint.SetActive(false);
         }
 
-        gameManager.instance.hint.SetActive(false);
     }
 }

@@ -13,7 +13,12 @@ public class newSpawnPos : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TutorialManager.instance.tutorialProgress == 5 && !changed)
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!changed && other.CompareTag("Player"))
         {
             changed = true;
             gameManager.instance.spawnPosition = this.gameObject;

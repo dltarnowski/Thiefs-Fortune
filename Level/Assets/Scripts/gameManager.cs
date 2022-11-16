@@ -42,6 +42,7 @@ public class gameManager : MonoBehaviour
     public GameObject Crosshair;
     public TextMeshProUGUI EnemyCountText;
     public blackSpot blackspot;
+    public GameObject reloadHint;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -76,7 +77,7 @@ public class gameManager : MonoBehaviour
     public Recoil recoilScript;
 
     [Header("----- Mini Map -----")]
-    public GameObject[] miniMapObjectiveIcons;
+    public List<GameObject> miniMapObjectiveIcons;
     public Pointer miniMapPointer;
     public Camera miniMapCamera;
     public GameObject miniMapWindow;
@@ -92,7 +93,7 @@ public class gameManager : MonoBehaviour
     public Slider GunVolumeSlider;
     public bool handmaiden;
     public GameObject[] islandObjects;
-
+    [SerializeField] public Animator VictoryAnim;
     [Header("----- Audio -----")]
     public musicSwap music;
 
@@ -128,9 +129,14 @@ public class gameManager : MonoBehaviour
 
             if (isPaused)
                 cursorLockPause();
-            else
+            else if(!isPaused && !inventoryPanel.activeSelf)
                 cursorUnlockUnpause();
         }
+
+        if (playerScript.gunStats.ammoCount <= 0)
+            reloadHint.SetActive(true);
+        else
+            reloadHint.SetActive(false);
     }
 
     public IEnumerator playerHeal()
@@ -145,7 +151,6 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         playerDamageFlash.SetActive(false);
     }
-
     public void cursorLockPause()
     {
         Time.timeScale = 0;
@@ -196,7 +201,7 @@ public class gameManager : MonoBehaviour
 
     public void CurrentObjectiveMiniMapIcon()
     {
-        for (int i = 0; i < miniMapObjectiveIcons.Length; ++i)
+        for (int i = 0; i < miniMapObjectiveIcons.Count; ++i)
         {
             if (i == winManager.instance.clueCount)
                 miniMapObjectiveIcons[i].SetActive(true);
@@ -251,6 +256,9 @@ public class gameManager : MonoBehaviour
         if (shopInventory.activeSelf)
             menuCurrentlyOpen = true;
 
+        if (winMenu.activeSelf)
+            menuCurrentlyOpen = true;
+
         if (settingsMenu.activeSelf)
             menuCurrentlyOpen = true;
 
@@ -265,6 +273,7 @@ public class gameManager : MonoBehaviour
 
         if (TutorialManager.instance.tutorialActive)
             menuCurrentlyOpen = true;
+
 
         return menuCurrentlyOpen;
     }
