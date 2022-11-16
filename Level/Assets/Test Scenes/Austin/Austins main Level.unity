@@ -310,17 +310,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 648394129562943168, guid: 82b3bd6e91caa344a95edd88fd495df7, type: 3}
   m_PrefabInstance: {fileID: 8255890054361535902}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &333983908 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2777566816617793563, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-  m_PrefabInstance: {fileID: 1226561313}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfea864d61be37647b2186f97f90ea2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &340937295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5961545210367267551, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
@@ -654,25 +643,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7690351439034544159, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
   m_PrefabInstance: {fileID: 1226561313}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1093939699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 375115640, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-  m_PrefabInstance: {fileID: 1226561313}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &1093939704
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093939699}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 2.8355803
-  m_Height: 7.8911133
-  m_Direction: 2
-  m_Center: {x: 0.09342791, y: 0.28834772, z: 3.5481477}
 --- !u!108 &1110751142 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 252579110874067858, guid: 4999845e4e5593441aab07d0e797c45a, type: 3}
@@ -763,14 +733,6 @@ PrefabInstance:
     - target: {fileID: 1488404739827658409, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1825332773057811989, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: shipMove
-      value: 
-      objectReference: {fileID: 333983908}
-    - target: {fileID: 2777566816617793563, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
-      propertyPath: bounceOffObject
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2851848976138063795, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
       propertyPath: m_Name
