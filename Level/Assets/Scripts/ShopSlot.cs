@@ -17,6 +17,7 @@ public class ShopSlot : MonoBehaviour
 
     private void Start()
     {
+        item = Instantiate(item);
         inventory = Inventory.instance;
         shopInventory = ShopInventory.instance;
 
@@ -88,12 +89,20 @@ public class ShopSlot : MonoBehaviour
 
     public void BuyCheck()
     {
-        if (item != EquipmentManager.instance.currentEquipment[0] && item != EquipmentManager.instance.currentEquipment[1]
-           && gameManager.instance.currencyNumber >= item.buyPrice && !inventory.items.Contains(item) && item != null)
+        bool containsItem = false;
+        for (int i = 0; i < inventory.items.Count - 1; i++)
+        {
+            if (inventory.items[i].name == item.name)
+                containsItem = true;
+        }
+
+        if (item.name != EquipmentManager.instance.currentEquipment[0].name && item.name != EquipmentManager.instance.currentEquipment[1].name
+           && gameManager.instance.currencyNumber >= item.buyPrice && !containsItem)
         {
             canBuy = true;
         }
         else
             canBuy = false;
+
     }
 }

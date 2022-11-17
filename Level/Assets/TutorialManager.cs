@@ -75,7 +75,7 @@ public class TutorialManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        nextPoint = new GameObject();
+        nextPoint = basicPoint;
     }
 
     // Update is called once per frame
@@ -169,6 +169,11 @@ public class TutorialManager : MonoBehaviour
         gameManager.instance.cameraScript.enabled = true;
 
         tutorialActive = false;
+
+        gameManager.instance.playerScript.thirdPersonCam_Obj.SetActive(true);
+        gameManager.instance.playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+        gameManager.instance.playerScript.firstPersonCam_Obj.SetActive(false);
+        gameManager.instance.playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
 
         if (tutorialProgress == 1)
         {

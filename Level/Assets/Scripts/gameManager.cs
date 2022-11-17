@@ -28,7 +28,6 @@ public class gameManager : MonoBehaviour
     public bool menuCurrentlyOpen;
 
     [Header("----- Player UI -----")]
-    public GameObject acObject;
     public GameObject playerDamageFlash;
     public GameObject playerDamageIndicator;
     public GameObject playerHealthFlash;
@@ -43,6 +42,8 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI EnemyCountText;
     public blackSpot blackspot;
     public GameObject reloadHint;
+    public TextMeshProUGUI ammo;
+    public GameObject ammoObject;
 
     [Header("----- Objective UI -----")]
     public TextMeshProUGUI objText;
@@ -137,11 +138,6 @@ public class gameManager : MonoBehaviour
             else if(!isPaused && !inventoryPanel.activeSelf)
                 cursorUnlockUnpause();
         }
-
-        if (playerScript.gunStats.ammoCount <= 0)
-            reloadHint.SetActive(true);
-        else
-            reloadHint.SetActive(false);
     }
 
     public IEnumerator playerHeal()
@@ -168,6 +164,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerScript.thirdPersonCam_Obj.SetActive(true);
+        playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+        playerScript.firstPersonCam_Obj.SetActive(false);
+        playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
     }
 
     public void NpcPause()
