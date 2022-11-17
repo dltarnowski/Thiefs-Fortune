@@ -95,16 +95,18 @@ public class gameManager : MonoBehaviour
     public bool handmaiden;
     public GameObject[] islandObjects;
     [SerializeField] public Animator VictoryAnim;
+    public shipController shipControllerScript;
+
     [Header("----- Audio -----")]
     public musicSwap music;
 
     int towersLeft;
-   /* [Header("----- Settings -----")]
-    public float MSVaule;
-    public float playervolumeVaule;
-    public float audioVaule;
-    public float gunVaule;
-    public float OverallVaule;*/
+    /* [Header("----- Settings -----")]
+     public float MSVaule;
+     public float playervolumeVaule;
+     public float audioVaule;
+     public float gunVaule;
+     public float OverallVaule;*/
 
     // Start is called before the first frame update
     void Awake()
@@ -135,7 +137,7 @@ public class gameManager : MonoBehaviour
 
             if (isPaused)
                 cursorLockPause();
-            else if(!isPaused && !inventoryPanel.activeSelf)
+            else if (!isPaused && !inventoryPanel.activeSelf)
                 cursorUnlockUnpause();
         }
     }
@@ -165,10 +167,13 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        playerScript.thirdPersonCam_Obj.SetActive(true);
-        playerScript.thirdPersonCam_Obj.tag = "MainCamera";
-        playerScript.firstPersonCam_Obj.SetActive(false);
-        playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
+        if (shipControllerScript != null && !shipControllerScript.controllingShip)
+        {
+            playerScript.thirdPersonCam_Obj.SetActive(true);
+            playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+            playerScript.firstPersonCam_Obj.SetActive(false);
+            playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
+        }
     }
 
     public void NpcPause()
@@ -237,13 +242,13 @@ public class gameManager : MonoBehaviour
 
     public void ReduceAmmo()
     {
-        if(ammoArray.Length > 0)
-            ammoArray[ammoCount-1].enabled = false;
+        if (ammoArray.Length > 0)
+            ammoArray[ammoCount - 1].enabled = false;
     }
 
     public void IncreaseAmmo()
     {
-        for(int i = 0; i < ammoArray.Length; i++)
+        for (int i = 0; i < ammoArray.Length; i++)
         {
             ammoArray[i].enabled = true;
         }
@@ -253,7 +258,7 @@ public class gameManager : MonoBehaviour
     {
         menuCurrentlyOpen = false;
 
-        if(deathMenu.activeSelf)
+        if (deathMenu.activeSelf)
             menuCurrentlyOpen = true;
 
         if (shopDialogue.activeSelf)

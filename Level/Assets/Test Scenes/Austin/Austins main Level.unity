@@ -855,11 +855,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3466909026908064238, guid: b8aff03ddc24d4b44a9e3de94e8181fd, type: 3}
   m_PrefabInstance: {fileID: 1995302537652507091}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1461500237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1995302539111311518, guid: b8aff03ddc24d4b44a9e3de94e8181fd, type: 3}
-  m_PrefabInstance: {fileID: 1995302537652507091}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1472817017 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3298594299657434746, guid: 13c99a7e7aff4cd438b10b13a3dcc964, type: 3}
@@ -3432,7 +3427,6 @@ MonoBehaviour:
   helpMenu: {fileID: 566682883}
   deathMenu: {fileID: 4107989890140311237}
   menuCurrentlyOpen: 0
-  acObject: {fileID: 0}
   playerDamageFlash: {fileID: 1875007738}
   playerDamageIndicator: {fileID: 465611721}
   playerHealthFlash: {fileID: 0}
@@ -3447,6 +3441,8 @@ MonoBehaviour:
   EnemyCountText: {fileID: 1957477475}
   blackspot: {fileID: 1661121826}
   reloadHint: {fileID: 0}
+  ammo: {fileID: 0}
+  ammoObject: {fileID: 0}
   objText: {fileID: 7465225258010784848}
   ObjectiveBox: {fileID: 7015977695081228447}
   anim: {fileID: 7232473741950489679}
@@ -3585,6 +3581,7 @@ MonoBehaviour:
   - {fileID: 1285178787}
   - {fileID: 914946641}
   VictoryAnim: {fileID: 0}
+  shipControllerScript: {fileID: 0}
   music: {fileID: 0}
 --- !u!222 &1424338147253481566
 CanvasRenderer:
@@ -17682,7 +17679,7 @@ MonoBehaviour:
   inventoryPoint: {fileID: 99146810}
   combatPoint: {fileID: 0}
   nextPoint: {fileID: 0}
-  finalPoint: {fileID: 1461500237}
+  finalPoint: {fileID: 0}
   equipButton: 0
   unequipButton: 0
   activeTab: 0
@@ -19868,7 +19865,7 @@ PrefabInstance:
     - target: {fileID: 2325848101866143217, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
       propertyPath: finalPoint
       value: 
-      objectReference: {fileID: 1461500237}
+      objectReference: {fileID: 0}
     - target: {fileID: 2325848101866143217, guid: 195d302d6b9381542baf62456a8326bf, type: 3}
       propertyPath: combatPoint
       value: 
