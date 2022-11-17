@@ -118,7 +118,6 @@ public class playerController : MonoBehaviour
             ChangeGunVolume();
         }
 
-
         movement();
 
         StartCoroutine(PlaySteps());
@@ -207,10 +206,35 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void updateSlopeSliding()
+    {
+        if (controller.isGrounded)
+        {
+            var sphereCastVerticalOffset = controller.height / 2 - controller.radius;
+            var castOrigin = transform.position - new Vector3(0, sphereCastVerticalOffset, 0);
 
+            if (Physics.SphereCast(castOrigin, controller.radius - .05f, Vector3.down, out var hit, .05f, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore))
+            {
+                var collider = hit.collider;
+                var angle = Vector3.Angle(Vector3.up, hit.normal);
+                Debug.DrawLine(hit.point, hit.point + hit.normal, Color.black, 3f);
+                Debug.Log(angle);
+
+                if (angle > controller.slopeLimit)
+                {
+                    var normal = hit.normal;
+                    var yInverse = 1f - normal.y;
+                    playerVelocity.x += yInverse * normal.x;
+                    playerVelocity.z += yInverse * normal.z;
+
+                }
+            }
+        }
+    }
 
     void movement()
     {
+        updateSlopeSliding();
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
