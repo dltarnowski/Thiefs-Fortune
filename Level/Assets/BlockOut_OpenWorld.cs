@@ -9,6 +9,7 @@ public class BlockOut_OpenWorld : MonoBehaviour
     public GameObject deathMenu;
 
     bool playerOutOfBounds;
+    bool damagingPlayer;
     
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,17 @@ public class BlockOut_OpenWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (deathMenu.activeSelf)
-            edgeUI.SetActive(false);*/
+        if (deathMenu.activeSelf)
+            edgeUI.SetActive(false);
 
         if(playerOutOfBounds)
         {
-            edgeUI.SetActive(true);
-            gameManager.instance.playerScript.takeDamage(1);
+            if(!deathMenu.activeSelf)
+                edgeUI.SetActive(true);
+
+            if(!damagingPlayer)
+                StartCoroutine(DamageTimer());
+
             gameManager.instance.playerScript.updatePlayerHUD();
         }
     }
@@ -42,6 +47,14 @@ public class BlockOut_OpenWorld : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         playerOutOfBounds = false;
+        edgeUI.SetActive(false);
     }
 
+    IEnumerator DamageTimer()
+    {
+        damagingPlayer = true;
+        yield return new WaitForSeconds(2);
+        gameManager.instance.playerScript.takeDamage(10);
+        damagingPlayer = false;
+    }
 }

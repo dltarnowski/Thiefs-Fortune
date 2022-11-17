@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SaveSettings : MonoBehaviour
 {
@@ -20,23 +21,31 @@ public class SaveSettings : MonoBehaviour
     [SerializeField] private Slider OverallSlider;
     public float overallVaule;
 
-    private void Awake()
+    [SerializeField] AudioMixer MasterMixer;
+    public float volume;
+
+    void OnEnable()
     {
-        DefaultSettings();
+        if (PlayerPrefs.HasKey("msValue"))
+        {
+            LoadMSSettings();
+            LoadPVSettings();
+            LoadAudioSettings();
+            LoadGunSettings();
+            LoadOverallSettings();
+        }
+        else
+        {
+            DefaultSettings();
+        }
     }
-    void Start()
-    {
-        LoadMSSettings();
-        LoadPVSettings();
-        LoadAudioSettings();
-        LoadGunSettings();
-    }
-    private void Update()
+    public void SaveAllSettings()
     {
         SaveMSSettings();
         SavePlayerVolumeSettings();
         SaveAudioSettings();
         SaveGunSettings();
+        SaveOverallSettings();
     }
 
     public void DefaultSettings()
@@ -101,7 +110,8 @@ public class SaveSettings : MonoBehaviour
     public void SaveOverallSettings()
     {
         overallVaule = OverallSlider.value;
-        gameManager.instance.gunVaule = overallVaule;
+        MainMenuManager.instance.OverallVaule = overallVaule;
+        MasterMixer.SetFloat("Audio Volume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("OverallSlider", overallVaule);
         LoadOverallSettings();
     }
@@ -109,6 +119,5 @@ public class SaveSettings : MonoBehaviour
     {
         float overallVaule = PlayerPrefs.GetFloat("OverallSlider");
         OverallSlider.value = overallVaule;
-        AudioListener.volume = overallVaule;
     }
 }

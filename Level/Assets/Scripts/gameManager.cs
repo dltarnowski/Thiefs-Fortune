@@ -98,12 +98,12 @@ public class gameManager : MonoBehaviour
     public musicSwap music;
 
     int towersLeft;
-    [Header("----- Settings -----")]
+   /* [Header("----- Settings -----")]
     public float MSVaule;
     public float playervolumeVaule;
     public float audioVaule;
     public float gunVaule;
-    public float OverallVaule;
+    public float OverallVaule;*/
 
     // Start is called before the first frame update
     void Awake()
@@ -168,6 +168,11 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        playerScript.thirdPersonCam_Obj.SetActive(true);
+        playerScript.thirdPersonCam_Obj.tag = "MainCamera";
+        playerScript.firstPersonCam_Obj.SetActive(false);
+        playerScript.firstPersonCam_Obj.tag = "SecondaryCamera";
     }
 
     public void NpcPause()
@@ -283,12 +288,12 @@ public class gameManager : MonoBehaviour
         return menuCurrentlyOpen;
     }
 
-    public void DefaultSettings()
+    /*public void DefaultSettings()
     {
         MSVaule = 350;
         playervolumeVaule = 0.5f;
         audioVaule = 0.5f;
         gunVaule = 0.5f;
         OverallVaule = 0.5f;
-    }
+    }*/
 }
