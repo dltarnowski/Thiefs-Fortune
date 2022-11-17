@@ -239,7 +239,7 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        updateSlopeSliding();
+        //updateSlopeSliding();
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -333,6 +333,8 @@ public class playerController : MonoBehaviour
         }
         else if (isUnderwater && Input.GetButton("Jump"))
         {
+            if (playerVelocity.y < 0)
+                playerVelocity.y = 0;
             if (playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
         }
