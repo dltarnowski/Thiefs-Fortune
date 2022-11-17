@@ -107,6 +107,9 @@ public class playerController : MonoBehaviour
 
         MapSelect();
 
+        if (controller.isGrounded)
+            playerVelocity.y = -3;
+
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
             ChangePlayerVolume();
