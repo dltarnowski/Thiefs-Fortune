@@ -549,6 +549,7 @@ public class playerController : MonoBehaviour
     public void respawn()
     {
         Water.instance.WaterReset();
+        anim.SetBool("IsInWater", false);
 
         if (gameManager.instance.pauseMenu)
         {
