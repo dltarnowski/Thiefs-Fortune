@@ -9348,7 +9348,7 @@ GameObject:
   - component: {fileID: 2410229748637966791}
   - component: {fileID: 2410229748637966788}
   m_Layer: 5
-  m_Name: 'OverallVolumeSlider '
+  m_Name: 'EnvironmentalVolumeSlider '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9478,7 +9478,7 @@ GameObject:
   - component: {fileID: 2410229749789958524}
   - component: {fileID: 2410229749789958527}
   m_Layer: 5
-  m_Name: Overall Text
+  m_Name: Environment Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9532,7 +9532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Overall Volume
+  m_text: 'Environmental Volume
 
 
 '
@@ -10083,7 +10083,7 @@ MonoBehaviour:
   audioVaule: 0
   gunSlider: {fileID: 4603420021612986690}
   gunVaule: 0
-  OverallSlider: {fileID: 2410229748637966788}
+  EnvironmentalSlider: {fileID: 2410229748637966788}
   overallVaule: 0
   MasterMixer: {fileID: 24100000, guid: 7885fc7bdb22aeb41ac81be514ab69dd, type: 2}
   volume: 0
@@ -12686,8 +12686,8 @@ RectTransform:
   m_Father: {fileID: 4094633111770261564}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12763,7 +12763,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

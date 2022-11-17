@@ -18,7 +18,7 @@ public class SaveSettings : MonoBehaviour
     [SerializeField] private Slider gunSlider;
     public float gunVaule;
 
-    [SerializeField] private Slider OverallSlider;
+    [SerializeField] private Slider EnvironmentalSlider;
     public float overallVaule;
 
     [SerializeField] AudioMixer MasterMixer;
@@ -32,7 +32,7 @@ public class SaveSettings : MonoBehaviour
             LoadPVSettings();
             LoadAudioSettings();
             LoadGunSettings();
-            LoadOverallSettings();
+            LoadEnvironmentalSettings();
         }
         else
         {
@@ -45,7 +45,7 @@ public class SaveSettings : MonoBehaviour
         SavePlayerVolumeSettings();
         SaveAudioSettings();
         SaveGunSettings();
-        SaveOverallSettings();
+        SaveEnvironmentalSettings();
     }
 
     public void DefaultSettings()
@@ -107,17 +107,16 @@ public class SaveSettings : MonoBehaviour
         gunSlider.value = gunVaule;
     }
     //Manages Overall volume
-    public void SaveOverallSettings()
+    public void SaveEnvironmentalSettings()
     {
-        overallVaule = OverallSlider.value;
+        overallVaule = EnvironmentalSlider.value;
         MainMenuManager.instance.OverallVaule = overallVaule;
-        MasterMixer.SetFloat("Audio Volume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("OverallSlider", overallVaule);
-        LoadOverallSettings();
+        LoadEnvironmentalSettings();
     }
-    void LoadOverallSettings()
+    void LoadEnvironmentalSettings()
     {
         float overallVaule = PlayerPrefs.GetFloat("OverallSlider");
-        OverallSlider.value = overallVaule;
+        EnvironmentalSlider.value = overallVaule;
     }
 }
