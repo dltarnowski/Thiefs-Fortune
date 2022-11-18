@@ -11,7 +11,7 @@ public class shipController : MonoBehaviour
     //[SerializeField] Animator anim;
 
     public bool controllingShip;
-    bool onShip;
+    public bool onShip;
 
     // Update is called once per frame
     void Update()
@@ -79,7 +79,10 @@ public class shipController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        gameManager.instance.hint.SetActive(false);
-        onShip = false;
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.hint.SetActive(false);
+            onShip = false;
+        }
     }
 }
