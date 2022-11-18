@@ -50,6 +50,7 @@ public class MenuButtons : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
     public void respawn()
     {
         gameManager.instance.playerScript.respawn();
