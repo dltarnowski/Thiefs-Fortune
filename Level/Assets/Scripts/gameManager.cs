@@ -134,7 +134,9 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
-            playerScript.enabled = false;
+
+            if(shipControllerScript.controllingShip)
+                playerScript.enabled = false;
 
             if (isPaused)
                 cursorLockPause();

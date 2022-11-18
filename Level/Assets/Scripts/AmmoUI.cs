@@ -14,17 +14,23 @@ public class AmmoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameManager.instance.ammo.text = gameManager.instance.playerScript.gunStats.ammoCount.ToString();
-
-        if (gameManager.instance.playerScript.gunStats.ammoCount <= 0)
+        if (gameManager.instance.playerScript.gunStats != null)
         {
-            gameManager.instance.reloadHint.SetActive(true);
-            gameManager.instance.ammoObject.SetActive(false);
+            gameManager.instance.ammo.text = gameManager.instance.playerScript.gunStats.ammoCount.ToString();
+
+            if (gameManager.instance.playerScript.gunStats.ammoCount <= 0)
+            {
+                gameManager.instance.reloadHint.SetActive(true);
+                gameManager.instance.ammoObject.SetActive(false);
+            }
+            else
+            {
+                gameManager.instance.reloadHint.SetActive(false);
+                gameManager.instance.ammoObject.SetActive(true);
+            }
         }
         else
-        {
-            gameManager.instance.reloadHint.SetActive(false);
-            gameManager.instance.ammoObject.SetActive(true);
-        }
+            gameManager.instance.ammo.text = "0";
+
     }
 }

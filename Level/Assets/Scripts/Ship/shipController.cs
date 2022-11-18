@@ -12,7 +12,10 @@ public class shipController : MonoBehaviour
 
     public bool controllingShip;
     public bool onShip;
-
+    private void Start()
+    {
+        gameManager.instance.shipControllerScript = this;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -23,7 +26,6 @@ public class shipController : MonoBehaviour
             gameManager.instance.playerScript.enabled = controllingShip;
             gameManager.instance.mainCamera.SetActive(controllingShip);
             gameManager.instance.playerScript.anim.enabled = !gameManager.instance.playerScript.anim.enabled;
-            gameManager.instance.shipControllerScript = this;
 
             if(shipMove.wake.isPlaying)
             {
