@@ -14,7 +14,6 @@ public class CombatTutorial : MonoBehaviour
     void Update()
     {
         ObjectiveCheck();
-        Debug.Log(TutorialManager.instance.objectivesComplete);
     }
 
     public void ObjectiveCheck()

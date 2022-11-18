@@ -64,7 +64,8 @@ public class shipController : MonoBehaviour
 
     void RevertParent()
     {
-        gameManager.instance.player.transform.parent = null;
+        if(gameManager.instance.player != null)
+            gameManager.instance.player.transform.parent = null;
 
     }
 
@@ -74,6 +75,7 @@ public class shipController : MonoBehaviour
         {
             gameManager.instance.hint.SetActive(true);
             onShip = true;
+            TutorialManager.instance.tutorialProgress = 6;
 
             if (TutorialManager.instance.dialogueBox.activeSelf)
                 TutorialManager.instance.dialogueBox.SetActive(false);
