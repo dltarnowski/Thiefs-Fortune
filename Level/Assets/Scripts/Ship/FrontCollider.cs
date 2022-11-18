@@ -25,7 +25,7 @@ public class FrontCollider : MonoBehaviour
     IEnumerator RecentCollision()
     {
         shipMovementScript.isColliding = true;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.25f);
         shipMovementScript.isColliding = false;
     }
 }

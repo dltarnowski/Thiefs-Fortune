@@ -76,6 +76,8 @@ public class playerController : MonoBehaviour
     float coyoteTimeCounter;
     float jumpBufferTime = 0.4f;
     float jumpBufferCounter;
+    bool damagedEnemy;
+    int swings;
     public int barrel;
     private Color staminColor;
     int mapActive;
@@ -106,6 +108,9 @@ public class playerController : MonoBehaviour
         ItemSelect();
 
         MapSelect();
+
+        if (controller.isGrounded)
+            playerVelocity.y = -3;
 
         if (currVolume != gameManager.instance.PlayerAudioSlider.value)
         {
@@ -217,8 +222,6 @@ public class playerController : MonoBehaviour
             {
                 var collider = hit.collider;
                 var angle = Vector3.Angle(Vector3.up, hit.normal);
-                Debug.DrawLine(hit.point, hit.point + hit.normal, Color.black, 3f);
-                Debug.Log(angle);
 
                 if (angle > controller.slopeLimit)
                 {
@@ -234,7 +237,7 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        updateSlopeSliding();
+        //updateSlopeSliding();
 
         //3rd vs. 1st person camera toggle
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -328,6 +331,8 @@ public class playerController : MonoBehaviour
         }
         else if (isUnderwater && Input.GetButton("Jump"))
         {
+            if (playerVelocity.y < 0)
+                playerVelocity.y = 0;
             if (playerVelocity.y <= maxSwimSpeed)
                 playerVelocity.y += swimSpeed;
         }
@@ -444,8 +449,25 @@ public class playerController : MonoBehaviour
                 swordStat.hitsUntilBrokenCurrentAmount--;
                 hit[i].collider.GetComponent<IDamage>().takeDamage(swordStat.strength);
                 Instantiate(swordStat.hitFX, hit[i].point, hit[i].collider.gameObject.transform.rotation, hit[i].collider.gameObject.transform);
+                damagedEnemy = true;
             }
+
+            swings++;
+
+            if (!damagedEnemy && swings < 2)
+                StartCoroutine(waitForSwing());
+
+            if (swings >= 2)
+                swings = 0;
+
+            damagedEnemy = false;
         }
+    }
+
+    IEnumerator waitForSwing()
+    {
+        yield return new WaitForSeconds(1.3f);
+        meleeDamage();
     }
 
     void ItemSelect()
@@ -467,7 +489,7 @@ public class playerController : MonoBehaviour
 
     public void MapSelect()
     {
-        if (!gameManager.instance.map.activeSelf && mapActive == 0)
+        if (gameManager.instance.map != null && !gameManager.instance.map.activeSelf && mapActive == 0)
         {
             if (Input.GetKeyDown(KeyCode.M))
             {

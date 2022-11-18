@@ -35,20 +35,13 @@ public class winManager : MonoBehaviour
             gameManager.instance.miniMapObjectiveIcons[4].SetActive(false);
             gameManager.instance.miniMapPointer.gameObject.SetActive(false);
             gameManager.instance.winMenu.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
             StartCoroutine(CleanUp());
-        }
-        if (gameManager.instance.winMenu.activeSelf)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
     public IEnumerator CleanUp()
     {
-        yield return new WaitForSeconds(5f);
-        TutorialManager.instance.dialogueBox.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        gameManager.instance.cursorLockPause();
     }
 }
