@@ -11,7 +11,7 @@ public class shipController : MonoBehaviour
     //[SerializeField] Animator anim;
 
     public bool controllingShip;
-    bool onShip;
+    public bool onShip;
 
     // Update is called once per frame
     void Update()
