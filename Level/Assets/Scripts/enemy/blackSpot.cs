@@ -42,7 +42,6 @@ public class blackSpot : MonoBehaviour
     {
         isSpawning = true;
         spawnChance = Random.Range(0f, 1f);
-        Debug.Log(spawnChance);
         if (spawnChance < .2f)
             Instantiate(spawner, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
         yield return new WaitForSeconds(raidTimer / blackSpotMultiplier);
