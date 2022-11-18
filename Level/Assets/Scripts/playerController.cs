@@ -127,17 +127,23 @@ public class playerController : MonoBehaviour
 
         StartCoroutine(PlaySteps());
 
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh
-            && EquipmentManager.instance.currentEquipment[0] == gunStats)
+        if (gunStats != null)
         {
-            anim.SetBool("IsRanged", true);
-            StartCoroutine(shoot());
+            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == gunStats.model.GetComponent<MeshFilter>().sharedMesh
+                && EquipmentManager.instance.currentEquipment[0] == gunStats)
+            {
+                anim.SetBool("IsRanged", true);
+                StartCoroutine(shoot());
+            }
         }
-        if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh
-            && EquipmentManager.instance.currentEquipment[1] == swordStat && swordStat.hitsUntilBrokenCurrentAmount >= 0)
+        if (swordStat != null)
         {
-            anim.SetBool("IsRanged", false);
-            StartCoroutine(swing());
+            if (weaponModel.GetComponent<MeshFilter>().sharedMesh == swordStat.model.GetComponent<MeshFilter>().sharedMesh
+                && EquipmentManager.instance.currentEquipment[1] == swordStat && swordStat.hitsUntilBrokenCurrentAmount >= 0)
+            {
+                anim.SetBool("IsRanged", false);
+                StartCoroutine(swing());
+            }
         }
 
         HP = Mathf.Clamp(HP, 0, HPOrig);

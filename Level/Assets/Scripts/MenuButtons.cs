@@ -8,11 +8,6 @@ public class MenuButtons : MonoBehaviour
 {
     //int currentPosition;
     //int start = 0;
-    public void OnEnable()
-    {
-        if (gameManager.instance.playerScript.enabled == false)
-            gameManager.instance.playerScript.enabled = true;
-    }
 
     public void Resume()
     {
