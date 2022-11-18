@@ -74,6 +74,9 @@ public class shipController : MonoBehaviour
         {
             gameManager.instance.hint.SetActive(true);
             onShip = true;
+
+            if (TutorialManager.instance.dialogueBox.activeSelf)
+                TutorialManager.instance.dialogueBox.SetActive(false);
         }
     }
 
@@ -81,8 +84,10 @@ public class shipController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.hint.SetActive(false);
             onShip = false;
         }
+        
+        if(onShip == false)
+            gameManager.instance.hint.SetActive(false);
     }
 }
