@@ -211,7 +211,6 @@ public class TutorialManager : MonoBehaviour
     public IEnumerator CleanUp()
     {   
         objectivesComplete = 0;
-        yield return new WaitForSeconds(1.3f);
         skull.SetActive(false);
         Interaction.instance.playerInRange = false;
         skull.transform.position = new Vector3(nextPoint.transform.position.x, nextPoint.transform.position.y, nextPoint.transform.position.z);
