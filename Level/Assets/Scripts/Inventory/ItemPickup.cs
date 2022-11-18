@@ -5,6 +5,7 @@ public class ItemPickup : MonoBehaviour
     [SerializeField] public Item item;
     [SerializeField] public int despawn;
 
+    bool containsItem;
     bool isSwapped;
 
     private void Start()
@@ -19,6 +20,19 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            for (int i = 0; i < Inventory.instance.items.Count; i++)
+            {
+                if (Inventory.instance.items[i].name == item.name)
+                    containsItem = true;
+            }
+
+            for (int i = 0; i < EquipmentManager.instance.currentEquipment.Length; i++)
+            {
+                if (EquipmentManager.instance.currentEquipment[i] != null)
+                    if (EquipmentManager.instance.currentEquipment[i].name == item.name)
+                        containsItem = true;
+            }
+
             if(item is Currency)
             {
                 gameManager.instance.currencyNumber += (int)item.strength;
@@ -47,6 +61,9 @@ public class ItemPickup : MonoBehaviour
             if(!Inventory.instance.items.Contains(item) && EquipmentManager.instance.currentEquipment[2] == null && item.name == "Ammo")
                 isSwapped = Inventory.instance.Add(item);
             if(!Inventory.instance.items.Contains(item) && EquipmentManager.instance.currentEquipment[3] == null && item.name == "HealthPotion")
+                isSwapped = Inventory.instance.Add(item);
+
+            if (!containsItem && item is Weapon)
                 isSwapped = Inventory.instance.Add(item);
 
             if(TutorialManager.instance.tutorialActive && TutorialManager.instance.ammoBag != null)
