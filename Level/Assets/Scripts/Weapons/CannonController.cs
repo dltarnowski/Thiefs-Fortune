@@ -67,7 +67,6 @@ public class CannonController : MonoBehaviour
             cannonSmoke.transform.localPosition = cannonStats.muzzleLocations[0].localPosition;
             cannonSmoke.Play();
 
-            Debug.Log("Shoot!");
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
         }

@@ -8,6 +8,11 @@ public class MenuButtons : MonoBehaviour
 {
     //int currentPosition;
     //int start = 0;
+    public void OnEnable()
+    {
+        if (gameManager.instance.playerScript.enabled == false)
+            gameManager.instance.playerScript.enabled = true;
+    }
 
     public void Resume()
     {
@@ -22,8 +27,8 @@ public class MenuButtons : MonoBehaviour
     }
     public void ContinueExploring()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        gameManager.instance.cursorUnlockUnpause();
+
         StartCoroutine(HideMenu());
     }
     public IEnumerator HideMenu()
@@ -50,6 +55,7 @@ public class MenuButtons : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
     public void respawn()
     {
         gameManager.instance.playerScript.respawn();
@@ -58,7 +64,6 @@ public class MenuButtons : MonoBehaviour
     public void quit()
     {
         Application.Quit();
-        Debug.Log("Game has ended");
     }
 
     public void Settings()

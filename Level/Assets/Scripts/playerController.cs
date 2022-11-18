@@ -222,8 +222,6 @@ public class playerController : MonoBehaviour
             {
                 var collider = hit.collider;
                 var angle = Vector3.Angle(Vector3.up, hit.normal);
-                Debug.DrawLine(hit.point, hit.point + hit.normal, Color.black, 3f);
-                Debug.Log(angle);
 
                 if (angle > controller.slopeLimit)
                 {
@@ -491,7 +489,7 @@ public class playerController : MonoBehaviour
 
     public void MapSelect()
     {
-        if (!gameManager.instance.map.activeSelf && mapActive == 0)
+        if (gameManager.instance.map != null && !gameManager.instance.map.activeSelf && mapActive == 0)
         {
             if (Input.GetKeyDown(KeyCode.M))
             {

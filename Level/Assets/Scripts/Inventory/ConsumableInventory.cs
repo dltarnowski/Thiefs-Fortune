@@ -16,7 +16,6 @@ public class ConsumableInventory : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("More than one instance of Inventory Found");
             return;
         }
         instance = this;
