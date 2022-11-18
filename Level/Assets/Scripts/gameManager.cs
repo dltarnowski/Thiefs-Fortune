@@ -134,6 +134,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             pauseMenu.SetActive(isPaused);
 
+            playerScript.enabled = false;
 
             if (isPaused)
                 cursorLockPause();
@@ -208,6 +209,13 @@ public class gameManager : MonoBehaviour
             winMenu.SetActive(true);
             cursorUnlockUnpause();
         }
+    }
+
+    public void LockPlayerPosition()
+    {
+        player.transform.position = shipControllerScript.playerPos.transform.position;
+        player.transform.rotation = shipControllerScript.playerPos.transform.rotation;
+        player.transform.parent = transform;
     }
 
     public void CurrentObjectiveMiniMapIcon()
