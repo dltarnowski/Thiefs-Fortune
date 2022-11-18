@@ -6,7 +6,7 @@ public class shipController : MonoBehaviour
     [SerializeField] GameObject[] sails;
     [SerializeField] GameObject sailsUp;
     [SerializeField] GameObject sailsDown;
-    [SerializeField] GameObject playerPos;
+    [SerializeField] public GameObject playerPos;
     [SerializeField] shipMovement shipMove;
     //[SerializeField] Animator anim;
 
@@ -64,7 +64,7 @@ public class shipController : MonoBehaviour
 
     void RevertParent()
     {
-        if(gameManager.instance.player != null)
+        if (gameManager.instance.player != null)
             gameManager.instance.player.transform.parent = null;
 
     }
