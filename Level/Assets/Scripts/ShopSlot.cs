@@ -14,6 +14,7 @@ public class ShopSlot : MonoBehaviour
     public GameObject countUI;
 
     bool canBuy;
+    bool containsItem;
 
     private void Start()
     {
@@ -89,15 +90,20 @@ public class ShopSlot : MonoBehaviour
 
     public void BuyCheck()
     {
-        bool containsItem = false;
-        for (int i = 0; i < inventory.items.Count - 1; i++)
+        for (int i = 0; i < Inventory.instance.items.Count; i++)
         {
-            if (inventory.items[i].name == item.name)
+            if (Inventory.instance.items[i].name == item.name)
                 containsItem = true;
         }
 
-        if (item.name != EquipmentManager.instance.currentEquipment[0].name && item.name != EquipmentManager.instance.currentEquipment[1].name
-           && gameManager.instance.currencyNumber >= item.buyPrice && !containsItem)
+        for (int i = 0; i < EquipmentManager.instance.currentEquipment.Length; i++)
+        {
+            if (EquipmentManager.instance.currentEquipment[i] != null)
+                if (EquipmentManager.instance.currentEquipment[i].name == item.name)
+                    containsItem = true;
+        }
+
+        if (gameManager.instance.currencyNumber >= item.buyPrice && !containsItem)
         {
             canBuy = true;
         }
