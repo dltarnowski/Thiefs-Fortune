@@ -10,8 +10,7 @@ public class ItemPickup : MonoBehaviour
 
     private void Start()
     {
-        if(!(item is Consumable))
-            item = Instantiate(item);
+        item = Instantiate(item);
         if(despawn > 0)
             Destroy(gameObject, despawn);    
     }
@@ -46,24 +45,23 @@ public class ItemPickup : MonoBehaviour
                 return;
             }
 
-            if(item is Consumable)
+            if(containsItem && item is Consumable)
             {
-                if (Inventory.instance.items.Contains(item))
-                    Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
-                else if (EquipmentManager.instance.currentEquipment[2] != null)
-                    EquipmentManager.instance.currentEquipment[2].numOfItems++;
-                else if (EquipmentManager.instance.currentEquipment[3] != null)
-                    EquipmentManager.instance.currentEquipment[3].numOfItems++;
-                else
-                    item.numOfItems = 1;
+                for (int i = 0; i < Inventory.instance.items.Count; i++)
+                {
+                    if (Inventory.instance.items[i].name == item.name)
+                    {
+                        Inventory.instance.items[i].numOfItems++;
+                    }
+                }
+
+                    if (EquipmentManager.instance.currentEquipment[2] != null && item.name == "Ammo")
+                        EquipmentManager.instance.currentEquipment[2].numOfItems++;
+                    else if (EquipmentManager.instance.currentEquipment[3] != null && item.name == "HealthPotion")
+                        EquipmentManager.instance.currentEquipment[3].numOfItems++;
             }
 
-            if(!Inventory.instance.items.Contains(item) && EquipmentManager.instance.currentEquipment[2] == null && item.name == "Ammo")
-                isSwapped = Inventory.instance.Add(item);
-            if(!Inventory.instance.items.Contains(item) && EquipmentManager.instance.currentEquipment[3] == null && item.name == "HealthPotion")
-                isSwapped = Inventory.instance.Add(item);
-
-            if (!containsItem && item is Weapon)
+            if (!containsItem && item is Equipment)
                 isSwapped = Inventory.instance.Add(item);
 
             if(TutorialManager.instance.tutorialActive && TutorialManager.instance.ammoBag != null)
