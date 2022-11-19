@@ -7,17 +7,20 @@ public class ConsumeSlots : MonoBehaviour
     Inventory inventory;
     ConsumableInventory consumeInventory;
 
+
     public Image icon;
     public Button buy;
     public Consumable item;
     public TextMeshProUGUI price;
 
     bool canBuy;
+    bool containsItem;
 
     private void Start()
     {
         inventory = Inventory.instance;
         consumeInventory = ConsumableInventory.instance;
+        item = Instantiate(item);
     }
     private void Update()
     {
@@ -36,17 +39,20 @@ public class ConsumeSlots : MonoBehaviour
         {
             if (item is Consumable)
             {
-                if (Inventory.instance.items.Contains(item))
-                    Inventory.instance.items[Inventory.instance.items.IndexOf(item)].numOfItems++;
-                else if (EquipmentManager.instance.currentEquipment[2] != null)
-                    EquipmentManager.instance.currentEquipment[2].numOfItems++;
-                else if (EquipmentManager.instance.currentEquipment[3] != null)
-                    EquipmentManager.instance.currentEquipment[3].numOfItems++;
-                else
+                for (int i = 0; i < Inventory.instance.items.Count; i++)
                 {
-                    item.numOfItems = 1;
-                    inventory.Add(item);
+                    if (Inventory.instance.items[i].name == item.name)
+                    {
+                        Inventory.instance.items[i].numOfItems++;
+                        containsItem = true;
+                    }
                 }
+                if (EquipmentManager.instance.currentEquipment[2] != null && item.name == "Ammo")
+                    EquipmentManager.instance.currentEquipment[2].numOfItems++;
+                else if (EquipmentManager.instance.currentEquipment[3] != null && item.name == "HealthPotion")
+                    EquipmentManager.instance.currentEquipment[3].numOfItems++;
+                else if (!containsItem)
+                    Inventory.instance.Add(item);
             }
 
         }
